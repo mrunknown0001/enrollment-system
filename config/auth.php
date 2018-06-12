@@ -45,6 +45,33 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
+        
+        'faculty' => [
+            'driver' => 'session',
+            'provider' => 'faculties',
+        ],
+
+        
+        'cashier' => [
+            'driver' => 'session',
+            'provider' => 'cashiers',
+        ],
+
+        
+        'registrar' => [
+            'driver' => 'session',
+            'provider' => 'registrars',
+        ],
+
+
+
     ],
 
     /*
@@ -69,6 +96,27 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+
+        'faculties' => [
+            'driver' => 'eloquent',
+            'model' => App\Faculty::class,
+        ],
+
+        'cashiers' => [
+            'driver' => 'eloquent',
+            'model' => App\Cashier::class,
+        ],
+
+        'registrars' => [
+            'driver' => 'eloquent',
+            'model' => App\Registrar::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
