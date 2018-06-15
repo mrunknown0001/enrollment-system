@@ -1,95 +1,46 @@
+
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title> Welcome - ICT Online Enrollment System </title>
+        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" href="{{ asset('modular/css/vendor.css') }}">
+        <!-- Theme initialization -->
+        <link rel="stylesheet" href="{{ asset('modular/css/app-blue.css') }}">
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
+        <div class="app blank sidebar-opened">
+            <article class="content">
+                <div class="error-card global">
+                    <div class="error-title-block">
+                        <h1 class="error-title"> ICT </h1>
+                        <h2 class="error-sub-title"> Online Enrollment System </h2>
+                    </div>
+                    <div class="error-container">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fa fa-user-plus"></i> Signup </a>
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            <i class="fa fa-user"></i> Login </a>
+                    </div>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Enrollment
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            </article>
+        </div>
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
             </div>
         </div>
+        <script src="{{ asset('modular/js/vendor.js') }}"></script>
+        <script src="{{ asset('modular/js/app.js') }}"></script>
     </body>
 </html>
