@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -24,5 +25,12 @@ class LoginController extends Controller
 
     	// return login view for student login
     	return view('student-login');
+    }
+
+
+    // methdo use to post login student
+    public function postLogin(Request $request)
+    {
+
     }
 }

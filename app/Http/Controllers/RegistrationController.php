@@ -12,4 +12,11 @@ class RegistrationController extends Controller
     {
     	return view('student-registration');
     }
+
+
+    // method use to register student
+    public function postRegistration(Request $request)
+    {
+    	return date('M d, Y', strtotime($request['date_of_birth']));
+    }
 }

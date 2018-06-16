@@ -1,8 +1,8 @@
 @extends('layouts.student-layout')
 
 @section('content')
-<div class="auth">
-    <div class="auth-container">
+<div class="auth-registration">
+    <div class="auth-container-registration">
         <div class="card">
             <header class="auth-header">
                 <h1 class="auth-title">
@@ -15,7 +15,8 @@
                     </div> Student Registration </h1>
             </header>
             <div class="auth-content">
-                <form id="signup-form" action="#" method="POST" novalidate="">
+                <form id="signup-form" action="{{ route('student.registration.post') }}" method="POST" novalidate="">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label for="firstname">Name</label>
                         <div class="row">
@@ -39,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date_of_birth">Date of Birth</label>
-                        <input type="text" class="form-control underlined" name="date_of_birth" id="date_of_birth" placeholder="dd/mm/yyyy" required=""> </div>
+                        <input type="text" class="form-control underlined" name="date_of_birth" id="date_of_birth" placeholder="mm/dd/yyyy" required=""> </div>
 
                     <div class="form-group">
                         <label for="place_of_birth">Place of Birth</label>
@@ -78,7 +79,6 @@
         </div>
     </div>
 </div>
-
 @include('includes.terms-and-policy')
 
 @endsection

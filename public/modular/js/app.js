@@ -160,6 +160,12 @@ $(function() {
                 required: true,
                 date_format: true
             },
+            plate_of_birth: "required",
+            
+            address: "required",
+
+            nationality: "required",
+
 	        password: {
 				required: true,
 				minlength: 8
@@ -218,6 +224,15 @@ $(function() {
             date_of_birth: {
                 required: "Please enter your birthdate",
                 date_format: "Please enter valid date format day/month/year",
+            },
+            place_of_birth: {
+                required: "Please enter place of birth",
+            },
+            address: {
+                required: "Please enter your address",
+            },
+            nationality: {
+                required: "Please enter your nationality",
             },
 	        password: {
 	        	required: "Please enter password fields.",

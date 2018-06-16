@@ -5,6 +5,10 @@ Route::get('/', 'LoginController@welcome')->name('welcome');
 
 Route::get('/student/login', 'LoginController@login')->name('student.login');
 
+
+Route::post('/student/login', 'LoginController@postLogin')->name('student.login.post');
+
+
 // redirect to student login form
 Route::get('/student', function () {
 	return redirect()->route('student.login');
@@ -20,6 +24,9 @@ Route::get('/faculty', function () {
 
 
 Route::get('/student/registration', 'RegistrationController@registration')->name('student.registration');
+
+
+Route::post('/student/registration', 'RegistrationController@postRegistration')->name('student.registration.post');
 
 
 Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
