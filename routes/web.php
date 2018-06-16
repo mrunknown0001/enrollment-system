@@ -8,7 +8,6 @@ Route::get('/student/login', 'LoginController@login')->name('student.login');
 
 Route::post('/student/login', 'LoginController@postLogin')->name('student.login.post');
 
-
 // redirect to student login form
 Route::get('/student', function () {
 	return redirect()->route('student.login');
@@ -23,13 +22,20 @@ Route::get('/faculty', function () {
 });
 
 
-Route::get('/student/registration', 'RegistrationController@registration')->name('student.registration');
+Route::get('/cashier/login', 'CashierLoginController@login')->name('cashier.login');
+
+// redirect to cashier login form
+Route::get('/cashier', function () {
+	return redirect()->route('cashier.login');
+});
 
 
-Route::post('/student/registration', 'RegistrationController@postRegistration')->name('student.registration.post');
+Route::get('/registrar/login', 'RegistrarLoginController@login')->name('registrar.login');
 
-
-Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
+// redirect to registrar login form
+Route::get('/registrar', function () {
+	return redirect()->route('registrar.login');
+});
 
 
 Route::get('/admin/login', 'AdminLoginController@login')->name('admin.login');
@@ -38,6 +44,15 @@ Route::get('/admin/login', 'AdminLoginController@login')->name('admin.login');
 Route::get('/admin', function () {
 	return redirect()->route('admin.login');
 });
+
+
+Route::get('/student/registration', 'RegistrationController@registration')->name('student.registration');
+
+
+Route::post('/student/registration', 'RegistrationController@postRegistration')->name('student.registration.post');
+
+
+Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
 
 
 /*

@@ -15,7 +15,6 @@
                     </div> Admin Login </h1>
             </header>
             <div class="auth-content">
-                <p class="text-center">LOGIN TO CONTINUE</p>
                 <form id="login-form" action="#" method="post" novalidate="">
                     <div class="form-group">
                         <label for="username">Username</label>

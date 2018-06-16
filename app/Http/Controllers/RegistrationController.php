@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+
+use App\Http\Controllers\GeneralController;
 
 class RegistrationController extends Controller
 {
@@ -17,6 +20,7 @@ class RegistrationController extends Controller
     // method use to register student
     public function postRegistration(Request $request)
     {
-    	return date('M d, Y', strtotime($request['date_of_birth']));
+    	// return date('M d, Y', strtotime($request['date_of_birth']));
+        return GeneralController::generate_student_number();
     }
 }
