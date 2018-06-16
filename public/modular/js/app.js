@@ -78,13 +78,15 @@ $(function() {
 	        username: "required",
 	        password: "required",
 	        agree: "required",
-            student_number: "required"
+            student_number: "required",
+            id_number: "required"
 	    },
 	    messages: {
 	        username: "Please enter username",
 	        password:  "Please enter password",
 	        agree: "Please accept our policy",
-            student_number: "Please enter student number"
+            student_number: "Please enter student number",
+            id_number: "Please enter id number"
 	    },
 	    invalidHandler: function() {
 			animate({
@@ -149,6 +151,14 @@ $(function() {
 	        },
             mobile_number: {
                 required: true,
+                mobile_number: true
+            },
+            id_number: {
+                required: true,
+            },
+            date_of_birth: {
+                required: true,
+                date_format: true
             },
 	        password: {
 				required: true,
@@ -198,6 +208,17 @@ $(function() {
 	            required: "Please enter email",
 	            email: "Please enter a valid email address"
 	        },
+            mobile_number: {
+                required: "Please enter mobile number",
+                mobile_number: "Please enter valid mobile number"
+            },
+            id_number: {
+                required: "Please enter ID Number",
+            },
+            date_of_birth: {
+                required: "Please enter your birthdate",
+                date_format: "Please enter valid date format day/month/year",
+            },
 	        password: {
 	        	required: "Please enter password fields.",
 	        	minlength: "Passwords should be at least 8 characters."

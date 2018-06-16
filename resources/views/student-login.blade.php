@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <p class="text-muted text-center">Register
-                            <a href="#">here!</a>
+                            <a href="{{ route('student.registration') }}">here!</a>
                         </p>
                     </div>
                 </form>
