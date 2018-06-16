@@ -1,10 +1,31 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'LoginController@welcome')->name('welcome');
+
+
+Route::get('/student/login', 'LoginController@login')->name('student.login');
+
+
+Route::get('/student/registration', 'RegistrationController@registration')->name('student.registration');
+
+
+Route::get('/admin/login', 'AdminLoginController@login')->name('admin.login');
+
+
+/*
+ * Student Route Group
+ * controller protected middleware
+ */
+Route::group(['prefix' => 'student'], function () {
+	// student dashbaord
+
 });
 
 
-Route::get('/admin', function() {
-	return view('admin.dashboard');
+/*
+ * Admin Route Group
+ * controller protected middleware
+ */
+Route::group(['prefix' => 'admin'], function () {
+	// admin dashboard
 });

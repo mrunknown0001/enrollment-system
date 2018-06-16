@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> Welcome - ICT Online Enrollment System </title>
+        <title> Internal Server Error - ICT Online Enrollment System </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -15,15 +15,13 @@
             <article class="content">
                 <div class="error-card global">
                     <div class="error-title-block">
-                        <h1 class="error-title"> ICT </h1>
-                        <h2 class="error-sub-title"> Online Enrollment System </h2>
+                        <h1 class="error-title"> 500 </h1>
+                        <h2 class="error-sub-title"> Internal Server Error </h2>
                     </div>
                     <div class="error-container">
-                        <a href="{{ route('student.registration') }}" class="btn btn-primary">
-                            <i class="fa fa-user-plus"></i> Signup </a>
+                        <a href="{{ route('welcome') }}" class="btn btn-primary">
+                            <i class="fa fa-home"></i> Home </a>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('student.login') }}">
-                            <i class="fa fa-user"></i> Login </a>
                     </div>
                 </div>
             </article>

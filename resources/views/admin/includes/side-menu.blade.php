@@ -10,7 +10,7 @@
             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                 <li class="active">
                     <a href="index.html">
-                        <i class="fa fa-home"></i> Dashboard </a>
+                        <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
                 <li>
                     <a href="">

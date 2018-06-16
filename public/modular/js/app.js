@@ -75,20 +75,16 @@ $(function() {
 
     var loginValidationSettings = {
 	    rules: {
-	        username: {
-	            required: true,
-	            email: true
-	        },
+	        username: "required",
 	        password: "required",
-	        agree: "required"
+	        agree: "required",
+            student_number: "required"
 	    },
 	    messages: {
-	        username: {
-	            required: "Please enter username",
-	            email: "Please enter a valid email address"
-	        },
+	        username: "Please enter username",
 	        password:  "Please enter password",
-	        agree: "Please accept our policy"
+	        agree: "Please accept our policy",
+            student_number: "Please enter student number"
 	    },
 	    invalidHandler: function() {
 			animate({
@@ -151,6 +147,9 @@ $(function() {
 	            required: true,
 	            email: true
 	        },
+            mobile_number: {
+                required: true,
+            },
 	        password: {
 				required: true,
 				minlength: 8
