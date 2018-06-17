@@ -55,6 +55,9 @@ Route::post('/student/registration', 'RegistrationController@postRegistration')-
 Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
 
 
+Route::get('/logout', 'GeneralController@logout')->name('logout');
+
+
 /*
  * Student Route Group
  * controller protected middleware

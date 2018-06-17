@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 use App\IdReference;
 use App\User;
@@ -10,6 +11,59 @@ use App\ActivityLog;
 
 class GeneralController extends Controller
 {
+
+    //////////////////////////////////
+    // session logout for all users //
+    //////////////////////////////////
+    public function logout()
+    {
+        // check if there is authenticted user
+        if(Auth::check()) {
+            // add activity log
+            GeneralController::activity_log(Auth::user()->id, 5, 'Student Logout');
+
+            Auth::logout();
+        }
+        elseif (Auth::guard('faculty')->check()) {
+            // add activity log
+            GeneralController::activity_log(Auth::guard('faculty')->user()->id, 4, 'Faculty Logout');
+
+            Auth::guard('faculty')->logout();
+        }
+        elseif(Auth::guard('admin')->check()) {
+            // add activity log
+            GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Logout');
+
+            Auth::guard('admin')->logout();
+        }
+        elseif(Auth::guard('cashier')->check()) {
+            // add activity log
+            GeneralController::activity_log(Auth::guard('cashier')->user()->id, 3, 'Cashier Logout');
+
+            Auth::guard('cashier')->logout();
+        }
+        elseif(Auth::guard('registrar')->check()) {
+            // add activity log
+            GeneralController::activity_log(Auth::guard('registrar')->user()->id, 2, 'Cashier Logout');
+
+            Auth::guard('registrar')->logout();
+        }
+        
+        return redirect()->route('welcome');
+        
+    }
+
+
+
+    //////////////////////////////
+    // auth check for all users //
+    //////////////////////////////
+    public function auth_check()
+    {
+        
+    }
+    
+
     
     ////////////////////////////////////////////////////////////////////////////
     // static method use to generate and check student number in the database //

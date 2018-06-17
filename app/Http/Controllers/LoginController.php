@@ -24,6 +24,8 @@ class LoginController extends Controller
     public function login()
     {
     	// codition and validation
+        // check if ther eis any authenticated user
+        
 
     	// return login view for student login
     	return view('student-login');
