@@ -15,7 +15,9 @@
                     </div> Student Login </h1>
             </header>
             <div class="auth-content">
-                <form id="login-form" action="#" method="POST" novalidate="">
+                @include('includes.all')
+                <form id="login-form" action="{{ route('student.login.post') }}" method="POST" novalidate="" autocomplete="off">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label for="student_number">Student Number</label>
                         <input type="text" class="form-control underlined" name="student_number" id="student_number" placeholder="Your Student Number" required> </div>

@@ -15,7 +15,8 @@
                     </div> Student Registration </h1>
             </header>
             <div class="auth-content">
-                <form id="signup-form" action="{{ route('student.registration.post') }}" method="POST" novalidate="">
+                @include('includes.all')
+                <form id="signup-form" action="{{ route('student.registration.post') }}" method="POST" novalidate="" autocomplete="off">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="firstname">Name</label>
@@ -28,14 +29,14 @@
                     </div>
                     <div class="form-group">
                         <label for="mobile_number">Mobile Number</label>
-                        <input type="text" class="form-control underlined" name="mobile_number" id="mobile_number" placeholder="Enter mobile number" required=""> </div>
+                        <input type="text" class="form-control underlined" name="mobile_number" id="mobile_number" placeholder="Enter 11 digit mobile number" required=""> </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <div class="row">
                             <div class="col-sm-6">
                                 <input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password" required=""> </div>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-type password" required=""> </div>
+                                <input type="password" class="form-control underlined" name="password_confirmation" id="password_confirmation" placeholder="Re-type password" required=""> </div>
                         </div>
                     </div>
                     <div class="form-group">

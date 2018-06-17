@@ -170,7 +170,7 @@ $(function() {
 				required: true,
 				minlength: 8
 	        },
-	        retype_password: {
+	        password_confirmation: {
 				required: true,
 				minlength: 8,
 				equalTo: "#password"
@@ -181,7 +181,7 @@ $(function() {
 	    },
 	    groups: {
 	    	name: "firstname lastname",
-			pass: "password retype_password",
+			pass: "password password_confirmation",
 		},
 		errorPlacement: function(error, element) {
 			if (
@@ -194,9 +194,9 @@ $(function() {
 			} 
 			else if (
 				element.attr("name") == "password" || 
-				element.attr("name") == "retype_password" 
+				element.attr("name") == "password_confirmation" 
 			) {
-				error.insertAfter($("#retype_password").closest('.row'));
+				error.insertAfter($("#password_confirmation").closest('.row'));
 				element.parents("div.form-group")
 				.addClass('has-error');
 			}
@@ -238,7 +238,7 @@ $(function() {
 	        	required: "Please enter password fields.",
 	        	minlength: "Passwords should be at least 8 characters."
 	        },
-	        retype_password: {
+	        password_confirmation: {
 	        	required: "Please enter password fields.",
 	        	minlength: "Passwords should be at least 8 characters."
 	        },
