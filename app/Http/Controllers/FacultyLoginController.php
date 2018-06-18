@@ -13,13 +13,35 @@ class FacultyLoginController extends Controller
     // method use to show login form for faculty
     public function login()
     {
-    	return view('faculty-login');
+    	return GeneralController::auth_check('faculty-login');
     }
 
 
     // method use to login faculty
     public function postLogin(Request $request)
     {
-    	return $request;
+    	// validate request data
+    	$request->validate([
+    		'id_number' => 'required',
+    		'password' => 'required'
+    	]);
+
+    	// assign variables to data
+    	$id = $request['id_number'];
+    	$password = $request['password'];
+
+    	// attempt to login
+    	if(Auth::guard('faculty')->attempt(['id_number' => $id, 'password' => $password])) {
+    		// add activity log
+    		GeneralController::activity_log(Auth::guard('faculty')->user()->id, 3, 'Faculty Login');
+
+    		// return
+    		return redirect()->route('faculty.dashboard');
+
+    	}
+
+    	// return redirect error message
+    	return redirect()->route('faculty.login')->with('error', 'Authentication Error!');
+
     }
 }

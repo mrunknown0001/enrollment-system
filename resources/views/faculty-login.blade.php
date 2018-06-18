@@ -15,6 +15,7 @@
                     </div> Faculty Login </h1>
             </header>
             <div class="auth-content">
+                @include('includes.all')
                 <form id="login-form" action="{{ route('faculty.login.post') }}" method="POST" novalidate="" autocomplete="off">
                     {{ csrf_field() }}
                     <div class="form-group">
