@@ -8,8 +8,8 @@
         </div>
         <nav class="menu">
             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                <li class="active">
-                    <a href="index.html">
+                <li class="{{ route('admin.dashboard') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
                 <li>

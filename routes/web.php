@@ -44,6 +44,8 @@ Route::get('/registrar', function () {
 
 Route::get('/admin/login', 'AdminLoginController@login')->name('admin.login');
 
+Route::post('/admin/login', 'AdminLoginController@postLogin')->name('admin.login.post');
+
 // redirect to admin login
 Route::get('/admin', function () {
 	return redirect()->route('admin.login');

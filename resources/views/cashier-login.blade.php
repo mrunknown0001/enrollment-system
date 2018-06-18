@@ -15,7 +15,8 @@
                     </div> Cashier Login </h1>
             </header>
             <div class="auth-content">
-                <form id="login-form" action="#" method="post" novalidate="">
+                <form id="login-form" action="#" method="post" novalidate="" autocomplete="off">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your username" required> </div>

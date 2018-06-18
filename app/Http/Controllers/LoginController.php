@@ -15,7 +15,7 @@ class LoginController extends Controller
 	public function welcome()
 	{
         // check if there is authenticated user
-        return GeneralController::auth_check($route = 'welcome');
+        return GeneralController::auth_check($view = 'welcome');
 	}
 
 
@@ -24,7 +24,7 @@ class LoginController extends Controller
     {
     	// codition and validation
         // check if ther eis any authenticated user
-        return GeneralController::auth_check($route = 'student.login');
+        return GeneralController::auth_check($view = 'student-login');
 
     }
 

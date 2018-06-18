@@ -15,10 +15,12 @@
                     </div> Admin Login </h1>
             </header>
             <div class="auth-content">
-                <form id="login-form" action="#" method="post" novalidate="">
+                @include('includes.all')
+                <form id="login-form" action="{{ route('admin.login.post') }}" method="post" novalidate="" autocomplete="off">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your username" required> </div>
+                        <input type="text" class="form-control underlined" name="username" id="username" placeholder="Your username" required> </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control underlined" name="password" id="password" placeholder="Your password" required> </div>

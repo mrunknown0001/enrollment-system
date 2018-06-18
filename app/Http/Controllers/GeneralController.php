@@ -58,7 +58,7 @@ class GeneralController extends Controller
     //////////////////////////////
     // auth check for all users //
     //////////////////////////////
-    public static function auth_check($route)
+    public static function auth_check($view)
     {
         // check the user and redirect to intented dashboard
         // check if there is authenticted user
@@ -77,9 +77,9 @@ class GeneralController extends Controller
         elseif(Auth::guard('registrar')->check()) {
             return redirect()->route('registrar.dashboard');
         }
-        else {
-            return redirect()->route($route);
-        }
+
+        return view($view);
+
 
     }
     

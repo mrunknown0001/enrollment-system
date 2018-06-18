@@ -15,7 +15,8 @@
                     </div> Faculty Login </h1>
             </header>
             <div class="auth-content">
-                <form id="login-form" action="#" method="POST" novalidate="">
+                <form id="login-form" action="#" method="POST" novalidate="" autocomplete="off">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label for="id_number">ID Number</label>
                         <input type="text" class="form-control underlined" name="id_number" id="id_number" placeholder="Your ID Number" required> </div>
