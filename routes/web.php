@@ -20,6 +20,8 @@ Route::get('/login', function () {
 
 Route::get('/faculty/login', 'FacultyLoginController@login')->name('faculty.login');
 
+Route::post('/faculty/login', 'FacultyLoginController@postLogin')->name('faculty.login.post');
+
 // redirect to faculty login form
 Route::get('/faculty', function () {
 	return redirect()->route('faculty.login');
@@ -59,6 +61,9 @@ Route::post('/student/registration', 'RegistrationController@postRegistration')-
 
 
 Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
+
+
+Route::post('/faculty/registration', 'FacultyRegistrationController@postRegistration')->name('faculty.registration.post');
 
 
 Route::get('/logout', 'GeneralController@logout')->name('logout');

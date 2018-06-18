@@ -18,6 +18,6 @@ class StudentController extends Controller
     {
     	// get all the data need to show in dashboard of student
 
-    	return 'Student Dashboard';
+    	return view('student.dashboard');
     }
 }

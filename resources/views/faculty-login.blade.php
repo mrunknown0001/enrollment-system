@@ -15,7 +15,7 @@
                     </div> Faculty Login </h1>
             </header>
             <div class="auth-content">
-                <form id="login-form" action="#" method="POST" novalidate="" autocomplete="off">
+                <form id="login-form" action="{{ route('faculty.login.post') }}" method="POST" novalidate="" autocomplete="off">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="id_number">ID Number</label>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <p class="text-muted text-center">Register
-                            <a href="#">here!</a>
+                            <a href="{{ route('faculty.registration') }}">here!</a>
                         </p>
                     </div>
                 </form>

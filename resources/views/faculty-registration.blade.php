@@ -15,7 +15,8 @@
                     </div> Faculty Registration </h1>
             </header>
             <div class="auth-content">
-                <form id="signup-form" action="#" method="POST" novalidate="">
+                @include('includes.all')
+                <form id="signup-form" action="{{ route('faculty.registration.post') }}" method="POST" novalidate="" autocomplete="off">
                     {{ csrf_field() }}
                 	<div class="form-group">
                 		<label for="id_number">ID Number</label>
@@ -39,7 +40,7 @@
                             <div class="col-sm-6">
                                 <input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password" required=""> </div>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-type password" required=""> </div>
+                                <input type="password" class="form-control underlined" name="password_confirmation" id="password_confirmation" placeholder="Re-type password" required=""> </div>
                         </div>
                     </div>
 
@@ -61,7 +62,7 @@
 
                     <div class="form-group">
                         <label for="agree">
-                            <input class="checkbox" name="agree" id="agree" type="checkbox" checked="" required="">
+                            <input class="checkbox" name="agree" id="agree" type="checkbox" checked required>
                             <span>Agree the
                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#terms-and-policy-modal">Terms and Policy</a>
                             </span>
