@@ -30,6 +30,8 @@ Route::get('/faculty', function () {
 
 Route::get('/cashier/login', 'CashierLoginController@login')->name('cashier.login');
 
+Route::post('/cashier/login', 'CashierLoginController@postLogin')->name('cashier.login.post');
+
 // redirect to cashier login form
 Route::get('/cashier', function () {
 	return redirect()->route('cashier.login');
@@ -37,6 +39,8 @@ Route::get('/cashier', function () {
 
 
 Route::get('/registrar/login', 'RegistrarLoginController@login')->name('registrar.login');
+
+Route::post('/registrar/login', 'RegistrarLoginController@postLogin')->name('registrar.login.post');
 
 // redirect to registrar login form
 Route::get('/registrar', function () {
@@ -114,4 +118,7 @@ Route::group(['prefix' => 'registrar'], function () {
 Route::group(['prefix' => 'admin'], function () {
 	// admin dashboard
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+
+	// route to view cashiers and other operations
+	Route::get('/users/cashiers', 'AdminController@viewCashiers')->name('admin.view.cashiers');
 });

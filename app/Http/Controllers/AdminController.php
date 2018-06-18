@@ -21,4 +21,12 @@ class AdminController extends Controller
 
     	return view('admin.dashboard');
     }
+
+
+
+    // method use to view casheirs
+    public function viewCashiers()
+    {
+        return view('admin.cashiers');
+    }
 }

@@ -12,17 +12,17 @@
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
-                <li>
+                <li class="{{ route('admin.view.cashiers') == url()->current() ? 'active' : '' }}">
                     <a href="">
-                        <i class="fa fa-th-large"></i> Items Manager
+                        <i class="fa fa-users"></i> Users Manager
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li>
-                            <a href="items-list.html"> Items List </a>
+                        <li class="{{ route('admin.view.cashiers') == url()->current() ? 'active' : '' }}">
+                            <a href="{{ route('admin.view.cashiers') }}"> Cashiers </a>
                         </li>
                         <li>
-                            <a href="item-editor.html"> Item Editor </a>
+                            <a href="#"> Registrars </a>
                         </li>
                     </ul>
                 </li>

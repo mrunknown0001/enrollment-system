@@ -15,7 +15,8 @@
                     </div> Registar Login </h1>
             </header>
             <div class="auth-content">
-                <form id="login-form" action="#" method="post" novalidate="" autocomplete="off">
+                @include('includes.all')
+                <form id="login-form" action="{{ route('registrar.login.post') }}" method="post" novalidate="" autocomplete="off">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="username">Username</label>
