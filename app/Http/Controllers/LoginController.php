@@ -14,9 +14,8 @@ class LoginController extends Controller
 	// method use to show welcome page of the site
 	public function welcome()
 	{
-
-		return view('welcome');
-
+        // check if there is authenticated user
+        return GeneralController::auth_check($route = 'welcome');
 	}
 
 
@@ -25,10 +24,8 @@ class LoginController extends Controller
     {
     	// codition and validation
         // check if ther eis any authenticated user
-        
+        return GeneralController::auth_check($route = 'student.login');
 
-    	// return login view for student login
-    	return view('student-login');
     }
 
 
@@ -55,7 +52,7 @@ class LoginController extends Controller
 
 
             // return to desired page
-            return 'Login Successful!';
+            return redirect()->route('student.dashboard');
             
 
         }

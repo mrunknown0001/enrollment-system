@@ -13,6 +13,10 @@ Route::get('/student', function () {
 	return redirect()->route('student.login');
 });
 
+Route::get('/login', function () {
+	return redirect()->route('student.login');
+})->name('login');
+
 
 Route::get('/faculty/login', 'FacultyLoginController@login')->name('faculty.login');
 
@@ -63,7 +67,8 @@ Route::get('/logout', 'GeneralController@logout')->name('logout');
  * controller protected middleware
  */
 Route::group(['prefix' => 'student'], function () {
-	// student dashbaord
+	// student dashboard
+	Route::get('/dashboard', 'StudentController@dashboard')->name('student.dashboard');
 
 });
 
@@ -73,6 +78,7 @@ Route::group(['prefix' => 'student'], function () {
  */
 Route::group(['prefix' => 'faculty'], function () {
 	// faculty dashboard
+	Route::get('/dashboard', 'FacultyController@dashboard')->name('faculty.dashboard');
 });
 
 
@@ -81,6 +87,7 @@ Route::group(['prefix' => 'faculty'], function () {
  */
 Route::group(['prefix' => 'cashier'], function () {
 	// cashier dashboard
+	Route::get('/dashboard', 'CashierController@dashboard')->name('cashier.dashboard');
 });
 
 
@@ -89,6 +96,7 @@ Route::group(['prefix' => 'cashier'], function () {
  */
 Route::group(['prefix' => 'registrar'], function () {
 	// registrar dashboard
+	Route::get('/dashboard', 'RegistrarController@dashboard')->name('registrar.dashboard');
 });
 
 
@@ -98,4 +106,5 @@ Route::group(['prefix' => 'registrar'], function () {
  */
 Route::group(['prefix' => 'admin'], function () {
 	// admin dashboard
+	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 });

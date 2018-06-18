@@ -11,4 +11,13 @@ class StudentController extends Controller
     {
     	$this->middleware('auth');
     }
+
+
+    // method to show the dashboard of student
+    public function dashboard()
+    {
+    	// get all the data need to show in dashboard of student
+
+    	return 'Student Dashboard';
+    }
 }

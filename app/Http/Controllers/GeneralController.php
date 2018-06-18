@@ -58,9 +58,29 @@ class GeneralController extends Controller
     //////////////////////////////
     // auth check for all users //
     //////////////////////////////
-    public function auth_check()
+    public static function auth_check($route)
     {
-        
+        // check the user and redirect to intented dashboard
+        // check if there is authenticted user
+        if(Auth::check()) {
+            return redirect()->route('student.dashboard');
+        }
+        elseif (Auth::guard('faculty')->check()) {
+            return redirect()->route('faculty.dashboard');
+        }
+        elseif(Auth::guard('admin')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
+        elseif(Auth::guard('cashier')->check()) {
+            return redirect()->route('cashier.dashboard');
+        }
+        elseif(Auth::guard('registrar')->check()) {
+            return redirect()->route('registrar.dashboard');
+        }
+        else {
+            return redirect()->route($route);
+        }
+
     }
     
 

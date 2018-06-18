@@ -11,4 +11,11 @@ class FacultyController extends Controller
     {
     	$this->middleware('auth:faculty');
     }
+
+
+    // method use to view dashboard of faculty
+    public function dashboard()
+    {
+    	return 'Faculty Dashboard';
+    }
 }

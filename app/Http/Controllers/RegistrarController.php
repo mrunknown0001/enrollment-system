@@ -11,4 +11,10 @@ class RegistrarController extends Controller
     {
     	$this->middleware('auth:registrar');
     }
+
+    // method use to view registrar dashboard
+    public function dashboard()
+    {
+    	return 'Registrar Dashboard';
+    }
 }
