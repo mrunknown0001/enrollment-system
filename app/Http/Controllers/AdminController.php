@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+
+use App\Cashier;
+
+use App\Http\Controllers\GeneralController;
 
 class AdminController extends Controller
 {
@@ -27,6 +32,10 @@ class AdminController extends Controller
     // method use to view casheirs
     public function viewCashiers()
     {
-        return view('admin.cashiers');
+        // get all cashiers
+        $cashiers = Cashier::orderBy('lastname', 'asc')
+                        ->paginate(15);
+
+        return view('admin.cashiers', ['cashiers' => $cashiers]);
     }
 }

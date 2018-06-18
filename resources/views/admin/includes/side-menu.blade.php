@@ -8,26 +8,26 @@
         </div>
         <nav class="menu">
             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                <li class="{{ route('admin.dashboard') == url()->current() ? 'active' : '' }}">
+                <li>
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
-                <li class="{{ route('admin.view.cashiers') == url()->current() ? 'active' : '' }}">
+                <li>
                     <a href="">
                         <i class="fa fa-users"></i> Users Manager
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li class="{{ route('admin.view.cashiers') == url()->current() ? 'active' : '' }}">
+                        <li>
                             <a href="{{ route('admin.view.cashiers') }}"> Cashiers </a>
                         </li>
                         <li>
-                            <a href="#"> Registrars </a>
+                            <a href=""> Registrars </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <i class="fa fa-area-chart"></i> Charts
                         <i class="fa arrow"></i>
                     </a>
