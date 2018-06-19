@@ -15,6 +15,8 @@ class CashierController extends Controller
     // method use to view cashier dashboard
     public function dashboard()
     {
-    	return 'Cashier Dashboard';
+    	// get all data needed
+
+    	return view('cashier.dashboard');
     }
 }

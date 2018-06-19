@@ -145,6 +145,9 @@ $(function() {
 	    	lastname: {
 	    		required: true,
 	    	},
+            username: {
+                required: true,
+            },
 	        email: {
 	            required: true,
 	            email: true
@@ -210,6 +213,9 @@ $(function() {
 	    messages: {
 	    	firstname: "Please enter firstname and lastname",
 	    	lastname: "Please enter firstname and lastname",
+            username: {
+                required: "Please enter username",
+            },
 	        email: {
 	            required: "Please enter email",
 	            email: "Please enter a valid email address"

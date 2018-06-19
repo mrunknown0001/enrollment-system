@@ -11,7 +11,7 @@
             <li class="profile dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="img"> <i class="fa fa-user"></i> </div>
-                    <span class="name"> {{ ucwords(Auth::guard('admin')->user()->firstname . ' ' . Auth::guard('admin')->user()->lastname) }} </span>
+                    <span class="name"> {{ ucwords(Auth::guard('cashier')->user()->firstname . ' ' . Auth::guard('cashier')->user()->lastname) }} </span>
                 </a>
                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="#">

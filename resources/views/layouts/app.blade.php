@@ -22,7 +22,7 @@
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
-                <article class="content">
+                <article class="content dashboard-page">
                     <section class="section">
                         <div class="row">
                             <div class="col-md-12">

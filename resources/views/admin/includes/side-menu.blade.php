@@ -4,30 +4,33 @@
             <div class="brand">
                 <div class="logo">
 
-                </div> Admin </div>
+                </div> <strong>Admin</strong> </div>
         </div>
         <nav class="menu">
             <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                <li>
+                <li class="{{ route('admin.dashboard') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
-                <li>
+                <li class="{{ route('admin.view.cashiers') == url()->current() ||
+                            route('admin.add.cashier') == url()->current() ||
+                            route('admin.view.registrars') == url()->current() ||
+                            route('admin.add.registrar') == url()->current() ? 'active' : '' }}">
                     <a href="">
                         <i class="fa fa-users"></i> Users Manager
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
-                        <li>
+                        <li class="{{ route('admin.view.cashiers') == url()->current() ? 'active' : '' }}">
                             <a href="{{ route('admin.view.cashiers') }}"> Cashiers </a>
                         </li>
                         <li>
-                            <a href=""> Registrars </a>
+                            <a href="{{ route('admin.view.registrars') }}"> Registrars </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="">
                         <i class="fa fa-area-chart"></i> Charts
                         <i class="fa arrow"></i>
                     </a>
@@ -160,15 +163,9 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="screenful.html">
-                        <i class="fa fa-bar-chart"></i> Agile Metrics
-                        <span class="label label-screenful">by Screenful</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/modularcode/modular-admin-html">
-                        <i class="fa fa-github-alt"></i> Theme Docs </a>
+                <li class="{{ route('admin.activity.logs') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.activity.logs') }}">
+                        <i class="fa fa-history"></i> Activity Log </a>
                 </li>
             </ul>
         </nav>
@@ -241,26 +238,7 @@
                             </div>
                         </div>
                         <div class="customize-item">
-<!--                             <ul class="customize-colors">
-                                <li>
-                                    <span class="color-item color-red" data-theme="red"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-orange" data-theme="orange"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-green active" data-theme=""></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-seagreen" data-theme="seagreen"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-blue" data-theme="blue"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-purple" data-theme="purple"></span>
-                                </li>
-                            </ul> -->
+
                         </div>
                     </li>
                 </ul>

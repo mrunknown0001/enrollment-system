@@ -9,12 +9,12 @@
 
 
 @section('content')
-<p><strong>Cashiers</strong></p>
+<p><strong>Registrars</strong></p>
 @include('includes.all')
 
-<p><a href="{{ route('admin.add.cashier') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Cashier</a></p>
+<p><a href="{{ route('admin.add.registrar') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Registrar</a></p>
 
-@if(count($cashiers) > 0)
+@if(count($registrars) > 0)
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -25,18 +25,18 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($cashiers as $c)
+		@foreach($registrars as $c)
 		<tr>
 			<td>{{ ucwords($c->firstname . ' ' . $c->lastname) }}</td>
 			<td>{{ strtolower($c->username) }}</td>
 			<td>{{ strtoupper($c->id_number) }}</td>
-			<td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cashier-{{ $c->id }}"><i class="fa fa-eye"></i> View</button></td>
-			<div class="modal fade" id="cashier-{{ $c->id }}">
+			<td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registrar-{{ $c->id }}"><i class="fa fa-eye"></i> View</button></td>
+			<div class="modal fade" id="registrar-{{ $c->id }}">
 			    <div class="modal-dialog" role="document">
 			        <div class="modal-content">
 			            <div class="modal-header">
 			                <h4 class="modal-title">
-			                    <i class="fa fa-info"></i> Cashier Info</h4>
+			                    <i class="fa fa-info"></i> Registrar Info</h4>
 			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			                    <span aria-hidden="true">&times;</span>
 			                </button>
@@ -48,7 +48,7 @@
 			                <p>Mobile Number: <strong>{{ $c->mobile_number }}</strong></p>
 			            </div>
 			            <div class="modal-footer">
-			                <small>Cashier Info</small>
+			                <small>Registrar Info</small>
 			            </div>
 			        </div>
 			    </div>
@@ -61,8 +61,8 @@
 	</tfoot>
 </table>
 @else
-<p class="text-center"><em>No Cashier Found!</em></p>
+<p class="text-center"><em>No Registrar Found!</em></p>
 @endif
 
-{{ $cashiers->links() }}
+{{ $registrars->links() }}
 @endsection

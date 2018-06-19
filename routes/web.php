@@ -119,6 +119,21 @@ Route::group(['prefix' => 'admin'], function () {
 	// admin dashboard
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
+	// rotue to view activity logs
+	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.logs');
+
 	// route to view cashiers and other operations
 	Route::get('/users/cashiers', 'AdminController@viewCashiers')->name('admin.view.cashiers');
+
+	// route to view add cashier form
+	Route::get('/users/cashier/add', 'AdminController@addCashier')->name('admin.add.cashier');
+
+	// route to add save new cashier to database
+	Route::post('/users/cashier/add', 'AdminController@postAddCashier')->name('admin.add.cashier.post');
+
+	// route to view all registrar
+	Route::get('/users/registrars', 'AdminController@viewRegistrars')->name('admin.view.registrars');
+
+	// route to view add registrar form
+	Route::get('/users/registrar/add', 'AdminController@addRegistrar')->name('admin.add.registrar');
 });
