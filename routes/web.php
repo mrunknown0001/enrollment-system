@@ -136,4 +136,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to view add registrar form
 	Route::get('/users/registrar/add', 'AdminController@addRegistrar')->name('admin.add.registrar');
+
+	// route to add save new registrars
+	Route::post('/users/registrar/add', 'AdminController@postAddRegistrar')->name('admin.add.registrar.post');
 });

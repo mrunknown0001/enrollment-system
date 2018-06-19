@@ -42,7 +42,7 @@ class RegistrarLoginController extends Controller
     		GeneralController::activity_log(Auth::guard('registrar')->user()->id, 4, 'Registrar Login');
 
     		// return to view
-    		return redirect()->route('registar.dashboard');
+    		return redirect()->route('registrar.dashboard');
     	}
     	
 

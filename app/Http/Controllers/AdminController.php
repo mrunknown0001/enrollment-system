@@ -67,8 +67,8 @@ class AdminController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'username' => 'required',
-            'id_number' => 'required',
-            'mobile_number' => 'required'
+            'id_number' => 'required|unique:cashiers',
+            'mobile_number' => 'required|unique:cashiers'
         ]);
 
 
@@ -116,6 +116,50 @@ class AdminController extends Controller
     public function addRegistrar()
     {
         return view('admin.add-registrar');
+    }
+
+
+    // method use to save new registrar
+    public function postAddRegistrar(Request $request)
+    {
+
+        // validate form data
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'username' => 'required',
+            'id_number' => 'required|unique:cashiers',
+            'mobile_number' => 'required|unique:cashiers'
+        ]);
+
+
+        // assign form data to variables
+        $firstname = $request['firstname'];
+        $lastname = $request['lastname'];
+        $username = $request['username'];
+        $id = $request['id_number'];
+        $mobile = $request['mobile_number'];
+
+
+        // check
+
+
+        // save cashier
+        $cashier = new Registrar();
+        $cashier->username = $username;
+        $cashier->firstname = $firstname;
+        $cashier->lastname = $lastname;
+        $cashier->id_number = $id;
+        $cashier->mobile_number = $mobile;
+        $cashier->password = bcrypt('registrar');
+        $cashier->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Registrar Account');
+
+        // return data with message
+        return redirect()->route('admin.add.registrar');
+
     }
 
 }

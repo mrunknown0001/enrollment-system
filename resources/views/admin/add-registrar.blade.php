@@ -20,7 +20,7 @@
                 
                 @include('includes.all')
 
-                <form id="signup-form" action="#" method="POST" role="form" autocomplete="off">
+                <form id="signup-form" action="{{ route('admin.add.registrar.post') }}" method="POST" role="form" autocomplete="off">
                 	{{ csrf_field() }}
                     <div class="form-group">
                         <div class="row">

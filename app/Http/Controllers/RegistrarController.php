@@ -15,6 +15,6 @@ class RegistrarController extends Controller
     // method use to view registrar dashboard
     public function dashboard()
     {
-    	return 'Registrar Dashboard';
+    	return view('registrar.dashboard');
     }
 }
