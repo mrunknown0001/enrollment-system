@@ -30,6 +30,13 @@ class AdminController extends Controller
     }
 
 
+    // method use to view profile of the admin
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+
+
     // method use to show activity logs
     public function activityLog()
     {
@@ -160,6 +167,15 @@ class AdminController extends Controller
         // return data with message
         return redirect()->route('admin.add.registrar');
 
+    }
+
+
+    // method use to view programs available 
+    public function viewPrograms()
+    {
+        // get all programs offered
+
+        return view('admin.programs');
     }
 
 }

@@ -14,7 +14,7 @@
                     <span class="name"> {{ ucwords(Auth::guard('admin')->user()->firstname . ' ' . Auth::guard('admin')->user()->lastname) }} </span>
                 </a>
                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('admin.profile') }}">
                         <i class="fa fa-user icon"></i> Profile </a>
                     <a class="dropdown-item" href="#">
                         <i class="fa fa-gear icon"></i> Settings </a>

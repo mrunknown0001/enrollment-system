@@ -119,6 +119,9 @@ Route::group(['prefix' => 'admin'], function () {
 	// admin dashboard
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
+	// route to view admin profile
+	Route::get('/profile', 'AdminController@profile')->name('admin.profile');
+
 	// rotue to view activity logs
 	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.logs');
 
@@ -139,4 +142,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to add save new registrars
 	Route::post('/users/registrar/add', 'AdminController@postAddRegistrar')->name('admin.add.registrar.post');
+
+	// route to view programs available
+	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
 });
