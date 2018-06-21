@@ -17,6 +17,7 @@ class CreateFacultiesTable extends Migration
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('gender')->nullable();
             $table->string('id_number')->unique();
             $table->string('mobile_number')->nullable();
             $table->string('password');

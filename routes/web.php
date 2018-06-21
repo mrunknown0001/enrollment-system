@@ -99,6 +99,21 @@ Route::group(['prefix' => 'faculty'], function () {
 Route::group(['prefix' => 'cashier'], function () {
 	// cashier dashboard
 	Route::get('/dashboard', 'CashierController@dashboard')->name('cashier.dashboard');
+
+	// route to cashier profile
+	Route::get('/profile', 'CashierController@profile')->name('cashier.profile');
+
+	// route to view updte profile
+	Route::get('/profile/update', 'CashierController@updateProfile')->name('cashier.profile.update');
+
+	// route to update profile of cashier
+	Route::post('/profile/update', 'CashierController@postUpdateProfile')->name('cashier.profile.update.post');
+
+	// route to show password update
+	Route::get('/password/change', 'CashierController@changePassword')->name('cashier.password.change');
+
+	// route to upate password
+	Route::post('/password/change', 'CashierController@postChangePassword')->name('cashier.password.change.post');
 });
 
 

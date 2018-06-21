@@ -17,6 +17,7 @@ class CreateRegistrarsTable extends Migration
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('gender')->nullable();
             $table->string('username')->unique();
             $table->string('id_number')->unique();
             $table->string('mobile_number')->nullable();
