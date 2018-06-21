@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+use App\Admin;
 use App\Cashier;
 use App\ActivityLog;
 use App\Registrar;
@@ -37,6 +38,83 @@ class AdminController extends Controller
     }
 
 
+    // method use to view update profile
+    public function profielUpdate()
+    {
+        return view('admin.profile-update');
+    }
+
+
+    // method use to update profile of admin
+    public function postProfileUpdate(Request $request)
+    {
+        // validate request data
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'id_number' => 'required',
+            'mobile_number' => 'required'
+        ]);
+
+        // assign to varible
+        $firstname = $request['firstname'];
+        $lastname = $request['lastname'];
+        $id = $request['id_number'];
+        $mobile = $request['mobile_number'];
+
+        // update 
+        $admin = Admin::findorfail(Auth::guard('admin')->user()->id);
+        $admin->firstname = $firstname;
+        $admin->lastname = $lastname;
+        $admin->id_number = $id;
+        $admin->mobile_number = $mobile;
+        $admin->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Update Admin Profile');
+
+
+        return redirect()->route('admin.profile');
+    }
+
+
+    // method use to view change password form
+    public function changePassword()
+    {
+        return view('admin.change-password');
+    }
+
+
+    // method use to change password
+    public function postChangePassword(Request $request)
+    {
+        // validate request data
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        // assign request data to variables
+        $old = $request['old_password'];
+        $new = $request['password'];
+
+        // if the password is same with old password
+        if(password_verify($old, Auth::guard('admin')->user()->password)) {
+            // change the password
+            $admin = Admin::findorfail(Auth::guard('admin')->user()->id);
+            $admin->password = bcrypt($new);
+            $admin->save();
+
+            // activity log
+            GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Change Password');
+
+            return redirect()->route('admin.change.password')->with('success', 'Password Changed!');
+        }
+
+        return redirect()->route('admin.change.password')->with('error', 'Old Password Invalid!');
+    }
+
+
     // method use to show activity logs
     public function activityLog()
     {
@@ -55,6 +133,22 @@ class AdminController extends Controller
                         ->paginate(15);
 
         return view('admin.cashiers', ['cashiers' => $cashiers]);
+    }
+
+
+    // method use to reset cashier password to default
+    public function postResetCashierPassword(Request $request)
+    {
+        $id = $request['id'];
+
+        $cashier = Cashier::findorfail($id);
+        $cashier->password = bcrypt('cashier');
+        $cashier->save();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Reset Cashier Password: ' . $cashier->firstname . ' ' . $cashier->lastname);
+
+        return redirect()->route('admin.view.cashiers')->with('success', 'Reset to default password. Success!');
+
     }
 
 
@@ -116,6 +210,22 @@ class AdminController extends Controller
                             ->paginate(15);
 
         return view('admin.registrars', ['registrars' => $registrars]);
+    }
+
+
+    // method use to reset registrar password to default
+    public function postResetRegistrarPassword(Request $request)
+    {
+        $id = $request['id'];
+
+        $registrar = Registrar::findorfail($id);
+        $registrar->password = bcrypt('registrar');
+        $registrar->save();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Reset Registrar Password: ' . $registrar->firstname . ' ' . $registrar->lastname);
+
+        return redirect()->route('admin.view.registrars')->with('success', 'Reset to default password. Success!');
+
     }
 
 

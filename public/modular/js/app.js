@@ -169,6 +169,8 @@ $(function() {
 
             nationality: "required",
 
+            old_password: "required",
+
 	        password: {
 				required: true,
 				minlength: 8
@@ -239,6 +241,9 @@ $(function() {
             },
             nationality: {
                 required: "Please enter your nationality",
+            },
+            old_password: {
+                required: "Please enter your old password",
             },
 	        password: {
 	        	required: "Please enter password fields.",

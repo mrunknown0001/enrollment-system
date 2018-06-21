@@ -12,18 +12,25 @@
 
 <section class="section">
     <div class="row">
-        <div class="col-md-6">
-            <div class="card card-block">
-                <div class="title-block">
-                    <h3 class="title"> Admin Profile </h3>
+
+        <div class="col-xl-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <div class="header-block">
+                        <p class="title"> Admin Profile </p>
+                    </div>
                 </div>
-                
-                <p>Name: <strong>{{ ucwords(Auth::guard('admin')->user()->firstname . ' ' . Auth::guard('admin')->user()->lastname) }}</strong></p>
-                <p>Username: <strong>{{ strtolower(Auth::guard('admin')->user()->username) }}</strong></p>
-                <p>ID Number: <strong>{{ Auth::guard('admin')->user()->id_number }}</strong></p>
-                <p>Mobile Number: <strong>{{ Auth::guard('admin')->user()->mobile_number }}</strong></p>
+                <div class="card-block">
+                    <p>Name: <strong>{{ ucwords(Auth::guard('admin')->user()->firstname . ' ' . Auth::guard('admin')->user()->lastname) }}</strong></p>
+                    <p>Username: <strong>{{ strtolower(Auth::guard('admin')->user()->username) }}</strong></p>
+                    <p>ID Number: <strong>{{ Auth::guard('admin')->user()->id_number }}</strong></p>
+                    <p>Mobile Number: <strong>{{ Auth::guard('admin')->user()->mobile_number }}</strong></p>
+                    <p><a href="{{ route('admin.profile.update') }}" class="btn btn-primary">Update Profile</a></p>
+                </div>
+                <div class="card-footer"> <small>Admin Profile</small> </div>
             </div>
         </div>
+
     </div>
 </section>
 

@@ -122,11 +122,26 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view admin profile
 	Route::get('/profile', 'AdminController@profile')->name('admin.profile');
 
+	// rotue to view update profile
+	Route::get('/profile/update', 'AdminController@profielUpdate')->name('admin.profile.update');
+
+	// rotue to update profile
+	Route::post('/profile/update', 'AdminController@postProfileUpdate')->name('admin.profile.update.post');
+
+	// rotue to change password view
+	Route::get('/password/change', 'AdminController@changePassword')->name('admin.change.password');
+
+	// route to change password of admin
+	Route::post('/password/change', 'AdminController@postChangePassword')->name('admin.change.password.post');
+
 	// rotue to view activity logs
 	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.logs');
 
 	// route to view cashiers and other operations
 	Route::get('/users/cashiers', 'AdminController@viewCashiers')->name('admin.view.cashiers');
+
+	// route to reset password for cashier in default
+	Route::post('/users/cashier/reset/password', 'AdminController@postResetCashierPassword')->name('admin.reset.cashier.password.post');
 
 	// route to view add cashier form
 	Route::get('/users/cashier/add', 'AdminController@addCashier')->name('admin.add.cashier');
@@ -136,6 +151,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to view all registrar
 	Route::get('/users/registrars', 'AdminController@viewRegistrars')->name('admin.view.registrars');
+
+	// route to reset registrar default password
+	Route::post('/users/registrar/reset/password', 'AdminController@postResetRegistrarPassword')->name('admin.reset.registrar.password.post');
 
 	// route to view add registrar form
 	Route::get('/users/registrar/add', 'AdminController@addRegistrar')->name('admin.add.registrar');
