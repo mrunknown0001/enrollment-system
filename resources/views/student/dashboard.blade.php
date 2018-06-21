@@ -9,5 +9,5 @@
 
 
 @section('content')
-<p>Student Dashbaord</p>
+<p><strong>Student Dashbaord</strong></p>
 @endsection

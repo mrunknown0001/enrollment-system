@@ -20,4 +20,11 @@ class StudentController extends Controller
 
     	return view('student.dashboard');
     }
+
+
+    // method to show profile of the student
+    public function profile()
+    {
+        return view('student.profile');
+    }
 }

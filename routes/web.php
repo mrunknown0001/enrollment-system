@@ -81,6 +81,9 @@ Route::group(['prefix' => 'student'], function () {
 	// student dashboard
 	Route::get('/dashboard', 'StudentController@dashboard')->name('student.dashboard');
 
+	// rotue to view profile of the student
+	Route::get('/profile', 'StudentController@profile')->name('student.profile');
+
 });
 
 
@@ -90,6 +93,21 @@ Route::group(['prefix' => 'student'], function () {
 Route::group(['prefix' => 'faculty'], function () {
 	// faculty dashboard
 	Route::get('/dashboard', 'FacultyController@dashboard')->name('faculty.dashboard');
+
+	// route to view faculty profile
+	Route::get('/profile', 'FacultyController@profile')->name('faculty.profile');
+
+	// route to view faculty form update
+	Route::get('/profile/update', 'FacultyController@updateProfile')->name('faculty.profile.update');
+
+	// route to update faculty form
+	Route::post('/profile/update', 'FacultyController@postUpdateProfile')->name('faculty.profile.update.post');
+
+	// rotue view password change form
+	Route::get('/password/change', 'FacultyController@changePassword')->name('faculty.password.change');
+
+	// rotue to save change password of faculty
+	Route::post('/password/change', 'FacultyController@postChangePassword')->name('faculty.password.change.post');
 });
 
 
@@ -112,7 +130,7 @@ Route::group(['prefix' => 'cashier'], function () {
 	// route to show password update
 	Route::get('/password/change', 'CashierController@changePassword')->name('cashier.password.change');
 
-	// route to upate password
+	// route to update password
 	Route::post('/password/change', 'CashierController@postChangePassword')->name('cashier.password.change.post');
 });
 
@@ -123,6 +141,21 @@ Route::group(['prefix' => 'cashier'], function () {
 Route::group(['prefix' => 'registrar'], function () {
 	// registrar dashboard
 	Route::get('/dashboard', 'RegistrarController@dashboard')->name('registrar.dashboard');
+
+	// route use toview profile
+	Route::get('/profile', 'RegistrarController@profile')->name('registrar.profile');
+
+	// rotue use to view profile update form
+	Route::get('/profile/update', 'RegistrarController@updateProfile')->name('registrar.profile.update');
+
+	// route use to update profile of registrar
+	Route::post('/profile/update', 'RegistrarController@postUpdateProfile')->name('registrar.profile.update.post');
+
+	// rotue use to view password change form
+	Route::get('/password/change', 'RegistrarController@changePassword')->name('registrar.password.change');
+
+	// route to change password of registrar
+	Route::post('/password/change', 'RegistrarController@postChangePassword')->name('registrar.password.change.post');
 });
 
 
