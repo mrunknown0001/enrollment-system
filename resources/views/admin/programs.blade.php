@@ -22,16 +22,45 @@
 				<thead>
 					<tr>
 						<th>Title</th>
-						<th>Description</th>
+						<th>Code</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
+					@foreach($programs as $p)
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>{{ ucwords($p->title) }}</td>
+						<td>{{ strtoupper($p->code) }}</td>
+						<td>
+							<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#program-{{ $p->id }}"><i class="fa fa-eye"></i> View</button>
+
+							<div class="modal fade" id="program-{{ $p->id }}">
+							    <div class="modal-dialog" role="document">
+							        <div class="modal-content">
+							            <div class="modal-header">
+							                <h4 class="modal-title">
+							                    <i class="fa fa-info"></i> Program Info</h4>
+							                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                    <span aria-hidden="true">&times;</span>
+							                </button>
+							            </div>
+							            <div class="modal-body">
+											<p>Title: <strong>{{ ucwords($p->title) }}</strong></p>
+											<p>Code: <strong>{{ strtoupper($p->code) }}</strong></p>
+											<p>DescriptioN: <strong>{{ $p->description }}</strong></p>
+											<p>Tuition Fee: <strong>{{ $p->tuition_fee }}</strong></p>
+							            </div>
+							            <div class="modal-footer">
+							                <small>Program Info</small>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+
+							<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>
+						</td>
 					</tr>
+					@endforeach
 				</tbody>
 				<tfoot>
 					

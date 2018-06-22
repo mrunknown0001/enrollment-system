@@ -125,34 +125,10 @@ Route::group(['prefix' => 'registrar'], function () {
 });
 
 
-/*
- * Faculty Route Group
- * user type 3
- */
-Route::group(['prefix' => 'faculty'], function () {
-	// faculty dashboard
-	Route::get('/dashboard', 'FacultyController@dashboard')->name('faculty.dashboard');
-
-	// route to view faculty profile
-	Route::get('/profile', 'FacultyController@profile')->name('faculty.profile');
-
-	// route to view faculty form update
-	Route::get('/profile/update', 'FacultyController@updateProfile')->name('faculty.profile.update');
-
-	// route to update faculty form
-	Route::post('/profile/update', 'FacultyController@postUpdateProfile')->name('faculty.profile.update.post');
-
-	// rotue view password change form
-	Route::get('/password/change', 'FacultyController@changePassword')->name('faculty.password.change');
-
-	// rotue to save change password of faculty
-	Route::post('/password/change', 'FacultyController@postChangePassword')->name('faculty.password.change.post');
-});
-
 
 /*
  * Cashier Route Group
- * user type 2
+ * user type 3
  */
 Route::group(['prefix' => 'cashier'], function () {
 	// cashier dashboard
@@ -172,6 +148,31 @@ Route::group(['prefix' => 'cashier'], function () {
 
 	// route to update password
 	Route::post('/password/change', 'CashierController@postChangePassword')->name('cashier.password.change.post');
+});
+
+
+/*
+ * Faculty Route Group
+ * user type 2
+ */
+Route::group(['prefix' => 'faculty'], function () {
+	// faculty dashboard
+	Route::get('/dashboard', 'FacultyController@dashboard')->name('faculty.dashboard');
+
+	// route to view faculty profile
+	Route::get('/profile', 'FacultyController@profile')->name('faculty.profile');
+
+	// route to view faculty form update
+	Route::get('/profile/update', 'FacultyController@updateProfile')->name('faculty.profile.update');
+
+	// route to update faculty form
+	Route::post('/profile/update', 'FacultyController@postUpdateProfile')->name('faculty.profile.update.post');
+
+	// rotue view password change form
+	Route::get('/password/change', 'FacultyController@changePassword')->name('faculty.password.change');
+
+	// rotue to save change password of faculty
+	Route::post('/password/change', 'FacultyController@postChangePassword')->name('faculty.password.change.post');
 });
 
 
@@ -230,5 +231,10 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
 
 	// route to view add program
-	Route::get('/programs/add', 'AdminController@addProgram')->name('admin.add.program');
+	Route::get('/program/add', 'AdminController@addProgram')->name('admin.add.program');
+
+	// route to add program
+	Route::post('/program/add', 'AdminController@postAddProgram')->name('admin.add.program.post');
+
+	// route to update form of the subject
 });

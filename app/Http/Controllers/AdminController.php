@@ -298,4 +298,42 @@ class AdminController extends Controller
         return view('admin.add-program');
     }
 
+
+    // method use to add program
+    public function postAddProgram(Request $request)
+    {
+        // validate request form data
+        $request->validate([
+            'title' => 'required',
+            'code' => 'required|unique:programs',
+            'tuition_fee' => 'required'
+        ]);
+
+
+        // assing validated data to variables
+        $title = $request['title'];
+        $code = $request['code'];
+        $desc = $request['description'];
+        $fee = $request['tuition_fee'];
+
+        // other checking
+
+
+        // save new program
+        $program = new Program();
+        $program->title = $title;
+        $program->code = $code;
+        $program->description = $desc;
+        $program->tuition_fee = $fee;
+        $program->save();
+
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Program');
+
+
+        // return with success message
+        return redirect()->route('admin.view.programs')->with('success', 'Program Added!');
+    }
+
 }
