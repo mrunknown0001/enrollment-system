@@ -15,6 +15,13 @@ class CreateAssessmentsTable extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('program_id')->unsigned()->nullable();
+            $table->foreign('program_id')->references('id')->on('programs');
+            $table->integer('course_id')->unsigned()->nullable();
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->string('subject_ids')->nullable();
+            $table->string('term')->nullable();
+            $table->integer('level')->nullable();
             $table->timestamps();
         });
     }

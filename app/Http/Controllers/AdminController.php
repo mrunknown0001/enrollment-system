@@ -9,6 +9,7 @@ use App\Admin;
 use App\Cashier;
 use App\ActivityLog;
 use App\Registrar;
+use App\Program;
 
 use App\Http\Controllers\GeneralController;
 
@@ -284,8 +285,17 @@ class AdminController extends Controller
     public function viewPrograms()
     {
         // get all programs offered
+        $programs = Program::orderBy('title', 'asc')
+                        ->paginate(5);
 
-        return view('admin.programs');
+        return view('admin.programs', ['programs' => $programs]);
+    }
+
+
+    // method use to view add program form
+    public function addProgram()
+    {
+        return view('admin.add-program');
     }
 
 }

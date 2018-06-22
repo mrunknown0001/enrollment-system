@@ -74,8 +74,9 @@ Route::get('/logout', 'GeneralController@logout')->name('logout');
 
 
 /*
- * Student Route Group
+ * Student Route Group 
  * controller protected middleware
+ * user type 5
  */
 Route::group(['prefix' => 'student'], function () {
 	// student dashboard
@@ -100,7 +101,33 @@ Route::group(['prefix' => 'student'], function () {
 
 
 /*
+ * Registrar Route Group
+ * user type 4
+ */
+Route::group(['prefix' => 'registrar'], function () {
+	// registrar dashboard
+	Route::get('/dashboard', 'RegistrarController@dashboard')->name('registrar.dashboard');
+
+	// route use toview profile
+	Route::get('/profile', 'RegistrarController@profile')->name('registrar.profile');
+
+	// rotue use to view profile update form
+	Route::get('/profile/update', 'RegistrarController@updateProfile')->name('registrar.profile.update');
+
+	// route use to update profile of registrar
+	Route::post('/profile/update', 'RegistrarController@postUpdateProfile')->name('registrar.profile.update.post');
+
+	// rotue use to view password change form
+	Route::get('/password/change', 'RegistrarController@changePassword')->name('registrar.password.change');
+
+	// route to change password of registrar
+	Route::post('/password/change', 'RegistrarController@postChangePassword')->name('registrar.password.change.post');
+});
+
+
+/*
  * Faculty Route Group
+ * user type 3
  */
 Route::group(['prefix' => 'faculty'], function () {
 	// faculty dashboard
@@ -125,6 +152,7 @@ Route::group(['prefix' => 'faculty'], function () {
 
 /*
  * Cashier Route Group
+ * user type 2
  */
 Route::group(['prefix' => 'cashier'], function () {
 	// cashier dashboard
@@ -148,32 +176,9 @@ Route::group(['prefix' => 'cashier'], function () {
 
 
 /*
- * Registrar Route Group
- */
-Route::group(['prefix' => 'registrar'], function () {
-	// registrar dashboard
-	Route::get('/dashboard', 'RegistrarController@dashboard')->name('registrar.dashboard');
-
-	// route use toview profile
-	Route::get('/profile', 'RegistrarController@profile')->name('registrar.profile');
-
-	// rotue use to view profile update form
-	Route::get('/profile/update', 'RegistrarController@updateProfile')->name('registrar.profile.update');
-
-	// route use to update profile of registrar
-	Route::post('/profile/update', 'RegistrarController@postUpdateProfile')->name('registrar.profile.update.post');
-
-	// rotue use to view password change form
-	Route::get('/password/change', 'RegistrarController@changePassword')->name('registrar.password.change');
-
-	// route to change password of registrar
-	Route::post('/password/change', 'RegistrarController@postChangePassword')->name('registrar.password.change.post');
-});
-
-
-/*
  * Admin Route Group
  * controller protected middleware
+ * user type 1
  */
 Route::group(['prefix' => 'admin'], function () {
 	// admin dashboard
@@ -223,4 +228,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
+
+	// route to view add program
+	Route::get('/programs/add', 'AdminController@addProgram')->name('admin.add.program');
 });
