@@ -27,4 +27,11 @@ class StudentController extends Controller
     {
         return view('student.profile');
     }
+
+
+    // method to show profile update form
+    public function updateProfile()
+    {
+        return view('student.profile-update');
+    }
 }

@@ -84,6 +84,9 @@ Route::group(['prefix' => 'student'], function () {
 	// rotue to view profile of the student
 	Route::get('/profile', 'StudentController@profile')->name('student.profile');
 
+	// route to view profile update
+	Route::get('/profile/update', 'StudentController@updateProfile')->name('student.profile.update');
+
 });
 
 
