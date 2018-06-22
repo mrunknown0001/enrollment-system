@@ -231,7 +231,7 @@ $(function() {
             },
             date_of_birth: {
                 required: "Please enter your birthdate",
-                date_format: "Please enter valid date format day/month/year",
+                date_format: "Please enter valid date format month/day/year",
             },
             place_of_birth: {
                 required: "Please enter place of birth",

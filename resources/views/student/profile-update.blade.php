@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-                    <form id="signup-form" action="#" method="POST" role="form" autocomplete="off">
+                    <form id="signup-form" action="{{ route('student.profile.update.post') }}" method="POST" role="form" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="row">
@@ -38,16 +38,16 @@
                             <input type="text" name="mobile_number" id="mobile_number" class="form-control underlined" value="{{ Auth::user()->mobile_number }}" placeholder="Enter Mobile Number" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="">
+                            <input type="text" name="date_of_birth" id="date_of_birth" class="form-control underlined" value="{{ date('m', strtotime(Auth::user()->info->date_of_birth)) }}/{{ date('d', strtotime(Auth::user()->info->date_of_birth)) }}/{{ date('Y', strtotime(Auth::user()->info->date_of_birth)) }}" placeholder="mm/dd/yyyy" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="">
+                            <input type="text" name="place_of_birth" id="place_of_birth" class="form-control underlined" value="{{ Auth::user()->info->place_of_birth }}" placeholder="Enter Place of Birth" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="">
+                            <input type="text" name="address" id="address" class="form-control underlined" value="{{ Auth::user()->info->address }}" placeholder="Enter Address" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="">
+                            <input type="text" name="nationality" id="nationality" class="form-control underlined" value="{{ Auth::user()->info->nationality }}" placeholder="Enter Nationality" required="">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update Profile</button>
