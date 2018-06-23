@@ -58,6 +58,11 @@
                 </li>
                 <li>
                     <a href="#">
+                        <i class="fa fa-file-text-o"></i> Enrollment
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
                         <i class="fa fa-file"></i> Assessments
                     </a>
                 </li>
