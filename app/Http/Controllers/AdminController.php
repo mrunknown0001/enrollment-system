@@ -10,6 +10,7 @@ use App\Cashier;
 use App\ActivityLog;
 use App\Registrar;
 use App\Program;
+use App\Course;
 
 use App\Http\Controllers\GeneralController;
 
@@ -336,4 +337,73 @@ class AdminController extends Controller
         return redirect()->route('admin.view.programs')->with('success', 'Program Added!');
     }
 
+
+    // method use to show update form for program
+    public function updateProgram($id = null)
+    {
+        $program = Program::findorfail($id);
+
+        return view('admin.update-program', ['program' => $program]);
+    }
+
+
+    // method use to save update in program
+    public function postUpdateProgram(Request $request)
+    {
+        // validate form date
+        $request->validate([
+            'title' => 'required',
+            'code' => 'required',
+            'tuition_fee' => 'required'
+        ]);
+
+        // assign form date to variable
+        $id = $request['id'];
+        $title = $request['title'];
+        $code = $request['code'];
+        $desc = $request['description'];
+        $fee = $request['tuition_fee'];
+
+        $program = Program::findorfail($id);
+
+        // check title, code existence
+        if($program->title != $title) {
+            // find if there is existed
+            if(Program::where('title', $title)->exists()) {
+                return redirect()->route('admin.update.program', ['id' => $program->id])->with('error', 'Title already exist!');
+            }
+        }
+
+        if($program->code != $code) {
+            // find if there is existed
+            if(Program::where('code', $code)->exists()) {
+                return redirect()->route('admin.update.program', ['id' => $program->id])->with('error', 'Code already exist!');
+            }
+        }
+
+        // save changes
+        $program->title = $title;
+        $program->code = $code;
+        $program->description = $desc;
+        $program->tuition_fee = $fee;
+        $program->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Updated Program');
+
+        // return with message
+        return redirect()->route('admin.view.programs')->with('success', 'Program Updated!');
+
+    }
+
+
+    // method use to view courses
+    public function viewCourses()
+    {
+        // load all course
+        $courses = Course::orderBy('title', 'asc')
+                        ->paginate(15);
+
+        return view('admin.courses', ['courses' => $courses]);
+    }
 }

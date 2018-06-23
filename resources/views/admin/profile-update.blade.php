@@ -38,7 +38,7 @@
                             <input type="text" name="mobile_number" id="mobile_number" class="form-control underlined" value="{{ Auth::guard('admin')->user()->mobile_number }}" placeholder="Enter Mobile Number" required="">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Profile</button>
                         </div>
                     </form>
                 </div>

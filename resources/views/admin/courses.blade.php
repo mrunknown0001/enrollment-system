@@ -9,15 +9,15 @@
 
 
 @section('content')
-<p><strong>Programs</strong></p>
+<p><strong>Courses</strong></p>
 @include('includes.all')
 
 <section class="section">
     <div class="row">
         <div class="col-md-12">
-			<a href="{{ route('admin.add.program') }}" class="btn btn-primary">Add Program</a>
+			<a href="#" class="btn btn-primary">Add Course</a>
 			
-			@if(count($programs) > 0)
+			@if(count($courses) > 0)
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -27,7 +27,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($programs as $p)
+					@foreach($courses as $p)
 					<tr>
 						<td>{{ ucwords($p->title) }}</td>
 						<td>{{ strtoupper($p->code) }}</td>
@@ -39,7 +39,7 @@
 							        <div class="modal-content">
 							            <div class="modal-header">
 							                <h4 class="modal-title">
-							                    <i class="fa fa-info"></i> Program Info</h4>
+							                    <i class="fa fa-info"></i> Course Info</h4>
 							                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							                    <span aria-hidden="true">&times;</span>
 							                </button>
@@ -51,7 +51,7 @@
 											<p>Tuition Fee: <strong>{{ $p->tuition_fee }}</strong></p>
 							            </div>
 							            <div class="modal-footer">
-							                <small>Program Info</small>
+							                <small>Course Info</small>
 							            </div>
 							        </div>
 							    </div>
@@ -67,7 +67,7 @@
 				</tfoot>
 			</table>
 			@else
-			<p class="text-center"><em>No Programs Available</em></p>
+			<p class="text-center"><em>No Course Available</em></p>
 			@endif
 
         </div>

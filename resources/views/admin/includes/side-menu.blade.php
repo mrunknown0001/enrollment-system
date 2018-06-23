@@ -37,14 +37,16 @@
                         <i class="fa fa-graduation-cap"></i> Students
                     </a>
                 </li>
-                <li class="{{ route('admin.view.programs') == url()->current() ? 'active' : '' }}">
+                <li class="{{ route('admin.view.programs') == url()->current() ||
+                        route('admin.add.program') == url()->current() ||
+                        route('admin.courses') == url()->current() ? 'active' : '' }}">
                     <a href="">
                         <i class="fa fa-book"></i> Programs &amp; Courses
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
                         <li>
-                            <a href="#"> Courses </a>
+                            <a href="{{ route('admin.courses') }}"> Courses </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.view.programs') }}"> Programs </a>

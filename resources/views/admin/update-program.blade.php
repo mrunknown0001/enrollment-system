@@ -16,28 +16,29 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
-                        <p class="title"> Add Program </p>
+                        <p class="title"> Update Program </p>
                     </div>
                 </div>
                 
                 <div class="card-block">
                     @include('includes.all')
-                    <form id="signup-form" action="{{ route('admin.add.program.post') }}" method="POST" role="form" autocomplete="off">
+                    <form id="signup-form" action="{{ route('admin.update.program.post') }}" method="POST" role="form" autocomplete="off">
                         {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $program->id }}"> 
                         <div class="form-group">
-                            <input type="text" name="title" id="title" class="form-control underlined" placeholder="Program Title" required="">
+                            <input type="text" name="title" id="title" value="{{ $program->title }}" class="form-control underlined" placeholder="Program Title" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="code" id="code" class="form-control underlined" placeholder="Program Code" required="">
+                            <input type="text" name="code" id="code" value="{{ $program->code }}" class="form-control underlined" placeholder="Program Code" required="">
                         </div>
                         <div class="form-group">
-                            <textarea name="description" id="description" class="form-control underlined" placeholder="Program Description"></textarea>
+                            <textarea name="description" id="description" class="form-control underlined" placeholder="Program Description">{{ $program->description }}</textarea>
                         </div>
                         <div class="form-group">
-                            <input type="number" name="tuition_fee" id="tuition_fee" class="form-control underlined" placeholder="Tuition Fee" required="">
+                            <input type="number" name="tuition_fee" id="tuition_fee" value="{{ $program->tuition_fee }}" class="form-control underlined" placeholder="Tuition Fee" required="">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Program</button>
+                            <button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Program</button>
                         </div>
                     </form>
                 </div>

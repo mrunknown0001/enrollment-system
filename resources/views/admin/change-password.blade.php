@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Change Password</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Change Password</button>
                         </div>
                     </form>
                 </div>
