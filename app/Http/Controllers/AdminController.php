@@ -11,6 +11,9 @@ use App\ActivityLog;
 use App\Registrar;
 use App\Program;
 use App\Course;
+use App\Subject;
+use App\User;
+use App\Faculty;
 
 use App\Http\Controllers\GeneralController;
 
@@ -27,9 +30,10 @@ class AdminController extends Controller
     {
 
     	// load all need in admin dashboard
+        $students = User::get();
 
 
-    	return view('admin.dashboard');
+    	return view('admin.dashboard', ['students' => $students]);
     }
 
 
@@ -443,10 +447,67 @@ class AdminController extends Controller
         return redirect()->route('admin.courses')->with('success', 'Course Added!');
     }
 
+    // method use to show course update form
     public function updateCourse($id = null)
     {
         $course = Course::findorfail($id);
 
         return view('admin.update-course', ['course' => $course]);
+    }
+
+
+    // method use to save update on course
+    public function postUpdateCourse(Request $request)
+    {
+        // validate
+        $request->validate([
+            'title' => 'required',
+            'code' => 'required'
+        ]);
+
+        // assign to variables
+        $id = $request['id'];
+        $title = $request['title'];
+        $code = $request['code'];
+        $desc = $request['description'];
+
+        $course = Course::findorfail($id);
+
+        // check title and code
+        if($course->title != $title) {
+            if(Course::where('title', $title)->exists()) {
+                return redirect()->route('admin.update.course', ['id' => $course->id])->with('error', 'Title Already Exist!');
+            }
+        }
+
+        if($course->code != $code) {
+            if(Course::where('code', $code)->exists()) {
+                return redirect()->route('admin.update.course', ['id' => $course->id])->with('error', 'Code Already Exist!');
+            }
+        }
+
+
+        // update
+        $course->title = $title;
+        $course->code = $code;
+        $course->description = $desc;
+        $course->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Updated Course');
+
+        // returm message
+        return redirect()->route('admin.courses')->with('success', 'Course Updated!');
+
+    }
+
+
+    // method use to view all subjects
+    public function viewSubjects()
+    {
+        $subjects = Subject::orderBy('title', 'asc')
+                        ->paginate(15);
+
+        return view('admin.subjects', ['subjects' => $subjects]);
     }
 }

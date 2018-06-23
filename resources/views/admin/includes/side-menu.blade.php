@@ -54,6 +54,21 @@
                         </li>
                     </ul>
                 </li>
+                <li class="{{ route('admin.subjects') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.subjects') }}">
+                        <i class="fa fa-book"></i> Subjects
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-file"></i> Assessments
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-paypal"></i> Paypal Payments
+                    </a>
+                </li>
                 <li class="{{ route('admin.activity.logs') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.activity.logs') }}">
                         <i class="fa fa-history"></i> Activity Log </a>

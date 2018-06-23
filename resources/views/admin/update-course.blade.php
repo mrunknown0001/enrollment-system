@@ -22,8 +22,9 @@
                 
                 <div class="card-block">
                     @include('includes.all')
-                    <form id="signup-form" action="#" method="POST" role="form" autocomplete="off">
+                    <form id="signup-form" action="{{ route('admin.update.course.post') }}" method="POST" role="form" autocomplete="off">
                         {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $course->id }}">
                         <div class="form-group">
                             <input type="text" name="title" id="title" class="form-control underlined" value="{{ $course->title }}" placeholder="Course Title" required="">
                         </div>

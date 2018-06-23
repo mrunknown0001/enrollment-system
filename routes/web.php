@@ -256,4 +256,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to save update of the course
 	Route::post('/course/update', 'AdminController@postUpdateCourse')->name('admin.update.course.post');
+
+	// route to show subjects
+	Route::get('/subjects', 'AdminController@viewSubjects')->name('admin.subjects');
 });
