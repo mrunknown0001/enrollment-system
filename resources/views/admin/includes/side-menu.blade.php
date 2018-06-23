@@ -37,10 +37,7 @@
                         <i class="fa fa-graduation-cap"></i> Students
                     </a>
                 </li>
-                <li class="{{ route('admin.view.programs') == url()->current() ||
-                        route('admin.add.program') == url()->current() ||
-                        route('admin.courses') == url()->current() ||
-                        route('admin.add.course') == url()->current() ? 'active' : '' }}">
+                <li class="{{ route('admin.view.programs') == url()->current() || route('admin.add.program') == url()->current() || route('admin.courses') == url()->current() || route('admin.add.course') == url()->current() ? 'active' : '' }}">
                     <a href="">
                         <i class="fa fa-book"></i> Programs &amp; Courses
                         <i class="fa arrow"></i>
@@ -54,7 +51,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ route('admin.subjects') == url()->current() ? 'active' : '' }}">
+                <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.subjects') }}">
                         <i class="fa fa-book"></i> Subjects
                     </a>

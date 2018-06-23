@@ -259,4 +259,16 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to show subjects
 	Route::get('/subjects', 'AdminController@viewSubjects')->name('admin.subjects');
+
+	// route to add subject 
+	Route::get('/subject/add', 'AdminController@addSubject')->name('admin.add.subject');
+
+	// route to add subject
+	Route::post('/subject/add', 'AdminController@postAddSubject')->name('admin.add.subject.post');
+
+	// route to view update form of subjects
+	Route::get('/subject/{id}/update', 'AdminController@updateSubject')->name('admin.update.subject');
+
+	// route to save update of the subject
+	Route::post('/subject/update', 'AdminController@postUpdatesubject')->name('admin.update.subject.post');
 });

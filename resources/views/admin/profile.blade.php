@@ -25,7 +25,7 @@
                     <p>Username: <strong>{{ strtolower(Auth::guard('admin')->user()->username) }}</strong></p>
                     <p>ID Number: <strong>{{ Auth::guard('admin')->user()->id_number }}</strong></p>
                     <p>Mobile Number: <strong>{{ Auth::guard('admin')->user()->mobile_number }}</strong></p>
-                    <p><a href="{{ route('admin.profile.update') }}" class="btn btn-primary">Update Profile</a></p>
+                    <p><a href="{{ route('admin.profile.update') }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Profile</a></p>
                 </div>
                 <div class="card-footer"> <small>Admin Profile</small> </div>
             </div>

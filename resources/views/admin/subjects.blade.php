@@ -15,7 +15,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
-			<a href="#" class="btn btn-primary">Add Subject</a>
+			<a href="{{ route('admin.add.subject') }}" class="btn btn-primary">Add Subject</a>
 			
 			@if(count($subjects) > 0)
 			<table class="table table-hover">
@@ -27,7 +27,40 @@
 					</tr>
 				</thead>
 				<tbody>
+					@foreach($subjects as $s)
+					<tr>
+						<td>{{ ucwords($s->title) }}</td>
+						<td>{{ strtoupper($s->code) }}</td>
+						<td>
+							<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#subject-{{ $s->id }}"><i class="fa fa-eye"></i> View</button>
 
+							<div class="modal fade" id="subject-{{ $s->id }}">
+							    <div class="modal-dialog" role="document">
+							        <div class="modal-content">
+							            <div class="modal-header">
+							                <h4 class="modal-title">
+							                    <i class="fa fa-info"></i> Subject Info</h4>
+							                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                    <span aria-hidden="true">&times;</span>
+							                </button>
+							            </div>
+							            <div class="modal-body">
+											<p>Title: <strong>{{ ucwords($s->title) }}</strong></p>
+											<p>Code: <strong>{{ strtoupper($s->code) }}</strong></p>
+											<p>Description: <strong>{{ $s->description }}</strong></p>
+											<p>Units: <strong>{{ $s->units }}</strong></p>
+							            </div>
+							            <div class="modal-footer">
+							                <small>Subject Info</small>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+
+							<a href="{{ route('admin.update.subject', ['id' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>
+						</td>
+					</tr>
+					@endforeach
 				</tbody>
 				<tfoot>
 					

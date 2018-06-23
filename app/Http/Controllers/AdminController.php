@@ -510,4 +510,105 @@ class AdminController extends Controller
 
         return view('admin.subjects', ['subjects' => $subjects]);
     }
+
+
+    // method use  to view add subject form
+    public function addSubject()
+    {
+        return view('admin.add-subject');
+    }
+
+
+    // method use to save added subject
+    public function postAddsubject(Request $request)
+    {
+        // validate request data
+        $request->validate([
+            'title' => 'required|unique:subjects',
+            'code' => 'required|unique:subjects',
+            'units' => 'required'
+        ]);
+
+        // assing to variables
+        $title = $request['title'];
+        $code = $request['code'];
+        $desc = $request['description'];
+        $units = $request['units'];
+
+        // save
+        $subject = new Subject();
+        $subject->title = $title;
+        $subject->code = $code;
+        $subject->description = $desc;
+        $subject->units = $units;
+        $subject->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Subject');
+
+        // return with message
+        return redirect()->route('admin.subjects')->with('success', 'Successfully Added Subject!');
+    }
+
+
+    // method use to show update form of subjects
+    public function updateSubject($id = null)
+    {
+        $subject = Subject::findorfail($id);
+
+        return view('admin.update-subject', ['subject' => $subject]);
+    }
+
+
+    // method use to save update in subject
+    public function postUpdatesubject(Request $request)
+    {
+        // validate request data
+        $request->validate([
+            'title' => 'required',
+            'code' => 'required',
+            'units' => 'required'
+        ]);
+
+        // assing to variables
+        $id = $request['id'];
+        $title = $request['title'];
+        $code = $request['code'];
+        $desc = $request['description'];
+        $units = $request['units'];
+
+        $subject = Subject::findorfail($id);
+
+        // check title and code manual
+        if($subject->title != $title) {
+            if(Subject::where('title', $title)->exists()) {
+                return redirect()->route('admin.update.subject', ['id' => $subject->id])->with('error', 'Title Already Exist!');
+            }
+        }
+
+        if($subject->code != $code) {
+            if(Subject::where('code', $code)->exists()) {
+                return redirect()->route('admin.update.subject', ['id' => $subject->id])->with('error', 'Code Already Exist!');
+            }
+        }
+
+
+        // save
+        $subject->title = $title;
+        $subject->code = $code;
+        $subject->description = $desc;
+        $subject->units = $units;
+        $subject->save();
+
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Updated Subject');
+
+        // return with message
+        return redirect()->route('admin.subjects')->with('success', 'Subject Update Success!');
+
+    }
+
+
+
 }
