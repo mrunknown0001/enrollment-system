@@ -442,4 +442,11 @@ class AdminController extends Controller
         // return message
         return redirect()->route('admin.courses')->with('success', 'Course Added!');
     }
+
+    public function updateCourse($id = null)
+    {
+        $course = Course::findorfail($id);
+
+        return view('admin.update-course', ['course' => $course]);
+    }
 }

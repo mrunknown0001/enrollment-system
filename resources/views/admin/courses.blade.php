@@ -48,7 +48,6 @@
 											<p>Title: <strong>{{ ucwords($p->title) }}</strong></p>
 											<p>Code: <strong>{{ strtoupper($p->code) }}</strong></p>
 											<p>DescriptioN: <strong>{{ $p->description }}</strong></p>
-											<p>Tuition Fee: <strong>{{ $p->tuition_fee }}</strong></p>
 							            </div>
 							            <div class="modal-footer">
 							                <small>Course Info</small>
@@ -57,7 +56,7 @@
 							    </div>
 							</div>
 
-							<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>
+							<a href="{{ route('admin.update.course', ['id' => $p->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>
 						</td>
 					</tr>
 					@endforeach
