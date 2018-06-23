@@ -15,7 +15,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
-			<a href="#" class="btn btn-primary">Add Course</a>
+			<a href="{{ route('admin.add.course') }}" class="btn btn-primary">Add Course</a>
 			
 			@if(count($courses) > 0)
 			<table class="table table-hover">
@@ -57,7 +57,7 @@
 							    </div>
 							</div>
 
-							<a href="{{ route('admin.update.program', ['id' => $p->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>
+							<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>
 						</td>
 					</tr>
 					@endforeach

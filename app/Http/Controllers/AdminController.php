@@ -406,4 +406,40 @@ class AdminController extends Controller
 
         return view('admin.courses', ['courses' => $courses]);
     }
+
+
+    // method use to add course
+    public function addCourse()
+    {
+        return view('admin.add-course');
+    }
+
+
+    // method use to save add course
+    public function postAddCourse(Request $request)
+    {
+        // validate
+        $request->validate([
+            'title' => 'required|unique:courses',
+            'code' => 'required|unique:courses'
+        ]);
+
+        // assign to variables
+        $title = $request['title'];
+        $code = $request['code'];
+        $desc = $request['description'];
+
+        // save
+        $course = new Course();
+        $course->title = $title;
+        $course->code = $code;
+        $course->description = $desc;
+        $course->save();
+
+        // add log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Course');
+
+        // return message
+        return redirect()->route('admin.courses')->with('success', 'Course Added!');
+    }
 }

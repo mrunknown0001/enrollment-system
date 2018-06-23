@@ -237,17 +237,19 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/program/add', 'AdminController@postAddProgram')->name('admin.add.program.post');
 
 	// route to update form of the program
-	Route::get('program/{id}/update/', 'AdminController@updateProgram')->name('admin.update.program');
+	Route::get('/program/{id}/update/', 'AdminController@updateProgram')->name('admin.update.program');
 
 	// route to save update of program
 	Route::post('/program/update', 'AdminController@postUpdateProgram')->name('admin.update.program.post');
 
 	// route to view courses
-	Route::get('courses', 'AdminController@viewCourses')->name('admin.courses');
+	Route::get('/courses', 'AdminController@viewCourses')->name('admin.courses');
 
 	// route to add course
+	Route::get('/course/add', 'AdminController@addCourse')->name('admin.add.course');
 
 	// route to save course
+	Route::post('/course/add', 'AdminController@postAddCourse')->name('admin.add.course.post');
 
 	// route to view update form of course
 
