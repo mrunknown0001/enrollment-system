@@ -610,5 +610,16 @@ class AdminController extends Controller
     }
 
 
+    // method use to view all students
+    public function viewStudents()
+    {
+        // get all active and enrolled students
+        $students = User::orderBy('lastname', 'asc')
+                        ->paginate(10);
+
+        return view('admin.students', ['students' => $students]);
+    }
+
+
 
 }

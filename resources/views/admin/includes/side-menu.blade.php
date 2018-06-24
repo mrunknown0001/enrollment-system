@@ -32,8 +32,8 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="">
+                <li class="{{ route('admin.students') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.students') }}">
                         <i class="fa fa-graduation-cap"></i> Students
                     </a>
                 </li>
