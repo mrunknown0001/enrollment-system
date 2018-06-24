@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActivityLog extends Model
 {
+
+    protected $fillable = [
+        'user_id', 'user_type', 'action',
+    ];
+
     public function admin()
     {
     	return $this->belongsTo('App\Admin', 'user_id');
