@@ -15,7 +15,7 @@
                 <li class="{{ route('admin.view.cashiers') == url()->current() ||
                             route('admin.add.cashier') == url()->current() ||
                             route('admin.view.registrars') == url()->current() ||
-                            route('admin.add.registrar') == url()->current() ? 'active' : '' }}">
+                            route('admin.add.registrar') == url()->current() || route('admin.view.faculties') == url()->current() ? 'active' : '' }}">
                     <a href="">
                         <i class="fa fa-users"></i> Users Manager
                         <i class="fa arrow"></i>
@@ -28,11 +28,11 @@
                             <a href="{{ route('admin.view.registrars') }}"> Registrars </a>
                         </li>
                         <li>
-                            <a href="#"> Faculties </a>
+                            <a href="{{ route('admin.view.faculties') }}"> Faculties </a>
                         </li>
                     </ul>
                 </li>
-                <li class="{{ route('admin.students') == url()->current() ? 'active' : '' }}">
+                <li class="{{ route('admin.students') == url()->current() || route('admin.stduent.search') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.students') }}">
                         <i class="fa fa-graduation-cap"></i> Students
                     </a>

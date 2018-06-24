@@ -227,6 +227,9 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to add save new registrars
 	Route::post('/users/registrar/add', 'AdminController@postAddRegistrar')->name('admin.add.registrar.post');
 
+	// route to view faculty
+	Route::get('/users/faculties', 'AdminController@viewFaculties')->name('admin.view.faculties');
+
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
 
@@ -274,4 +277,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to view all students
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
+
+	// route to search for students
+	Route::get('/stduents/searhResult', 'AdminController@searchStudent')->name('admin.stduent.search');
 });

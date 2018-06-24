@@ -9,7 +9,7 @@
 
 
 @section('content')
-<p><strong>Students</strong>
+<p><strong>Students Search Result: "{{ $keyword }}"</strong>
 <form action="{{ route('admin.stduent.search') }}" method="GET" class="form-inline" autocomplete="off">
 	<div class="input-group">
 		<input type="text" name="keyword" id="keyword" class="form-control boxed" placeholder="Name or Student Number" required="">
@@ -73,7 +73,7 @@
 	</tfoot>
 </table>
 @else
-<p class="text-center"><em>No Student Found!</em></p>
+<p class="text-center"><em>No Student Found For Keyword "{{ $keyword }}"</em></p>
 @endif
 
 {{ $students->links() }}

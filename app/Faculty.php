@@ -26,4 +26,10 @@ class Faculty extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function info()
+    {
+        return $this->hasOne('App\FacultyInfo', 'faculty_id');
+    }
 }

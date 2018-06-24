@@ -45,7 +45,7 @@ class FacultyRegistrationController extends Controller
     	$dob = $request['date_of_birth'];
     	$pob = $request['place_of_birth'];
     	$address = $request['address'];
-    	$nationality = $request['required'];
+    	$nationality = $request['nationality'];
 
 
     	// additional checks

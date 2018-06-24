@@ -15,7 +15,7 @@ class Registrar extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'gender', 'id_number', 'mobile_number', 'password',,
+        'firstname', 'lastname', 'gender', 'id_number', 'mobile_number', 'password',
     ];
 
     /**

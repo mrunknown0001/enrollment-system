@@ -286,6 +286,17 @@ class AdminController extends Controller
     }
 
 
+    // method use to view all faculties
+    public function viewFaculties()
+    {
+        $faculties = Faculty::orderBy('lastname', 'asc')
+                            ->paginate(10);
+
+
+        return view('admin.faculties', ['faculties' => $faculties]);
+    }
+
+
     // method use to view programs available 
     public function viewPrograms()
     {
@@ -618,6 +629,21 @@ class AdminController extends Controller
                         ->paginate(10);
 
         return view('admin.students', ['students' => $students]);
+    }
+
+
+    // method use to search students
+    public function searchStudent(Request $request)
+    {
+        $keyword = $request['keyword'];
+
+        $students = User::where('firstname', "like", "%$keyword%")
+                        ->orwhere('lastname', "like", "%$keyword%")
+                        ->orwhere('student_number', "like", "%$keyword%")
+                        ->orderBy('lastname', 'asc')
+                        ->paginate(10);
+
+        return view('admin.students-search-result', ['students' => $students, 'keyword' => $keyword]);
     }
 
 
