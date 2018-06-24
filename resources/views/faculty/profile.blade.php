@@ -24,7 +24,7 @@
                     <p>Name: <strong>{{ ucwords(Auth::guard('faculty')->user()->firstname . ' ' . Auth::guard('faculty')->user()->lastname) }}</strong></p>
                     <p>ID Number: <strong>{{ Auth::guard('faculty')->user()->id_number }}</strong></p>
                     <p>Mobile Number: <strong>{{ Auth::guard('faculty')->user()->mobile_number }}</strong></p>
-                    <p><a href="{{ route('faculty.profile.update') }}" class="btn btn-primary">Update Profile</a></p>
+                    <p><a href="{{ route('faculty.profile.update') }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Profile</a></p>
                 </div>
                 <div class="card-footer"> <small>Faculty Profile</small> </div>
             </div>

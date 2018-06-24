@@ -37,8 +37,25 @@
                         <div class="form-group">
                             <input type="text" name="mobile_number" id="mobile_number" class="form-control underlined" value="{{ Auth::guard('faculty')->user()->mobile_number }}" placeholder="Enter Mobile Number" required="">
                         </div>
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <label for="date_of_birth">Date of Birth</label>
+                            <input type="text" class="form-control underlined" name="date_of_birth" id="date_of_birth" value="{{ date('m', strtotime(Auth::guard('faculty')->user()->info->date_of_birth))}}/{{date('d', strtotime(Auth::guard('faculty')->user()->info->date_of_birth))}}/{{date('Y', strtotime(Auth::guard('faculty')->user()->info->date_of_birth)) }}" placeholder="mm/dd/yyyy" required=""> </div>
+
+                        <div class="form-group">
+                            <label for="place_of_birth">Place of Birth</label>
+                            <input type="text" class="form-control underlined" name="place_of_birth" id="place_of_birth" placeholder="Enter place of birth" required=""> </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control underlined" name="address" id="address" required="" placeholder="Enter address"></textarea> </div>
+
+                        <div class="form-group">
+                            <label for="nationality">Nationality</label>
+                            <input type="text" class="form-control underlined" name="nationality" id="nationality" placeholder="Enter nationality" required=""> </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Profile</button>
                         </div>
                     </form>
                 </div>

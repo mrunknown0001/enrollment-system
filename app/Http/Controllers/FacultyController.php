@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Faculty;
+use App\FacultyInfo;
 
 use App\Http\Controllers\GeneralController;
 
@@ -47,7 +48,11 @@ class FacultyController extends Controller
 			'firstname' => 'required',
             'lastname' => 'required',
             'id_number' => 'required',
-            'mobile_number' => 'required'
+            'mobile_number' => 'required',
+            'date_of_birth' => 'required',
+            'place_of_birth' => 'required',
+            'address' => 'required',
+            'nationality' => 'required'
     	]);
 
     	// assign form data in variables
@@ -55,6 +60,10 @@ class FacultyController extends Controller
         $lastname = $request['lastname'];
         $id = $request['id_number'];
         $mobile = $request['mobile_number'];
+        $dob = $request['date_of_birth'];
+        $pob = $request['place_of_birth'];
+        $address = $request['address'];
+        $nationality = $request['nationality'];
 
     	// check
 
@@ -66,6 +75,13 @@ class FacultyController extends Controller
         $faculty->id_number = $id;
         $faculty->mobile_number = $mobile;
         $faculty->save();
+
+        $info = FacultyInfo::findorfail($faculty->id);
+        $info->date_of_birth = date('Y-d-m', strtotime($dob));
+        $info->place_of_birth = $pob;
+        $info->address = $address;
+        $info->nationality = $nationality;
+        $info->save();
 
         // add activity log
         GeneralController::activity_log(Auth::guard('faculty')->user()->id, 2, 'Update Facutly Profile');
