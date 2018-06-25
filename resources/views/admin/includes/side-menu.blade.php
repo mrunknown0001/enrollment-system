@@ -61,8 +61,8 @@
                         <i class="fa fa-bars"></i> Year Levels
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('admin.enrollment') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.enrollment') }}">
                         <i class="fa fa-file-text-o"></i> Enrollment
                     </a>
                 </li>

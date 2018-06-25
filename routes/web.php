@@ -295,4 +295,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to save update on year level
 	Route::post('/year-level/update', 'AdminController@postUpdateYearLevel')->name('admin.update.year.level.post');
+
+	// route to veiw settings in enrollment
+	Route::get('/enrollment', 'AdminController@enrollment')->name('admin.enrollment');
 });

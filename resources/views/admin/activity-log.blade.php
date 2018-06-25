@@ -71,6 +71,7 @@
                     
                 </tfoot>
             </table>
+            <div class="text-center"> {{ $logs->links() }}</div>
             @else
             <p class="text-center"><em>No activity logs</em></p>
             @endif

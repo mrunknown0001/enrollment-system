@@ -532,7 +532,9 @@ class AdminController extends Controller
     // method use  to view add subject form
     public function addSubject()
     {
-        return view('admin.add-subject');
+        $yl = YearLevel::get(['id', 'name']);
+
+        return view('admin.add-subject', ['yl' => $yl]);
     }
 
 
@@ -543,7 +545,8 @@ class AdminController extends Controller
         $request->validate([
             'code' => 'required|unique:subjects',
             'units' => 'required',
-            'hours' => 'required'
+            'hours' => 'required',
+            'year_level' => 'required'
         ]);
 
         // assing to variables
@@ -551,6 +554,7 @@ class AdminController extends Controller
         $desc = $request['description'];
         $units = $request['units'];
         $hours = $request['hours'];
+        $yl = $request['id'];
 
         // save
         $subject = new Subject();
@@ -558,6 +562,7 @@ class AdminController extends Controller
         $subject->description = $desc;
         $subject->units = $units;
         $subject->hours = $hours;
+        $subject->year_level = $yl;
         $subject->save();
 
         // add activity log
@@ -572,8 +577,9 @@ class AdminController extends Controller
     public function updateSubject($id = null)
     {
         $subject = Subject::findorfail($id);
+        $yl = YearLevel::get(['id', 'name']);
 
-        return view('admin.update-subject', ['subject' => $subject]);
+        return view('admin.update-subject', ['subject' => $subject, 'yl' => $yl]);
     }
 
 
@@ -584,7 +590,8 @@ class AdminController extends Controller
         $request->validate([
             'code' => 'required',
             'units' => 'required',
-            'hours' => 'required'
+            'hours' => 'required',
+            'year_level' => 'required'
         ]);
 
         // assing to variables
@@ -593,6 +600,7 @@ class AdminController extends Controller
         $desc = $request['description'];
         $units = $request['units'];
         $hours = $request['hours'];
+        $yl = $request['year_level'];
 
         $subject = Subject::findorfail($id);
 
@@ -610,6 +618,7 @@ class AdminController extends Controller
         $subject->description = $desc;
         $subject->units = $units;
         $subject->hours = $hours;
+        $subject->year_level = $yl;
         $subject->save();
 
 
@@ -727,6 +736,13 @@ class AdminController extends Controller
 
         // return with message
         return redirect()->route('admin.view.year.level')->with('success', 'Year Level Updated!');
+    }
+
+
+    // method use to view enrollment settings
+    public function enrollment()
+    {
+        return view('admin.enrollment');
     }
 
 }

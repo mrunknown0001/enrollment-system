@@ -37,6 +37,14 @@
                             <input type="number" name="hours" id="hours" class="form-control underlined" placeholder="Hours per Class" required="">
                         </div>
                         <div class="form-group">
+                            <select name="year_level" id="year_level" class="form-control underlined" required="">
+                                <option value="">Select Year Level</option>
+                                @foreach($yl as $y)
+                                <option value="{{ $y->id }}">{{ ucwords($y->name) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Subject</button>
                         </div>
                     </form>
