@@ -35,14 +35,14 @@
                         </div>
                         <div class="col-12 col-sm-6 stat-col">
                             <div class="stat-icon">
-                                <i class="fa fa-shopping-cart"></i>
+                                <i class="fa fa-users"></i>
                             </div>
                             <div class="stat">
-                                <div class="value"> 78464 </div>
-                                <div class="name"> Items sold </div>
+                                <div class="value"> {{ count($faculties) }} / {{ count($cashiers) }} / {{ count($registrars) }} </div>
+                                <div class="name"> Faculties / Cashiers / Registrars </div>
                             </div>
                             <div class="progress stat-progress">
-                                <div class="progress-bar" style="width: 25%;"></div>
+                                <!-- <div class="progress-bar" style="width: 25%;"></div> -->
                             </div>
                         </div>
                         <div class="col-12 col-sm-6  stat-col">
@@ -50,47 +50,24 @@
                                 <i class="fa fa-line-chart"></i>
                             </div>
                             <div class="stat">
-                                <div class="value"> $80.560 </div>
-                                <div class="name"> Monthly income </div>
+                                <div class="value"> {{ count($subjects) }} </div>
+                                <div class="name"> Subjects </div>
                             </div>
                             <div class="progress stat-progress">
-                                <div class="progress-bar" style="width: 60%;"></div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6  stat-col">
-                            <div class="stat-icon">
-                                <i class="fa fa-users"></i>
-                            </div>
-                            <div class="stat">
-                                <div class="value"> 359 </div>
-                                <div class="name"> Total users </div>
-                            </div>
-                            <div class="progress stat-progress">
-                                <div class="progress-bar" style="width: 34%;"></div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6  stat-col">
-                            <div class="stat-icon">
-                                <i class="fa fa-list-alt"></i>
-                            </div>
-                            <div class="stat">
-                                <div class="value"> 59 </div>
-                                <div class="name"> Tickets closed </div>
-                            </div>
-                            <div class="progress stat-progress">
-                                <div class="progress-bar" style="width: 49%;"></div>
+                                <!-- <div class="progress-bar" style="width: 60%;"></div> -->
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 stat-col">
                             <div class="stat-icon">
-                                <i class="fa fa-dollar"></i>
+                                <!-- <i class="fa fa-dollar"></i> -->
+                                &#8369;
                             </div>
                             <div class="stat">
-                                <div class="value"> $780.064 </div>
-                                <div class="name"> Total income </div>
+                                <div class="value"> 0 </div>
+                                <div class="name"> Total Payment </div>
                             </div>
                             <div class="progress stat-progress">
-                                <div class="progress-bar" style="width: 15%;"></div>
+                                <!-- <div class="progress-bar" style="width: 15%;"></div> -->
                             </div>
                         </div>
                     </div>

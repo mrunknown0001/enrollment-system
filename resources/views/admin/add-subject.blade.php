@@ -25,9 +25,6 @@
                     <form id="signup-form" action="{{ route('admin.add.subject.post') }}" method="POST" role="form" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <input type="text" name="title" id="title" class="form-control underlined" placeholder="Subject Title" required="">
-                        </div>
-                        <div class="form-group">
                             <input type="text" name="code" id="code" class="form-control underlined" placeholder="Subject Code" required="">
                         </div>
                         <div class="form-group">
@@ -35,6 +32,9 @@
                         </div>
                         <div class="form-group">
                             <input type="number" name="units" id="units" class="form-control underlined" placeholder="Number of Units" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="hours" id="hours" class="form-control underlined" placeholder="Hours per Class" required="">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Subject</button>

@@ -21,16 +21,16 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Title</th>
 						<th>Code</th>
+						<th>Description</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($subjects as $s)
 					<tr>
-						<td>{{ ucwords($s->title) }}</td>
 						<td>{{ strtoupper($s->code) }}</td>
+						<td><p>{{ ucwords($s->description) }}</td>
 						<td>
 							<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#subject-{{ $s->id }}"><i class="fa fa-eye"></i> View</button>
 
@@ -45,10 +45,10 @@
 							                </button>
 							            </div>
 							            <div class="modal-body">
-											<p>Title: <strong>{{ ucwords($s->title) }}</strong></p>
 											<p>Code: <strong>{{ strtoupper($s->code) }}</strong></p>
 											<p>Description: <strong>{{ $s->description }}</strong></p>
 											<p>Units: <strong>{{ $s->units }}</strong></p>
+											<p>Hours: <strong>{{ $s->hours }}</strong></p>
 							            </div>
 							            <div class="modal-footer">
 							                <small>Subject Info</small>

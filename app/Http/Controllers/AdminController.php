@@ -14,6 +14,7 @@ use App\Course;
 use App\Subject;
 use App\User;
 use App\Faculty;
+use App\Payment;
 
 use App\Http\Controllers\GeneralController;
 
@@ -31,9 +32,13 @@ class AdminController extends Controller
 
     	// load all need in admin dashboard
         $students = User::get();
+        $faculties = Faculty::get();
+        $cashiers = Cashier::get();
+        $registrars = Registrar::get();
+        $subjects = Subject::get();
 
 
-    	return view('admin.dashboard', ['students' => $students]);
+    	return view('admin.dashboard', ['students' => $students, 'faculties' => $faculties, 'cashiers' => $cashiers, 'registrars' => $registrars, 'subjects' => $subjects]);
     }
 
 
@@ -516,7 +521,7 @@ class AdminController extends Controller
     // method use to view all subjects
     public function viewSubjects()
     {
-        $subjects = Subject::orderBy('title', 'asc')
+        $subjects = Subject::orderBy('code', 'asc')
                         ->paginate(15);
 
         return view('admin.subjects', ['subjects' => $subjects]);
@@ -535,23 +540,23 @@ class AdminController extends Controller
     {
         // validate request data
         $request->validate([
-            'title' => 'required|unique:subjects',
             'code' => 'required|unique:subjects',
-            'units' => 'required'
+            'units' => 'required',
+            'hours' => 'required'
         ]);
 
         // assing to variables
-        $title = $request['title'];
         $code = $request['code'];
         $desc = $request['description'];
         $units = $request['units'];
+        $hours = $request['hours'];
 
         // save
         $subject = new Subject();
-        $subject->title = $title;
         $subject->code = $code;
         $subject->description = $desc;
         $subject->units = $units;
+        $subject->hours = $hours;
         $subject->save();
 
         // add activity log
@@ -576,26 +581,21 @@ class AdminController extends Controller
     {
         // validate request data
         $request->validate([
-            'title' => 'required',
             'code' => 'required',
-            'units' => 'required'
+            'units' => 'required',
+            'hours' => 'required'
         ]);
 
         // assing to variables
         $id = $request['id'];
-        $title = $request['title'];
         $code = $request['code'];
         $desc = $request['description'];
         $units = $request['units'];
+        $hours = $request['hours'];
 
         $subject = Subject::findorfail($id);
 
-        // check title and code manual
-        if($subject->title != $title) {
-            if(Subject::where('title', $title)->exists()) {
-                return redirect()->route('admin.update.subject', ['id' => $subject->id])->with('error', 'Title Already Exist!');
-            }
-        }
+        // check  code manual
 
         if($subject->code != $code) {
             if(Subject::where('code', $code)->exists()) {
@@ -605,10 +605,10 @@ class AdminController extends Controller
 
 
         // save
-        $subject->title = $title;
         $subject->code = $code;
         $subject->description = $desc;
         $subject->units = $units;
+        $subject->hours = $hours;
         $subject->save();
 
 

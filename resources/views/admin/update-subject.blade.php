@@ -26,9 +26,6 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $subject->id }}">
                         <div class="form-group">
-                            <input type="text" name="title" id="title" class="form-control underlined" value="{{ $subject->title }}" placeholder="Subject Title" required="">
-                        </div>
-                        <div class="form-group">
                             <input type="text" name="code" id="code" class="form-control underlined" value="{{ $subject->code }}" placeholder="Subject Code" required="">
                         </div>
                         <div class="form-group">
@@ -36,6 +33,9 @@
                         </div>
                         <div class="form-group">
                             <input type="number" name="units" id="units" class="form-control underlined" value="{{ $subject->units }}" placeholder="Number of Units" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="hours" id="hours" class="form-control underlined" value="{{ $subject->hours }}" placeholder="Hours per class" required="">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Subject</button>
