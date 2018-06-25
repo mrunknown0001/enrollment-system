@@ -15,6 +15,7 @@ use App\Subject;
 use App\User;
 use App\Faculty;
 use App\Payment;
+use App\YearLevel;
 
 use App\Http\Controllers\GeneralController;
 
@@ -647,5 +648,85 @@ class AdminController extends Controller
     }
 
 
+    // method use toview year levels
+    public function viewYearLevels()
+    {
+        $yl = YearLevel::get();
+
+        return view('admin.year-levels', ['yl' => $yl]);
+    }
+
+
+    // method use to view add year level form
+    public function addYearLevel()
+    {
+        return view('admin.add-year-level');
+    }
+
+
+    // method use to save new year level 
+    public function postAddYearLevel(Request $request)
+    {
+        // validate form data
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+
+        // assign form data to variable
+        $name = $request['name'];
+        $desc = $request['description'];
+
+
+        // save
+        $yl = new YearLevel();
+        $yl->name = $name;
+        $yl->description = $desc;
+        $yl->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Year Level');
+
+        // return with message
+        return redirect()->route('admin.view.year.level')->with('success', 'Added Year Level');
+
+    }
+
+
+    // method use to view update form year level
+    public function updateYearLevel($id = null)
+    {
+        $yl = YearLevel::findorfail($id);
+
+        return view('admin.update-year-level', ['yl' => $yl]);
+    }
+
+
+    // method use to save update on year level
+    public function postUpdateYearLevel(Request $request)
+    {
+        // validate
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        // assgin to variables
+        $id = $request['id'];
+        $name = $request['name'];
+        $desc = $request['description'];
+
+        $yl = YearLevel::findorfail($id);
+
+        // save update
+        $yl->name = $name;
+        $yl->description = $desc;
+        $yl->save();
+
+        // add actviity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Update Year Level');
+
+        // return with message
+        return redirect()->route('admin.view.year.level')->with('success', 'Year Level Updated!');
+    }
 
 }

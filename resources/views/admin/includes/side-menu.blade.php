@@ -32,7 +32,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ route('admin.students') == url()->current() || route('admin.stduent.search') == url()->current() ? 'active' : '' }}">
+                <li class="{{ route('admin.students') == url()->current() || route('admin.student.search') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.students') }}">
                         <i class="fa fa-graduation-cap"></i> Students
                     </a>
@@ -54,6 +54,11 @@
                 <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.subjects') }}">
                         <i class="fa fa-book"></i> Subjects
+                    </a>
+                </li>
+                <li class="{{ route('admin.view.year.level') == url()->current() || route('admin.add.year.level') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.view.year.level') }}">
+                        <i class="fa fa-bars"></i> Year Levels
                     </a>
                 </li>
                 <li>

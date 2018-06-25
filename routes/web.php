@@ -279,5 +279,20 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
 
 	// route to search for students
-	Route::get('/stduents/searhResult', 'AdminController@searchStudent')->name('admin.stduent.search');
+	Route::get('/stduents/searhResult', 'AdminController@searchStudent')->name('admin.student.search');
+
+	// route to view year levels
+	Route::get('/year-levels', 'AdminController@viewYearLevels')->name('admin.view.year.level');
+
+	// route to view add year level form
+	Route::get('/year-level/add', 'AdminController@addYearLevel')->name('admin.add.year.level');
+
+	// rotue ot save new year Level
+	Route::post('/year-level/add', 'AdminController@postAddYearLevel')->name('admin.add.year.level.post');
+
+	// rotue to view update form year level
+	Route::get('/year-level/{id}/update', 'AdminController@updateYearLevel')->name('admin.update.year.level');
+
+	// route to save update on year level
+	Route::post('/year-level/update', 'AdminController@postUpdateYearLevel')->name('admin.update.year.level.post');
 });
