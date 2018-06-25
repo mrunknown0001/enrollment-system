@@ -742,7 +742,13 @@ class AdminController extends Controller
     // method use to view enrollment settings
     public function enrollment()
     {
-        return view('admin.enrollment');
+        // get all courses and program
+        $programs = Program::get(['id', 'title']);
+        $courses = Course::get(['id', 'title']);
+
+        $yl = YearLevel::get(['id', 'name']);
+
+        return view('admin.enrollment', ['programs' => $programs, 'courses' => $courses, 'yl' => $yl]);
     }
 
 }

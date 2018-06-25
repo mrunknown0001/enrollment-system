@@ -30,5 +30,20 @@ class DatabaseSeeder extends Seeder
         	'month' => date('m'),
         	'last' => 0
         ]);
+
+        DB::table('terms')->insert([
+            [
+                'name' => 'Prelim'
+            ],
+            [
+                'name' => 'Midterm'
+            ],
+            [
+                'name' => 'Semi-Finals'
+            ],
+            [
+                'name' => 'Finals'
+            ]
+        ]);
     }
 }

@@ -14,6 +14,17 @@
         @else
         <link rel="stylesheet" href="{{ asset('modular/css/app-green.css') }}">
         @endif
+        <style> 
+            ::selection {
+              background: #00ff00; /* WebKit/Blink Browsers */
+            }
+            ::-moz-selection {
+              background: #00ff00; /* Gecko Browsers */
+            }
+            option:hover {
+                background: #00ff00;
+            }
+        </style>
     </head>
     <body>
         <div class="main-wrapper">
