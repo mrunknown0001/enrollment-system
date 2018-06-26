@@ -61,6 +61,11 @@
                         <i class="fa fa-bars"></i> Year Levels
                     </a>
                 </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar"></i> Academic Year
+                    </a>
+                </li>
                 <li class="{{ route('admin.enrollment') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.enrollment') }}">
                         <i class="fa fa-file-text-o"></i> Enrollment
@@ -104,7 +109,7 @@
                                 </div>
                                 <div class="col-4">
                                     <label>
-                                        <input class="radio" type="radio" name="sidebarPosition" value="sidebar-fixed">
+                                        <input class="radio" type="radio" name="sidebarPosition" value="sidebar-fixed" style="visibility: hidden;">
                                         <span></span>
                                     </label>
                                 </div>

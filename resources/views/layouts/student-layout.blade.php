@@ -10,6 +10,7 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="{{ asset('modular/css/vendor.css') }}">
         <link rel="stylesheet" href="{{ asset('modular/css/app-blue.css') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"> -->
         <style> 
             ::selection {
               background: #ffb7b7; /* WebKit/Blink Browsers */

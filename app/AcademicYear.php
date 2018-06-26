@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ActiveYearLevelEnroll extends Model
+class AcademicYear extends Model
 {
     //
 }

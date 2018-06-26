@@ -16,6 +16,8 @@ use App\User;
 use App\Faculty;
 use App\Payment;
 use App\YearLevel;
+use App\ActiveProgram;
+use App\ActiveCourse;
 
 use App\Http\Controllers\GeneralController;
 
@@ -749,6 +751,37 @@ class AdminController extends Controller
         $yl = YearLevel::get(['id', 'name']);
 
         return view('admin.enrollment', ['programs' => $programs, 'courses' => $courses, 'yl' => $yl]);
+    }
+
+
+    // method use to save active enrollment
+    public function postSaveEnrollment(Request $request)
+    {
+        $request->validate([
+            'program' => 'required|array|min:2|max:2',
+            'course' => 'required|array|min:1',
+            'year_level' => 'required'
+        ]);
+
+        // assign to variables
+        $programs[] = $request['program'];
+        $courses[] = $request['course'];
+        $year_level = $request['year_level'];
+
+
+        // make all active enroll as inactive active=0
+        ActiveCourse::where('active', 1)->update(['active' => 0]);
+        ActiveProgram::where('active', 1)->update(['active' => 0]);
+
+        
+        // save active enrollment
+        
+
+        // add activity log
+
+
+        // return to dashboard 
+        
     }
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActiveYearLevelEnrollsTable extends Migration
+class CreateActiveCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateActiveYearLevelEnrollsTable extends Migration
      */
     public function up()
     {
-        Schema::create('active_year_level_enrolls', function (Blueprint $table) {
+        Schema::create('active_courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('year_level_id')->unsigned();
+            $table->integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->integer('year_level');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateActiveYearLevelEnrollsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('active_year_level_enrolls');
+        Schema::dropIfExists('active_courses');
     }
 }

@@ -22,19 +22,19 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-					<form action="#" method="POST" role="form">
+					<form action="{{ route('admin.save.enrollment.post') }}" method="POST" role="form">
 						{{ csrf_field() }}
 						<p><strong>Programs</strong></p>
 						@foreach($programs as $program)
 						<div class="form-group">
-							<input type="radio" name="course_id" id="program{{ $program->id }}" value="{{ $program->id }}">
+							<input type="checkbox" name="program[]" id="program{{ $program->id }}" value="{{ $program->id }}">
 							<label for="program{{ $program->id }}">{{ $program->title }}</label>
 						</div>
 						@endforeach
 						<p><strong>Courses</strong></p>
 						@foreach($courses as $course)
 						<div class="form-group">
-							<input type="radio" name="course_id" id="course{{ $course->id }}" value="{{ $course->id }}">
+							<input type="checkbox" name="course[]" id="course{{ $course->id }}" value="{{ $course->id }}">
 							<label for="course{{ $course->id }}">{{ $course->title }}</label>
 						</div>
 						@endforeach
@@ -51,10 +51,18 @@
 							</div>
 
 						</div>
+						<div class="form-group">
+							<button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Activate Selected</button>
+						</div>
 					</form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+	$("input:checkbox[name=program]:checked").each(function(){
+	    yourArray.push($(this).val());
+	});
+</script>
 @endsection

@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
+        // admin user
         DB::table('admins')->insert([
         	'username' => 'admin',
         	'firstname' => 'Admin',
@@ -24,13 +25,14 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-
+        // reference in creating id number
         DB::table('id_references')->insert([
         	'year' => date('Y'),
         	'month' => date('m'),
         	'last' => 0
         ]);
 
+        // four terms available
         DB::table('terms')->insert([
             [
                 'name' => 'Prelim'
@@ -43,6 +45,18 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Finals'
+            ]
+        ]);
+
+        // year level
+        DB::table('year_levels')->insert([
+            [
+                'name' => 'First Year',
+                'description' => 'First Year Level'
+            ],
+            [
+                'name' => 'Second Year',
+                'description' => 'Second Year Level'
             ]
         ]);
     }
