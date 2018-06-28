@@ -16,6 +16,7 @@
     <div class="row">
         <div class="col-md-12">
 			<a href="{{ route('admin.add.subject') }}" class="btn btn-primary">Add Subject</a>
+			<a href="{{ route('admin.price.per.unit.update') }}" class="btn btn-primary">Update Price Per Unit</a>
 			
 			@if(count($subjects) > 0)
 			<table class="table table-hover">

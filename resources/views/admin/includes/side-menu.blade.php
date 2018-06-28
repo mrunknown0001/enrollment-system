@@ -61,8 +61,8 @@
                         <i class="fa fa-bars"></i> Year Levels
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('admin.academic.year') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.academic.year') }}">
                         <i class="fa fa-calendar"></i> Academic Year
                     </a>
                 </li>

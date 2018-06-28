@@ -275,6 +275,12 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to save update of the subject
 	Route::post('/subject/update', 'AdminController@postUpdatesubject')->name('admin.update.subject.post');
 
+	// route to update price per unit
+	Route::get('/subject/unit/price/update', 'AdminController@pricePerUnitUpdate')->name('admin.price.per.unit.update');
+
+	// route to save update price unit
+	Route::post('/subject/unit/price/update', 'AdminController@postPricePerUnitUpdate')->name('admin.price.per.unit.update.post');
+
 	// route to view all students
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
 
@@ -295,6 +301,17 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to save update on year level
 	Route::post('/year-level/update', 'AdminController@postUpdateYearLevel')->name('admin.update.year.level.post');
+
+	// route to view and other operation in academic year
+	Route::get('/academic-year', 'AdminController@viewAcademicYear')->name('admin.academic.year');
+
+
+	// route to add academic year
+	Route::get('/academic-year/add', 'AdminController@addAcademicYear')->name('admin.add.academic.year');
+
+
+	// route to add save academic year
+	Route::post('/academic-year/add', 'AdminController@postAddAcademicYear')->name('admin.add.academic.year.post');
 
 	// route to veiw settings in enrollment
 	Route::get('/enrollment', 'AdminController@enrollment')->name('admin.enrollment');

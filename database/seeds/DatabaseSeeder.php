@@ -59,5 +59,12 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Second Year Level'
             ]
         ]);
+        
+        
+        // initial price per unit
+        DB::table('price_per_units')->insert([
+            'name' => 'Lecture',
+            'price' => 0
+        ]);
     }
 }

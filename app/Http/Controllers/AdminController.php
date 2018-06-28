@@ -18,6 +18,8 @@ use App\Payment;
 use App\YearLevel;
 use App\ActiveProgram;
 use App\ActiveCourse;
+use App\PricePerUnit;
+use App\AcademicYear;
 
 use App\Http\Controllers\GeneralController;
 
@@ -633,6 +635,40 @@ class AdminController extends Controller
     }
 
 
+    // method use to show update price form
+    public function pricePerUnitUpdate()
+    {
+        $price = PricePerUnit::find(1);
+
+        return view('admin.update-price-per-unit', ['price' => $price]);
+    }
+
+
+    // method use to save update on price per unit
+    public function postPricePerUnitUpdate(Request $request)
+    {
+        // validate
+        $request->validate([
+            'price' => 'required|numeric'
+        ]);
+
+        // assign to variable
+        $price = $request['price'];
+
+        // save
+        $up  = PricePerUnit::find(1);
+        $up->price = $price;
+        $up->save();
+    
+        // add activity log here
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Updated Price Per Unit');
+
+        // return with message success 
+        return redirect()->route('admin.subjects')->with('success', 'Price Per Unit Updated!');
+    
+    }
+
+
     // method use to view all students
     public function viewStudents()
     {
@@ -738,6 +774,50 @@ class AdminController extends Controller
 
         // return with message
         return redirect()->route('admin.view.year.level')->with('success', 'Year Level Updated!');
+    }
+
+
+    // method use to view academic yea 
+    public function viewAcademicYear()
+    {
+        $ay = AcademicYear::where('active', 1)->first();
+
+        return view('admin.academic-year', ['ay' => $ay]);
+    }
+
+
+    // method use to view add academic year form
+    public function addAcademicYear()
+    {
+        return view('admin.add-academic-year');
+    }
+
+
+    // method use tosave academic year
+    public function postAddAcademicYear(Request $request)
+    {
+        // validate
+        $request->validate([
+            'from' => 'required',
+            'to' => 'required'
+        ]);
+
+        // save to variable
+        $from = $request['from'];
+        $to = $request['to'];
+
+        // save
+        $ay = new AcademicYear();
+        $ay->from = $from;
+        $ay->to = $to;
+        $ay->save();
+
+        // activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Add Academic Year');
+
+        // return to home\
+        return redirect()->route('admin.academic.year')->with('success', 'Successfully Added School Year');
+
     }
 
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAcademicYearsTable extends Migration
+class CreatePricePerUnitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAcademicYearsTable extends Migration
      */
     public function up()
     {
-        Schema::create('academic_years', function (Blueprint $table) {
+        Schema::create('price_per_units', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('from');
-            $table->string('to');
-            $table->tinyInteger('active')->default(1);
+            $table->string('name')->nullable();
+            $table->float('price', 8, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateAcademicYearsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_years');
+        Schema::dropIfExists('price_per_units');
     }
 }
