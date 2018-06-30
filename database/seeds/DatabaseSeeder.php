@@ -66,5 +66,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Lecture',
             'price' => 0
         ]);
+
+        $this->call([
+            SubjectTableSeeder::class,
+            CourseTableSeeder::class,
+            ProgramTableSeeder::class,
+        ]);
     }
 }

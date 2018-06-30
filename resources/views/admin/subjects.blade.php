@@ -64,10 +64,11 @@
 					</tr>
 					@endforeach
 				</tbody>
-				<tfoot>
+				<tfooter>
 					
-				</tfoot>
+				</tfooter>
 			</table>
+			<p>{{ $subjects->links() }}</p>
 			@else
 			<p class="text-center"><em>No Subject Available</em></p>
 			@endif
