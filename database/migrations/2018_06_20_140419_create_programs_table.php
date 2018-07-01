@@ -19,6 +19,7 @@ class CreateProgramsTable extends Migration
             $table->string('code')->nullable();
             $table->string('description')->nullable();
             $table->float('tuition_fee', 8, 2);
+            $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
     }

@@ -22,19 +22,25 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
+                    @if(count($ay) < 1)
+					<div class="alert alert-warning text-center top-space">
+					<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>No Active Academic Year. <a href="{{ route('admin.add.academic.year') }}">Click here to add.</a></strong>
+					</div>
+                    @endif
 					<form action="{{ route('admin.save.enrollment.post') }}" method="POST" role="form">
 						{{ csrf_field() }}
 						<p><strong>Programs</strong></p>
 						@foreach($programs as $program)
 						<div class="form-group">
-							<input type="checkbox" name="program[]" id="program{{ $program->id }}" value="{{ $program->id }}">
+							<input type="checkbox" name="program[]" id="program{{ $program->id }}" value="{{ $program->id }}" {{ $program->active == 1 ? 'checked' : '' }}>
 							<label for="program{{ $program->id }}">{{ $program->title }}</label>
 						</div>
 						@endforeach
 						<p><strong>Courses</strong></p>
 						@foreach($courses as $course)
 						<div class="form-group">
-							<input type="checkbox" name="course[]" id="course{{ $course->id }}" value="{{ $course->id }}">
+							<input type="checkbox" name="course[]" id="course{{ $course->id }}" value="{{ $course->id }}" {{ $course->active == 1 ? 'checked' : '' }}>
 							<label for="course{{ $course->id }}">{{ $course->title }}</label>
 						</div>
 						@endforeach
@@ -42,9 +48,9 @@
 							<div class="row">
 								<div class="col-md-6">
 									<select name="year_level" id="year_level" class="form-control underlined">
-										<option value="">Not Applicable</option>
+										<option value="">Seleect Year Level</option>
 										@foreach($yl as $y)
-										<option value="{{ $y->id }}">{{ ucwords($y->name) }}</option>
+										<option value="{{ $y->id }}" {{ $y->active == 1 ? 'selected' : '' }}>{{ ucwords($y->name) }}</option>
 										@endforeach
 									</select>									
 								</div>

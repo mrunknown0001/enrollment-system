@@ -313,6 +313,16 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to add save academic year
 	Route::post('/academic-year/add', 'AdminController@postAddAcademicYear')->name('admin.add.academic.year.post');
 
+	// rotue to close academic year
+	Route::post('/academic-year/close', 'AdminController@postCloseAcademicYear')->name('admin.close.academic.year.post');
+
+
+	// route to set semester
+	Route::post('/semester/set', 'AdminController@postSetSemester')->name('admin.set.semester.post');
+
+	// route to set next semester
+	Route::get('/semester/set/active/{id}', 'AdminController@setSemester')->name('admin.set.semester');
+
 	// route to veiw settings in enrollment
 	Route::get('/enrollment', 'AdminController@enrollment')->name('admin.enrollment');
 

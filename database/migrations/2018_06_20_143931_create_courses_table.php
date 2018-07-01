@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('code')->nullable();
             $table->string('description')->nullable();
             $table->string('curriculum')->nullable();
+            $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
     }

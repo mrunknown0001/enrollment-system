@@ -15,6 +15,29 @@
 <section class="section">
     <div class="row sameheight-container">
         <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    @if(count($courses) > 0)
+                    <strong>Courses Open for {{ $yl->name }}</strong>
+                    <ul>
+                        @foreach($courses as $c)
+                        <li>{{ $c->title }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    @if(count($programs) > 0)
+                    <strong>Programs Open</strong>
+                    <ul>
+                        @foreach($programs as $p)
+                        <li>{{ $p->title }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </div>
+            </div>
+
             <div class="card sameheight-item stats" data-exclude="xs">
                 <div class="card-block">
                     <div class="title-block">

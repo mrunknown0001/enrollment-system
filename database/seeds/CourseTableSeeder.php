@@ -11,6 +11,12 @@ class CourseTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('courses')->insert([
+        	[
+        		'title' => 'Information Technology',
+        		'code' => '2YIT',
+        		'description' => '2 Years Course Information Technology'
+        	]
+        ]);
     }
 }

@@ -11,6 +11,19 @@ class ProgramTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('programs')->insert([
+        	[
+        		'title' => 'Computer Systems Servicing',
+        		'code' => 'CSS',
+        		'description' => 'Computer Systems Servicing, troubleshooting, and maintenance.',
+        		'tuition_fee' => 8000.00
+        	],
+        	[
+        		'title' => 'Bookeeping',
+        		'code' => 'BK',
+        		'description' => 'Bookeeping',
+        		'tuition_fee' => 8000.00
+        	]
+        ]);
     }
 }

@@ -67,6 +67,26 @@ class DatabaseSeeder extends Seeder
             'price' => 0
         ]);
 
+
+        DB::table('active_semesters')->insert([
+            [
+                'name' => 'First Semester',
+                'active' => 0
+            ],
+            [
+                'name' => 'Second Semester',
+                'active' => 0
+            ],
+            [
+                'name' => 'Third Semester',
+                'active' => 0
+            ],
+            [
+                'name' => 'Summer',
+                'active' => 0
+            ]
+        ]);
+
         $this->call([
             SubjectTableSeeder::class,
             CourseTableSeeder::class,

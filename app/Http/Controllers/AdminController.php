@@ -20,6 +20,7 @@ use App\ActiveProgram;
 use App\ActiveCourse;
 use App\PricePerUnit;
 use App\AcademicYear;
+use App\ActiveSemester;
 
 use App\Http\Controllers\GeneralController;
 
@@ -36,14 +37,18 @@ class AdminController extends Controller
     {
 
     	// load all need in admin dashboard
-        $students = User::get();
-        $faculties = Faculty::get();
-        $cashiers = Cashier::get();
-        $registrars = Registrar::get();
-        $subjects = Subject::get();
+        $students = User::get(['id']);
+        $faculties = Faculty::get(['id']);
+        $cashiers = Cashier::get(['id']);
+        $registrars = Registrar::get(['id']);
+        $subjects = Subject::get(['id']);
+
+        $programs = Program::where('active', 1)->get();
+        $courses = Course::where('active', 1)->get();
+        $yl = YearLevel::where('active', 1)->first();
 
 
-    	return view('admin.dashboard', ['students' => $students, 'faculties' => $faculties, 'cashiers' => $cashiers, 'registrars' => $registrars, 'subjects' => $subjects]);
+    	return view('admin.dashboard', ['students' => $students, 'faculties' => $faculties, 'cashiers' => $cashiers, 'registrars' => $registrars, 'subjects' => $subjects, 'programs' => $programs, 'courses' => $courses, 'yl' => $yl]);
     }
 
 
@@ -781,8 +786,13 @@ class AdminController extends Controller
     public function viewAcademicYear()
     {
         $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
 
-        return view('admin.academic-year', ['ay' => $ay]);
+        $ays = AcademicYear::where('active', 0)
+                        ->orderBy('id', 'desc')
+                        ->paginate(5);
+
+        return view('admin.academic-year', ['ay' => $ay, 'sem' => $sem, 'ays' => $ays]);
     }
 
 
@@ -806,6 +816,13 @@ class AdminController extends Controller
         $from = $request['from'];
         $to = $request['to'];
 
+        // check
+        $check_ay = AcademicYear::where('from', $from)->first();
+
+        if(count($check_ay) > 0) {
+            return redirect()->route('admin.academic.year')->with('error', 'Academic Year Exist!');
+        }
+
         // save
         $ay = new AcademicYear();
         $ay->from = $from;
@@ -821,22 +838,97 @@ class AdminController extends Controller
     }
 
 
+    // method use to close academic year
+    public function postCloseAcademicYear(Request $request)
+    {
+        $password = $request['password'];
+
+        // password verify
+        if(password_verify($password, Auth::guard('admin')->user()->password)) {
+            // ay and sem active to 0
+            $ay = AcademicYear::where('active', 1)->first();
+            $ay->active = 0;
+            $ay->save();
+
+            $sem = ActiveSemester::where('active', 1)->first();
+            $sem->active = 0;
+            $sem->save();
+
+            // add activity log
+            GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Close Academic Year: ' . $ay->from . '-' . $ay->to);
+
+            return redirect()->route('admin.academic.year')->with('success', 'Academic Year Cloase!');
+        }
+
+        return redirect()->route('admin.academic.year')->with('error', 'Error Occured!');
+    }
+
+
+    // method use to set semester
+    public function postSetSemester(Request $request)
+    {
+        $request->validate([
+            'semester' => 'required'
+        ]);
+
+        $sem = $request['semester'];
+
+        $semester = ActiveSemester::findorfail($sem);
+        $semester->active = 1;
+        $semester->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Set Semester');
+
+        return redirect()->route('admin.academic.year')->with('success', 'Semester Set!');
+    }
+
+
+    // method to set next semester
+    public function setSemester($id = null)
+    {
+        $active = ActiveSemester::where('active', 1)->first();
+        $active->active = 0;
+        $active->save();
+
+        $semester = ActiveSemester::findorfail($id);
+        $semester->active = 1;
+        $semester->save();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Set Semester');
+
+        return redirect()->route('admin.academic.year')->with('success', 'Semester Set!');
+    }
+
+
     // method use to view enrollment settings
     public function enrollment()
     {
         // get all courses and program
-        $programs = Program::get(['id', 'title']);
-        $courses = Course::get(['id', 'title']);
+        $programs = Program::get(['id', 'title', 'active']);
+        $courses = Course::get(['id', 'title', 'active']);
 
-        $yl = YearLevel::get(['id', 'name']);
+        $yl = YearLevel::get(['id', 'name', 'active']);
 
-        return view('admin.enrollment', ['programs' => $programs, 'courses' => $courses, 'yl' => $yl]);
+        // check if there is active academic year
+        $ay = AcademicYear::where('active', 1)->first();
+
+        return view('admin.enrollment', ['programs' => $programs, 'courses' => $courses, 'yl' => $yl, 'ay' => $ay]);
     }
 
 
     // method use to save active enrollment
     public function postSaveEnrollment(Request $request)
     {
+
+        // check if there is an active academic year
+        $check_ay = AcademicYear::where('active', 1)->first();
+
+        if(count($check_ay) < 1) {
+            return redirect()->back();
+        }
+
+
         $request->validate([
             'program' => 'required|array|min:2|max:2',
             'course' => 'required|array|min:1',
@@ -844,23 +936,43 @@ class AdminController extends Controller
         ]);
 
         // assign to variables
-        $programs[] = $request['program'];
-        $courses[] = $request['course'];
+        $progs[] = $request['program'];
+        $cours[] = $request['course'];
         $year_level = $request['year_level'];
 
 
         // make all active enroll as inactive active=0
-        ActiveCourse::where('active', 1)->update(['active' => 0]);
-        ActiveProgram::where('active', 1)->update(['active' => 0]);
+        Course::where('active', 1)->update(['active' => 0]);
+        Program::where('active', 1)->update(['active' => 0]);
+        YearLevel::where('active', 1)->update(['active' => 0]);
 
-        
-        // save active enrollment
-        
+        // get all programs and courses
+        foreach($progs as $p)
+            $programs = Program::find($p);
+
+        foreach($cours as $c)
+            $courses = Course::find($c);
+
+
+        foreach($programs as $program) {
+            $program->active = 1;
+            $program->save();
+        }
+
+        foreach($courses as $course) {
+            $course->active = 1;
+            $course->save();
+        }
+
+        $yl = YearLevel::findorfail($year_level);
+        $yl->active = 1;
+        $yl->save();
 
         // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Set Enrollment Active');
 
-
-        // return to dashboard 
+        // return to dashboard
+        return redirect()->route('admin.dashboard');
         
     }
 
