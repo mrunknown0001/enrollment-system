@@ -27,13 +27,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <select name="from" id="from" class="form-control underlined">
-                                        <option></option>
+                                        <option value="">Start Year</option>
                                         <option value="{{ date('Y') }}">{{ date('Y') }}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <select name="to" id="to" class="form-control underlined">
-                                        <option></option>
+                                        <option value="">End Year</option>
                                         <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}</option>
                                     </select>
                                 </div>

@@ -21,6 +21,7 @@ use App\ActiveCourse;
 use App\PricePerUnit;
 use App\AcademicYear;
 use App\ActiveSemester;
+use App\MiscFee;
 
 use App\Http\Controllers\GeneralController;
 
@@ -522,7 +523,7 @@ class AdminController extends Controller
         // add activity log
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Updated Course');
 
-        // returm message
+        // return message
         return redirect()->route('admin.courses')->with('success', 'Course Updated!');
 
     }
@@ -669,7 +670,7 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Updated Price Per Unit');
 
         // return with message success 
-        return redirect()->route('admin.subjects')->with('success', 'Price Per Unit Updated!');
+        return redirect()->route('admin.rate.fee.settings')->with('success', 'Price Per Unit Updated!');
     
     }
 
@@ -898,6 +899,97 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Set Semester');
 
         return redirect()->route('admin.academic.year')->with('success', 'Semester Set!');
+    }
+
+
+    // method use to view rates and fees
+    public function viewRateFeeSettings()
+    {
+        // get the current price per unit and the misc fee
+        $unit_price = PricePerUnit::find(1);
+        $misc = MiscFee::get();
+
+        return view('admin.rates-fees', ['unit_price' => $unit_price, 'misc' => $misc]);
+    }
+
+
+    // method use to add form
+    public function addMiscFee()
+    {
+        return view('admin.add-misc-fee');
+    }
+
+
+    // method to add misc fee
+    public function postAddMiscFee(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'amount' => 'required|numeric',
+            'type' => 'required'
+        ]);
+
+        $name = $request['name'];
+        $amount = $request['amount'];
+        $type = $request['type'];
+
+        $misc = new MiscFee();
+        $misc->name = $name;
+        $misc->amount = $amount;
+        $misc->type = $type;
+        $misc->save();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Miscellaneous Fee');
+
+        return redirect()->route('admin.rate.fee.settings')->with('success', 'Miscellaneous Fee Added');
+    }
+
+
+    // method use to update misc fee form
+    public function updateMiscFee($id = null)
+    {
+        $misc = MiscFee::findorfail($id);
+
+        return view('admin.update-misc-fee', ['misc' => $misc]);
+    }
+
+
+    // method use to save update
+    public function postUpdateMiscFee(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'amount' => 'required|numeric',
+            'type' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $name = $request['name'];
+        $amount = $request['amount'];
+        $type = $request['type'];
+
+        $misc = MiscFee::findorfail($id);
+        $misc->name = $name;
+        $misc->amount = $amount;
+        $misc->type = $type;
+        $misc->save();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Updated Miscellaneous Fee');
+
+        return redirect()->route('admin.rate.fee.settings')->with('success', 'Miscellaneous Fee Updated');
+
+    }
+
+
+    // route to delete misc fee
+    public function deleteMiscFee($id = null)
+    {
+        $misc = MiscFee::findorfail($id);
+        $misc->delete();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Deleted Miscellaneous Fee');
+
+        return redirect()->route('admin.rate.fee.settings')->with('success', 'Miscellaneous Fee Deleted'); 
     }
 
 

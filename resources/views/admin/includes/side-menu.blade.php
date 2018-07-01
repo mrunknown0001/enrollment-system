@@ -66,6 +66,11 @@
                         <i class="fa fa-calendar"></i> Academic Year
                     </a>
                 </li>
+                <li class="{{ route('admin.rate.fee.settings') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.rate.fee.settings') }}">
+                        <i class="fa fa-dollar"></i> Rates &amp; Fees
+                    </a>
+                </li>
                 <li class="{{ route('admin.enrollment') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.enrollment') }}">
                         <i class="fa fa-file-text-o"></i> Enrollment

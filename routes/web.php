@@ -323,6 +323,25 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to set next semester
 	Route::get('/semester/set/active/{id}', 'AdminController@setSemester')->name('admin.set.semester');
 
+	// route to view settings in rates and fees
+	Route::get('/rates-fees/settings', 'AdminController@viewRateFeeSettings')->name('admin.rate.fee.settings');
+
+	// rotue to add misc fee form
+	Route::get('/rates-fees/add', 'AdminController@addMiscFee')->name('admin.add.misc.fee');
+
+
+	// route to edit msic fee
+	Route::get('/rates-fees/{id}/update', 'AdminController@updateMiscFee')->name('admin.update.misc.fee');
+
+	// route to save updte on misc fee
+	Route::post('/rates-fees/update', 'AdminController@postUpdateMiscFee')->name('admin.update.misc.fee.post');
+
+	// route to delete misc fee
+	Route::get('/rates-fees/delete/{id}', 'AdminController@deleteMiscFee')->name('admin.delete.misc.fee');
+
+	// route to add misc fee
+	Route::post('/rates-fees/add', 'AdminController@postAddMiscFee')->name('admin.add.misc.fee.post');
+
 	// route to veiw settings in enrollment
 	Route::get('/enrollment', 'AdminController@enrollment')->name('admin.enrollment');
 
