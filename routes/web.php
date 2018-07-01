@@ -281,6 +281,12 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to save update price unit
 	Route::post('/subject/unit/price/update', 'AdminController@postPricePerUnitUpdate')->name('admin.price.per.unit.update.post');
 
+	// route to select subjects
+	Route::get('/subjects/select', 'AdminController@selectSubjects')->name('admin.select.subjects');
+
+	// rotue to save select subjects in enrollment
+	Route::post('/subjects/select', 'AdminController@postSelectSubjects')->name('admin.select.subjects.post');
+
 	// route to view all students
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
 

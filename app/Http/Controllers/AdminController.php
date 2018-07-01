@@ -532,7 +532,8 @@ class AdminController extends Controller
     // method use to view all subjects
     public function viewSubjects()
     {
-        $subjects = Subject::orderBy('code', 'asc')
+        $subjects = Subject::orderBy('active', 'desc')
+                        ->orderBy('code', 'asc')
                         ->paginate(15);
 
         return view('admin.subjects', ['subjects' => $subjects]);
@@ -638,6 +639,36 @@ class AdminController extends Controller
         // return with message
         return redirect()->route('admin.subjects')->with('success', 'Subject Update Success!');
 
+    }
+
+
+    // method use to select subject
+    public function selectSubjects()
+    {
+        $subjects = Subject::all(['id', 'code', 'description', 'year_level', 'active']);
+
+        return view('admin.select-subjects', ['subjects' => $subjects]);
+    }
+
+
+    // method use to save selected subjects
+    public function postSelectSubjects(Request $request)
+    {
+        $subject_ids[] = $request['subjects'];
+
+        foreach($subject_ids as $id) {
+            $subjects = Subject::find($id);
+        }
+
+        foreach($subjects as $sub) {
+            $sub->active = 1;
+            $sub->save();
+        }
+
+        // activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Selected Subjects');
+
+        return redirect()->route('admin.subjects')->with('success', 'Subject Selected!');
     }
 
 

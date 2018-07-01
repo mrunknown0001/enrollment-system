@@ -16,6 +16,7 @@
     <div class="row">
         <div class="col-md-12">
 			<a href="{{ route('admin.add.subject') }}" class="btn btn-primary">Add Subject</a>
+			<a href="{{ route('admin.select.subjects') }}" class="btn btn-primary">Select Subject For Enrollment</a>
 			
 			@if(count($subjects) > 0)
 			<table class="table table-hover">
@@ -30,7 +31,7 @@
 					@foreach($subjects as $s)
 					<tr>
 						<td>{{ strtoupper($s->code) }}</td>
-						<td><p>{{ ucwords($s->description) }}</td>
+						<td>{{ ucwords($s->description) }}</td>
 						<td>
 							<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#subject-{{ $s->id }}"><i class="fa fa-eye"></i> View</button>
 
