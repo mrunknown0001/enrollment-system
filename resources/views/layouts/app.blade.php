@@ -13,7 +13,6 @@
         @else
         <link rel="stylesheet" href="{{ asset('modular/css/app-green.css') }}">
         <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"> -->
-        @endif
         <style> 
             ::selection {
               background: #00ff00; /* WebKit/Blink Browsers */
@@ -24,7 +23,15 @@
             option:hover {
                 background: #00ff00;
             }
+            .dot {
+                height: 10px;
+                width: 10px;
+                background-color: #00ff00;
+                border-radius: 50%;
+                display: inline-block;
+            }
         </style>
+        @endif
     </head>
     <body>
         <div class="main-wrapper">

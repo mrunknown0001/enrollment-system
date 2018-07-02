@@ -25,6 +25,7 @@ class StudentController extends Controller
     {
     	// get all the data need to show in dashboard of student
 
+
     	return view('student.dashboard');
     }
 
@@ -126,5 +127,83 @@ class StudentController extends Controller
 
         return redirect()->route('student.password.change')->with('error', 'Old Password Invalid!');
     }
+
+
+    // method use to save enrollment for
+    public function postEnrollmentFor(Request $request)
+    {
+        $request->validate([
+            'enrolling_for' => 'required'
+        ]);
+
+        $enroll = $request['enrolling_for'];
+
+        $student = User::find(Auth::user()->id);
+
+        $student->info->enrolling_for = $enroll;
+        $student->info->save();
+
+        GeneralController::activity_log(Auth::user()->id, 5, 'Student going to enroll');
+
+        return redirect()->route('student.dashboard')->with('Set For Enrollment!');
+
+    }
+
+
+    // method to save selected year level
+    public function postYearLevel(Request $request)
+    {
+        $request->validate([
+            'year_level' => 'required'
+        ]);
+
+        $yl = $request['year_level'];
+
+        $student = User::find(Auth::user()->id);
+
+        $student->info->year_level = $yl;
+        $student->info->save();
+
+        GeneralController::activity_log(Auth::user()->id, 5, 'Student Added Year Level');
+
+        return redirect()->route('student.dashboard')->with('Year Level Added!');
+    }
+
+
+    // method use to view subjects
+    public function viewSubjects()
+    {
+        return view('student.subjects');
+    }
+
+
+    // method use to view enrollment settings
+    public function viewEnroll()
+    {
+        // check if course or program
+        if(Auth::user()->info->enrolling_for == 1) {
+
+        }
+        else {
+
+        }
+
+        return view('student.enroll');
+    }
+
+
+    // method use to view
+    public function viewAssessment()
+    {
+        return view('student.assessment');
+    }
+
+
+    // method use to view payments
+    public function viewPayments()
+    {
+        return view('student.payments');
+    }
+
 
 }

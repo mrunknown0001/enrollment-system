@@ -30,7 +30,7 @@
 				<tbody>
 					@foreach($subjects as $s)
 					<tr>
-						<td>{{ strtoupper($s->code) }}</td>
+						<td>@if($s->active == 1)<span class="dot"></span>@endif {{ strtoupper($s->code) }}</td>
 						<td>{{ ucwords($s->description) }}</td>
 						<td>
 							<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#subject-{{ $s->id }}"><i class="fa fa-eye"></i> View</button>

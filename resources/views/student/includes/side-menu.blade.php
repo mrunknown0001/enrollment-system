@@ -12,6 +12,34 @@
                     <a href="{{ route('student.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
+                @if(Auth::user()->info->enrolling_for == 1)
+                <li class="{{ route('student.subjects') == url()->current() ? 'active' : ''}}">
+                    <a href="{{ route('student.subjects') }}">
+                        <i class="fa fa-book"></i> Subjects
+                    </a>
+                </li>
+                @elseif(Auth::user()->info->enrolling_for == 2)
+                <li class="{{ route('student.programs') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('student.programs') }}">
+                        <i class="fa fa-book"></i> Program
+                    </a>
+                </li>
+                @endif
+                <li class="{{ route('student.enroll') == url()->current() ? 'active' : ''}}">
+                    <a href="{{ route('student.enroll') }}">
+                        <i class="fa fa-file-text-o"></i> Enroll
+                    </a>
+                </li>
+                <li class="{{ route('student.assessment') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('student.assessment') }}">
+                        <i class="fa fa-file"></i> Assessment
+                    </a>
+                </li>
+                <li class="{{ route('students.payments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('students.payments') }}">
+                        <i class="fa fa-paypal"></i> Paypal Payments
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -83,26 +111,7 @@
                             </div>
                         </div>
                         <div class="customize-item">
-<!--                             <ul class="customize-colors">
-                                <li>
-                                    <span class="color-item color-red" data-theme="red"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-orange" data-theme="orange"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-green active" data-theme=""></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-seagreen" data-theme="seagreen"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-blue" data-theme="blue"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-purple" data-theme="purple"></span>
-                                </li>
-                            </ul> -->
+
                         </div>
                     </li>
                 </ul>

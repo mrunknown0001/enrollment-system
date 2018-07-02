@@ -18,6 +18,7 @@ class CreateStudentInfosTable extends Migration
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
             $table->integer('year_level')->nullable();
+            $table->tinyInteger('enrolling_for')->nullable(); // 1 for coruse, 2 program
             $table->integer('regular')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('place_of_birth')->nullable();

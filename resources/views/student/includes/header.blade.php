@@ -11,7 +11,7 @@
             <li class="profile dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="img"> <i class="fa fa-user"></i> </div>
-                    <span class="name"> {{ ucwords(Auth::user()->firstname . ' ' . Auth::user()->lastname) }} </span>
+                    <span class="name"> {{ ucwords(Auth::user()->firstname . ' ' . Auth::user()->lastname) }} - {{ Auth::user()->student_number }} </span>
                 </a>
                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="{{ route('student.profile') }}">

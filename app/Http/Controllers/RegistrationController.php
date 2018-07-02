@@ -75,7 +75,7 @@ class RegistrationController extends Controller
         GeneralController::activity_log($user->id, 5, 'Register Student Account');
 
         // reguturn to registration page with success message
-        return redirect()->route('student.registration')->with('success', 'Account Created! Your Student Number is ' . $student_number);
+        return redirect()->route('student.login')->with('success', 'Account Created! Your Student Number is ' . $student_number)->with('student_number', $student_number);
 
 
     }

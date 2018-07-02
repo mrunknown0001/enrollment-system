@@ -20,7 +20,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="student_number">Student Number</label>
-                        <input type="text" class="form-control underlined" name="student_number" id="student_number" placeholder="Your Student Number" required> </div>
+                        <input type="text" class="form-control underlined" name="student_number" id="student_number" value="{{ session('student_number') }}" placeholder="Your Student Number" required> </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control underlined" name="password" id="password" placeholder="Your password" required> </div>

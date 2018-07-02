@@ -33,4 +33,10 @@ class User extends Authenticatable
     }
 
 
+    public function enrollment_status()
+    {
+        return $this->hasMany('App\EnrollmentStatus', 'student_id');
+    }
+
+
 }

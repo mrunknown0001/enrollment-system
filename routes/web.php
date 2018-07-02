@@ -97,6 +97,27 @@ Route::group(['prefix' => 'student'], function () {
 	// rotue to save change password
 	Route::post('/password/change', 'StudentController@postChangePassword')->name('student.password.change.post');
 
+	// route to save what to enroll
+	Route::post('/enrollment/for', 'StudentController@postEnrollmentFor')->name('student.enrollment.for.post');
+
+	// route to save year level of the student
+	Route::post('/year-level/select', 'StudentController@postYearLevel')->name('student.year.level.select.post');
+
+	// route to view subjects
+	Route::get('/subjects', 'StudentController@viewSubjects')->name('student.subjects');
+
+	// route to view program enrolled
+	Route::get('/program/enrolled', 'StudentController@viewProgram')->name('student.programs');
+
+	// rotue to enrollment: setting of course/program to enroll
+	Route::get('/enroll', 'StudentController@viewEnroll')->name('student.enroll');
+
+	// route to view assessment
+	Route::get('/assessment', 'StudentController@viewAssessment')->name('student.assessment');
+
+	// route to view payments
+	Route::get('/payments', 'StudentController@viewPayments')->name('students.payments');
+
 });
 
 
@@ -291,7 +312,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
 
 	// route to search for students
-	Route::get('/stduents/searhResult', 'AdminController@searchStudent')->name('admin.student.search');
+	Route::get('/students/searhResult', 'AdminController@searchStudent')->name('admin.student.search');
 
 	// route to view year levels
 	Route::get('/year-levels', 'AdminController@viewYearLevels')->name('admin.view.year.level');
