@@ -8,6 +8,9 @@ use Auth;
 
 use App\User;
 use App\StudentInfo;
+use App\Course;
+use App\Program;
+use App\YearLevel;
 
 use App\Http\Controllers\GeneralController;
 
@@ -23,10 +26,15 @@ class StudentController extends Controller
     // method to show the dashboard of student
     public function dashboard()
     {
-    	// get all the data need to show in dashboard of student
+    	// check if program and couse are active
+        $courses = Course::where('active', 1)->get(['id', 'active']);
+        $programs = Program::where('active', 1)->get(['id', 'active']);
+        $yl = YearLevel::where('active', 1)->first();
+
+        // get all the data need to show in dashboard of student
 
 
-    	return view('student.dashboard');
+        return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl]);
     }
 
 
@@ -177,15 +185,33 @@ class StudentController extends Controller
     }
 
 
+    // method use to view program enrolled
+    public function viewProgram()
+    {
+        return view('student.programs');
+    }
+
+
     // method use to view enrollment settings
     public function viewEnroll()
     {
-        // check if course or program
+        $courses = Course::where('active', 1)->get();
+        $programs = Program::where('active', 1)->get();
+
+        if(count($courses) < 1 && count($programs) < 1) {
+            return redirect()->route('student.dashboard');
+        }
+
+        // check what to enroll and other components 
         if(Auth::user()->info->enrolling_for == 1) {
+            // for course
+            // get all the available course
+            // get the year level active for enrollment
 
         }
         else {
-
+            // for program
+            // get all program available
         }
 
         return view('student.enroll');

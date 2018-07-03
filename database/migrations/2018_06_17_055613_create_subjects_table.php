@@ -21,6 +21,7 @@ class CreateSubjectsTable extends Migration
             $table->integer('units')->nullable();
             $table->integer('hours')->nullable();
             $table->integer('year_level')->nullable();
+            $table->string('prerequisites')->nullable();
             $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
