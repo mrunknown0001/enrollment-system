@@ -31,8 +31,12 @@
 						@if(Auth::user()->info->year_level == $yl->id)
 							{{-- check if enrolled for course applicable for second year --}}
 							@if(Auth::user()->info->course_id == null)
-								<p><em>Not enrolled in any course.</em></p>
-								<a href="{{ route('student.enroll') }}">Click here to enroll</a>
+								@if(Auth::user()->assessment->where('active', 1)->first())
+									<p>Please pay the assessment</p>
+								@else
+									<p><em>Not enrolled in any course</em></p>
+									<a href="{{ route('student.enroll') }}">Click here to enroll</a>
+								@endif
 							@else
 								<a href="{{ route('student.enroll') }}">Click here to enroll</a>
 							@endif
@@ -47,8 +51,12 @@
 						<p>Enrolled in Program</p>
 						<p>Show data of Program</p>
 					@else
-						<p><em>Not Enrolled in any Program</em></p>
-						<a href="{{ route('student.enroll') }}">Click here to enroll</a>
+						@if(Auth::user()->assessment->where('active', 1)->first())
+							<p>Please pay the assessment</p>
+						@else
+							<p><em>Not Enrolled in any Program</em></p>
+							<a href="{{ route('student.enroll') }}">Click here to enroll</a>
+						@endif
 					@endif
 				@endif
 			@endif

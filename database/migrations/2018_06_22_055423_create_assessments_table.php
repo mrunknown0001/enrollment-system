@@ -26,6 +26,7 @@ class CreateAssessmentsTable extends Migration
             $table->float('tuition_fee', 8, 2)->nullable();
             $table->float('misc_fee', 8, 2)->nullable();
             $table->float('total', 8, 2)->nullable();
+            $table->float('total_paid', 8, 2)->nullable();
             $table->tinyInteger('paid')->default(0);
             $table->tinyInteger('active')->default(1);
             $table->timestamps();

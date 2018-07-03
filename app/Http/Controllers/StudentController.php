@@ -13,6 +13,7 @@ use App\Program;
 use App\YearLevel;
 use App\Assessment;
 use App\MiscFee;
+use App\Payment;
 
 use App\Http\Controllers\GeneralController;
 
@@ -283,7 +284,11 @@ class StudentController extends Controller
     // method use to view payments
     public function viewPayments()
     {
-        return view('student.payments');
+        $payments = Payment::where('student_id')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(15);
+
+        return view('student.payments', ['payments' => $payments]);
     }
 
 

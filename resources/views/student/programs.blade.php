@@ -20,7 +20,7 @@
 			@else
 				{{-- check if there is an active assessment --}}
 				@if(Auth::user()->assessment->where('active', 1)->first())
-					<p>Show Active assessment link</p>
+					<p>Please pay the assessment</p>
 				@else
 					<p>No program enrolled</p>
 				@endif

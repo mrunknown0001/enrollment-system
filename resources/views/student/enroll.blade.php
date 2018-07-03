@@ -25,7 +25,7 @@
 				@else
 					{{-- check if there is an active assessment --}}
 					@if(Auth::user()->assessment->where('active', 1)->first())
-						<p>Assessment Not Paid. Please Go to Assessment</p>
+						<p>Please pay the assessment</p>
 					@else
 					<div class="row">
 						<div class="col-md-8">
