@@ -32,6 +32,7 @@
 							{{-- check if enrolled for course applicable for second year --}}
 							@if(Auth::user()->info->course_id == null)
 								<p><em>Not enrolled in any course.</em></p>
+								<a href="{{ route('student.enroll') }}">Click here to enroll</a>
 							@else
 								<a href="{{ route('student.enroll') }}">Click here to enroll</a>
 							@endif

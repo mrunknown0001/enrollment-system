@@ -23,7 +23,11 @@ class CreateAssessmentsTable extends Migration
             $table->integer('semester_id')->unsigned()->nullable();
             $table->integer('year_level_id')->unsigned()->nullable();
             $table->integer('academic_year_id')->unsigned()->nullable();
+            $table->float('tuition_fee', 8, 2)->nullable();
+            $table->float('misc_fee', 8, 2)->nullable();
+            $table->float('total', 8, 2)->nullable();
             $table->tinyInteger('paid')->default(0);
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }

@@ -11,6 +11,8 @@ use App\StudentInfo;
 use App\Course;
 use App\Program;
 use App\YearLevel;
+use App\Assessment;
+use App\MiscFee;
 
 use App\Http\Controllers\GeneralController;
 
@@ -202,6 +204,15 @@ class StudentController extends Controller
             return redirect()->route('student.dashboard');
         }
 
+        if(Auth::user()->info->enrolling_for == null) {
+            return redirect()->route('student.dashboard');
+        }
+
+        if(Auth::user()->info->enrolling_for == 1 && Auth::user()->info->year_level == null) {
+            return redirect()->route('student.dashboard');
+        }
+
+
         // check what to enroll and other components 
         if(Auth::user()->info->enrolling_for == 1) {
             // for course
@@ -212,16 +223,60 @@ class StudentController extends Controller
         else {
             // for program
             // get all program available
+            $enroll = Program::where('active', 1)->get();
         }
 
-        return view('student.enroll');
+        return view('student.enroll', ['enroll' => $enroll]);
+    }
+
+
+    // method use to save enroll assessement in program
+    public function postEnrollProgram(Request $request)
+    {
+        $request->validate([
+            'program' => 'required'
+        ]);
+
+        $program_id = $request['program'];
+
+        $program = Program::findorfail($program_id);
+
+        
+        // compute the amount of total payable
+        $misc_fee = MiscFee::where('type', 2)->orwhere('type', 3)->get();
+
+        $misc = 0;
+
+        foreach($misc_fee as $m) {
+            $misc += $m->amount;
+        }
+
+        $total = $misc + $program->tuition_fee;
+
+
+        // save to assessment
+        $assess = new Assessment();
+        $assess->student_id = Auth::user()->id;
+        $assess->program_id = $program_id;
+        $assess->tuition_fee = $program->tuition_fee;
+        $assess->misc_fee = $misc;
+        $assess->total = $total;
+        $assess->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::user()->id, 5, 'Student enrolled to a Program');
+
+        // return to assessment with message
+        return redirect()->route('student.assessment')->with('sucess', 'Assessment Saved for the chosen Program!');
     }
 
 
     // method use to view
     public function viewAssessment()
     {
-        return view('student.assessment');
+        $assessment = Assessment::where('student_id', Auth::user()->id)->where('active', 1)->first();
+
+        return view('student.assessment', ['assessment' => $assessment]);
     }
 
 
