@@ -124,6 +124,12 @@ Route::group(['prefix' => 'student'], function () {
 	// route to view assessment
 	Route::get('/assessment', 'StudentController@viewAssessment')->name('student.assessment');
 
+	// route to pay with paypal
+	Route::post('/pay/with/paypal', 'PaymentController@payWithpaypal')->name('student.pay.with.paypal.post');
+
+	// route to redirect after the payment is successful
+	Route::get('/payment/status', 'PaymentController@getPaymentStatus')->name('student.payment.status');
+
 	// route to view payments
 	Route::get('/payments', 'StudentController@viewPayments')->name('students.payments');
 

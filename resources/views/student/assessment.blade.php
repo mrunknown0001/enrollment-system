@@ -23,7 +23,11 @@
 						<hr>
 						<p>Total: <strong>&#8369; {{ $assessment->total }}</strong></p>
 						<hr>
-						<p><a href="#"><img src="{{ asset('uploads/imgs/paypal_pay_now.png') }}" height="35px" width="155px"></a></p>
+						<form action="{{ route('student.pay.with.paypal.post') }}" method="POST">
+							{{ csrf_field() }}
+							<input type="hidden" name="amount" value="{{ $assessment->total }}">
+							<button class="btn" style="background-color:transparent" type="submit"><img src="{{ asset('uploads/imgs/paypal_pay_now.png') }}" height="35px" width="150px"></button>
+						</form>
 					@else
 						<p>Assessment Not Paid</p>
 						<p>Assessment for <strong>{{ $assessment->program->title }}</strong></p>
@@ -32,7 +36,11 @@
 						<hr>
 						<p>Total: <strong>&#8369; {{ $assessment->total }}</strong></p>
 						<hr>
-						<p><a href="#"><img src="{{ asset('uploads/imgs/paypal_pay_now.png') }}" height="35px" width="155px"></a></p>
+						<form action="{{ route('student.pay.with.paypal.post') }}" method="POST">
+							{{ csrf_field() }}
+							<input type="hidden" name="amount" value="{{ $assessment->total }}">
+							<button class="btn" style="background-color:transparent" type="submit"><img src="{{ asset('uploads/imgs/paypal_pay_now.png') }}" height="35px" width="150px"></button>
+						</form>
 					@endif
 				@else
 					<p>Assessment Paid</p>

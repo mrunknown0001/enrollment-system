@@ -68,8 +68,8 @@ class PaymentController extends Controller
             ->setDescription('Your transaction description');
 
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
-            ->setCancelUrl(URL::to('status'));
+        $redirect_urls->setReturnUrl(route('student.payment.status')) /** Specify return URL **/
+            ->setCancelUrl(route('student.payment.status'));
 
         $payment = new Payment();
         $payment->setIntent('Sale')
@@ -86,12 +86,12 @@ class PaymentController extends Controller
             if (\Config::get('app.debug')) {
 
                 \Session::put('error', 'Connection timeout');
-                return Redirect::to('/');
+                return redirect()->route('student.dashboard');
 
             } else {
 
                 \Session::put('error', 'Some error occur, sorry for inconvenient');
-                return Redirect::to('/');
+                return redirect()->route('student.dashboard');
 
             }
 
@@ -132,8 +132,8 @@ class PaymentController extends Controller
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
 
-            \Session::put('error', 'Payment failed');
-            return Redirect::to('/');
+            // \Session::put('error', 'Payment failed');
+            return redirect()->route('student.dashboard')->with('error', 'Error in Payment!');
 
         }
 
@@ -146,16 +146,18 @@ class PaymentController extends Controller
 
         if ($result->getState() == 'approved') {
 
-            \Session::put('success', 'Payment success');
+            // \Session::put('success', 'Payment success');
 
             // save the status of the payment of assessment
 
-            return Redirect::to('/');
+            // return Redirect::to('/');
+            return redirect()->route('student.dashboard')->with('success', 'Payment Successful!');
 
         }
 
-        \Session::put('error', 'Payment failed');
-        return Redirect::to('/');
+        // \Session::put('error', 'Payment failed');
+        // return Redirect::to('/');
+        return redirect()->route('student.dashboard')->with('error', 'Error in Payment!');
 
     }
 

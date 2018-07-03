@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use Session;
 
 use App\User;
 use App\StudentInfo;
@@ -27,6 +28,7 @@ class StudentController extends Controller
     public function __construct()
     {
     	$this->middleware('auth');
+
     }
 
 
