@@ -14,6 +14,10 @@ use App\YearLevel;
 use App\Assessment;
 use App\MiscFee;
 use App\Payment;
+use App\Subject;
+use App\PricePerUnit;
+use App\AcademicYear;
+use App\ActiveSemester;
 
 use App\Http\Controllers\GeneralController;
 
@@ -213,12 +217,21 @@ class StudentController extends Controller
             return redirect()->route('student.dashboard');
         }
 
+        $yl = 0;
+        $subjects = [];
 
         // check what to enroll and other components 
         if(Auth::user()->info->enrolling_for == 1) {
             // for course
             // get all the available course
             // get the year level active for enrollment
+            $enroll = Course::where('active', 1)->get();
+            $yl = YearLevel::where('active', 1)->first();
+
+            // additional condition for irregular students
+            $subjects = Subject::where('active', 1)
+                        ->where('year_level', $yl->id)
+                        ->get();
 
         }
         else {
@@ -227,7 +240,7 @@ class StudentController extends Controller
             $enroll = Program::where('active', 1)->get();
         }
 
-        return view('student.enroll', ['enroll' => $enroll]);
+        return view('student.enroll', ['enroll' => $enroll, 'yl' => $yl, 'subjects' => $subjects]);
     }
 
 
@@ -272,12 +285,107 @@ class StudentController extends Controller
     }
 
 
+    // method use to save course in info
+    public function postEnrollCourse(Request $request)
+    {
+        $request->validate([
+            'course' => 'required'
+        ]);
+
+        $course_id = $request['course'];
+
+        // save 
+        Auth::user()->info->course_id = $course_id;
+        Auth::user()->info->save();
+        
+        // activity log
+        GeneralController::activity_log(Auth::user()->id, 5, 'Student Selected Course');
+
+        // return
+        return redirect()->route('student.enroll');
+    }
+
+
+    // method use to save subject in assessment
+    public function postEnrollCourseSubject(Request $request)
+    {
+        $request->validate([
+            'subjects' => 'required'
+        ]);
+
+        $subject_ids[] = $request['subjects'];
+        $units = 0;
+
+        $unit_price = PricePerUnit::find(1);
+        $ay = AcademicYear::where('active', 1)->first();
+        $semester = ActiveSemester::where('active', 1)->first();
+
+        // get all subjects
+        foreach($subject_ids as $id) {
+            $subjects = Subject::find($id);
+        }
+
+        // count units
+        foreach($subjects as $s) {
+            $units += $s->units;
+        }
+
+        // total amount units
+        $subject_amount = $units * $unit_price->price;
+
+        // compute the misc
+        $misc_fee = MiscFee::where('type', 1)->orwhere('type', 3)->get();
+
+        $misc = 0;
+
+        foreach($misc_fee as $m) {
+            $misc += $m->amount;
+        }
+        
+
+        // compute total
+        $total = $misc + $subject_amount;
+
+
+
+        // save to assessment
+        $assess = new Assessment();
+        $assess->student_id = Auth::user()->id;
+        $assess->course_id = Auth::user()->info->course_id;
+        $assess->subject_ids = serialize($subject_ids);
+        $assess->semester_id = $semester->id;
+        $assess->academic_year_id = $ay->id;
+        $assess->tuition_fee = $subject_amount;
+        $assess->misc_fee = $misc;
+        $assess->total = $total;
+        $assess->year_level_id = Auth::user()->info->year_level;
+        $assess->save();
+
+        // add actvitiy log
+        GeneralController::activity_log(Auth::user()->id, 5, 'Student Selected Subject');
+
+        // return
+        return redirect()->route('student.enroll');
+    }
+
+
     // method use to view
     public function viewAssessment()
     {
         $assessment = Assessment::where('student_id', Auth::user()->id)->where('active', 1)->first();
 
-        return view('student.assessment', ['assessment' => $assessment]);
+        $subjects = null;
+
+        if($assessment->subject_ids != null) {
+            $subject_ids = unserialize($assessment->subject_ids);
+
+            // get all subjects
+            foreach($subject_ids as $s) {
+                $subjects = Subject::find($s);
+            }
+        }
+
+        return view('student.assessment', ['assessment' => $assessment, 'subjects' => $subjects]);
     }
 
 

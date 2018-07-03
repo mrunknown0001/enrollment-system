@@ -16,8 +16,68 @@
 			@include('includes.all')
 			
 			@if(Auth::user()->info->enrolling_for == 1)
-				{{-- check if enrolled in a course --}}
-
+				
+				@if(Auth::user()->info->year_level == $yl->id)
+					@if(Auth::user()->assessment->where('active', 1)->first())
+						<p>Please pay assessment</p>
+					@else
+						@if(Auth::user()->info->course_id != null)
+							@if(count($subjects) > 0)
+								<form action="{{ route('student.enroll.course.subject.post') }}" method="POST" role="form">
+									{{ csrf_field() }}
+									<div class="form-group">
+										@foreach($subjects as $sub)
+											<div class="row">
+												<div class="col-md-8">
+													<input type="checkbox" name="subjects[]" id="subject{{ $sub->id }}" value="{{ $sub->id }}">
+													<label for="subject{{ $sub->id }}"><strong>{{ $sub->code }}</strong></label>
+													<p><label for="subject{{ $sub->id }}">{{ $sub->description }}</label></p>		
+													<hr>
+												</div>	
+											</div>
+											
+										@endforeach										
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">Enroll Subjects</button>
+									</div>
+								</form>
+							@else
+							<p>No Active Subjects</p>
+							@endif
+						@else
+							<div class="row">
+								<div class="col-md-8">
+						            <div class="card card-primary">
+						                <div class="card-header">
+						                    <div class="header-block">
+						                        <p class="title"> Course Enroll </p>
+						                    </div>
+						                </div>
+						                <div class="card-block">
+										<form id="signup-form" action="{{ route('student.enroll.course.post') }}" method="POST" role="form">
+											{{ csrf_field() }}
+										@foreach($enroll as $e)
+											<div class="form-group">
+												<input type="radio" name="course" id="course{{ $e->id }}" value="{{ $e->id }}" required="">
+												<label for="course{{ $e->id }}">{{ $e->title }}</label>
+											</div>
+										@endforeach
+											<div class="form-group">
+												<button type="submit" class="btn btn-primary">Enroll Course</button>
+											</div>
+										</form>
+						                </div>
+						                <div class="card-footer"> <small>Course Enroll</small> </div>
+						            </div>
+								</div>
+							</div>
+						@endif
+					@endif
+				@else
+					<p>Your year level not active.</p>
+				@endif
+				
 			@else
 				{{-- check if enrolled or not in any program --}}
 				@if(Auth::user()->enrollment_status->where('active', 1)->first())

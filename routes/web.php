@@ -115,6 +115,12 @@ Route::group(['prefix' => 'student'], function () {
 	// route to save enroll assessment in program
 	Route::post('/enroll/program', 'StudentController@postEnrollProgram')->name('student.enroll.program.post');
 
+	// route to save course in info
+	Route::post('/enroll/course', 'StudentController@postEnrollCourse')->name('student.enroll.course.post');
+
+	// route to save subject in assessment
+	Route::post('/enroll/course/subject', 'StudentController@postEnrollCourseSubject')->name('student.enroll.course.subject.post');
+
 	// route to view assessment
 	Route::get('/assessment', 'StudentController@viewAssessment')->name('student.assessment');
 

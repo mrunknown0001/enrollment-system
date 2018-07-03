@@ -13,12 +13,12 @@ class StudentInfo extends Model
 
 	public function course()
 	{
-		return $this->hasOne('App\Course', 'course_id');
+		return $this->belongsTo('App\Course', 'course_id');
 	}
 
 
 	public function program()
 	{
-		return $this->hasOne('App\Course', 'program_id');
+		return $this->belongsTo('App\Course', 'program_id');
 	}
 }
