@@ -21,4 +21,16 @@ class Assessment extends Model
     {
     	return $this->belongsTo('App\Program', 'program_id');
     }
+
+
+    public function academic_year()
+    {
+        return $this->belongsTo('App\AcademicYear', 'academic_year_id');
+    }
+
+
+    public function semester()
+    {
+        return $this->belongsTo('App\ActiveSemester', 'semester_id');
+    }
 }

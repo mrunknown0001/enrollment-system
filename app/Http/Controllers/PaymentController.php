@@ -149,6 +149,10 @@ class PaymentController extends Controller
             // \Session::put('success', 'Payment success');
 
             // save the status of the payment of assessment
+            // make all operations here
+            // this point the payment operation is successful
+            // assessment status to paid
+            // add enrollement status to the student
 
             // return Redirect::to('/');
             return redirect()->route('student.dashboard')->with('success', 'Payment Successful!');

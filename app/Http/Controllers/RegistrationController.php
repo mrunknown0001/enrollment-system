@@ -10,6 +10,7 @@ use App\StudentInfo;
 use App\ActivityLog;
 
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\SmsController;
 
 class RegistrationController extends Controller
 {
@@ -69,6 +70,8 @@ class RegistrationController extends Controller
         ///////////////////////////////////////////////////////////////////////
         // send the confirmation sms with the student number to the student  //
         ///////////////////////////////////////////////////////////////////////
+        $message = "ICT Online Enrollment System %0a Your system generated Student Number: " . $student_number;
+        // SmsController::sendSms($mobile, $message);
 
 
         // add activity log here
