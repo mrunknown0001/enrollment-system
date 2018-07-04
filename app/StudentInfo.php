@@ -19,6 +19,6 @@ class StudentInfo extends Model
 
 	public function program()
 	{
-		return $this->belongsTo('App\Course', 'program_id');
+		return $this->belongsTo('App\Program', 'program_id');
 	}
 }

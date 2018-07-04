@@ -13,12 +13,22 @@
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
                 @if(Auth::user()->info->enrolling_for == 1)
+                <li class="{{ route('student.grades') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('student.grades') }}">
+                        <i class="fa fa-bars"></i> Grade
+                    </a>
+                </li>
                 <li class="{{ route('student.subjects') == url()->current() ? 'active' : ''}}">
                     <a href="{{ route('student.subjects') }}">
                         <i class="fa fa-book"></i> Subjects
                     </a>
                 </li>
                 @elseif(Auth::user()->info->enrolling_for == 2)
+                <li>
+                    <a href="#">
+                        <i class="fa fa-bars"></i> Remarks
+                    </a>
+                </li>
                 <li class="{{ route('student.programs') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('student.programs') }}">
                         <i class="fa fa-book"></i> Program

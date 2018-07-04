@@ -85,10 +85,10 @@
 			@else
 				{{-- check if enrolled or not in any program --}}
 				@if(Auth::user()->enrollment_status->where('active', 1)->first())
-					<p>Currently Enrolled to {{ Auth::user()->enrollment_status->program->title }}</p>
+					<p>Assessment Paid and Currently Enrolled to a program</p>
 				@else
 					{{-- check if there is an active assessment --}}
-					@if(Auth::user()->assessment->where('active', 1)->first())
+					@if(Auth::user()->assessment->where('active', 1)->where('paid', 0)->first())
 						<p>Please pay the assessment</p>
 					@else
 					<div class="row">

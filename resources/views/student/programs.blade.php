@@ -16,7 +16,7 @@
 			@include('includes.all')
 			
 			@if(Auth::user()->enrollment_status->where('active', 1)->first())
-				<p>Currently Enrolled to {{ Auth::user()->enrollment_status->program->title }}</p>
+				<p>Currently Enrolled to {{ $program->title }}</p>
 			@else
 				{{-- check if there is an active assessment --}}
 				@if(Auth::user()->assessment->where('active', 1)->first())

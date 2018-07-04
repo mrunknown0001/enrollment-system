@@ -8,12 +8,12 @@ class EnrollmentStatus extends Model
 {
     public function course()
     {
-    	return $this->hasOne('App\Course', 'course_id');	
+    	return $this->belongsTo('App\Course', 'course_id');	
     }
 
 
     public function program()
     {
-    	return $this->hasOne('App\Program', 'program_id');
+    	return $this->belongsTo('App\Program', 'program_id');
     }
 }

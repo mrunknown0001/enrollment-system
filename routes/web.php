@@ -103,6 +103,9 @@ Route::group(['prefix' => 'student'], function () {
 	// route to save year level of the student
 	Route::post('/year-level/select', 'StudentController@postYearLevel')->name('student.year.level.select.post');
 
+	// route to view grades current and previous in course
+	Route::get('/grades', 'StudentController@viewGrades')->name('student.grades');
+
 	// route to view subjects
 	Route::get('/subjects', 'StudentController@viewSubjects')->name('student.subjects');
 

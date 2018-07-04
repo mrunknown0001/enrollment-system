@@ -42,7 +42,6 @@ class StudentController extends Controller
 
         // get all the data need to show in dashboard of student
 
-
         return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl]);
     }
 
@@ -187,17 +186,41 @@ class StudentController extends Controller
     }
 
 
+    // method use to view Grades
+    public function viewGrades()
+    {
+        return view('student.grades');
+    }
+
+
     // method use to view subjects
     public function viewSubjects()
     {
-        return view('student.subjects');
+        $assessment = Assessment::where('student_id', Auth::user()->id)
+                                ->where('paid', 1)
+                                ->where('active', 1)
+                                ->first();
+        $subjects = null;
+
+        foreach(unserialize($assessment->subject_ids) as $id) {
+            $subjects = Subject::find($id);
+        }
+
+        return view('student.subjects', ['subjects' => $subjects]);
     }
 
 
     // method use to view program enrolled
     public function viewProgram()
     {
-        return view('student.programs');
+        $assessment = Assessment::where('student_id', Auth::user()->id)
+                                ->where('paid', 1)
+                                ->where('active', 1)
+                                ->first();
+
+        $program = Program::find($assessment->program_id);
+
+        return view('student.programs', ['program' => $program]);
     }
 
 
@@ -221,6 +244,7 @@ class StudentController extends Controller
 
         $yl = 0;
         $subjects = [];
+        $program = null;
 
         // check what to enroll and other components 
         if(Auth::user()->info->enrolling_for == 1) {
@@ -239,6 +263,7 @@ class StudentController extends Controller
         else {
             // for program
             // get all program available
+
             $enroll = Program::where('active', 1)->get();
         }
 
@@ -270,6 +295,9 @@ class StudentController extends Controller
         $total = $misc + $program->tuition_fee;
 
         $assessement_number = GeneralController::generate_assessment_number();
+
+        Auth::user()->info->program_id = $program_id;
+        Auth::user()->info->save();
 
 
         // save to assessment
