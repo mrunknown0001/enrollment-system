@@ -20,6 +20,15 @@ use Redirect;
 use Session;
 use URL;
 
+use Auth;
+use App\Http\Controllers\GeneralController;
+use App\EnrollmentStatus;
+use App\AcademicYear;
+use App\ActiveSemester;
+use App\YearLevel;
+use App\Assessment;
+use App\Payment as PaymentTable;
+
 class PaymentController extends Controller
 {
     private $_api_context;
@@ -65,7 +74,7 @@ class PaymentController extends Controller
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($item_list)
-            ->setDescription('Your transaction description');
+            ->setDescription('Assessment Payment to ICT Online Enrollment. Assessment Number:' . $request->get('code'));
 
         $redirect_urls = new RedirectUrls();
         $redirect_urls->setReturnUrl(route('student.payment.status')) /** Specify return URL **/
@@ -153,6 +162,42 @@ class PaymentController extends Controller
             // this point the payment operation is successful
             // assessment status to paid
             // add enrollement status to the student
+            $payment_id = $result->getId(); // paypal payment id to save in payment table in the database
+
+            $ay = AcademicYear::where('active', 1)->first();
+            $yl = YearLevel::where('active', 1)->first();
+            $sem = ActiveSemester::where('active', 1)->first();
+
+            $assessment = Assessment::where('student_id', Auth::user()->id)
+                                ->where('active', 1)
+                                ->first();
+            $assessment->paid = 1;
+            $assessment->save();
+
+            $enroll = new EnrollmentStatus();
+            $enroll->student_id = Auth::user()->id;
+            $enroll->assessment_id = $assessment->id;
+            $enroll->academic_year_id = $ay->id;
+            $enroll->semester_id = $sem->id;
+            $enroll->year_level_id = $yl->id;
+            if($assessment->course_id != null) {
+                $enroll->course_id = $assessment->course_id;
+            }
+            else {
+                $enroll->program_id = $assessment->program_id;
+            }
+            $enroll->save();
+
+            // add to payment
+            $payment = new PaymentTable();
+            $payment->student_id = Auth::user()->id;
+            $payment->payment_id = $payment_id;
+            $payment->assessment_id = $assessment->id;
+            $payment->amount = $assessment->total;
+            $payment->save();
+
+            // add activity log
+            GeneralController::activity_log(Auth::user()->id, 5, 'Student Paid Assessment');
 
             // return Redirect::to('/');
             return redirect()->route('student.dashboard')->with('success', 'Payment Successful!');

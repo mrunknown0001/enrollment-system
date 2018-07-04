@@ -17,10 +17,11 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
+            $table->string('payment_id')->nullable();
             $table->integer('assessment_id')->unsigned()->nullable();
-            $table->string('currency')->default('USD');
+            $table->string('currency')->default('PHP');
             $table->float('amount', 8, 2);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use Auth;
 use App\IdReference;
 use App\User;
 use App\ActivityLog;
+use App\Assessment;
 
 class GeneralController extends Controller
 {
@@ -126,6 +127,24 @@ class GeneralController extends Controller
 
         return $number;
 
+    }
+
+
+
+    /////////////////////////////////////////////////////////
+    // method to create unique assessment reference number //
+    /////////////////////////////////////////////////////////
+    public static function generate_assessment_number()
+    {
+        $number = 'P-' . mt_rand(000000, 999999) . uniqid(); // better than rand()
+
+        // call the same function if the barcode exists already
+        if (Assessment::whereAssessmentNumber($number)->exists()) {
+            return self::generate_assessment_number();
+        }
+
+        // otherwise, it's valid and can be used
+        return  strtoupper($number);
     }
 
 

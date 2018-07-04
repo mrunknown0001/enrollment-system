@@ -17,6 +17,8 @@ class CreateEnrollmentStatusesTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
+            $table->integer('assessment_id')->unsigned();
+            $table->foreign('assessment_id')->references('id')->on('assessments');
             $table->integer('academic_year_id')->unsigned();
             $table->integer('semester_id')->unsigned()->nullable();
             $table->integer('year_level_id')->unsigned()->nullable();

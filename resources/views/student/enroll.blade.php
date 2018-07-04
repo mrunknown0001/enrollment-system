@@ -19,7 +19,11 @@
 				
 				@if(Auth::user()->info->year_level == $yl->id)
 					@if(Auth::user()->assessment->where('active', 1)->first())
-						<p>Please pay assessment</p>
+						@if(Auth::user()->assessment->where('paid', 1)->first())
+							<p>Assessment Paid</p>
+						@else
+							<p>Please pay assessment</p>
+						@endif
 					@else
 						@if(Auth::user()->info->course_id != null)
 							@if(count($subjects) > 0)

@@ -19,7 +19,7 @@
 				<table class="table hovered">
 					<thead>
 						<tr>
-							<th></th>
+							<th>Paypal Payment ID</th>
 							<th>Amount</th>
 							<th>Assessment Date</th>
 							<th>Payment Date</th>
@@ -28,10 +28,10 @@
 					<tbody>
 						@foreach($payments as $p)
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{ $p->payment_id }}</td>
+							<td>&#8369; {{ $p->amount }}</td>
+							<td>{{ date('F j, Y g:i:s a', strtotime($p->assessment->created_at)) }}</td>
+							<td>{{ date('F j, Y g:i:s a', strtotime($p->created_at)) }}</td>
 						</tr>
 						@endforeach
 					</tbody>

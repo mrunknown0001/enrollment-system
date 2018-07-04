@@ -269,10 +269,13 @@ class StudentController extends Controller
 
         $total = $misc + $program->tuition_fee;
 
+        $assessement_number = GeneralController::generate_assessment_number();
+
 
         // save to assessment
         $assess = new Assessment();
         $assess->student_id = Auth::user()->id;
+        $assess->assessment_number = $assessement_number;
         $assess->program_id = $program_id;
         $assess->tuition_fee = $program->tuition_fee;
         $assess->misc_fee = $misc;
@@ -348,12 +351,13 @@ class StudentController extends Controller
         // compute total
         $total = $misc + $subject_amount;
 
-
+        $assessement_number = GeneralController::generate_assessment_number();
 
         // save to assessment
         $assess = new Assessment();
         $assess->student_id = Auth::user()->id;
         $assess->course_id = Auth::user()->info->course_id;
+        $assess->assessment_number = $assessement_number;
         $assess->subject_ids = serialize($subject_ids);
         $assess->semester_id = $semester->id;
         $assess->academic_year_id = $ay->id;
@@ -394,7 +398,7 @@ class StudentController extends Controller
     // method use to view payments
     public function viewPayments()
     {
-        $payments = Payment::where('student_id')
+        $payments = Payment::where('student_id', Auth::user()->id)
                     ->orderBy('created_at', 'desc')
                     ->paginate(15);
 
