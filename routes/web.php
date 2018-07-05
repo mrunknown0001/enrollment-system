@@ -109,6 +109,9 @@ Route::group(['prefix' => 'student'], function () {
 	// route to view subjects
 	Route::get('/subjects', 'StudentController@viewSubjects')->name('student.subjects');
 
+	// route to view remarks 
+	Route::get('/remarks', 'StudentController@viewRemarks')->name('student.remarks');
+
 	// route to view program enrolled
 	Route::get('/program/enrolled', 'StudentController@viewProgram')->name('student.programs');
 
@@ -392,4 +395,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to save active enroll option
 	Route::post('/enrollment', 'AdminController@postSaveEnrollment')->name('admin.save.enrollment.post');
+
+	// route to view assessments
+	Route::get('/assessments', 'AdminController@viewAssessments')->name('admin.view.assessments');
+
+	// route to view payments in paypal
+	Route::get('/paypal/payments', 'AdminController@viewPaypalPayments')->name('admin.view.payments');
 });

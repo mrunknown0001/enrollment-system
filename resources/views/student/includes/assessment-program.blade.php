@@ -1,4 +1,3 @@
-<p>Assessment Not Paid</p>
 <p>Assessment for <strong>{{ $assessment->program->title }}</strong></p>
 <p>Tuition Fee: <strong>&#8369; {{ $assessment->tuition_fee }}</strong></p>
 <p>Miscellaneous Fee: <strong>&#8369; {{ $assessment->misc_fee }}</strong></p>

@@ -24,8 +24,8 @@
                     </a>
                 </li>
                 @elseif(Auth::user()->info->enrolling_for == 2)
-                <li>
-                    <a href="#">
+                <li class="{{ route('student.remarks') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('student.remarks') }}">
                         <i class="fa fa-bars"></i> Remarks
                     </a>
                 </li>

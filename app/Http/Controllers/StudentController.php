@@ -192,6 +192,12 @@ class StudentController extends Controller
         return view('student.grades');
     }
 
+    // method use to view remarks
+    public function viewRemarks()
+    {
+        return view('student.remarks');
+    }
+
 
     // method use to view subjects
     public function viewSubjects()
@@ -201,9 +207,10 @@ class StudentController extends Controller
                                 ->where('active', 1)
                                 ->first();
         $subjects = null;
-
-        foreach(unserialize($assessment->subject_ids) as $id) {
-            $subjects = Subject::find($id);
+        if(count($assessment) > 0) {
+            foreach(unserialize($assessment->subject_ids) as $id) {
+                $subjects = Subject::find($id);
+            }
         }
 
         return view('student.subjects', ['subjects' => $subjects]);
@@ -218,7 +225,11 @@ class StudentController extends Controller
                                 ->where('active', 1)
                                 ->first();
 
-        $program = Program::find($assessment->program_id);
+        $program = null;
+
+        if(count($assessment) > 0) {
+            $program = Program::find($assessment->program_id);
+        }
 
         return view('student.programs', ['program' => $program]);
     }
@@ -410,12 +421,14 @@ class StudentController extends Controller
 
         $subjects = null;
 
-        if($assessment->subject_ids != null) {
-            $subject_ids = unserialize($assessment->subject_ids);
+        if(count($assessment) > 0) {
+            if($assessment->subject_ids != null) {
+                $subject_ids = unserialize($assessment->subject_ids);
 
-            // get all subjects
-            foreach($subject_ids as $s) {
-                $subjects = Subject::find($s);
+                // get all subjects
+                foreach($subject_ids as $s) {
+                    $subjects = Subject::find($s);
+                }
             }
         }
 

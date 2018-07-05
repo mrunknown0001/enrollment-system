@@ -76,13 +76,13 @@
                         <i class="fa fa-file-text-o"></i> Enrollment
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('admin.view.assessments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.view.assessments') }}">
                         <i class="fa fa-file"></i> Assessments
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('admin.view.payments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.view.payments') }}">
                         <i class="fa fa-paypal"></i> Paypal Payments
                     </a>
                 </li>

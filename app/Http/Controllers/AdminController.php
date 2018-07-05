@@ -22,6 +22,7 @@ use App\PricePerUnit;
 use App\AcademicYear;
 use App\ActiveSemester;
 use App\MiscFee;
+use App\Assessment;
 
 use App\Http\Controllers\GeneralController;
 
@@ -1097,6 +1098,27 @@ class AdminController extends Controller
         // return to dashboard
         return redirect()->route('admin.dashboard');
         
+    }
+
+
+    // method use to view assessments
+    public function viewAssessments()
+    {
+        $assessments = Assessment::where('active', 1)
+                                ->orderBy('created_at', 'asc')
+                                ->paginate(15);
+
+        return view('admin.assessments', ['assessments' => $assessments]);
+    }
+
+
+    // method use to view payment
+    public function viewPaypalPayments()
+    {
+        $payments = Payment::orderBy('created_at', 'desc')
+                            ->paginate(15);
+
+        return view('admin.payments', ['payments' => $payments]);
     }
 
 }
