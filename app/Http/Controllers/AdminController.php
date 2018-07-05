@@ -229,7 +229,7 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Cashier Account');
 
         // return data with message
-        return redirect()->route('admin.add.cashier');
+        return redirect()->route('admin.view.cashier')->with('success', 'Cashier Added!');
 
     }
 
@@ -306,7 +306,7 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Registrar Account');
 
         // return data with message
-        return redirect()->route('admin.add.registrar');
+        return redirect()->route('admin.view.registrar')->with('Registrar Added!');
 
     }
 

@@ -13,36 +13,14 @@
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
                 <li>
-                    <a href="">
-                        <i class="fa fa-area-chart"></i> Charts
-                        <i class="fa arrow"></i>
+                    <a href="#">
+                        <i class="fa fa-file"></i> Assessments
                     </a>
-                    <ul class="sidebar-nav">
-                        <li>
-                            <a href="charts-flot.html"> Flot Charts </a>
-                        </li>
-                        <li>
-                            <a href="charts-morris.html"> Morris Charts </a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
-                    <a href="">
-                        <i class="fa fa-table"></i> Tables
-                        <i class="fa arrow"></i>
+                    <a href="#">
+                        <i class="fa fa-paypal"></i> Payments
                     </a>
-                    <ul class="sidebar-nav">
-                        <li>
-                            <a href="static-tables.html"> Static Tables </a>
-                        </li>
-                        <li>
-                            <a href="responsive-tables.html"> Responsive Tables </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="forms.html">
-                        <i class="fa fa-pencil-square-o"></i> Forms </a>
                 </li>
             </ul>
         </nav>
