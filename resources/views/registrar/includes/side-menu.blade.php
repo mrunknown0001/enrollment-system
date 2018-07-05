@@ -12,37 +12,20 @@
                     <a href="{{ route('registrar.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-area-chart"></i> Charts
-                        <i class="fa arrow"></i>
+                <li class="{{ route('registrar.view.students') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('registrar.view.students') }}">
+                        <i class="fa fa-users"></i> Students
                     </a>
-                    <ul class="sidebar-nav">
-                        <li>
-                            <a href="charts-flot.html"> Flot Charts </a>
-                        </li>
-                        <li>
-                            <a href="charts-morris.html"> Morris Charts </a>
-                        </li>
-                    </ul>
                 </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-table"></i> Tables
-                        <i class="fa arrow"></i>
+                <li class="{{ route('registrar.view.courses') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('registrar.view.courses') }}">
+                        <i class=""></i> Courses
                     </a>
-                    <ul class="sidebar-nav">
-                        <li>
-                            <a href="static-tables.html"> Static Tables </a>
-                        </li>
-                        <li>
-                            <a href="responsive-tables.html"> Responsive Tables </a>
-                        </li>
-                    </ul>
                 </li>
-                <li>
-                    <a href="forms.html">
-                        <i class="fa fa-pencil-square-o"></i> Forms </a>
+                <li class="{{ route('registrar.view.programs') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('registrar.view.programs') }}">
+                        <i class=""></i> Programs
+                    </a>
                 </li>
             </ul>
         </nav>

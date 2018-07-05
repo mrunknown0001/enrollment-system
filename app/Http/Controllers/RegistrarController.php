@@ -106,5 +106,27 @@ class RegistrarController extends Controller
     }
 
 
+    // method use to view students
+    public function viewStudents()
+    {
+        // get all students currently enrolled
+        
+        return view('registrar.students');
+    }
+
+
+    // method use to view courses
+    public function viewCourses()
+    {
+        return view('registrar.courses');
+    }
+
+
+    // method use to view programs
+    public function viewPrograms()
+    {
+        return view('registrar.programs');
+    }
+
 
 }

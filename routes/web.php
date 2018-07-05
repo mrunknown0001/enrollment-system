@@ -164,6 +164,15 @@ Route::group(['prefix' => 'registrar'], function () {
 
 	// route to change password of registrar
 	Route::post('/password/change', 'RegistrarController@postChangePassword')->name('registrar.password.change.post');
+
+	// route to view students
+	Route::get('/students', 'RegistrarController@viewStudents')->name('registrar.view.students');
+
+	// route to view courses 
+	Route::get('/courses', 'RegistrarController@viewCourses')->name('registrar.view.courses');
+
+	// route to view programs
+	Route::get('/programs', 'RegistrarController@viewPrograms')->name('registrar.view.programs');
 });
 
 

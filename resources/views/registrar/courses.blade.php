@@ -9,7 +9,7 @@
 
 
 @section('content')
-<p><strong>Registrar Dashboard</strong></p>
+<p><strong>Courses</strong></p>
 @include('includes.all')
 
 @endsection

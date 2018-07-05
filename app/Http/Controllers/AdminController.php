@@ -306,7 +306,7 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Registrar Account');
 
         // return data with message
-        return redirect()->route('admin.view.registrar')->with('Registrar Added!');
+        return redirect()->route('admin.view.registrars')->with('Registrar Added!');
 
     }
 
