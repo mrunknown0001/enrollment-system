@@ -190,6 +190,15 @@ Route::group(['prefix' => 'cashier'], function () {
 
 	// route to update password
 	Route::post('/password/change', 'CashierController@postChangePassword')->name('cashier.password.change.post');
+
+	// route to view assessments
+	Route::get('/assessments', 'CashierController@viewAssessments')->name('cashier.view.assessments');
+
+	// route to view assessment details
+	Route::get('/assessment/{id}/details', 'CashierController@viewAssessmentDetails')->name('cashier.view.assessment.details');
+
+	// route to view payment
+	Route::get('/payments', 'CashierController@viewPayments')->name('cashier.view.payments');
 });
 
 

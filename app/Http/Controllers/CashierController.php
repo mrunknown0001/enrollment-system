@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Cashier;
+use App\Assessment;
+use App\Subject;
+use App\Payment;
 
 use App\Http\Controllers\GeneralController;
 
@@ -104,5 +107,49 @@ class CashierController extends Controller
         }
 
         return redirect()->route('cashier.password.change')->with('error', 'Old Password Invalid!');
+    }
+
+
+    // method use to view assessments
+    public function viewAssessments()
+    {
+        $assessments = Assessment::where('active', 1)
+                                ->orderBy('created_at', 'asc')
+                                ->paginate(15);
+
+        return view('cashier.assessments', ['assessments' => $assessments]);
+    }
+
+
+    // method use to view assessment details
+    public function viewAssessmentDetails($id = null)
+    {
+        $assessment = Assessment::findorfail($id);
+
+        $subjects = null;
+
+        if(count($assessment) > 0) {
+            if($assessment->subject_ids != null) {
+                $subject_ids = unserialize($assessment->subject_ids);
+
+                // get all subjects
+                foreach($subject_ids as $s) {
+                    $subjects = Subject::find($s);
+                }
+            }
+        }
+
+        return view('cashier.assessment-details', ['assessment' => $assessment, 'subjects' => $subjects]);
+    }
+
+
+    // method use to view payments
+    public function viewPayments()
+    {
+        $payments = Payment::where('status', 1)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(15);
+
+        return view('cashier.payments', ['payments' => $payments]);
     }
 }

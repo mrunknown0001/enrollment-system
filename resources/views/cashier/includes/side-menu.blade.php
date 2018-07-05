@@ -12,13 +12,13 @@
                     <a href="{{ route('cashier.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('cashier.view.assessments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('cashier.view.assessments') }}">
                         <i class="fa fa-file"></i> Assessments
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('cashier.view.payments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('cashier.view.payments') }}">
                         <i class="fa fa-paypal"></i> Payments
                     </a>
                 </li>

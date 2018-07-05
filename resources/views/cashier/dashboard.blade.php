@@ -9,7 +9,7 @@
 
 
 @section('content')
-<p><strong>Cashier Dashbaord</strong></p>
+<p><strong>Cashier Dashboard</strong></p>
 @include('includes.all')
 
 @endsection
