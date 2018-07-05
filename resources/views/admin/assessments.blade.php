@@ -28,7 +28,9 @@
 					<tbody>
 						@foreach($assessments as $a)
 							<tr>
-								<td>{{ $a->assessment_number }}</td>
+								<td>
+									<a href="{{ route('admin.view.assessment.details', ['id' => $a->id]) }}">{{ $a->assessment_number }}</a>
+								</td>
 								<td>{{ ucwords($a->student->firstname . ' ' . $a->student->lastname) }}</td>
 								<td>
 									@if($a->paid == 1)

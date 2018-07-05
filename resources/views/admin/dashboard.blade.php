@@ -86,7 +86,7 @@
                                 &#8369;
                             </div>
                             <div class="stat">
-                                <div class="value"> 0 </div>
+                                <div class="value"> {{ $payment }} </div>
                                 <div class="name"> Total Payment </div>
                             </div>
                             <div class="progress stat-progress">

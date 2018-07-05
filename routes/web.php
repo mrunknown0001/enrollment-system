@@ -399,6 +399,9 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view assessments
 	Route::get('/assessments', 'AdminController@viewAssessments')->name('admin.view.assessments');
 
+	// route to view assessment details
+	Route::get('/assessment/{id}/details', 'AdminController@viewAssessemntDetails')->name('admin.view.assessment.details');
+
 	// route to view payments in paypal
 	Route::get('/paypal/payments', 'AdminController@viewPaypalPayments')->name('admin.view.payments');
 });

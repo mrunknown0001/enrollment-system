@@ -49,8 +49,16 @@ class AdminController extends Controller
         $courses = Course::where('active', 1)->get();
         $yl = YearLevel::where('active', 1)->first();
 
+        // get total payment of the current enrollment
+        $payments = Payment::where('status', 1)->get();
+        $total_payment = null;
 
-    	return view('admin.dashboard', ['students' => $students, 'faculties' => $faculties, 'cashiers' => $cashiers, 'registrars' => $registrars, 'subjects' => $subjects, 'programs' => $programs, 'courses' => $courses, 'yl' => $yl]);
+        foreach($payments as $p) {
+            $total_payment += $p->amount;
+        }
+
+
+    	return view('admin.dashboard', ['students' => $students, 'faculties' => $faculties, 'cashiers' => $cashiers, 'registrars' => $registrars, 'subjects' => $subjects, 'programs' => $programs, 'courses' => $courses, 'yl' => $yl, 'payment' => $total_payment]);
     }
 
 
@@ -1109,6 +1117,28 @@ class AdminController extends Controller
                                 ->paginate(15);
 
         return view('admin.assessments', ['assessments' => $assessments]);
+    }
+
+
+    // method use to view assessment details
+    public function viewAssessemntDetails($id = null)
+    {
+        $assessment = Assessment::findorfail($id);
+
+        $subjects = null;
+
+        if(count($assessment) > 0) {
+            if($assessment->subject_ids != null) {
+                $subject_ids = unserialize($assessment->subject_ids);
+
+                // get all subjects
+                foreach($subject_ids as $s) {
+                    $subjects = Subject::find($s);
+                }
+            }
+        }
+
+        return view('admin.assessment-details', ['assessment' => $assessment, 'subjects' => $subjects]);
     }
 
 
