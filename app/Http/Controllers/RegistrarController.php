@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\Http\Controllers\GeneralController;
+use DB;
 
 use App\Registrar;
 use App\Course;
 use App\Program;
 use App\YearLevel;
+use App\StudentInfo;
+use App\User;
+use App\AcademicYear;
 
 class RegistrarController extends Controller
 {
@@ -138,11 +142,67 @@ class RegistrarController extends Controller
     }
 
 
+    // method to view enrolled in yearl level of the course
+    public function viewCourseYearLevelEnrolled($course_id = null, $yl_id = null)
+    {
+        $course = Course::findorfail($course_id);
+        $yl = YearLevel::findorfail($yl_id);
+
+
+        // find all enrolled students in the course with the year level
+        // $students = StudentInfo::where('course_id', $course->id)
+        //                         ->where('year_level', $yl->id)
+        //                         ->where('graduated', 0)
+        //                         ->get();
+
+        $students = DB::table('users')
+                    ->join('student_infos', 'users.id', '=', 'student_infos.student_id')
+                    ->where('student_infos.course_id', $course->id)
+                    ->where('student_infos.year_level', $yl->id)
+                    ->where('student_infos.graduated', 0)
+                    ->orderBy('lastname', 'asc')
+                    ->get();
+
+        return view('registrar.course-year-level-students', ['course' => $course, 'yl' => $yl, 'students' => $students]);
+    }
+
+
     // method use to view programs
     public function viewPrograms()
     {
-        return view('registrar.programs');
+        $programs = Program::orderBy('title', 'asc')
+                            ->get();
+
+        return view('registrar.programs', ['programs' => $programs]);
     }
 
+
+    // method use to view program enrolled students
+    public function viewProgramEnrolled($id = null)
+    {
+        $program = Program::findorfail($id);
+
+        $students = DB::table('users')
+                    ->join('student_infos', 'users.id', '=', 'student_infos.student_id')
+                    ->where('student_infos.program_id', $program->id)
+                    ->where('student_infos.graduated', 0)
+                    ->orderBy('lastname', 'asc')
+                    ->get();
+
+        return view('registrar.program-students', ['program' => $program, 'students' => $students]);
+    }
+
+
+    // method use to view details of students
+    public function viewStudentDetails($id = null, $sn = null)
+    {
+        $student = User::findorfail($id);
+
+        if($student->student_number != $sn) {
+            return abort(400);
+        }
+
+        return view('registrar.student-details', ['student' => $student]);
+    }
 
 }

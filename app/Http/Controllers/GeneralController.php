@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 use App\IdReference;
 use App\User;
@@ -147,6 +148,21 @@ class GeneralController extends Controller
         return  strtoupper($number);
     }
 
+
+
+    /////////////////////////////////////////////////////////////////////
+    // method use to search students in users and student_infos tables //
+    /////////////////////////////////////////////////////////////////////
+    public static function students_search($keyword = null)
+    {
+        $students = User::where('firstname', "like", "%$keyword%")
+                        ->orwhere('lastname', "like", "%$keyword%")
+                        ->orwhere('student_number', "like", "%$keyword%")
+                        ->orderBy('lastname', 'asc')
+                        ->paginate(10);
+                        
+        return $students;
+    }
 
 
     ////////////////////////////////

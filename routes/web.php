@@ -175,10 +175,16 @@ Route::group(['prefix' => 'registrar'], function () {
 	Route::get('/course/{id}/year-level', 'RegistrarController@viewCourseYearLevel')->name('registrar.view.course.year.level');
 
 	// rotue to view students in a course in year level
-	
+	Route::get('/course/{course_id}/year-level/{yl_id}/students/enrolled', 'RegistrarController@viewCourseYearLevelEnrolled')->name('registrar.view.course.year.level.enrolled');
 
 	// route to view programs
 	Route::get('/programs', 'RegistrarController@viewPrograms')->name('registrar.view.programs');
+
+	// rotue to view programs enrolled students
+	Route::get('/program/{id}/students/enrolled', 'RegistrarController@viewProgramEnrolled')->name('registrar.view.program.enrolled');
+
+	// route to view student info
+	Route::get('/student/{id}/{sn}/details', 'RegistrarController@viewStudentDetails')->name('registrar.view.student.details');
 });
 
 

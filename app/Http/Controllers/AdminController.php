@@ -731,11 +731,7 @@ class AdminController extends Controller
     {
         $keyword = $request['keyword'];
 
-        $students = User::where('firstname', "like", "%$keyword%")
-                        ->orwhere('lastname', "like", "%$keyword%")
-                        ->orwhere('student_number', "like", "%$keyword%")
-                        ->orderBy('lastname', 'asc')
-                        ->paginate(10);
+        $students = GeneralController::students_search($keyword);
 
         return view('admin.students-search-result', ['students' => $students, 'keyword' => $keyword]);
     }

@@ -11,24 +11,18 @@
 @section('content')
 <section class="section">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
-                        <p class="title"> Course Year Level </p>
+                        <p class="title"> Student Number: {{ $student->student_number }} </p>
                     </div>
                 </div>
                 <div class="card-block">
                 	@include('includes.all')
-					@if(count($yl) > 0)
-						@foreach($yl as $y)
-							<p><a href="{{ route('registrar.view.course.year.level.enrolled', ['course_id' => $course->id, 'yl_id' => $y->id]) }}">{{ $y->name }} - {{ $course->title }}</a></p>
-						@endforeach
-					@else
-						<p>No Year Level</p>
-					@endif
+					<p>Name: <strong>{{ ucwords($student->firstname . ' ' . $student->lastname) }}</strong></p>
                 </div>
-                <div class="card-footer"> <small>Course Year Level</small> </div>
+                <div class="card-footer"> <small>Student Details</small> </div>
             </div>
         </div>
     </div>
