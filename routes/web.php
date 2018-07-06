@@ -221,6 +221,9 @@ Route::group(['prefix' => 'cashier'], function () {
 	// route to show search result in students
 	Route::get('/students/search', 'CashierController@searchStudents')->name('cashier.search.students');
 
+	// route to view active assessment of students
+	Route::get('/student/{id}/assessment', 'CashierController@viewStudentAssessment')->name('cashier.view.student.assessment');
+
 	// route to view assessments
 	Route::get('/assessments', 'CashierController@viewAssessments')->name('cashier.view.assessments');
 

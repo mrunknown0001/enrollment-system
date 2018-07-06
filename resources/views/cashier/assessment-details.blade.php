@@ -12,6 +12,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
+            @if(count($assessment) > 0)
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
@@ -38,6 +39,9 @@
 					@endif
                 </div>
             </div>
+            @else
+                <p>No Assessment!</p>
+            @endif
         </div>
     </div>
 </section>

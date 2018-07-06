@@ -9,6 +9,7 @@ use App\Cashier;
 use App\Assessment;
 use App\Subject;
 use App\Payment;
+use App\User;
 
 use App\Http\Controllers\GeneralController;
 
@@ -125,6 +126,32 @@ class CashierController extends Controller
         $students = GeneralController::students_search($keyword);
 
         return view('cashier.students-search', ['students' => $students]);
+    }
+
+
+    // method use to show assessment of the student in any
+    public function viewStudentAssessment($id = null)
+    {
+        $student = User::findorfail($id);
+
+        $assessment = Assessment::where('student_id', $student->id)
+                                ->where('active', 1)
+                                ->first();
+
+        $subjects = null;
+
+        if(count($assessment) > 0) {
+            if($assessment->subject_ids != null) {
+                $subject_ids = unserialize($assessment->subject_ids);
+
+                // get all subjects
+                foreach($subject_ids as $s) {
+                    $subjects = Subject::find($s);
+                }
+            }
+        }
+
+        return view('cashier.assessment-details', ['assessment' => $assessment, 'subjects' => $subjects]);
     }
 
 

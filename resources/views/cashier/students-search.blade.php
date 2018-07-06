@@ -35,7 +35,7 @@
 						<tr>
 							<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }}</td>
 							<td>{{ $s->student_number }}</td>
-							<td><a href="#" class="btn btn-primary"><i class="fa fa-eye"></i> View Info</a></td>
+							<td><a href="{{ route('cashier.view.student.assessment', ['id' => $s->id]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Assessment</a></td>
 						</tr>
 					@endforeach
 				</tbody>
