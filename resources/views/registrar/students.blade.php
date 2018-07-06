@@ -18,7 +18,7 @@
 				<div class="input-group">
 					<input type="text" name="keyword" id="keyword" class="form-control boxed" placeholder="Name or Student Number" required="">
 					<span class="input-group-btn">
-						<button type="submit" class="btn btn-primary btn-lg" type="button">Go!</button>
+						<button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-search"></i> Go!</button>
 					</span>
 				</div>
 			</form>

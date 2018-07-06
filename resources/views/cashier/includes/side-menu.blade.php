@@ -12,8 +12,8 @@
                     <a href="{{ route('cashier.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('cashier.view.students') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('cashier.view.students') }}">
                         <i class="fa fa-users"></i> Students
                     </a>
                 </li>

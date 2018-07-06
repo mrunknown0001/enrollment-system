@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title') Registrar @endsection
+@section('title') Cashier @endsection
 
 @section('headside')
-    @include('registrar.includes.header')
-    @include('registrar.includes.side-menu')
+    @include('cashier.includes.header')
+    @include('cashier.includes.side-menu')
 @endsection
 
 
@@ -35,7 +35,7 @@
 						<tr>
 							<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }}</td>
 							<td>{{ $s->student_number }}</td>
-							<td><a href="{{ route('registrar.view.student.details', ['id' => $s->id, 'sn' => $s->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Info</a></td>
+							<td><a href="#" class="btn btn-primary"><i class="fa fa-eye"></i> View Info</a></td>
 						</tr>
 					@endforeach
 				</tbody>
