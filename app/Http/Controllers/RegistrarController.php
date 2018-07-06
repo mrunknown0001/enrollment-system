@@ -8,6 +8,9 @@ use Auth;
 use App\Http\Controllers\GeneralController;
 
 use App\Registrar;
+use App\Course;
+use App\Program;
+use App\YearLevel;
 
 class RegistrarController extends Controller
 {
@@ -117,8 +120,21 @@ class RegistrarController extends Controller
 
     // method use to view courses
     public function viewCourses()
+    {   
+        $courses = Course::orderBy('title', 'asc')
+                            ->get();
+
+        return view('registrar.courses', ['courses' => $courses]);
+    }
+
+
+    // method use to view course year level
+    public function viewCourseYearLevel($id = null)
     {
-        return view('registrar.courses');
+        $course = Course::findorfail($id);
+        $yl = YearLevel::get();
+
+        return view('registrar.course-year-level', ['course' => $course, 'yl' => $yl]);
     }
 
 

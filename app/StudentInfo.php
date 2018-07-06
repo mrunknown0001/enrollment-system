@@ -11,6 +11,11 @@ class StudentInfo extends Model
 	];
 
 
+	public function student()
+	{
+		return $this->belongsTo('App\User', 'student_id');
+	}
+
 	public function course()
 	{
 		return $this->belongsTo('App\Course', 'course_id');
