@@ -12,6 +12,11 @@
                     <a href="{{ route('cashier.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-users"></i> Students
+                    </a>
+                </li>
                 <li class="{{ route('cashier.view.assessments') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('cashier.view.assessments') }}">
                         <i class="fa fa-file"></i> Assessments

@@ -19,12 +19,12 @@
                 </li>
                 <li class="{{ route('registrar.view.courses') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('registrar.view.courses') }}">
-                        <i class=""></i> Courses
+                        <i class="fa fa-dot-circle-o"></i> Courses
                     </a>
                 </li>
                 <li class="{{ route('registrar.view.programs') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('registrar.view.programs') }}">
-                        <i class=""></i> Programs
+                        <i class="fa fa-dot-circle-o"></i> Programs
                     </a>
                 </li>
             </ul>

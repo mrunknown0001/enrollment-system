@@ -28,7 +28,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('address')->nullable();
             $table->string('nationality')->nullable();
             $table->string('academic_program')->nullable();
-            $table->string('school_year_admitted')->nullable();
+            $table->integer('school_year_admitted')->nullable();
             $table->string('category')->nullable();
             $table->string('school_last_attended')->nullable();
             $table->timestamp('date_graduated')->nullable();

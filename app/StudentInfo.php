@@ -26,4 +26,9 @@ class StudentInfo extends Model
 	{
 		return $this->belongsTo('App\Program', 'program_id');
 	}
+
+	public function sy_admitted()
+	{
+		return $this->belongsTo('App\AcademicYear', 'school_year_admitted');
+	}
 }

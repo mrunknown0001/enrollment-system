@@ -185,6 +185,9 @@ Route::group(['prefix' => 'registrar'], function () {
 
 	// route to view student info
 	Route::get('/student/{id}/{sn}/details', 'RegistrarController@viewStudentDetails')->name('registrar.view.student.details');
+
+	// route to search students
+	Route::get('/students/search', 'RegistrarController@searchStudent')->name('registrar.search.students');
 });
 
 

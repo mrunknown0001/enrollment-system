@@ -205,4 +205,15 @@ class RegistrarController extends Controller
         return view('registrar.student-details', ['student' => $student]);
     }
 
+
+    // method use to search students
+    public function searchStudent(Request $request)
+    {
+        $keyword = $request['keyword'];
+
+        $students = GeneralController::students_search($keyword);
+
+        return view('registrar.students-search', ['students' => $students, 'keyword' => $keyword]);
+    }
+
 }
