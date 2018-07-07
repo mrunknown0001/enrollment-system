@@ -87,6 +87,12 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
+        DB::table('misc_fees')->insert([
+            'name' => 'misc fee',
+            'amount' => 100.00,
+            'type' => 3
+        ]);
+
         $this->call([
             SubjectTableSeeder::class,
             CourseTableSeeder::class,

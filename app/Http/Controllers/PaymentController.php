@@ -168,8 +168,12 @@ class PaymentController extends Controller
             $yl = YearLevel::where('active', 1)->first();
             $sem = ActiveSemester::where('active', 1)->first();
 
-            Auth::user()->info->school_year_admitted = $ay->id;
-            Auth::user()->info->save();
+
+            // run only when there is no sy in the info
+            if(Auth::user()->info->school_year_admitted == null) {
+               Auth::user()->info->school_year_admitted = $ay->id;
+                Auth::user()->info->save();
+            }
 
             $assessment = Assessment::where('student_id', Auth::user()->id)
                                 ->where('active', 1)

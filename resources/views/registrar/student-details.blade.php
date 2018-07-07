@@ -21,6 +21,7 @@
                 <div class="card-block">
                 	@include('includes.all')
                     <p>
+                    @if(count($student->enrollment_status) > 0)
                         Enrolled in 
                         @if($student->info->course_id != null)
                             {{ $student->info->course->title }} - 
@@ -32,6 +33,9 @@
                         @else
                             {{ $student->info->program->title }}
                         @endif
+                    @else
+                        Not yet enrolled
+                    @endif
                     </p>
 					<p>Name: <strong>{{ ucwords($student->firstname . ' ' . $student->lastname) }}</strong></p>
                     <p>Student Number: <strong>{{ $student->student_number }}</strong></p>
@@ -40,7 +44,7 @@
                     <p>Place of Birth: <strong>{{ ucwords($student->info->place_of_birth) }}</strong></p>
                     <p>Address: <strong>{{ ucwords($student->info->address) }}</strong></p>
                     <p>Nationality: <strong>{{ ucwords($student->info->nationality) }}</strong></p>
-                    <p>SY Admitted:</p>
+                    <p>SY Admitted: <strong>{{ $student->info->sy_admitted->from . '-' . $student->info->sy_admitted->to }}</strong></p>
                     <p>School Last Attended:</p>
                     <p>Date Graduated:</p>
                 </div>

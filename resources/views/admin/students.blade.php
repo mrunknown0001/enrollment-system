@@ -48,6 +48,23 @@
 				                </button>
 				            </div>
 				            <div class="modal-body">
+				            	<p>
+					            	@if(count($s->enrollment_status) > 0)
+				                        Enrolled in 
+				                        @if($s->info->course_id != null)
+				                            {{ $s->info->course->title }} - 
+				                            @if($s->info->year_level == 1)
+				                                First Year
+				                            @else
+				                                Second Year
+				                            @endif
+				                        @else
+				                            {{ $s->info->program->title }}
+				                        @endif
+				                     @else
+
+				                     @endif
+			                    </p>
 								<p>Name: <strong>{{ ucwords($s->firstname . ' ' . $s->lastname) }}</strong></p>
 								<p>Student Number: <strong>{{ $s->student_number }}</strong></p>
 								<p>Mobile Number: <strong>{{ $s->mobile_number }}</strong></p>
@@ -56,7 +73,9 @@
 								<p>Place of Birth: <strong>{{ ucwords($s->info->place_of_birth) }}</strong></p>
 								<p>Address: <strong>{{ ucwords($s->info->address) }}</strong></p>
 								<p>Nationality: <strong>{{ ucwords($s->info->nationality) }}</strong></p>
-
+								<p>SY Admitted: <strong>{{ $s->info->sy_admitted->from . '-' . $s->info->sy_admitted->to }}</strong></p>
+			                    <p>School Last Attended:</p>
+			                    <p>Date Graduated:</p>
 				            </div>
 				            <div class="modal-footer">
 				                <small>Student Info</small>

@@ -73,7 +73,7 @@ class FacultyRegistrationController extends Controller
     	GeneralController::activity_log($f->id, 3, 'Faculty Registration');
 
     	// return redirect
-    	return redirect()->route('faculty.registration')->with('success', 'Registration Successful!');
+    	return redirect()->route('faculty.login')->with('success', 'Registration Successful!')->with('id_number', $id);
 
 
     }
