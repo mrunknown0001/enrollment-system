@@ -259,7 +259,10 @@ Route::group(['prefix' => 'faculty'], function () {
 	Route::post('/password/change', 'FacultyController@postChangePassword')->name('faculty.password.change.post');
 
 	// rotue to view subjects assignment to a faculty
-	Route::get('/subjects/assessments', 'FacultyController@viewSubjectAssignments')->name('faculty.view.subject.assessments');
+	Route::get('/subjects/assignments', 'FacultyController@viewSubjectAssignments')->name('faculty.view.subject.assignments');
+
+	// route to view program load of the faculty
+	Route::get('/programs/assignments', 'FacultyController@viewProgramAssignments')->name('faculty.view.program.assignments');
 });
 
 
@@ -326,7 +329,11 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to save subject to a faculty
 	Route::post('/user/faculty/load/subject/add', 'AdminController@postAddSubjectLoadFaculty')->name('admin.add.subject.load.faculty.post');
 
-	// route to select a programs to add load to faculty
+	// route to add program load to faculty
+	Route::get('/user/faculty/{id}/load/program/add', 'AdminController@addProgramLoadFaculty')->name('admin.add.program.load.faculty');
+
+	// rotue to save program load to faculty
+	Route::post('/user/faculty/load/program/add', 'AdminController@postAddProgramLoadFaculty')->name('admin.add.program.load.faculty.post');
 
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');

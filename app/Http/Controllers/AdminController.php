@@ -342,6 +342,10 @@ class AdminController extends Controller
 
         $subjects = Subject::where('active', 1)->get();
 
+        if(count($subjects) < 1) {
+            return redirect()->back()->with('error', 'No Active Subject!');
+        }
+
         return view('admin.assign-subjects', ['faculty' => $faculty, 'subjects' => $subjects]);
     }
 
@@ -375,8 +379,65 @@ class AdminController extends Controller
         $sa->subject_ids = serialize($subject_ids);
         $sa->save();
 
+        // add activitly log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Assign Subject to ' . ucwords($faculty->firstname . ' ' . $faculty->lastname));
+
         // return to faculty lists
         return redirect()->route('admin.view.faculties')->with('success', 'Subject Load Assigned to ' . ucwords($faculty->firstname . ' ' . $faculty->lastname));
+
+    }
+
+
+    // method use to add program load
+    public function addProgramLoadFaculty($id = null)
+    {
+        $faculty = Faculty::findorfail($id);
+
+        $programs = Program::where('active', 1)->get();
+
+        if(count($programs) < 1) {
+            return redirect()->back()->with('error', 'No Active Program!');
+        }
+
+        return view('admin.assign-program', ['faculty' => $faculty, 'programs' => $programs]);
+    }
+
+
+    // method use to save program load to faculty
+    public function postAddProgramLoadFaculty(Request $request)
+    {
+        $request->validate(['programs' => 'required']);
+
+        $program_ids[] = $request['programs'];
+        $faculty_id = $request['faculty_id'];
+
+        $faculty = Faculty::findorfail($faculty_id);
+
+        // get active semester
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get active academic year
+        $ay = AcademicYear::where('active', 1)->first();
+
+        // check if there is active sem and ay
+        if(count($sem) < 1 || count($ay) < 1) {
+            return redirect()->back()->with('error', 'No Active Semester or Academic Year!');
+        }
+
+
+        $pa = new ProgramAssignment();
+        $pa->faculty_id = $faculty->id;
+        $pa->academic_year_id = $ay->id;
+        $pa->semester_id = $sem->id;
+        $pa->program_ids = serialize($program_ids);
+        $pa->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Assigned Program to ' . ucwords($faculty->firstname . ' ' . $faculty->lastname));
+
+        // return to faculty lists
+        return redirect()->route('admin.view.faculties')->with('success', 'Program Load Assigned to ' . ucwords($faculty->firstname . ' ' . $faculty->lastname));
+
 
     }
 

@@ -12,11 +12,11 @@
 <section class="section">
 	<div class="row">
 		<div class="col-md-8">
-			@if(count($subjects) > 0)
+			@if(count($programs) > 0)
 	            <div class="card card-primary">
 	                <div class="card-header">
 	                    <div class="header-block">
-	                        <p class="title"> Subjects Assigned </p>
+	                        <p class="title"> Program Assigned </p>
 	                    </div>
 	                </div>
 	                <div class="card-block">
@@ -29,10 +29,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($subjects as $s)
+								@foreach($programs as $p)
 								<tr>
-									<td>{{ $s->code }}</td>
-									<td>{{ $s->description }}</td>
+									<td>{{ $p->code }}</td>
+									<td>{{ $p->description }}</td>
 								</tr>
 								@endforeach
 								
@@ -42,10 +42,10 @@
 							</tfoot>
 						</table>
 	                </div>
-	                <div class="card-footer"> <small>Subjects Assigned</small> </div>
+	                <div class="card-footer"> <small>Program Assigned</small> </div>
 	            </div>
 			@else
-				<p>No Subjects Assigned!</p>
+				<p>No Program Assigned!</p>
 			@endif
 
 

@@ -9,6 +9,8 @@ use App\Faculty;
 use App\FacultyInfo;
 use App\SubjectAssignment;
 use App\Subject;
+use App\Program;
+use App\ProgramAssignment;
 
 use App\Http\Controllers\GeneralController;
 
@@ -146,9 +148,30 @@ class FacultyController extends Controller
             foreach($subject_ids as $s) {
                 $subjects = Subject::find($s);
             }
-
-            return view('faculty.subjects-assigned', ['subjects' => $subjects]);
         }
+
+        return view('faculty.subjects-assigned', ['subjects' => $subjects]);
+
+    }
+
+    // method use to view program assignemnt to the faculty
+    public function viewProgramAssignments()
+    {
+        // find active program assignemnts of the faculty
+        $program_assignment = ProgramAssignment::where('faculty_id', Auth::guard('faculty')->user()->id)
+                                    ->where('active', 1)
+                                    ->first();
+        $programs = null;
+
+        if(count($program_assignment) > 0) {
+            $program_ids = unserialize($program_assignment->program_ids);
+
+            foreach($program_ids as $s) {
+                $programs = Program::find($s);
+            }
+        }
+
+        return view('faculty.program-assigned', ['programs' => $programs]);
 
     }
 

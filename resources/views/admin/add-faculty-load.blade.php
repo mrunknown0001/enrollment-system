@@ -21,7 +21,7 @@
                 <div class="card-block">
                     @include('includes.all')
 					<p><a href="{{ route('admin.add.subject.load.faculty', ['id' => $faculty->id]) }}">Assign Subjects</a></p>
-					<p><a href="#">Assign Program</a></p>
+					<p><a href="{{ route('admin.add.program.load.faculty', ['id' => $faculty->id]) }}">Assign Program</a></p>
                 </div>
             </div>
         </div>

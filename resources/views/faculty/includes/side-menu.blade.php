@@ -12,13 +12,13 @@
                     <a href="{{ route('faculty.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
-                <li class="{{ route('faculty.view.subject.assessments') == url()->current() ? 'active' : '' }}">
-                    <a href="{{ route('faculty.view.subject.assessments') }}">
+                <li class="{{ route('faculty.view.subject.assignments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('faculty.view.subject.assignments') }}">
                         <i class="fa fa-book"></i> Subjects Assigned
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ route('faculty.view.program.assignments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('faculty.view.program.assignments') }}">
                         <i class="fa fa-dot-circle-o"></i> Programs Assigned
                     </a>
                 </li>
