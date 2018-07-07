@@ -340,7 +340,7 @@ class AdminController extends Controller
     {
         $faculty = Faculty::findorfail($id);
 
-        $subjects = Subject::get();
+        $subjects = Subject::where('active', 1)->get();
 
         return view('admin.assign-subjects', ['faculty' => $faculty, 'subjects' => $subjects]);
     }
@@ -354,6 +354,7 @@ class AdminController extends Controller
         $subject_ids = $request['subjects']; // save in subject ids in serialized format
         $faculty_id = $request['faculty_id'];
 
+
         $faculty = Faculty::findorfail($faculty_id);
 
         // get active semester
@@ -361,6 +362,11 @@ class AdminController extends Controller
 
         // get active academic year
         $ay = AcademicYear::where('active', 1)->first();
+
+        // check if there is active sem and ay
+        if(count($sem) < 1 || count($ay) < 1) {
+            return redirect()->back()->with('error', 'No Active Semester or Academic Year!');
+        }
 
         $sa = new SubjectAssignment();
         $sa->faculty_id = $faculty->id;

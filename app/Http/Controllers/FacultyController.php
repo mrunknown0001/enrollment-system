@@ -138,7 +138,7 @@ class FacultyController extends Controller
                                     ->where('active', 1)
                                     ->first();
 
-        $subjects = [];
+        $subjects = null;
 
         if(count($subject_assignment) > 0) {
             $subject_ids = unserialize($subject_assignment->subject_ids);
@@ -146,10 +146,10 @@ class FacultyController extends Controller
             foreach($subject_ids as $s) {
                 $subjects = Subject::find($s);
             }
+
+            return $subjects;
         }
 
-
-        return $subjects;
     }
 
 }

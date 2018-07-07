@@ -48,7 +48,7 @@
 				</tfooter>
 			</table>
 			@else
-			<p class="text-center"><em>No Subject Available</em></p>
+			<p class="text-center"><em>No Active Subject Available</em></p>
 			@endif
 
         </div>
