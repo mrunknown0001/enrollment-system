@@ -12,6 +12,16 @@
                     <a href="{{ route('faculty.dashboard') }}">
                         <i class="fa fa-dashboard"></i> Dashboard </a>
                 </li>
+                <li class="{{ route('faculty.view.subject.assessments') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('faculty.view.subject.assessments') }}">
+                        <i class="fa fa-book"></i> Subjects Assigned
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-dot-circle-o"></i> Programs Assigned
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

@@ -257,6 +257,9 @@ Route::group(['prefix' => 'faculty'], function () {
 
 	// rotue to save change password of faculty
 	Route::post('/password/change', 'FacultyController@postChangePassword')->name('faculty.password.change.post');
+
+	// rotue to view subjects assignment to a faculty
+	Route::get('/subjects/assessments', 'FacultyController@viewSubjectAssignments')->name('faculty.view.subject.assessments');
 });
 
 
@@ -313,6 +316,17 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to view faculty
 	Route::get('/users/faculties', 'AdminController@viewFaculties')->name('admin.view.faculties');
+
+	// route to add loads to faculty
+	Route::get('/user/faculty/{id}/load/add', 'AdminController@addLoadFaculty')->name('admin.add.load.faculty');
+
+	// route to select subjects and add load to faculty
+	Route::get('/user/faculty/{id}/load/subjects/add', 'AdminController@addSubjectLoadFaculty')->name('admin.add.subject.load.faculty');
+
+	// route to save subject to a faculty
+	Route::post('/user/faculty/load/subject/add', 'AdminController@postAddSubjectLoadFaculty')->name('admin.add.subject.load.faculty.post');
+
+	// route to select a programs to add load to faculty
 
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');

@@ -7,6 +7,8 @@ use Auth;
 
 use App\Faculty;
 use App\FacultyInfo;
+use App\SubjectAssignment;
+use App\Subject;
 
 use App\Http\Controllers\GeneralController;
 
@@ -125,6 +127,29 @@ class FacultyController extends Controller
         }
 
         return redirect()->route('faculty.password.change')->with('error', 'Old Password Invalid!');
+    }
+
+
+    // method use to view subject assignments
+    public function viewSubjectAssignments()
+    {
+        // find active subject assignemnts of the faculty
+        $subject_assignment = SubjectAssignment::where('faculty_id', Auth::guard('faculty')->user()->id)
+                                    ->where('active', 1)
+                                    ->first();
+
+        $subjects = [];
+
+        if(count($subject_assignment) > 0) {
+            $subject_ids = unserialize($subject_assignment->subject_ids);
+
+            foreach($subject_ids as $s) {
+                $subjects = Subject::find($s);
+            }
+        }
+
+
+        return $subjects;
     }
 
 }

@@ -23,6 +23,8 @@ use App\AcademicYear;
 use App\ActiveSemester;
 use App\MiscFee;
 use App\Assessment;
+use App\SubjectAssignment;
+use App\ProgramAssignment;
 
 use App\Http\Controllers\GeneralController;
 
@@ -229,7 +231,7 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Cashier Account');
 
         // return data with message
-        return redirect()->route('admin.view.cashier')->with('success', 'Cashier Added!');
+        return redirect()->route('admin.view.cashiers')->with('success', 'Cashier Added!');
 
     }
 
@@ -319,6 +321,57 @@ class AdminController extends Controller
 
 
         return view('admin.faculties', ['faculties' => $faculties]);
+    }
+
+
+    // method use to add load to faculty
+    public function addLoadFaculty($id = null)
+    {
+        $faculty = Faculty::findorfail($id);
+
+        
+         return view('admin.add-faculty-load', ['faculty' => $faculty]); 
+        
+    }
+
+
+    // method use to add subject load to faculty
+    public function addSubjectLoadFaculty($id = null)
+    {
+        $faculty = Faculty::findorfail($id);
+
+        $subjects = Subject::get();
+
+        return view('admin.assign-subjects', ['faculty' => $faculty, 'subjects' => $subjects]);
+    }
+
+
+    // method use to save subject load 
+    public function postAddSubjectLoadFaculty(Request $request)
+    {
+        $request->validate(['subjects' => 'required']);
+
+        $subject_ids = $request['subjects']; // save in subject ids in serialized format
+        $faculty_id = $request['faculty_id'];
+
+        $faculty = Faculty::findorfail($faculty_id);
+
+        // get active semester
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get active academic year
+        $ay = AcademicYear::where('active', 1)->first();
+
+        $sa = new SubjectAssignment();
+        $sa->faculty_id = $faculty->id;
+        $sa->academic_year_id  = $ay->id;
+        $sa->semester_id = $sem->id;
+        $sa->subject_ids = serialize($subject_ids);
+        $sa->save();
+
+        // return to faculty lists
+        return redirect()->route('admin.view.faculties')->with('success', 'Subject Load Assigned to ' . ucwords($faculty->firstname . ' ' . $faculty->lastname));
+
     }
 
 
