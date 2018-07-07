@@ -147,7 +147,7 @@ class FacultyController extends Controller
                 $subjects = Subject::find($s);
             }
 
-            return $subjects;
+            return view('faculty.subjects-assigned', ['subjects' => $subjects]);
         }
 
     }

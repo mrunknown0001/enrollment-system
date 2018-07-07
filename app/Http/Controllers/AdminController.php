@@ -351,7 +351,7 @@ class AdminController extends Controller
     {
         $request->validate(['subjects' => 'required']);
 
-        $subject_ids = $request['subjects']; // save in subject ids in serialized format
+        $subject_ids[] = $request['subjects']; // save in subject ids in serialized format
         $faculty_id = $request['faculty_id'];
 
 
