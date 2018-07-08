@@ -484,6 +484,105 @@ class AdminController extends Controller
     }
 
 
+    // method use to update faculty load subject
+    public function updateFacultyLoadSubjects($id = null)
+    {
+        $faculty = Faculty::findorfail($id);
+
+        $subjects = Subject::where('active', 1)->get();
+
+        if(count($subjects) < 1) {
+            return redirect()->back()->with('error', 'No Active Subject!');
+        }
+
+        $subjects_assignment = SubjectAssignment::where('faculty_id', $faculty->id)
+                                                ->where('active', 1)
+                                                ->first();
+
+        if(count($subjects_assignment) < 1) {
+            return redirect()->back()->with('error', 'No Assigned Subject!');
+        }
+
+        return view('admin.update-assign-subjects', ['faculty' => $faculty, 'subjects' => $subjects, 'sa' => $subjects_assignment]);
+    }
+
+
+    public function postUpdateFacultyLoadSubjects(Request $request)
+    {
+        $request->validate([
+            'subjects' => 'required'
+        ]);
+
+        $faculty_id = $request['faculty_id'];
+        $sa_id = $request['subjects_assigned_id'];
+        $subject_ids[] = $request['subjects'];
+
+        $faculty = Faculty::findorfail($faculty_id);
+        $sa = SubjectAssignment::findorfail($sa_id);
+
+        // additional check if the sa belongs to the faculty
+        if($faculty->id != $sa->faculty_id) {
+            return redirect()->back()->with('error', 'Tampering Occured! Please Go to dashboard');
+        }
+
+        $sa->subject_ids = serialize($subject_ids);
+        $sa->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Update Assigned Subjects to ' . ucwords($faculty->firstname . ' ' . $faculty->lastname));
+
+        return redirect()->route('admin.view.faculties')->with('success', 'Assigned Subjects Updated!');
+    }
+
+    // method use to update program assignement
+    public function updateFacultyLoadPrograms($id = null)
+    {
+        $faculty = Faculty::findorfail($id);
+
+        $programs = Program::where('active', 1)->get();
+
+        if(count($programs) < 1) {
+            return redirect()->back()->with('error', 'No Active Program!');
+        }
+
+        $pa = ProgramAssignment::where('faculty_id', $faculty->id)
+                                ->where('active', 1)
+                                ->first();
+
+        return view('admin.update-assign-program', ['faculty' => $faculty, 'programs' => $programs, 'pa' => $pa]);
+    }
+
+
+    // method use to save update on program assignent
+    public function postUpdateFacultyLoadPrograms(Request $request)
+    {
+        $request->validate(['programs' => 'required']);
+
+        $program_ids[] = $request['programs'];
+        $faculty_id = $request['faculty_id'];
+        $pa_id = $request['program_assignment_id'];
+
+        $faculty = Faculty::findorfail($faculty_id);
+
+        $pa = ProgramAssignment::findorfail($pa_id);
+
+        // additional check if the sa belongs to the faculty
+        if($faculty->id != $pa->faculty_id) {
+            return redirect()->back()->with('error', 'Tampering Occured! Please Go to dashboard');
+        }
+
+        $pa->program_ids = serialize($program_ids);
+        $pa->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Update Assigned Programs to ' . ucwords($faculty->firstname . ' ' . $faculty->lastname));
+
+        return redirect()->route('admin.view.faculties')->with('success', 'Assigned Programs Updated!');
+
+    }
+
+
+
     // method use to view programs available 
     public function viewPrograms()
     {

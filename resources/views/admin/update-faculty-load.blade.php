@@ -22,11 +22,11 @@
                     @include('includes.all')
 					
                     @if(count($subjects_assigned) > 0)
-                    <p><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Subjects Assigned</a></p>
+                    <p><a href="{{ route('admin.update.faculty.load.subjects', ['id' => $faculty->id]) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Subjects Assigned</a></p>
                     @endif
                     
                     @if(count($programs_assigned) > 0)
-                    <p><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Programs Assigned</a></p>
+                    <p><a href="{{ route('admin.update.faculty.load.programs', ['id' => $faculty->id]) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Programs Assigned</a></p>
                     @endif
                 </div>
             </div>
