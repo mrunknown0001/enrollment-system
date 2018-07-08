@@ -320,6 +320,9 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view faculty
 	Route::get('/users/faculties', 'AdminController@viewFaculties')->name('admin.view.faculties');
 
+	// route to view faculty details
+	Route::get('/users/faculty/{id}/details', 'AdminController@viewFacultyDetails')->name('admin.view.faculty.details');
+
 	// route to add loads to faculty
 	Route::get('/user/faculty/{id}/load/add', 'AdminController@addLoadFaculty')->name('admin.add.load.faculty');
 
@@ -334,6 +337,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// rotue to save program load to faculty
 	Route::post('/user/faculty/load/program/add', 'AdminController@postAddProgramLoadFaculty')->name('admin.add.program.load.faculty.post');
+
+	// route to update load in faculty
+
 
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');

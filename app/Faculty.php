@@ -32,4 +32,14 @@ class Faculty extends Authenticatable
     {
         return $this->hasOne('App\FacultyInfo', 'faculty_id');
     }
+
+    public function program_assignments()
+    {
+        return $this->hasMany('App\ProgramAssignment', 'faculty_id');
+    }
+
+    public function subject_assignments()
+    {
+        return $this->hasMany('App\SubjectAssignment', 'faculty_id');
+    }
 }

@@ -324,6 +324,34 @@ class AdminController extends Controller
     }
 
 
+    // method use to view faculty details
+    public function viewFacultyDetails($id = null)
+    {
+        $faculty = Faculty::findorfail($id);
+
+        // get assginec subjects and/or programs assigned
+        $programs_assigned = ProgramAssignment::where('faculty_id', $faculty->id)->where('active', 1)->first();
+        $subjects_assigned = SubjectAssignment::where('faculty_id', $faculty->id)->where('active', 1)->first();
+
+        $programs = null;
+        $subjects = null;
+
+        if(count($programs_assigned) > 0) {
+            foreach(unserialize($programs_assigned->program_ids) as $p) {
+                $programs = Program::find($p);
+            }
+        }
+
+        if(count($subjects_assigned) > 0) {
+            foreach(unserialize($subjects_assigned->subject_ids) as $s) {
+                $subjects = Subject::find($s);
+            }
+        }
+
+        return view('admin.faculty-details', ['faculty' => $faculty, 'programs' => $programs, 'subjects' => $subjects]);
+    }
+
+
     // method use to add load to faculty
     public function addLoadFaculty($id = null)
     {
