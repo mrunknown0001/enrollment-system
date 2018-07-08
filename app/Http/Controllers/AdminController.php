@@ -470,6 +470,20 @@ class AdminController extends Controller
     }
 
 
+    // method use to view update in faculty load
+    public function updateFacultyLoad($id = null)
+    {
+        $faculty = Faculty::findorfail($id);
+
+        // get subject / program assignment
+        $programs_assigned = ProgramAssignment::where('faculty_id', $faculty->id)->where('active', 1)->first();
+        $subjects_assigned = SubjectAssignment::where('faculty_id', $faculty->id)->where('active', 1)->first();
+
+        return view('admin.update-faculty-load', ['faculty' => $faculty, 'programs_assigned' => $programs_assigned, 'subjects_assigned' => $subjects_assigned]);
+
+    }
+
+
     // method use to view programs available 
     public function viewPrograms()
     {

@@ -339,7 +339,12 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/user/faculty/load/program/add', 'AdminController@postAddProgramLoadFaculty')->name('admin.add.program.load.faculty.post');
 
 	// route to update load in faculty
+	Route::get('/user/faculty/{id}/load/update', 'AdminController@updateFacultyLoad')->name('admin.update.faculty.load');
 
+	// route to update subject assigned to a faculty
+	
+
+	// route to update program assigned to a faculty
 
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');

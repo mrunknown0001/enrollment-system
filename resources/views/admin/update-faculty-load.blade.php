@@ -15,20 +15,18 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
-                        <p class="title"> {{ ucwords($faculty->firstname . ' ' . $faculty->lastname) }} - {{ $faculty->id_number }} </p>
+                        <p class="title"> Update Load of {{ ucwords($faculty->firstname . ' ' . $faculty->lastname) }} - {{ $faculty->id_number }} </p>
                     </div>
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-                    @if(count($faculty->subject_assignments) > 0)
-                    <p>Update Subjects Only</p>
-                    @else
-					<p><a href="{{ route('admin.add.subject.load.faculty', ['id' => $faculty->id]) }}" class="btn btn-primary">Assign Subjects</a></p>
+					
+                    @if(count($subjects_assigned) > 0)
+                    <p><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Subjects Assigned</a></p>
                     @endif
-                    @if(count($faculty->program_assignments) > 0)
-                    <p>Update Programs Only</p>
-                    @else
-					<p><a href="{{ route('admin.add.program.load.faculty', ['id' => $faculty->id]) }}" class="btn btn-primary">Assign Program</a></p>
+                    
+                    @if(count($programs_assigned) > 0)
+                    <p><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Programs Assigned</a></p>
                     @endif
                 </div>
             </div>

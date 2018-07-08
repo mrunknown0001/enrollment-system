@@ -32,7 +32,7 @@
 						<td>
 							<a href="{{ route('admin.add.load.faculty', ['id' => $f->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Load</a>
 							@if(count($f->subject_assignments) > 0 || count($f->program_assignments) > 0)
-							<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update Load</a>
+							<a href="{{ route('admin.update.faculty.load', ['id' => $f->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update Load</a>
 							@endif
 							<a href="{{ route('admin.view.faculty.details', ['id' => $f->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View</a>
 						</td>
