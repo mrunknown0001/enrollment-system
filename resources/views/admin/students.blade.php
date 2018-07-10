@@ -73,9 +73,11 @@
 								<p>Place of Birth: <strong>{{ ucwords($s->info->place_of_birth) }}</strong></p>
 								<p>Address: <strong>{{ ucwords($s->info->address) }}</strong></p>
 								<p>Nationality: <strong>{{ ucwords($s->info->nationality) }}</strong></p>
-								<p>SY Admitted: <strong>{{ $s->info->sy_admitted->from . '-' . $s->info->sy_admitted->to }}</strong></p>
-			                    <p>School Last Attended:</p>
-			                    <p>Date Graduated:</p>
+								@if(count($s->info->sy_admitted) > 0)
+								<p>AY Admitted: <strong>{{ $s->info->sy_admitted->from . '-' . $s->info->sy_admitted->to }}</strong></p>
+								@endif
+			                    <p>School Last Attended: <strong>{{ ucwords($s->info->school_last_attended) }}</strong></p>
+			                    <p>Date Graduated: <strong>{{ $s->info->date_graduated }}</strong></p>
 				            </div>
 				            <div class="modal-footer">
 				                <small>Student Info</small>

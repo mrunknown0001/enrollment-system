@@ -31,7 +31,7 @@ class CreateStudentInfosTable extends Migration
             $table->integer('school_year_admitted')->nullable();
             $table->string('category')->nullable();
             $table->string('school_last_attended')->nullable();
-            $table->timestamp('date_graduated')->nullable();
+            $table->string('date_graduated')->nullable();
             $table->integer('mop_id')->unsigned()->nullable();
             $table->foreign('mop_id')->references('id')->on('mode_of_payments');
             $table->timestamps();

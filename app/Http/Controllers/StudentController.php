@@ -102,6 +102,8 @@ class StudentController extends Controller
         $pob = $request['place_of_birth'];
         $address = $request['address'];
         $nationality = $request['nationality'];
+        $last_attended = $request['school_last_attended'];
+        $date_graduated = $request['year_graduated'];
         // check
 
 
@@ -117,6 +119,8 @@ class StudentController extends Controller
         $info->place_of_birth = $pob;
         $info->address = $address;
         $info->nationality = $nationality;
+        $info->school_last_attended = $last_attended;
+        $info->date_graduated = $date_graduated;
         $info->save();
 
         // add activity log

@@ -50,6 +50,12 @@
                             <input type="text" name="nationality" id="nationality" class="form-control underlined" value="{{ Auth::user()->info->nationality }}" placeholder="Enter Nationality" required="">
                         </div>
                         <div class="form-group">
+                            <input type="text" name="school_last_attended" id="school_last_attended" class="form-control underlined" value="{{ Auth::user()->info->school_last_attended }}" placeholder="School Last Attended">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="year_graduated" id="year_graduated" class="form-control underlined" value="{{ Auth::user()->info->date_graduated }}" placeholder="Year Graduated">
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update Profile</button>
                         </div>
                     </form>
