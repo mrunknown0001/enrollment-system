@@ -14,10 +14,35 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
+			@if(session('setting_error'))
+				<div class="alert alert-danger text-center top-space">
+					<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<b>{{ session('setting_error') }}</b>
+				</div>
+			@endif
+			@if(session('setting_success'))
+				<div class="alert alert-success text-center top-space">
+					<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<b>{{ session('setting_success') }}</b>
+				</div>
+			@endif
+        	<form action="{{ route('admin.enrollment.setting.post') }}" method="POST" class="form-inline">
+        		{{ csrf_field() }}
+				<div class="form-group">
+					<label class="checkbox-inline">
+						<input type="checkbox" name="enrollment_switch" id="enrollment_switch" @if($es->status == 1) checked @endif> &nbsp; Enrollment Switch
+					</label>
+				</div>
+				&nbsp;
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Save</button>
+				</div>
+        	</form>
+        	<hr>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
-                        <p class="title"> Enrollment Settings </p>
+                        <p class="title"> Enrollment </p>
                     </div>
                 </div>
                 <div class="card-block">

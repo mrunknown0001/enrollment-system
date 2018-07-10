@@ -478,6 +478,9 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to save active enroll option
 	Route::post('/enrollment', 'AdminController@postSaveEnrollment')->name('admin.save.enrollment.post');
 
+	// route to save enrollment settin
+	Route::post('/enrollment/setting', 'AdminController@postenrollmentSetting')->name('admin.enrollment.setting.post');
+
 	// route to view assessments
 	Route::get('/assessments', 'AdminController@viewAssessments')->name('admin.view.assessments');
 

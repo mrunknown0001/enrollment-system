@@ -93,6 +93,10 @@ class DatabaseSeeder extends Seeder
             'type' => 3
         ]);
 
+        DB::table('enrollment_settings')->insert([
+            'status' => 0
+        ]);
+
         $this->call([
             SubjectTableSeeder::class,
             CourseTableSeeder::class,

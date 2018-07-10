@@ -25,6 +25,7 @@ use App\MiscFee;
 use App\Assessment;
 use App\SubjectAssignment;
 use App\ProgramAssignment;
+use App\EnrollmentSetting;
 
 use App\Http\Controllers\GeneralController;
 
@@ -1152,6 +1153,10 @@ class AdminController extends Controller
             $sem->active = 0;
             $sem->save();
 
+            //////////////////////////////////////
+            // all operations will perform here //
+            //////////////////////////////////////
+
             // add activity log
             GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Close Academic Year: ' . $ay->from . '-' . $ay->to);
 
@@ -1302,13 +1307,22 @@ class AdminController extends Controller
         // check if there is active academic year
         $ay = AcademicYear::where('active', 1)->first();
 
-        return view('admin.enrollment', ['programs' => $programs, 'courses' => $courses, 'yl' => $yl, 'ay' => $ay]);
+        $e_setting = EnrollmentSetting::find(1);
+
+        return view('admin.enrollment', ['programs' => $programs, 'courses' => $courses, 'yl' => $yl, 'ay' => $ay, 'es' => $e_setting]);
     }
 
 
     // method use to save active enrollment
     public function postSaveEnrollment(Request $request)
     {
+
+        // check if enrollment is active
+        $es = EnrollmentSetting::find(1);
+
+        if($es->status == 0) {
+            return redirect()->back()->with('setting_error', 'Enrollment Off. Please turn it On!');
+        }
 
         // check if there is an active academic year
         $check_ay = AcademicYear::where('active', 1)->first();
@@ -1363,6 +1377,34 @@ class AdminController extends Controller
         // return to dashboard
         return redirect()->route('admin.dashboard');
         
+    }
+
+
+    // method use to save enrollment setting
+    public function postenrollmentSetting(Request $request)
+    {
+
+        $setting = $request['enrollment_switch'];
+        $status = null;
+
+        if($setting == 'on') {
+            $status = 'On';
+            $setting = 1;
+        }
+        else {
+            $status = 'Off';
+            $setting = 0;
+        }
+
+        $es = EnrollmentSetting::find(1);
+        $es->status = $setting;
+        $es->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Set Enrollment On/Off');
+
+         return redirect()->back()->with('setting_success', 'Enrollment Setting: ' . $status);
+
     }
 
 

@@ -19,6 +19,7 @@ use App\Subject;
 use App\PricePerUnit;
 use App\AcademicYear;
 use App\ActiveSemester;
+use App\EnrollmentSetting;
 
 use App\Http\Controllers\GeneralController;
 
@@ -32,6 +33,23 @@ class StudentController extends Controller
     }
 
 
+    private function check_enrollment_setting()
+    {
+        $es = EnrollmentSetting::findorfail(1);
+
+        $status = false;
+
+        if($es->status == 1) {
+            $status = true;
+        }
+        else {
+            $status = false;
+        }
+
+        return $status;
+    }
+
+
     // method to show the dashboard of student
     public function dashboard()
     {
@@ -40,9 +58,11 @@ class StudentController extends Controller
         $programs = Program::where('active', 1)->get(['id', 'active']);
         $yl = YearLevel::where('active', 1)->first();
 
+        $es = $this->check_enrollment_setting();
+
         // get all the data need to show in dashboard of student
 
-        return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl]);
+        return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl, 'es' => $es]);
     }
 
 
@@ -148,6 +168,10 @@ class StudentController extends Controller
     // method use to save enrollment for
     public function postEnrollmentFor(Request $request)
     {
+        if($this->check_enrollment_setting() == false) {
+            return redirect()->back()->with('error', 'Enrollment Not Active!');
+        }
+
         $request->validate([
             'enrolling_for' => 'required'
         ]);
