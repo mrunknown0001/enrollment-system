@@ -199,7 +199,23 @@ class PaymentController extends Controller
 
             // add to student_subjects_sections
             // check for limit to change number of group just in case
-            $limit = StudentPerSubject::find(1);
+            $student_limit = StudentPerSubject::find(1);
+
+            if(Auth::user()->info->enrolling_for == 1) {
+                // find the last number of enrolled students in a subject
+                
+                // check if the number of students
+                
+                // if the number of student limit is equal to the last number of students
+                
+                // the group number will increment by 1
+                
+                // and the number fo student will reset to zero
+                
+                // then save the subject student
+            }
+
+
 
 
             // add to payment
