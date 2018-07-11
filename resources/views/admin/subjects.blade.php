@@ -15,6 +15,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
+        	<a href="{{ route('admin.subjects.active') }}" class="btn btn-primary">View Active Subjects Only</a>
 			<a href="{{ route('admin.add.subject') }}" class="btn btn-primary">Add Subject</a>
 			<a href="{{ route('admin.select.subjects') }}" class="btn btn-primary">Select Subject For Enrollment</a>
 			

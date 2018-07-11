@@ -19,6 +19,9 @@
 	</div>
 </form>
 </p>
+<p>
+	Current: <strong>{{ $max->limit }} students</strong> <a href="{{ route('admin.set.max.student.number') }}" class="btn btn-primary">Set Max Students per Subject Class</a>
+</p>
 @include('includes.all')
 
 @if(count($students) > 0)

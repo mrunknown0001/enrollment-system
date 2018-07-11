@@ -12,6 +12,11 @@ class Subject extends Model
 
 	public function prereq()
 	{
-		return $this->belongsto('App\Subject', 'prerequisites', 'id');
+		return $this->belongsTo('App\Subject', 'prerequisites', 'id');
+	}
+
+	public function yl()
+	{
+		return $this->belongsTo('App\YearLevel', 'year_level');
 	}
 }

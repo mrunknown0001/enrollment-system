@@ -387,6 +387,12 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to show subjects
 	Route::get('/subjects', 'AdminController@viewSubjects')->name('admin.subjects');
 
+	// route to view active subjects
+	Route::get('/subjects/active', 'AdminController@viewActiveSubjects')->name('admin.subjects.active');
+
+	// route to view students enrolled in a subject
+	Route::get('/subject/{id}/students/enrolled', 'AdminController@viewEnrolledStudentsSubject')->name('admin.view.enrolled.students.subject');
+
 	// route to add subject 
 	Route::get('/subject/add', 'AdminController@addSubject')->name('admin.add.subject');
 
@@ -413,6 +419,12 @@ Route::group(['prefix' => 'admin'], function () {
 
 	// route to view all students
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
+
+	// routo set max number of student per subject class
+	Route::get('/students/set/max/number', 'AdminController@setMaxStudentNumber')->name('admin.set.max.student.number');
+
+	// route to save set max number of student per subject class
+	Route::post('/students/set/max/number', 'AdminController@postSetMaxStudentNumber')->name('admin.set.max.student.number.post');
 
 	// route to search for students
 	Route::get('/students/searhResult', 'AdminController@searchStudent')->name('admin.student.search');

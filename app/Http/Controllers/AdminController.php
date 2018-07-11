@@ -26,6 +26,8 @@ use App\Assessment;
 use App\SubjectAssignment;
 use App\ProgramAssignment;
 use App\EnrollmentSetting;
+use App\StudentPerSubject;
+use App\SubjectStudent;
 
 use App\Http\Controllers\GeneralController;
 
@@ -811,6 +813,72 @@ class AdminController extends Controller
     }
 
 
+    // method use to view active subjects only
+    public function viewActiveSubjects()
+    {
+        $subjects = Subject::where('active', 1)
+                        ->orderBy('code', 'asc')
+                        ->paginate(15);
+
+        return view('admin.subjects-active', ['subjects' => $subjects]);
+    }
+
+    // method use to view students enrolled in subject
+    public function viewEnrolledStudentsSubject($id = null)
+    {
+        $subject = Subject::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        if(count($ay) < 1) {
+            return redirect()->back()->with('error', 'No Active Academic Year!');
+        }
+
+         if(count($sem) < 1) {
+            return redirect()->back()->with('error', 'No Active Semester!');
+        }
+
+        // check if subject is inactive
+        if($subject->active != 1) {
+            return redirect()->back()->with('error', 'Subject Inactive!');
+        }
+
+        // get all students enrolled
+        $enrolled = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->get();
+        // check if there is no enrolled students
+        if(count($enrolled) < 1) {
+            return redirect()->back()->with('error', 'No Enrolled Students on ' . $subject->code);
+        }
+
+        // get distinct group_number in $enrolled colection
+        $group_numbers = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->distinct('group_number')
+                            ->get();
+
+        $enrolled_id = [];
+
+        foreach($enrolled as $e) {
+            $enrolled_id[] = $e->student_id;
+        }
+
+        // get all students
+        $students = [];
+
+        $students = User::find($enrolled_id);
+
+        $students_sorted = $students->sortBy('lastname');
+        $students_sorted->values()->all();
+
+        return view('admin.students-enrolled', ['students' => $students_sorted, 'subject' => $subject, 'gn' => $group_numbers, 'enrolled' => $enrolled]);
+    }
+
+
     // method use  to view add subject form
     public function addSubject()
     {
@@ -990,7 +1058,42 @@ class AdminController extends Controller
         $students = User::orderBy('lastname', 'asc')
                         ->paginate(10);
 
-        return view('admin.students', ['students' => $students]);
+        $max = StudentPerSubject::find(1);
+
+        return view('admin.students', ['students' => $students, 'max' => $max]);
+    }
+
+
+    // method use to set max student per subject class
+    public function setMaxStudentNumber()
+    {
+        return view('admin.set-max-student-number');
+    }
+
+    // method use to save set max number of student per subject class
+    public function postSetMaxStudentNumber(Request $request)
+    {
+        $request->validate([
+            'limit' =>  'required|numeric'
+        ]);
+
+        $limit = $request['limit'];
+
+        $max = StudentPerSubject::find(1);
+        $max->limit = $limit;
+        $max->save();
+
+        // add activity log here
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Updated max number of student per subjects');
+
+        $students = User::orderBy('lastname', 'asc')
+                        ->paginate(10);
+
+        return redirect()->route('admin.students')->with('success', 'Updated Max Number of Student Per Subject Class to ' . $limit);
+
+
+
+
     }
 
 
