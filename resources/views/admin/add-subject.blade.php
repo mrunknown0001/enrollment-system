@@ -37,6 +37,16 @@
                             <input type="number" name="hours" id="hours" class="form-control underlined" placeholder="Hours per Class" required="">
                         </div>
                         <div class="form-group">
+                            <select name="prerequisite" id="prerequisite" class="form-control underlined">
+                                <option value="">No Prerequisite</option>
+                                @if(count($subjects) > 0)
+                                @foreach($subjects as $s)
+                                <option value="{{ $s->id }}">{{ $s->code }}</option>
+                                @endforeach
+                                @endif
+                            </select>
+                        </div>                        
+                        <div class="form-group">
                             <select name="year_level" id="year_level" class="form-control underlined" required="">
                                 <option value="">Select Year Level</option>
                                 @foreach($yl as $y)

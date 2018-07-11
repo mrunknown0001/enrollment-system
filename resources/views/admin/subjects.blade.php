@@ -50,6 +50,13 @@
 											<p>Description: <strong>{{ $s->description }}</strong></p>
 											<p>Units: <strong>{{ $s->units }}</strong></p>
 											<p>Hours: <strong>{{ $s->hours }}</strong></p>
+											<p>Prerequisites: <strong>
+												@if($s->prerequisites != null)
+													{{ $s->prereq->code }}
+												@else
+													No Prerequisites
+												@endif
+											</strong></p>
 											<p>Year Level: <strong>{{ $s->year_level == 1 ? 'First Year' : 'Second Year' }}</strong></p>
 							            </div>
 							            <div class="modal-footer">

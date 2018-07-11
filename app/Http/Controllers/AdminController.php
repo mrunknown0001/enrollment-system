@@ -815,8 +815,9 @@ class AdminController extends Controller
     public function addSubject()
     {
         $yl = YearLevel::get(['id', 'name']);
+        $subjects = Subject::orderBy('code')->get(['id', 'code']);
 
-        return view('admin.add-subject', ['yl' => $yl]);
+        return view('admin.add-subject', ['yl' => $yl, 'subjects' => $subjects]);
     }
 
 
@@ -837,6 +838,7 @@ class AdminController extends Controller
         $units = $request['units'];
         $hours = $request['hours'];
         $yl = $request['id'];
+        $prereq = $request['prerequisite'];
 
         // save
         $subject = new Subject();
@@ -845,6 +847,7 @@ class AdminController extends Controller
         $subject->units = $units;
         $subject->hours = $hours;
         $subject->year_level = $yl;
+        $subject->prerequisites = $prereq;
         $subject->save();
 
         // add activity log
@@ -860,8 +863,9 @@ class AdminController extends Controller
     {
         $subject = Subject::findorfail($id);
         $yl = YearLevel::get(['id', 'name']);
+        $subjects = Subject::orderBy('code')->get(['id', 'code']);
 
-        return view('admin.update-subject', ['subject' => $subject, 'yl' => $yl]);
+        return view('admin.update-subject', ['subject' => $subject, 'yl' => $yl, 'subjects' => $subjects]);
     }
 
 
@@ -883,6 +887,7 @@ class AdminController extends Controller
         $units = $request['units'];
         $hours = $request['hours'];
         $yl = $request['year_level'];
+        $prereq = $request['prerequisite'];
 
         $subject = Subject::findorfail($id);
 
@@ -901,6 +906,7 @@ class AdminController extends Controller
         $subject->units = $units;
         $subject->hours = $hours;
         $subject->year_level = $yl;
+        $subject->prerequisites = $prereq;
         $subject->save();
 
 
