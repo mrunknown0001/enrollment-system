@@ -97,6 +97,10 @@ class DatabaseSeeder extends Seeder
             'status' => 0
         ]);
 
+        DB::table('student_per_subjects')->insert([
+            'limit' => 40
+        ]);
+
         $this->call([
             SubjectTableSeeder::class,
             CourseTableSeeder::class,

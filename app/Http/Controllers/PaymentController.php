@@ -28,6 +28,8 @@ use App\ActiveSemester;
 use App\YearLevel;
 use App\Assessment;
 use App\Payment as PaymentTable;
+use App\StudentSubject;
+use App\StudentPerSubject;
 
 class PaymentController extends Controller
 {
@@ -196,6 +198,8 @@ class PaymentController extends Controller
             $enroll->save();
 
             // add to student_subjects_sections
+            // check for limit to change number of group just in case
+            $limit = StudentPerSubject::find(1);
 
 
             // add to payment
