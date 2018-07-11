@@ -195,6 +195,9 @@ class PaymentController extends Controller
             }
             $enroll->save();
 
+            // add to student_subjects_sections
+
+
             // add to payment
             $payment = new PaymentTable();
             $payment->student_id = Auth::user()->id;

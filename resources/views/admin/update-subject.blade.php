@@ -42,7 +42,9 @@
                                 <option value="">No Prerequisite</option>
                                 @if(count($subjects) > 0)
                                     @foreach($subjects as $s)
-                                        <option value="{{ $s->id }}" @if(count($subject->prereq) > 0) {{ $subject->prereq->id == $s->id ? 'selected' : '' }} @endif>{{ $s->code }}</option>
+                                        @if($s->id != $subject->id)
+                                            <option value="{{ $s->id }}" @if(count($subject->prereq) > 0) {{ $subject->prereq->id == $s->id ? 'selected' : '' }} @endif>{{ $s->code }}</option>
+                                        @endif
                                     @endforeach
                                 @endif
                             </select>
