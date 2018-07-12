@@ -261,6 +261,9 @@ Route::group(['prefix' => 'faculty'], function () {
 	// rotue to view subjects assignment to a faculty
 	Route::get('/subjects/assignments', 'FacultyController@viewSubjectAssignments')->name('faculty.view.subject.assignments');
 
+	// route to view studetns enrolled in subject
+	Route::get('/subject/{id}/students/enrolled', 'FacultyController@viewSubjectStudents')->name('faculty.view.subject.students');
+
 	// route to view program load of the faculty
 	Route::get('/programs/assignments', 'FacultyController@viewProgramAssignments')->name('faculty.view.program.assignments');
 });

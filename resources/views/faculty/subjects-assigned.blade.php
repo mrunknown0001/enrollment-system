@@ -11,7 +11,7 @@
 @section('content')
 <section class="section">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-12">
 			@if(count($subjects) > 0)
 	            <div class="card card-primary">
 	                <div class="card-header">
@@ -26,6 +26,7 @@
 								<tr>
 									<th>Code</th>
 									<th>Description</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -33,6 +34,9 @@
 								<tr>
 									<td>{{ $s->code }}</td>
 									<td>{{ $s->description }}</td>
+									<td>
+										<a href="{{ route('faculty.view.subject.students', ['id' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Students Enrolled</a>
+									</td>
 								</tr>
 								@endforeach
 								

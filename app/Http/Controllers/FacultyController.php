@@ -11,6 +11,10 @@ use App\SubjectAssignment;
 use App\Subject;
 use App\Program;
 use App\ProgramAssignment;
+use App\SubjectStudent;
+use App\ActiveSemester;
+use App\AcademicYear;
+use App\User;
 
 use App\Http\Controllers\GeneralController;
 
@@ -153,6 +157,38 @@ class FacultyController extends Controller
         return view('faculty.subjects-assigned', ['subjects' => $subjects]);
 
     }
+
+
+    // method use to view students enrolled in subject
+    public function viewSubjectStudents($id = null)
+    {
+        $subject = Subject::find($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // find subject students
+        $subject_students = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->get(['student_id']);
+
+
+        // get group numbers
+        $group_numbers = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->distinct('group_number')
+                            ->get();
+
+
+        $students = User::find($subject_students);
+        $sorted = $students->sortBy('lastname');
+        $sorted->values()->all();
+
+        return view('faculty.subject-students', ['students' => $sorted, 'subject' => $subject, 'sem' => $sem, 'ay' => $ay, 'gn' => $group_numbers]);
+    }
+
 
     // method use to view program assignemnt to the faculty
     public function viewProgramAssignments()
