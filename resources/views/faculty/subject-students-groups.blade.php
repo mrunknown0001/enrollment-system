@@ -16,10 +16,11 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
-                        <p class="title"> Students in {{ $subject->code }} - {{ $subject->description }} </p>
+                        <p class="title"> Groups in {{ $subject->code }} - {{ $subject->description }} </p>
                     </div>
                 </div>
                 <div class="card-block">
+                	{{--
 					@if(count($students) > 0)
 						<table class="table table-bordered">
 							<thead>
@@ -41,6 +42,13 @@
 					@else
 						<p>No Students Enrolled</p>
 					@endif
+					--}}
+					
+		        	@if(count($gn) > 0)
+						@foreach($gn as $g)
+							<a href="#" class="btn btn-primary">Students Group {{ $g->group_number }}</a>
+						@endforeach
+		        	@endif
                 </div>
                 <div class="card-footer"> <small>Students in {{ $subject->code }} - {{ $subject->description }}</small> </div>
             </div>

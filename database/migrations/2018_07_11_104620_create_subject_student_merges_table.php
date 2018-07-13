@@ -18,7 +18,7 @@ class CreateSubjectStudentMergesTable extends Migration
             $table->integer('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->string('subject_student_ids');
-            $table->tinyInteger('acitve')->default(1);
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }

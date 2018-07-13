@@ -859,7 +859,7 @@ class AdminController extends Controller
                             ->where('semester', $sem->id)
                             ->where('subject_id', $subject->id)
                             ->distinct('group_number')
-                            ->get();
+                            ->get(['group_number']);
 
         $enrolled_id = [];
 
@@ -878,6 +878,97 @@ class AdminController extends Controller
         return view('admin.students-enrolled', ['students' => $students_sorted, 'subject' => $subject, 'gn' => $group_numbers, 'enrolled' => $enrolled]);
     }
 
+
+    // route to manage groups in subject students
+    public function manageSubjectStudentsGroup($id = null)
+    {
+        $subject = Subject::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+
+        // get all students enrolled
+        $enrolled = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->get();
+
+        // get distinct group_number in $enrolled colection
+        $group_numbers = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->distinct('group_number')
+                            ->get(['group_number']);
+
+        $gn_count = count($group_numbers);
+
+        $students_group1 = [];        
+        $students_group2 = [];
+        $students_group3 = [];
+
+        // get number of students in each group
+        for($i = 1; $i <= $gn_count; $i++) {
+            if($i == 1) {
+               $students_group1[] = SubjectStudent::where('academic_year_id', $ay->id)
+                                    ->where('semester', $sem->id)
+                                    ->where('subject_id', $subject->id)
+                                    ->where('group_number', $i)
+                                    ->get();
+            }
+
+            if($i == 2) {
+               $students_group2[] = SubjectStudent::where('academic_year_id', $ay->id)
+                                    ->where('semester', $sem->id)
+                                    ->where('subject_id', $subject->id)
+                                    ->where('group_number', $i)
+                                    ->get();
+            }
+
+            if($i == 3) {
+               $students_group3[] = SubjectStudent::where('academic_year_id', $ay->id)
+                                    ->where('semester', $sem->id)
+                                    ->where('subject_id', $subject->id)
+                                    ->where('group_number', $i)
+                                    ->get();
+            }
+        }
+
+
+        // return subject and group numbers
+        return view('admin.subject-group-manager', ['subject' => $subject, 'gn' => $group_numbers, 'students_group1' => $students_group1, 'students_group2' => $students_group2, 'students_group3' => $students_group3 ]);
+
+    }
+
+
+    // method use to save merge students group
+    public function postManageSubjectStudentsGroup(Request $request)
+    {
+        $group[] = $request['group'];
+        $subject_id = $request['subject_id'];
+
+        $subject = Subject::findorfail($subject_id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $first_group = $group[0][0];
+
+        $students_enrolled = [];
+
+
+        $students_enrolled[] = SubjectStudent::where('academic_year_id', $ay->id)
+                                ->where('semester', $sem->id)
+                                ->where('subject_id', $subject->id)
+                                ->whereIn('group_number', $group[0])
+                                ->update([
+                                    'group_number' => $first_group
+                                ]);
+
+
+        return redirect()->route('admin.view.enrolled.students.subject', ['id' => $subject->id])->with('success', 'Group Merged!');
+
+    }
 
     // method use  to view add subject form
     public function addSubject()

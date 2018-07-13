@@ -15,6 +15,7 @@ use App\SubjectStudent;
 use App\ActiveSemester;
 use App\AcademicYear;
 use App\User;
+use App\SubjectStudentMerge;
 
 use App\Http\Controllers\GeneralController;
 
@@ -167,6 +168,18 @@ class FacultyController extends Controller
         $ay = AcademicYear::where('active', 1)->first();
         $sem = ActiveSemester::where('active', 1)->first();
 
+        // check if the assigned subject belongs to the faculty
+        $assigned_subject_ids = SubjectAssignment::where('faculty_id', Auth::user()->id)
+                                ->where('academic_year_id', $ay->id)
+                                ->where('semester_id', $sem->id)
+                                ->where('active', 1)
+                                ->first();
+
+
+        if(count($assigned_subject_ids) < 1) {
+            return redirect()->route('faculty.dashboard')->with('error', 'Invalid Modification Detected!');
+        }
+
         // find subject students
         $subject_students = SubjectStudent::where('academic_year_id', $ay->id)
                             ->where('semester', $sem->id)
@@ -179,14 +192,14 @@ class FacultyController extends Controller
                             ->where('semester', $sem->id)
                             ->where('subject_id', $subject->id)
                             ->distinct('group_number')
-                            ->get();
+                            ->get(['group_number']);
 
 
         $students = User::find($subject_students);
         $sorted = $students->sortBy('lastname');
         $sorted->values()->all();
 
-        return view('faculty.subject-students', ['students' => $sorted, 'subject' => $subject, 'sem' => $sem, 'ay' => $ay, 'gn' => $group_numbers]);
+        return view('faculty.subject-students-groups', ['students' => $sorted, 'subject' => $subject, 'sem' => $sem, 'ay' => $ay, 'gn' => $group_numbers]);
     }
 
 

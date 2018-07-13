@@ -10,7 +10,8 @@
 
 @section('content')
 <p><strong>Students Enrolled in {{ $subject->code }} - {{ $subject->description }}</strong></p>
-<p>Numbers of Group: {{ count($gn) }} | Total Students: {{ count($enrolled) }}</p>
+<p>Numbers of Group: {{ count($gn) }} | Total Students: {{ count($enrolled) }} &nbsp; <a href="{{ route('admin.manage.subject.students.group', ['id' => $subject->id]) }}" class="btn btn-primary btn-sm">Manage Groups</a></p>
+
 @include('includes.all')
 
 @if(count($students) > 0)

@@ -10,4 +10,5 @@
 
 @section('content')
 <p><strong>Faculty Dashboard</strong></p>
+@include('includes.all')
 @endsection

@@ -396,6 +396,12 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view students enrolled in a subject
 	Route::get('/subject/{id}/students/enrolled', 'AdminController@viewEnrolledStudentsSubject')->name('admin.view.enrolled.students.subject');
 
+	// route to manage merge groups in subjects overlapping
+	Route::get('/subject/{id}/students/group/manager', 'AdminController@manageSubjectStudentsGroup')->name('admin.manage.subject.students.group');
+
+	// route to save merge groups
+	Route::post('/subject/students/group/manager', 'AdminController@postManageSubjectStudentsGroup')->name('admin.manage.subject.students.group.post');
+
 	// route to add subject 
 	Route::get('/subject/add', 'AdminController@addSubject')->name('admin.add.subject');
 
