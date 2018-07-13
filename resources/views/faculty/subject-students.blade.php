@@ -13,6 +13,8 @@
     <div class="row">
 
         <div class="col-md-8">
+        	<p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
+        	<p><a href="{{ route('faculty.encode.subject.students.grade', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary">Encode Grade</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">

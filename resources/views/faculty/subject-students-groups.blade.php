@@ -20,33 +20,10 @@
                     </div>
                 </div>
                 <div class="card-block">
-                	{{--
-					@if(count($students) > 0)
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Student Number</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($students as $s)
-									<tr>
-										<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }}</td>
-										<td>{{ $s->student_number }}</td>
-									</tr>
-								@endforeach
-							</tbody>
-							<tfoot></tfoot>
-						</table>
-					@else
-						<p>No Students Enrolled</p>
-					@endif
-					--}}
 					
 		        	@if(count($gn) > 0)
 						@foreach($gn as $g)
-							<a href="#" class="btn btn-primary">Students Group {{ $g->group_number }}</a>
+							<a href="{{ route('faculty.subject.students.enrolled', ['id' => $subject->id, 'gid' => $g->group_number]) }}" class="btn btn-primary">Students Group {{ $g->group_number }}</a>
 						@endforeach
 		        	@endif
                 </div>

@@ -262,10 +262,21 @@ Route::group(['prefix' => 'faculty'], function () {
 	Route::get('/subjects/assignments', 'FacultyController@viewSubjectAssignments')->name('faculty.view.subject.assignments');
 
 	// route to view studetns enrolled in subject
-	Route::get('/subject/{id}/students/enrolled', 'FacultyController@viewSubjectStudents')->name('faculty.view.subject.students');
+	Route::get('/subject/{id}/students/group', 'FacultyController@viewSubjectStudents')->name('faculty.view.subject.students.group');
+
+	// route to view students in a group
+	Route::get('/subject/{id}/students/group/{gid}/enrolled', 'FacultyController@viewSubjectStudentsEnrolled')->name('faculty.subject.students.enrolled');
+
+	// route to encode grades of students
+	Route::get('/subject/{id}/students/group/{gid}/encode', 'FacultyController@encodeSubjectStudentsGrade')->name('faculty.encode.subject.students.grade');
+
+	// route to save encoded grades
+	Route::post('/subject/students/group/encode', 'FacultyController@postEncodeSubjectStudentsGrade')->name('faculty.encode.subject.students.grade.post');
 
 	// route to view program load of the faculty
 	Route::get('/programs/assignments', 'FacultyController@viewProgramAssignments')->name('faculty.view.program.assignments');
+
+
 });
 
 

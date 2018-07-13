@@ -180,12 +180,6 @@ class FacultyController extends Controller
             return redirect()->route('faculty.dashboard')->with('error', 'Invalid Modification Detected!');
         }
 
-        // find subject students
-        $subject_students = SubjectStudent::where('academic_year_id', $ay->id)
-                            ->where('semester', $sem->id)
-                            ->where('subject_id', $subject->id)
-                            ->get(['student_id']);
-
 
         // get group numbers
         $group_numbers = SubjectStudent::where('academic_year_id', $ay->id)
@@ -195,11 +189,72 @@ class FacultyController extends Controller
                             ->get(['group_number']);
 
 
+
+
+        return view('faculty.subject-students-groups', ['subject' => $subject, 'sem' => $sem, 'ay' => $ay, 'gn' => $group_numbers]);
+    }
+
+
+
+    // method use to view students in a subject 
+    public function viewSubjectStudentsEnrolled($id = null, $gid = null)
+    {
+        $subject = Subject::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // find subject students
+        $subject_students = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->where('group_number', $gid)
+                            ->get(['student_id']);
+
+        if(count($subject_students) < 1) {
+            return abort(404);
+        }
+
         $students = User::find($subject_students);
         $sorted = $students->sortBy('lastname');
         $sorted->values()->all();
 
-        return view('faculty.subject-students-groups', ['students' => $sorted, 'subject' => $subject, 'sem' => $sem, 'ay' => $ay, 'gn' => $group_numbers]);
+        return view('faculty.subject-students', ['subject' => $subject, 'students' => $sorted, 'sem' => $sem, 'ay' => $ay, 'gid' => $gid]);
+
+    }
+
+
+    // method use to encode grade
+    public function encodeSubjectStudentsGrade($id = null, $gid = null)
+    {
+        $subject = Subject::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // find subject students
+        $subject_students = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->where('group_number', $gid)
+                            ->get(['student_id']);
+
+        if(count($subject_students) < 1) {
+            return abort(404);
+        }
+
+        $students = User::find($subject_students);
+        $sorted = $students->sortBy('lastname');
+        $sorted->values()->all();
+
+        return view('faculty.subject-students-encode-grades', ['subject' => $subject, 'students' => $sorted, 'sem' => $sem, 'ay' => $ay, 'gid' => $gid]);
+    }
+
+
+    // method use to save grades
+    public function postEncodeSubjectStudentsGrade(Request $request)
+    {
+        return $request;
     }
 
 
