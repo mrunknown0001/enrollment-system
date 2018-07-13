@@ -26,6 +26,7 @@
 							{{ csrf_field() }}
 							<input type="hidden" name="subject_id" value="{{ $subject->id }}">
 							<input type="hidden" name="semester_id" value="{{ $sem->id }}">
+							<input type="hidden" name="group_number" value="{{ $gid }}">
 						<table class="table">
 							<thead>
 								<tr class="text-center">

@@ -23,7 +23,7 @@ class CreateGradesTable extends Migration
             $table->integer('academic_year_id')->unsigned();
             $table->integer('semester_id')->unsigned();
             $table->integer('term_id')->unsigned();
-            $table->float('grade', 2,2);
+            $table->float('grade', 8,2);
             $table->string('remarks');
             $table->timestamps();
         });

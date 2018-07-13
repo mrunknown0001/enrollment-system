@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRemarksTable extends Migration
+class CreateGradeEncodeLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateRemarksTable extends Migration
      */
     public function up()
     {
-        Schema::create('remarks', function (Blueprint $table) {
+        Schema::create('grade_encode_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id')->unsigned();
-            $table->foreign('student_id')->references('id')->on('users');
+            $table->integer('faculty_id')->unsigned();
+            $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->integer('academic_year_id')->unsigned();
             $table->integer('semester_id')->unsigned();
-            $table->integer('program_id')->unsigned();
-            $table->float('grade', 8,2);
-            $table->string('remarks');
+            $table->integer('year_level_id')->unsigned();
+            $table->integer('subject_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateRemarksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('remarks');
+        Schema::dropIfExists('grade_encode_logs');
     }
 }

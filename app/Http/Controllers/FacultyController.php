@@ -16,6 +16,8 @@ use App\ActiveSemester;
 use App\AcademicYear;
 use App\User;
 use App\SubjectStudentMerge;
+use App\YearLevel;
+use App\Grade;
 
 use App\Http\Controllers\GeneralController;
 
@@ -254,7 +256,57 @@ class FacultyController extends Controller
     // method use to save grades
     public function postEncodeSubjectStudentsGrade(Request $request)
     {
-        return $request;
+        $subject_id = $request['subject_id'];
+        $gid = $request['group_number'];
+
+        $subject = Subject::findorfail($subject_id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+
+        $faculty = Faculty::find(Auth::guard('faculty')->user()->id);
+
+        // get all grade inputs
+        // find all students enrolled in subjects
+        $student_ids = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->where('group_number', $gid)
+                            ->get(['student_id']);
+
+        $students = User::find($student_ids);
+
+        // find student number and save the grade
+        foreach($students as $s) {
+            $term = 1;
+            $remark = 'Failed';
+            foreach($request[$s->student_number] as $g) {
+                if($g > 75) {
+                    $remark = 'Passed';
+                }
+
+                $grade = new Grade();
+                $grade->student_id = $s->id;
+                $grade->faculty_id = $faculty->id;
+                $grade->subject_id = $subject->id;
+                $grade->year_level_id = $subject->year_level;
+                $grade->academic_year_id = $ay->id;
+                $grade->semester_id = $sem->id;
+                $grade->term_id = $term;
+                $grade->grade = $g;
+                $grade->remarks = $remark;
+                $grade->save();
+
+                $term += 1;
+            }
+            
+        }
+
+        // add faculty encode grades log
+
+        // successfull addedto grades
+
     }
 
 
