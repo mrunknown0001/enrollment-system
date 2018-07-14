@@ -20,6 +20,7 @@ use App\PricePerUnit;
 use App\AcademicYear;
 use App\ActiveSemester;
 use App\EnrollmentSetting;
+use App\Grade;
 
 use App\Http\Controllers\GeneralController;
 
@@ -217,8 +218,39 @@ class StudentController extends Controller
     // method use to view Grades
     public function viewGrades()
     {
-        return view('student.grades');
+
+        // get all subjects enrolled 
+        $assessment = Assessment::where('student_id', Auth::user()->id)
+                                ->where('paid', 1)
+                                ->where('active', 1)
+                                ->first();
+        $subjects = null;
+        if(count($assessment) > 0) {
+            foreach(unserialize($assessment->subject_ids) as $id) {
+                $subjects = Subject::find($id);
+            }
+        }
+
+        return view('student.grades', ['subjects' => $subjects]);
     }
+
+    // method use to view grades of subject
+    public function viewSubjectGrades($id = null)
+    {
+        $subject = Subject::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $grades = Grade::where('student_id', Auth::user()->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('subject_id', $subject->id)
+                    ->get();
+
+        return view('student.grades-view', ['subject' => $subject, 'ay' => $ay, 'sem' => $sem, 'grades' => $grades]);
+    }
+
 
     // method use to view remarks
     public function viewRemarks()
