@@ -67,7 +67,7 @@
 											
 										</td>
 										<td>
-											<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+											<a href="{{ route('faculty.update.subject.student.grades', ['id' => $subject->id, 'sid' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
 										</td>
 									</tr>
 								@endforeach

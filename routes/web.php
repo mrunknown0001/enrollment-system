@@ -280,6 +280,9 @@ Route::group(['prefix' => 'faculty'], function () {
 	// route to view grades of students per subject
 	Route::get('/subject/{id}/students/group/{gid}/grades/view', 'FacultyController@viewGradesStudentsSubject')->name('faculty.view.grades.students.subject');
 
+	// route to update individual students grades
+	Route::get('/subject/{id}/student/{sid}/grades/update', 'FacultyController@updateSubjectStudentGrades')->name('faculty.update.subject.student.grades');
+
 	// route to view program load of the faculty
 	Route::get('/programs/assignments', 'FacultyController@viewProgramAssignments')->name('faculty.view.program.assignments');
 

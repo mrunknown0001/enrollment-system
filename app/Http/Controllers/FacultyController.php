@@ -368,6 +368,26 @@ class FacultyController extends Controller
     }
 
 
+    // method use to update grades of student in a subject
+    public function updateSubjectStudentGrades($id = null, $sid = null)
+    {
+        $subject = Subject::findorfail($id);
+        $student = User::findorfail($sid);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get the grade of teh student in a subject
+        $grades = Grade::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('subject_id', $subject->id)
+                    ->get();
+
+
+    }
+
+
     // method use to view program assignemnt to the faculty
     public function viewProgramAssignments()
     {
