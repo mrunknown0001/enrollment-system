@@ -965,6 +965,9 @@ class AdminController extends Controller
                                     'group_number' => $first_group
                                 ]);
 
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Merged Subject Students');
+
 
         return redirect()->route('admin.view.enrolled.students.subject', ['id' => $subject->id])->with('success', 'Group Merged!');
 

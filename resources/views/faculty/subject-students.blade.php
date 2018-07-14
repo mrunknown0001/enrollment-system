@@ -14,8 +14,13 @@
 
         <div class="col-md-8">
         	<p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
-        	<p><a href="{{ route('faculty.encode.subject.students.grade', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary">Encode Grade</a>
-        	<a href="#" class="btn btn-primary">View Grades</a></p>
+        	<p>
+        		@if(count($grade_log) > 0)
+        		<a href="#" class="btn btn-primary">View Grades</a>
+				@else
+        		<a href="{{ route('faculty.encode.subject.students.grade', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary">Encode Grade</a>
+        		@endif
+        	</p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">

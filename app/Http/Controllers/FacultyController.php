@@ -18,6 +18,8 @@ use App\User;
 use App\SubjectStudentMerge;
 use App\YearLevel;
 use App\Grade;
+use App\GradeEncodeLog;
+
 
 use App\Http\Controllers\GeneralController;
 
@@ -206,6 +208,14 @@ class FacultyController extends Controller
         $ay = AcademicYear::where('active', 1)->first();
         $sem = ActiveSemester::where('active', 1)->first();
 
+
+        $grade_log = GradeEncodeLog::where('faculty_id', Auth::guard('faculty')->user()->id)
+                            ->where('academic_year_id', $ay->id)
+                            ->where('semester_id', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->first();
+
+
         // find subject students
         $subject_students = SubjectStudent::where('academic_year_id', $ay->id)
                             ->where('semester', $sem->id)
@@ -221,7 +231,7 @@ class FacultyController extends Controller
         $sorted = $students->sortBy('lastname');
         $sorted->values()->all();
 
-        return view('faculty.subject-students', ['subject' => $subject, 'students' => $sorted, 'sem' => $sem, 'ay' => $ay, 'gid' => $gid]);
+        return view('faculty.subject-students', ['subject' => $subject, 'students' => $sorted, 'sem' => $sem, 'ay' => $ay, 'gid' => $gid, 'grade_log' => $grade_log]);
 
     }
 
@@ -302,6 +312,8 @@ class FacultyController extends Controller
             }
             
         }
+
+        // add log to the grade encode log for faculty
 
         // add faculty encode grades log
 
