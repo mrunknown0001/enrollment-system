@@ -13,7 +13,7 @@
 <section class="section">
 	<div class="row">
 		<div class="col-md-12">
-
+			@include('includes.all')
 			@if($es == true)
 				@if(count($courses) > 0 && count($programs) > 0)
 					@if(Auth::user()->info->enrolling_for == null) 

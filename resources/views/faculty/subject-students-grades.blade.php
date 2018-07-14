@@ -12,15 +12,8 @@
 <section class="section">
     <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-12">
         	<p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
-        	<p>
-        		@if(count($grade_log) > 0)
-        		<a href="{{ route('faculty.view.grades.students.subject', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary">View Grades</a>
-				@else
-        		<a href="{{ route('faculty.encode.subject.students.grade', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary">Encode Grade</a>
-        		@endif
-        	</p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
@@ -29,23 +22,59 @@
                 </div>
                 <div class="card-block">
 					@if(count($students) > 0)
-						<table class="table table-bordered">
+						<table class="table">
 							<thead>
+								<tr class="text-center">
+									<th rowspan="2">Students</th>
+									<th colspan="4">Terms</th>
+								</tr>
 								<tr>
-									<th>Name</th>
-									<th>Student Number</th>
+									<th>Prelim</th>
+									<th>Midterm</th>
+									<th>Semi Final</th>
+									<th>Final</th>
+									<th>Remark</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach($students as $s)
 									<tr>
-										<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }}</td>
-										<td>{{ $s->student_number }}</td>
+										<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }} -
+											{{ $s->student_number }}
+										</td>
+
+										@foreach($grades as $gr)
+											@foreach($gr as $g)
+												@if($s->id == $g->student_id)
+													@if($g->term_id == 1)
+														<td>{{ $g->grade }}</td>
+													@endif
+													@if($g->term_id == 2)
+														<td>{{ $g->grade }}</td>
+													@endif
+													@if($g->term_id == 3)
+														<td>{{ $g->grade }}</td>
+													@endif
+													@if($g->term_id == 4)
+														<td>{{ $g->grade }}</td>
+													@endif
+												@endif
+											@endforeach
+										@endforeach
+
+										<td>
+											
+										</td>
+										<td>
+											<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+										</td>
 									</tr>
 								@endforeach
 							</tbody>
 							<tfoot></tfoot>
 						</table>
+
 					@else
 						<p>No Students Enrolled</p>
 					@endif

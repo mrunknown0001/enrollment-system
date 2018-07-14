@@ -273,6 +273,10 @@ Route::group(['prefix' => 'faculty'], function () {
 	// route to save encoded grades
 	Route::post('/subject/students/group/encode', 'FacultyController@postEncodeSubjectStudentsGrade')->name('faculty.encode.subject.students.grade.post');
 
+
+	// route to view grades of students per subject
+	Route::get('/subject/{id}/students/group/{gid}/grades/view', 'FacultyController@viewGradesStudentsSubject')->name('faculty.view.grades.students.subject');
+
 	// route to view program load of the faculty
 	Route::get('/programs/assignments', 'FacultyController@viewProgramAssignments')->name('faculty.view.program.assignments');
 

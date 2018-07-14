@@ -267,7 +267,7 @@ class PaymentController extends Controller
                             $new_student->year_level_id = $yl->id;
                             $new_student->subject_id = $sub->id;
                             $new_student->group_number = $group_number;
-                            $new_student->number_of_students = last_number;
+                            $new_student->number_of_students = $last_number;
                             $new_student->save();
                         }
                     }

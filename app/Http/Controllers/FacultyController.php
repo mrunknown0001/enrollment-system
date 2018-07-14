@@ -314,11 +314,57 @@ class FacultyController extends Controller
         }
 
         // add log to the grade encode log for faculty
+        $grade_log = new GradeEncodeLog();
+        $grade_log->faculty_id = $faculty->id;
+        $grade_log->academic_year_id = $ay->id;
+        $grade_log->semester_id = $sem->id;
+        $grade_log->year_level_id = $subject->year_level;
+        $grade_log->subject_id = $subject->id;
+        $grade_log->save();
 
-        // add faculty encode grades log
+        // activity log
+        GeneralController::activity_log(Auth::guard('faculty')->user()->id, 2, 'Faculty Encoded Grades in ' . $subject->code);
 
         // successfull addedto grades
+        return redirect()->route('faculty.subject.students.enrolled', ['id' => $subject->id, 'gid' => $gid])->with('success', 'Grades Encoded!');
 
+    }
+
+
+    // method use to view grades of students per subject
+    public function viewGradesStudentsSubject($id = null, $gid = null)
+    {
+        $subject = Subject::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // find subject students
+        $subject_students = SubjectStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('subject_id', $subject->id)
+                            ->where('group_number', $gid)
+                            ->get(['student_id']);
+
+
+        $students = User::find($subject_students);
+
+        // get grades of each students fro prelim to final terms
+        $grades = null;
+
+        foreach($students as $std) {
+            // find all grades per subject in current sem and academic year
+            $grades[] = Grade::where('student_id', $std->id)
+                        ->where('subject_id', $subject->id)
+                        ->where('academic_year_id', $ay->id)
+                        ->where('semester_id', $sem->id)
+                        ->get();
+        }
+
+        // return $grades;
+
+        // return to view grades
+        return view('faculty.subject-students-grades', ['subject' => $subject, 'students' => $students, 'ay' => $ay, 'sem' => $sem, 'grades' => $grades]);
     }
 
 
