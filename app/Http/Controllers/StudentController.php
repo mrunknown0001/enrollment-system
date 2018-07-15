@@ -21,6 +21,7 @@ use App\AcademicYear;
 use App\ActiveSemester;
 use App\EnrollmentSetting;
 use App\Grade;
+use App\Remark;
 
 use App\Http\Controllers\GeneralController;
 
@@ -255,7 +256,35 @@ class StudentController extends Controller
     // method use to view remarks
     public function viewRemarks()
     {
-        return view('student.remarks');
+        $student = User::find(Auth::user()->id);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $assessment = Assessment::where('student_id', $student->id)
+                            ->where('paid', 1)
+                            ->where('active', 1)
+                            ->first();
+
+        if(count($assessment) < 1) {
+            return redirect()->route('student.dashboard')->with('error', 'Not Yet Enrolled!');
+        }
+
+        $program = Program::find($assessment->program_id);
+
+        // find the remark
+        $remark = Remark::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('program_id', $program->id)
+                    ->first();
+
+        return view('student.remarks', [
+            'student' => $student,
+            'program' => $program,
+            'ay' => $ay,
+            'sem' => $sem,
+            'remark' => $remark
+        ]);
     }
 
 
