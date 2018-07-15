@@ -21,6 +21,7 @@
                     </div>
                 </div>
                 <div class="card-block">
+                	@include('includes.all')
 					@if(count($students) > 0)
 						<table class="table">
 							<thead>
@@ -33,7 +34,6 @@
 									<th>Midterm</th>
 									<th>Semi Final</th>
 									<th>Final</th>
-									<th>Remark</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -62,12 +62,8 @@
 												@endif
 											@endforeach
 										@endforeach
-
 										<td>
-											
-										</td>
-										<td>
-											<a href="{{ route('faculty.update.subject.student.grades', ['id' => $subject->id, 'sid' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+											<a href="{{ route('faculty.update.subject.student.grades', ['id' => $subject->id, 'gid' => $gid, 'sid' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
 										</td>
 									</tr>
 								@endforeach

@@ -364,12 +364,12 @@ class FacultyController extends Controller
         // return $grades;
 
         // return to view grades
-        return view('faculty.subject-students-grades', ['subject' => $subject, 'students' => $students, 'ay' => $ay, 'sem' => $sem, 'grades' => $grades]);
+        return view('faculty.subject-students-grades', ['subject' => $subject, 'students' => $students, 'ay' => $ay, 'sem' => $sem, 'grades' => $grades, 'gid' => $gid]);
     }
 
 
     // method use to update grades of student in a subject
-    public function updateSubjectStudentGrades($id = null, $sid = null)
+    public function updateSubjectStudentGrades($id = null, $gid = null, $sid = null)
     {
         $subject = Subject::findorfail($id);
         $student = User::findorfail($sid);
@@ -390,8 +390,75 @@ class FacultyController extends Controller
             'student' => $student,
             'ay' => $ay,
             'sem' => $sem,
-            'grades' => $grade
+            'grades' => $grades,
+            'gid' => $gid
         ]);
+
+    }
+
+    // method use to save update in grades
+    public function postUpdateSubjectStuedentGrades(Request $request)
+    {
+        $request->validate([
+            'prelim' => 'required|numeric',
+            'midterm' => 'required|numeric',
+            'semi_final' => 'required|numeric',
+            'final' => 'required|numeric'
+        ]);
+
+        $subject_id = $request['subject_id'];
+        $student_id = $request['student_id'];
+        $gid = $request['gid'];
+
+        $prelim = $request['prelim'];
+        $midterm = $request['midterm'];
+        $semi_final = $request['semi_final'];
+        $final = $request['final'];
+
+        $subject = Subject::find($subject_id);
+        $student = User::find($student_id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get all the grades
+        $grades = null;
+
+        $grades = Grade::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('subject_id', $subject->id)
+                    ->get();
+
+        // update grades
+        foreach($grades as $g) {
+            if($g->term_id == 1) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $prelim;
+                $g_u->save();
+            }
+            if($g->term_id == 2) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $midterm;
+                $g_u->save();
+            }
+            if($g->term_id == 3) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $semi_final;
+                $g_u->save();
+            }
+            if($g->term_id == 4) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $final;
+                $g_u->save();
+            }
+        }
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('faculty')->user()->id, 2, 'Faculty Updated Grade');
+
+        // return to grades
+        return redirect()->route('faculty.view.grades.students.subject', ['id' => $subject->id, 'gid' => $gid])->with('success', 'Grade Updated!');
 
     }
 
