@@ -26,18 +26,23 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $subject->id }}">
                         <div class="form-group">
+                            <label>Code</label>
                             <input type="text" name="code" id="code" class="form-control underlined" value="{{ $subject->code }}" placeholder="Subject Code" required="">
                         </div>
                         <div class="form-group">
+                            <label>Description</label>
                             <textarea name="description" id="description" class="form-control underlined" placeholder="Subject Description">{{ $subject->description }}</textarea>
                         </div>
                         <div class="form-group">
+                            <label>Number of Units</label>
                             <input type="number" name="units" id="units" class="form-control underlined" value="{{ $subject->units }}" placeholder="Number of Units" required="">
                         </div>
                         <div class="form-group">
+                            <label>Number of Hours</label>
                             <input type="number" name="hours" id="hours" class="form-control underlined" value="{{ $subject->hours }}" placeholder="Hours per class" required="">
                         </div>
                         <div class="form-group">
+                            <label>Prerequisite</label>
                             <select name="prerequisite" id="prerequisite" class="form-control underlined">
                                 <option value="">No Prerequisite</option>
                                 @if(count($subjects) > 0)

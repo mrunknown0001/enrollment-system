@@ -26,12 +26,15 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $course->id }}">
                         <div class="form-group">
+                            <label for="title">Title</label>
                             <input type="text" name="title" id="title" class="form-control underlined" value="{{ $course->title }}" placeholder="Course Title" required="">
                         </div>
                         <div class="form-group">
+                            <label for="code">Code</label>
                             <input type="text" name="code" id="code" class="form-control underlined" value="{{ $course->code }}" placeholder="Course Code" required="">
                         </div>
                         <div class="form-group">
+                            <label for="description">Description</label>
                             <textarea name="description" id="description" class="form-control underlined" placeholder="Course Description">{{ $course->description }}</textarea>
                         </div>
                         <div class="form-group">

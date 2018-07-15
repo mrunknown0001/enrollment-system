@@ -180,6 +180,9 @@ Route::group(['prefix' => 'registrar'], function () {
 	// route to view students in a course in year level
 	Route::get('/course/{course_id}/year-level/{yl_id}/students/enrolled', 'RegistrarController@viewCourseYearLevelEnrolled')->name('registrar.view.course.year.level.enrolled');
 
+	// route to view grades of students 
+	Route::get('/course/{id}/student/{sid}/grades', 'RegistrarController@viewCourseStudentGrades')->name('registrar.view.course.student.grades');
+
 	// route to view programs
 	Route::get('/programs', 'RegistrarController@viewPrograms')->name('registrar.view.programs');
 

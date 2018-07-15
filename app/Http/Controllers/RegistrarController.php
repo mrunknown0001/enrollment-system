@@ -17,6 +17,9 @@ use App\User;
 use App\AcademicYear;
 use App\Remark;
 use App\ActiveSemester;
+use App\Assessment;
+use App\Subject;
+use App\Grade;
 
 class RegistrarController extends Controller
 {
@@ -166,6 +169,41 @@ class RegistrarController extends Controller
                     ->get();
 
         return view('registrar.course-year-level-students', ['course' => $course, 'yl' => $yl, 'students' => $students]);
+    }
+
+
+    // route to view grades of enrolled in a course
+    public function viewCourseStudentGrades($id = null, $sid = null)
+    {
+        $course = Course::findorfail($id);
+        $student = User::findorfail($sid);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get the assessment
+        $assessment = Assessment::where('student_id', $student->id)
+                            ->where('academic_year_id', $ay->id)
+                            ->where('semester_id', $sem->id)
+                            ->where('paid', 1)
+                            ->where('active', 1)
+                            ->first();
+        
+        $subject_ids = unserialize($assessment->subject_ids);
+
+        $subjects = Subject::find($subject_ids);
+
+        // get the grades of each subject
+        $grades = null;
+
+        foreach($subjects as $sub) {
+            $grades[] = Grade::where('student_id', $student->id)
+                            ->where('academic_year_id', $ay->id)
+                            ->where('semester_id', $sem->id)
+                            ->where('subject_id', $sub->id)
+                            ->get();
+        }
+
+        return view('registrar.student-grades', ['course' => $course, 'student' => $student, 'ay' => $ay, 'sem' => $sem, 'grades' => $grades, 'subjects' => $subjects]);
     }
 
 

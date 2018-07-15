@@ -35,7 +35,7 @@
 				</div>
 				&nbsp;
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Save</button>
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Activate Enrollment</button>
 				</div>
         	</form>
         	<hr>
@@ -83,7 +83,7 @@
 
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Activate Selected</button>
+							<button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Activate Selected For Enrollment</button>
 						</div>
 					</form>
                 </div>
