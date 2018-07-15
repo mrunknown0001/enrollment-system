@@ -15,6 +15,8 @@ use App\YearLevel;
 use App\StudentInfo;
 use App\User;
 use App\AcademicYear;
+use App\Remark;
+use App\ActiveSemester;
 
 class RegistrarController extends Controller
 {
@@ -190,6 +192,25 @@ class RegistrarController extends Controller
                     ->get();
 
         return view('registrar.program-students', ['program' => $program, 'students' => $students]);
+    }
+
+
+    // method use to view student remarks in a program
+    public function viewStudentProgramRemarks($id = null, $pid = null)
+    {
+        $student = User::findorfail($id);
+        $program = Program::findorfail($pid);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $remarks = Remark::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('program_id', $program->id)
+                    ->first();
+
+        return view('registrar.student-program-remarks', ['student' => $student, 'program' => $program, 'ay' => $ay, 'sem' => $sem, 'remark' => $remarks]);
     }
 
 

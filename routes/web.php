@@ -186,6 +186,9 @@ Route::group(['prefix' => 'registrar'], function () {
 	// route to view programs enrolled students
 	Route::get('/program/{id}/students/enrolled', 'RegistrarController@viewProgramEnrolled')->name('registrar.view.program.enrolled');
 
+	// route to view remarks of students in program
+	Route::get('/student/{id}/program/{pid}/remarks', 'RegistrarController@viewStudentProgramRemarks')->name('registrar.view.student.program.remarks');
+
 	// route to view student info
 	Route::get('/student/{id}/{sn}/details', 'RegistrarController@viewStudentDetails')->name('registrar.view.student.details');
 

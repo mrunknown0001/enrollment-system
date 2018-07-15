@@ -34,7 +34,9 @@
 									<tr>
 										<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }}</td>
 										<td>{{ $s->student_number }}</td>
-										<td><a href="{{ route('registrar.view.student.details', ['id' => $s->id, 'sn' => $s->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Info</a></td>
+										<td><a href="{{ route('registrar.view.student.details', ['id' => $s->id, 'sn' => $s->student_number]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Info</a>
+										<a href="{{ route('registrar.view.student.program.remarks', ['id' => $s->id, 'pid' => $program->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Remarks</a>
+										</td>
 									</tr>
 								@endforeach
 							</tbody>
