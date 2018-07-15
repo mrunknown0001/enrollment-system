@@ -82,7 +82,7 @@ Route::group(['prefix' => 'student'], function () {
 	// student dashboard
 	Route::get('/dashboard', 'StudentController@dashboard')->name('student.dashboard');
 
-	// rotue to view profile of the student
+	// route to view profile of the student
 	Route::get('/profile', 'StudentController@profile')->name('student.profile');
 
 	// route to view profile update
@@ -94,7 +94,7 @@ Route::group(['prefix' => 'student'], function () {
 	// route to view change password form
 	Route::get('/password/change', 'StudentController@changePassword')->name('student.password.change');
 
-	// rotue to save change password
+	// route to save change password
 	Route::post('/password/change', 'StudentController@postChangePassword')->name('student.password.change.post');
 
 	// route to save what to enroll
@@ -118,7 +118,7 @@ Route::group(['prefix' => 'student'], function () {
 	// route to view program enrolled
 	Route::get('/program/enrolled', 'StudentController@viewProgram')->name('student.programs');
 
-	// rotue to enrollment: setting of course/program to enroll
+	// route to enrollment: setting of course/program to enroll
 	Route::get('/enroll', 'StudentController@viewEnroll')->name('student.enroll');
 
 	// route to save enroll assessment in program
@@ -156,13 +156,13 @@ Route::group(['prefix' => 'registrar'], function () {
 	// route use toview profile
 	Route::get('/profile', 'RegistrarController@profile')->name('registrar.profile');
 
-	// rotue use to view profile update form
+	// route use to view profile update form
 	Route::get('/profile/update', 'RegistrarController@updateProfile')->name('registrar.profile.update');
 
 	// route use to update profile of registrar
 	Route::post('/profile/update', 'RegistrarController@postUpdateProfile')->name('registrar.profile.update.post');
 
-	// rotue use to view password change form
+	// route use to view password change form
 	Route::get('/password/change', 'RegistrarController@changePassword')->name('registrar.password.change');
 
 	// route to change password of registrar
@@ -174,16 +174,16 @@ Route::group(['prefix' => 'registrar'], function () {
 	// route to view courses 
 	Route::get('/courses', 'RegistrarController@viewCourses')->name('registrar.view.courses');
 
-	// rotue to view course year level
+	// route to view course year level
 	Route::get('/course/{id}/year-level', 'RegistrarController@viewCourseYearLevel')->name('registrar.view.course.year.level');
 
-	// rotue to view students in a course in year level
+	// route to view students in a course in year level
 	Route::get('/course/{course_id}/year-level/{yl_id}/students/enrolled', 'RegistrarController@viewCourseYearLevelEnrolled')->name('registrar.view.course.year.level.enrolled');
 
 	// route to view programs
 	Route::get('/programs', 'RegistrarController@viewPrograms')->name('registrar.view.programs');
 
-	// rotue to view programs enrolled students
+	// route to view programs enrolled students
 	Route::get('/program/{id}/students/enrolled', 'RegistrarController@viewProgramEnrolled')->name('registrar.view.program.enrolled');
 
 	// route to view student info
@@ -255,13 +255,13 @@ Route::group(['prefix' => 'faculty'], function () {
 	// route to update faculty form
 	Route::post('/profile/update', 'FacultyController@postUpdateProfile')->name('faculty.profile.update.post');
 
-	// rotue view password change form
+	// route view password change form
 	Route::get('/password/change', 'FacultyController@changePassword')->name('faculty.password.change');
 
-	// rotue to save change password of faculty
+	// route to save change password of faculty
 	Route::post('/password/change', 'FacultyController@postChangePassword')->name('faculty.password.change.post');
 
-	// rotue to view subjects assignment to a faculty
+	// route to view subjects assignment to a faculty
 	Route::get('/subjects/assignments', 'FacultyController@viewSubjectAssignments')->name('faculty.view.subject.assignments');
 
 	// route to view studetns enrolled in subject
@@ -289,6 +289,22 @@ Route::group(['prefix' => 'faculty'], function () {
 	Route::get('/programs/assignments', 'FacultyController@viewProgramAssignments')->name('faculty.view.program.assignments');
 
 	// route to view students enrolled in a program
+	Route::get('/program/{id}/students', 'FacultyController@viewProgramStudents')->name('faculty.view.program.students');
+
+	// route to encode grades of the students in the program
+	Route::get('/program/{id}/students/remarks/encode', 'FacultyController@encodeProgramRemarks')->name('faculty.encode.program.remarks');
+
+	// route to save remarks of students in a program
+	Route::post('/program/subjects/remarks/encode', 'FacultyController@postEncodeProgramRemarks')->name('faculty.encode.program.remarks.post');
+
+	// route to view remarks of students in a program
+	Route::get('/program/{id}/students/remarks/view', 'FacultyController@viewProgramStudentsRemarks')->name('faculty.view.program.students.remarks');
+
+	// route to update remark of students
+	Route::get('/program/{id}/students/{sid}/remarks/update', 'FacultyController@updateProgramStudentRemarks')->name('faculty.update.progra.student.remarks');
+
+	// route to save update of remark
+	Route::post('/program/student/remarks/update', 'FacultyController@postUpdateProgramStudentRemarks')->name('faculty.update.progra.student.remarks.post');
 
 });
 
@@ -305,19 +321,19 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view admin profile
 	Route::get('/profile', 'AdminController@profile')->name('admin.profile');
 
-	// rotue to view update profile
+	// route to view update profile
 	Route::get('/profile/update', 'AdminController@profielUpdate')->name('admin.profile.update');
 
-	// rotue to update profile
+	// route to update profile
 	Route::post('/profile/update', 'AdminController@postProfileUpdate')->name('admin.profile.update.post');
 
-	// rotue to change password view
+	// route to change password view
 	Route::get('/password/change', 'AdminController@changePassword')->name('admin.change.password');
 
 	// route to change password of admin
 	Route::post('/password/change', 'AdminController@postChangePassword')->name('admin.change.password.post');
 
-	// rotue to view activity logs
+	// route to view activity logs
 	Route::get('/activity/logs', 'AdminController@activityLog')->name('admin.activity.logs');
 
 	// route to view cashiers and other operations
@@ -362,7 +378,7 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to add program load to faculty
 	Route::get('/user/faculty/{id}/load/program/add', 'AdminController@addProgramLoadFaculty')->name('admin.add.program.load.faculty');
 
-	// rotue to save program load to faculty
+	// route to save program load to faculty
 	Route::post('/user/faculty/load/program/add', 'AdminController@postAddProgramLoadFaculty')->name('admin.add.program.load.faculty.post');
 
 	// route to update load in faculty
@@ -447,7 +463,7 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to select subjects
 	Route::get('/subjects/select', 'AdminController@selectSubjects')->name('admin.select.subjects');
 
-	// rotue to save select subjects in enrollment
+	// route to save select subjects in enrollment
 	Route::post('/subjects/select', 'AdminController@postSelectSubjects')->name('admin.select.subjects.post');
 
 	// route to view all students
@@ -468,10 +484,10 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view add year level form
 	Route::get('/year-level/add', 'AdminController@addYearLevel')->name('admin.add.year.level');
 
-	// rotue ot save new year Level
+	// route ot save new year Level
 	Route::post('/year-level/add', 'AdminController@postAddYearLevel')->name('admin.add.year.level.post');
 
-	// rotue to view update form year level
+	// route to view update form year level
 	Route::get('/year-level/{id}/update', 'AdminController@updateYearLevel')->name('admin.update.year.level');
 
 	// route to save update on year level
@@ -488,7 +504,7 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to add save academic year
 	Route::post('/academic-year/add', 'AdminController@postAddAcademicYear')->name('admin.add.academic.year.post');
 
-	// rotue to close academic year
+	// route to close academic year
 	Route::post('/academic-year/close', 'AdminController@postCloseAcademicYear')->name('admin.close.academic.year.post');
 
 
@@ -501,7 +517,7 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view settings in rates and fees
 	Route::get('/rates-fees/settings', 'AdminController@viewRateFeeSettings')->name('admin.rate.fee.settings');
 
-	// rotue to add misc fee form
+	// route to add misc fee form
 	Route::get('/rates-fees/add', 'AdminController@addMiscFee')->name('admin.add.misc.fee');
 
 

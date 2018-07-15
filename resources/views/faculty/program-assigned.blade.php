@@ -35,7 +35,7 @@
 									<td>{{ $p->code }}</td>
 									<td>{{ $p->description }}</td>
 									<td>
-										<a href="#" class="btn btn-primary"><i class="fa fa-eye"></i> View Students Enrolled</a>
+										<a href="{{ route('faculty.view.program.students', ['id' => $p->id]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Students Enrolled</a>
 									</td>
 								</tr>
 								@endforeach

@@ -19,6 +19,9 @@ use App\SubjectStudentMerge;
 use App\YearLevel;
 use App\Grade;
 use App\GradeEncodeLog;
+use App\ProgramStudent;
+use App\ProgramGradeEncode;
+use App\Remark;
 
 
 use App\Http\Controllers\GeneralController;
@@ -482,6 +485,186 @@ class FacultyController extends Controller
 
         return view('faculty.program-assigned', ['programs' => $programs]);
 
+    }
+
+
+    // method use to view program students
+    public function viewProgramStudents($id = null)
+    {
+        $program = Program::findorfail($id);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $program_encode = ProgramGradeEncode::where('faculty_id', Auth::guard('faculty')->user()->id)
+                                    ->where('academic_year_id', $ay->id)
+                                    ->where('semester_id', $sem->id)
+                                    ->where('program_id', $program->id)
+                                    ->first();
+
+        $student_ids = ProgramStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('program_id', $program->id)
+                            ->get(['student_id']);
+
+        $students = User::orderBy('lastname', 'asc')->find($student_ids);
+
+        return view('faculty.program-students', ['program' => $program, 'ay' => $ay, 'sem' => $sem, 'encode' => $program_encode, 'students' => $students]);
+
+    }
+
+
+    // method use to encode remarks of the students
+    public function encodeProgramRemarks($id = null)
+    {
+        $program = Program::findorfail($id);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $program_encode = ProgramGradeEncode::where('faculty_id', Auth::guard('faculty')->user()->id)
+                                    ->where('academic_year_id', $ay->id)
+                                    ->where('semester_id', $sem->id)
+                                    ->where('program_id', $program->id)
+                                    ->first();
+
+        $student_ids = ProgramStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('program_id', $program->id)
+                            ->get(['student_id']);
+
+        $students = User::orderBy('lastname', 'asc')->find($student_ids);
+
+        return view('faculty.program-students-encode-remark', ['program' => $program, 'ay' => $ay, 'sem' => $sem, 'encode' => $program_encode, 'students' => $students]);
+
+    }
+
+
+    // method use to save remarks encode
+    public function postEncodeProgramRemarks(Request $request)
+    {
+        $program_id = $request['program_id'];
+
+        $program = Program::findorfail($program_id);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get student ids
+        $student_ids = ProgramStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('program_id', $program->id)
+                            ->get(['student_id']);
+
+        $students = User::orderBy('lastname', 'asc')->find($student_ids);
+
+        // get remarks for request data
+        foreach($students as $s) {
+            // add remarks to database
+            $remark = new Remark();
+            $remark->student_id = $s->id;
+            $remark->academic_year_id = $ay->id;
+            $remark->semester_id = $sem->id;
+            $remark->program_id = $program->id;
+            $remark->grade = 1;
+            $remark->remarks = $request[$s->student_number];
+            $remark->save();
+        }
+
+        // add remark encode log
+        $encode = new ProgramGradeEncode();
+        $encode->faculty_id = Auth::guard('faculty')->user()->id;
+        $encode->academic_year_id = $ay->id;
+        $encode->semester_id = $sem->id;
+        $encode->program_id = $program->id;
+        $encode->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('faculty')->user()->id, 2, 'Faculty Encode Remarks');
+
+        // return to students list
+        return redirect()->route('faculty.view.program.students.remarks', ['id' => $program->id])->with('success', 'Remark Encoded!');
+    }
+
+    // method use to view student remarks in a program
+    public function viewProgramStudentsRemarks($id = null)
+    {
+        $program = Program::findorfail($id);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get student ids
+        $student_ids = ProgramStudent::where('academic_year_id', $ay->id)
+                            ->where('semester', $sem->id)
+                            ->where('program_id', $program->id)
+                            ->get(['student_id']);
+
+        $students = User::orderBy('lastname', 'asc')->find($student_ids);
+
+        $remarks = null;
+
+        // get remarks in each students
+        foreach($students as $s) {
+            $remarks = Remark::where('academic_year_id', $ay->id)
+                        ->where('semester_id', $sem->id)
+                        ->where('program_id', $program->id)
+                        ->get();
+        }
+
+        return view('faculty.program-students-view-remarks', [ 
+            'program' => $program,
+            'ay' => $ay,
+            'sem' => $sem,
+            'students' => $students,
+            'remarks' => $remarks
+        ]);
+    }
+
+    // method use to update remark of a student in program
+    public function updateProgramStudentRemarks($id = null, $sid = null)
+    {
+        $program = Program::findorfail($id);
+        $student = User::findorfail($sid);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $remark = Remark::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('program_id', $program->id)
+                    ->first();
+
+        return view('faculty.program-student-remark-update', ['program' => $program, 'student' => $student, 'remark' => $remark, 'ay' => $ay, 'sem' => $sem]);
+    }
+
+    // method use to save update in student remark
+    public function postUpdateProgramStudentRemarks(Request $request)
+    {
+        $request->validate([
+            'remark' => 'required'
+        ]);
+
+        $student_id = $request['student_id'];
+        $program_id = $request['program_id'];
+
+        $remark = $request['remark'];
+
+        $program = Program::findorfail($program_id);
+        $student = User::findorfail($student_id);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $rem = Remark::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('program_id', $program->id)
+                    ->first();
+
+        $rem->remarks = $remark;
+        $rem->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('faculty')->user()->id, 2, 'Faculty Remark Updated');
+
+        // return to remarks in program
+        return redirect()->route('faculty.view.program.students.remarks', ['id' => $program->id])->with('success', 'Remark Updated!');
     }
 
 }
