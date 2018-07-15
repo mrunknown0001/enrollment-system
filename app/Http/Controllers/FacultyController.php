@@ -347,7 +347,7 @@ class FacultyController extends Controller
                             ->get(['student_id']);
 
 
-        $students = User::find($subject_students);
+        $students = User::orderBy('lastname', 'asc')->find($subject_students);
 
         // get grades of each students fro prelim to final terms
         $grades = null;
@@ -384,6 +384,14 @@ class FacultyController extends Controller
                     ->where('subject_id', $subject->id)
                     ->get();
 
+
+        return view('faculty.subject-student-grade-update', [ 
+            'subject' => $subject,
+            'student' => $student,
+            'ay' => $ay,
+            'sem' => $sem,
+            'grades' => $grade
+        ]);
 
     }
 
