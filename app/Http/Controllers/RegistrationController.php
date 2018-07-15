@@ -60,7 +60,7 @@ class RegistrationController extends Controller
 
         $info = new StudentInfo();
         $info->student_id = $user->id;
-        $info->date_of_birth = date('Y-d-m', strtotime($dob));
+        $info->date_of_birth = date('Y-m-d', strtotime($dob));
         $info->place_of_birth = $pob;
         $info->address = $address;
         $info->nationality = $nationality;

@@ -31,6 +31,8 @@ use App\Payment as PaymentTable;
 use App\SubjectStudent;
 use App\StudentPerSubject;
 use App\Subject;
+use App\Program;
+use App\ProgramStudent;
 
 class PaymentController extends Controller
 {
@@ -275,8 +277,16 @@ class PaymentController extends Controller
                 }
                 
             }
+            else {
+                // add to student enrolled in a program
+                $new = new ProgramStudent();
+                $new->student_id = Auth::user()->id;
+                $new->academic_year_id = $ay->id;
+                $new->semester = $sem->id;
+                $new->program_id = $assessment->program_id;
+                $new->save();
 
-
+            }
 
 
             // add to payment
