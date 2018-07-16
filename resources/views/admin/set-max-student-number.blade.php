@@ -13,6 +13,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-8">
+            <p><a href="{{ route('admin.students') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Students</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
@@ -28,7 +29,7 @@
                             <input type="number" name="limit" id="limit" class="form-control underlined" placeholder="Set Max Number of Students" required="">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Set Number</button>
+                            <button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Set Maximum Students</button>
                         </div>
                     </form>
                 </div>

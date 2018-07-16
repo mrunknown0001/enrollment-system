@@ -15,7 +15,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
-			<a href="{{ route('admin.add.year.level') }}" class="btn btn-primary">Add Year Level</a>
+			<a href="{{ route('admin.add.year.level') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Year Level</a>
 			
 			@if(count($yl) > 0)
 			<table class="table table-hover">

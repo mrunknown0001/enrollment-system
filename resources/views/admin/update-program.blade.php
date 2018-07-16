@@ -13,6 +13,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-8">
+            <p><a href="{{ route('admin.view.programs') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Programs</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
@@ -26,20 +27,20 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $program->id }}"> 
                         <div class="form-group">
-                            <label>Title</label>
+                            <label for="title">Program Title</label>
                             <input type="text" name="title" id="title" value="{{ $program->title }}" class="form-control underlined" placeholder="Program Title" required="">
                         </div>
                         <div class="form-group">
-                            <label>Code</label>
+                            <label for="code">Program Code</label>
                             <input type="text" name="code" id="code" value="{{ $program->code }}" class="form-control underlined" placeholder="Program Code" required="">
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
+                            <label for="description">Program Description</label>
                             <textarea name="description" id="description" class="form-control underlined" placeholder="Program Description">{{ $program->description }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label>Tuition Fee</label>
-                            <input type="number" name="tuition_fee" id="tuition_fee" value="{{ $program->tuition_fee }}" class="form-control underlined" placeholder="Tuition Fee" required="">
+                            <label for="tuition_fee">Tuition Fee in &#8369;</label>
+                            <input type="number" name="tuition_fee" id="tuition_fee" value="{{ $program->tuition_fee }}" class="form-control underlined" placeholder="Tuition Fee in &#8369;" required="">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Program</button>

@@ -15,9 +15,9 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
-        	<a href="{{ route('admin.subjects.active') }}" class="btn btn-primary">View Active Subjects Only</a>
-			<a href="{{ route('admin.add.subject') }}" class="btn btn-primary">Add Subject</a>
-			<a href="{{ route('admin.select.subjects') }}" class="btn btn-primary">Select Subject For Enrollment</a>
+			<a href="{{ route('admin.add.subject') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Subject</a>
+        	<a href="{{ route('admin.subjects.active') }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Active Subjects Only</a>
+			<a href="{{ route('admin.select.subjects') }}" class="btn btn-primary"><i class="fa fa-check"></i> Select Subject For Enrollment</a>
 			
 			@if(count($subjects) > 0)
 			<table class="table table-hover">

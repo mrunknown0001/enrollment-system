@@ -9,6 +9,7 @@
 
 
 @section('content')
+<p><a href="{{ route('admin.subjects') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Subjects</a></p>
 <p><strong>Active Subjects</strong></p>
 @include('includes.all')
 

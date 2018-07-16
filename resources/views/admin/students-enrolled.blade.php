@@ -9,6 +9,7 @@
 
 
 @section('content')
+<p><a href="{{ route('admin.subjects.active') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Active Subjects</a></p>
 <p><strong>Students Enrolled in {{ $subject->code }} - {{ $subject->description }}</strong></p>
 <p>Numbers of Group: {{ count($gn) }} | Total Students: {{ count($enrolled) }} &nbsp; <a href="{{ route('admin.manage.subject.students.group', ['id' => $subject->id]) }}" class="btn btn-primary btn-sm">Manage Groups</a></p>
 

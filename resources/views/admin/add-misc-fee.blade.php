@@ -12,6 +12,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-6">
+            <p><a href="{{ route('admin.rate.fee.settings') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Rate and Fees</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">

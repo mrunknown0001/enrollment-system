@@ -17,6 +17,7 @@
         <div class="col-md-12">
 			
 			@if(count($subjects) > 0)
+			<p><a href="{{ route('admin.view.faculties') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Faculties</a></p>
 			<table class="table table-hover">
 				<thead>
 					<tr>

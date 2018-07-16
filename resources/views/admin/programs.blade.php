@@ -15,7 +15,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
-			<a href="{{ route('admin.add.program') }}" class="btn btn-primary">Add Program</a>
+			<a href="{{ route('admin.add.program') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Program</a>
 			
 			@if(count($programs) > 0)
 			<table class="table table-hover">
@@ -48,7 +48,7 @@
 											<p>Title: <strong>{{ ucwords($p->title) }}</strong></p>
 											<p>Code: <strong>{{ strtoupper($p->code) }}</strong></p>
 											<p>DescriptioN: <strong>{{ $p->description }}</strong></p>
-											<p>Tuition Fee: <strong>{{ $p->tuition_fee }}</strong></p>
+											<p>Tuition Fee: <strong>&#8369; {{ $p->tuition_fee }}</strong></p>
 							            </div>
 							            <div class="modal-footer">
 							                <small>Program Info</small>
