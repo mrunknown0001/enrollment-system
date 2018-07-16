@@ -183,6 +183,12 @@ Route::group(['prefix' => 'registrar'], function () {
 	// route to view grades of students 
 	Route::get('/course/{id}/student/{sid}/grades', 'RegistrarController@viewCourseStudentGrades')->name('registrar.view.course.student.grades');
 
+	// route to update student grades in a subject
+	Route::get('/course/{id}/student/{student_id}/subject/{subject_id}/grades/update', 'RegistrarController@updateStudentSubjectGrades')->name('registrar.update.student.subject.grades');
+
+	// route to update student grades in a subject
+	Route::post('/course/student/subject/grades/update', 'RegistrarController@postUpdateStudentSubjectGrades')->name('registrar.update.student.subject.grades.post');
+
 	// route to view programs
 	Route::get('/programs', 'RegistrarController@viewPrograms')->name('registrar.view.programs');
 
@@ -194,6 +200,9 @@ Route::group(['prefix' => 'registrar'], function () {
 
 	// route to view student info
 	Route::get('/student/{id}/{sn}/details', 'RegistrarController@viewStudentDetails')->name('registrar.view.student.details');
+
+	// route to view grades of student
+	Route::get('/student/{id}/{sn}/grades', 'RegistrarController@viewStudentGrades')->name('registrar.view.student.grades');
 
 	// route to search students
 	Route::get('/students/search', 'RegistrarController@searchStudent')->name('registrar.search.students');

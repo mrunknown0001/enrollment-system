@@ -207,6 +207,101 @@ class RegistrarController extends Controller
     }
 
 
+    // method use to update student grades in a subject
+    public function updateStudentSubjectGrades($id = null, $student_id = null, $subject_id = null)
+    {
+        $course = Course::findorfail($id);
+        $student = User::findorfail($student_id);
+        $subject = Subject::findorfail($subject_id);
+
+        $ay = ActiveSemester::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get the grades for display
+        $grades = Grade::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('subject_id', $subject->id)
+                    ->get();
+
+        return view('registrar.subject-student-grade-update', [ 
+            'course' => $course,
+            'student' => $student,
+            'subject' => $subject,
+            'grades' => $grades,
+            'ay' => $ay,
+            'sem' => $sem
+        ]);
+    }
+
+
+    // method use to save update changes in grades of student in a subject
+    public function postUpdateStudentSubjectGrades(Request $request)
+    {
+        $request->validate([
+            'prelim' => 'required|numeric',
+            'midterm' => 'required|numeric',
+            'semi_final' => 'required|numeric',
+            'final' => 'required|numeric'
+        ]);
+
+        $subject_id = $request['subject_id'];
+        $student_id = $request['student_id'];
+        $course_id = $request['course_id'];
+
+        $prelim = $request['prelim'];
+        $midterm = $request['midterm'];
+        $semi_final = $request['semi_final'];
+        $final = $request['final'];
+
+        $subject = Subject::find($subject_id);
+        $student = User::find($student_id);
+        $course = Course::find($course_id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get all the grades
+        $grades = null;
+
+        $grades = Grade::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('subject_id', $subject->id)
+                    ->get();
+
+        // update grades
+        foreach($grades as $g) {
+            if($g->term_id == 1) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $prelim;
+                $g_u->save();
+            }
+            if($g->term_id == 2) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $midterm;
+                $g_u->save();
+            }
+            if($g->term_id == 3) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $semi_final;
+                $g_u->save();
+            }
+            if($g->term_id == 4) {
+                $g_u = Grade::find($g->id);
+                $g_u->grade = $final;
+                $g_u->save();
+            }
+        }
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('registrar')->user()->id, 4, 'Registrar Updated Grade');
+
+        // return with success
+        return redirect()->route('registrar.view.course.student.grades', ['id' => $course->id, 'sid' => $student->id])->with('success', 'Student Subject Grade Updated');
+    }
+
+
     // method use to view programs
     public function viewPrograms()
     {
@@ -262,6 +357,32 @@ class RegistrarController extends Controller
         }
 
         return view('registrar.student-details', ['student' => $student]);
+    }
+
+
+    // method use to view grades in student
+    public function viewStudentGrades($id = null, $sn = null)
+    {
+        $student = User::findorfail($id);
+
+        if($student->student_number != $sn) {
+            return redirect()->back()->with('error', 'Error Occured! Please go to dashboard');
+        }
+
+        // get all grades available
+        $grades = Grade::where('student_id', $student->id)
+                        ->get();
+
+        $subject_ids = Grade::where('student_id', $student->id)
+                        ->get(['subject_id']);
+
+        $subjects = Subject::find($subject_ids);
+
+        return view('registrar.student-view-grades', [
+            'student' => $student,
+            'grades' => $grades,
+            'subjects' => $subjects
+        ]);
     }
 
 

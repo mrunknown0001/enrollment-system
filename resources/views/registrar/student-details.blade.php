@@ -21,6 +21,7 @@
                 </div>
                 <div class="card-block">
                 	@include('includes.all')
+                    <p><a href="{{ route('registrar.view.student.grades', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Grades</a></p>
                     <p>
                     @if(count($student->enrollment_status) > 0)
                         Enrolled in 

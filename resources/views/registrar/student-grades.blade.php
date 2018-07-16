@@ -11,7 +11,7 @@
 @section('content')
 <section class="section">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <p><a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a></p>
             <div class="card card-primary">
                 <div class="card-header">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-block">
                 	@include('includes.all')
-					<p>Enrolled in {{ $course->title }}</p>
+					<p>Enrolled in {{ $course->title }} | {{ $sem->name }} | {{ $ay->from }}-{{ $ay->to }}</p>
 					<p>{{ ucwords($student->firstname . ' ' . $student->lastname) }} - {{ $student->student_number }}</p>
 					
                     @if(count($grades) > 0)
@@ -33,6 +33,7 @@
                                 <th>Midterm</th>
                                 <th>Semi-Final</th>
                                 <th>Final</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,6 +56,9 @@
                                             @endif
                                         @endforeach
                                     @endforeach
+                                    <td>
+                                        <a href="{{ route('registrar.update.student.subject.grades', ['id' => $course->id, 'student_id' => $student->id, 'subject_id' => $sub->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

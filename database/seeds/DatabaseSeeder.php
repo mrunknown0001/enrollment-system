@@ -105,6 +105,7 @@ class DatabaseSeeder extends Seeder
             SubjectTableSeeder::class,
             CourseTableSeeder::class,
             ProgramTableSeeder::class,
+            GradeEquivalentSeeder::class,
         ]);
     }
 }
