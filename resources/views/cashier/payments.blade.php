@@ -20,6 +20,7 @@
 						<tr>
 							<th>Paypal Payment Number</th>
 							<th>Assessment Number</th>
+							<th>Price</th>
 							<th>Student Name</th>
 							<th>Date</th>
 						</tr>
@@ -29,6 +30,7 @@
 							<tr>
 								<td>{{ $p->payment_id }}</td>
 								<td>{{ $p->assessment->assessment_number }}</td>
+								<td>&#8369; {{ $p->amount }}</td>
 								<td>{{ ucwords($p->student->firstname . ' ' . $p->student->lastname) }}</td>
 								<td>{{ date('F j, Y g:i:s a', strtotime($p->created_at)) }}</td>
 							</tr>

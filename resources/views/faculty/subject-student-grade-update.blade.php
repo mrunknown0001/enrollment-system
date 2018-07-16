@@ -13,6 +13,7 @@
 <section class="section">
 	<div class="row">
 		<div class="col-md-6">
+			<p><a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
@@ -52,7 +53,7 @@
 							@endif
 						@endforeach
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">Updte Grades</button>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Grades</button>
 						</div>
 					</form>
                 </div>

@@ -13,6 +13,7 @@
     <div class="row">
 
         <div class="col-md-8">
+            <p><a href="{{ route('faculty.view.subject.assignments') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Subjects Assigned</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">

@@ -13,6 +13,7 @@
 <section class="section">
     <div class="row">
         <div class="col-xl-6">
+            <p><a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a></p>
             <p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
             <p>
             <div class="card card-primary">
@@ -35,7 +36,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update Remark</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Remark</button>
                         </div>
                     </form>
                 </div>

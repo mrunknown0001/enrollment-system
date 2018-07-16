@@ -11,14 +11,15 @@
 @section('content')
 <section class="section">
     <div class="row">
-
+        
         <div class="col-md-8">
+            <p><a href="{{ route('faculty.view.subject.assignments') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Subjects Assigned</a></p>
         	<p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
         	<p>
         		@if(count($grade_log) > 0)
-        		<a href="{{ route('faculty.view.grades.students.subject', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary">View Grades</a>
+        		<a href="{{ route('faculty.view.grades.students.subject', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Grades</a>
 				@else
-        		<a href="{{ route('faculty.encode.subject.students.grade', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary">Encode Grade</a>
+        		<a href="{{ route('faculty.encode.subject.students.grade', ['id' => $subject->id, 'gid' => $gid]) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Encode Grade</a>
         		@endif
         	</p>
             <div class="card card-primary">

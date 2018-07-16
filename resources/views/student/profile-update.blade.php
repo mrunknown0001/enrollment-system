@@ -26,37 +26,47 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
+                                    <label for="firstname">Firstname</label>
                                     <input type="text" class="form-control underlined" name="firstname" id="firstname" value="{{ Auth::user()->firstname }}" placeholder="Enter firstname" required=""> </div>
                                 <div class="col-sm-6">
+                                    <label for="lastname">Lastname</label>
                                     <input type="text" class="form-control underlined" name="lastname" id="lastname" value="{{ Auth::user()->lastname }}" placeholder="Enter lastname" required=""> </div>
                             </div>
                         </div>
                         <div class="form-group">
+                            <label>Student Number</label>
                             <input type="text" class="form-control underlined" value="{{ Auth::user()->student_number }}" disabled="">
                         </div>
                         <div class="form-group">
+                            <label for="mobile_number">Mobile Number</label>
                             <input type="text" name="mobile_number" id="mobile_number" class="form-control underlined" value="{{ Auth::user()->mobile_number }}" placeholder="Enter Mobile Number" required="">
                         </div>
                         <div class="form-group">
+                            <label for="date_of_birth">Date of Birth</label>
                             <input type="text" name="date_of_birth" id="date_of_birth" class="form-control underlined" value="{{ date('m', strtotime(Auth::user()->info->date_of_birth)) }}/{{ date('d', strtotime(Auth::user()->info->date_of_birth)) }}/{{ date('Y', strtotime(Auth::user()->info->date_of_birth)) }}" placeholder="mm/dd/yyyy" required="">
                         </div>
                         <div class="form-group">
+                            <label for="place_of_birth">Place of Birth</label>
                             <input type="text" name="place_of_birth" id="place_of_birth" class="form-control underlined" value="{{ Auth::user()->info->place_of_birth }}" placeholder="Enter Place of Birth" required="">
                         </div>
                         <div class="form-group">
+                            <label for="address">Address</label>
                             <input type="text" name="address" id="address" class="form-control underlined" value="{{ Auth::user()->info->address }}" placeholder="Enter Address" required="">
                         </div>
                         <div class="form-group">
+                            <label for="nationality">Nationality</label>
                             <input type="text" name="nationality" id="nationality" class="form-control underlined" value="{{ Auth::user()->info->nationality }}" placeholder="Enter Nationality" required="">
                         </div>
                         <div class="form-group">
+                            <label for="school_last_attended">School Last Attended</label>
                             <input type="text" name="school_last_attended" id="school_last_attended" class="form-control underlined" value="{{ Auth::user()->info->school_last_attended }}" placeholder="School Last Attended">
                         </div>
                         <div class="form-group">
+                            <label for="year_graduated">Year Graduated</label>
                             <input type="text" name="year_graduated" id="year_graduated" class="form-control underlined" value="{{ Auth::user()->info->date_graduated }}" placeholder="Year Graduated">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Update Profile</button>
                         </div>
                     </form>
                 </div>

@@ -13,12 +13,13 @@
     <div class="row">
 
         <div class="col-md-10">
+            <p><a href="{{ route('faculty.view.program.assignments') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Programs Assigned</a></p>
         	<p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
         	<p>
         		@if(count($encode) > 0)
-        		<a href="{{ route('faculty.view.program.students.remarks', ['id' => $program->id]) }}" class="btn btn-primary">View Remarks</a>
+        		<a href="{{ route('faculty.view.program.students.remarks', ['id' => $program->id]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Remarks</a>
 				@else
-        		<a href="{{ route('faculty.encode.program.remarks', ['id' => $program->id]) }}" class="btn btn-primary">Encode Remarks</a>
+        		<a href="{{ route('faculty.encode.program.remarks', ['id' => $program->id]) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Encode Remarks</a>
         		@endif
         	</p>
             <div class="card card-primary">

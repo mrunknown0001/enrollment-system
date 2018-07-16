@@ -34,7 +34,7 @@
                     @endif
                     <p>School Last Attended: <strong>{{ ucwords(Auth::user()->info->school_last_attended) }}</strong></p>
                     <p>Year Graduated: <strong>{{ Auth::user()->info->date_graduated }}</strong></p>
-                    <p><a href="{{ route('student.profile.update') }}" class="btn btn-primary">Update Profile</a></p>
+                    <p><a href="{{ route('student.profile.update') }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Profile</a></p>
                 </div>
                 <div class="card-footer"> <small>Student Profile</small> </div>
             </div>

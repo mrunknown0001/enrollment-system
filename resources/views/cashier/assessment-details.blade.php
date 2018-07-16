@@ -12,6 +12,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
+            <p><a href="{{ route('cashier.view.assessments') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Assessments</a></p>
             @if(count($assessment) > 0)
             <div class="card card-primary">
                 <div class="card-header">

@@ -25,10 +25,11 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
+                            <label for="password">Old Password</label>
                             <input type="password" name="old_password" id="old_password" class="form-control underlined" placeholder="Enter Old Password" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password">New Password</label>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password" required=""> </div>
@@ -37,7 +38,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Change Password</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Change Password</button>
                         </div>
                     </form>
                 </div>

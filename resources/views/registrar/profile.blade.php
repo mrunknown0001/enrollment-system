@@ -26,7 +26,7 @@
                     <p>Username: <strong>{{ strtolower(Auth::guard('registrar')->user()->username) }}</strong></p>
                     <p>ID Number: <strong>{{ Auth::guard('registrar')->user()->id_number }}</strong></p>
                     <p>Mobile Number: <strong>{{ Auth::guard('registrar')->user()->mobile_number }}</strong></p>
-                    <p><a href="{{ route('registrar.profile.update') }}" class="btn btn-primary">Update Profile</a></p>
+                    <p><a href="{{ route('registrar.profile.update') }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Profile</a></p>
                 </div>
                 <div class="card-footer"> <small>Registrar Profile</small> </div>
             </div>
