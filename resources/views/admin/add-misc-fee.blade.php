@@ -25,12 +25,15 @@
                     <form id="signup-form" action="{{ route('admin.add.misc.fee.post') }}" method="POST" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
+                            <label for="name">Name</label>
                             <input type="text" name="name" id="name" class="form-control underlined" placeholder="Enter Name" required="">
                         </div>
                         <div class="form-group">
-                            <input type="number" name="amount" id="amount" class="form-control underlined" placeholder="Enter Amount" required="">
+                            <label for="amount">Amount in &#8369;</label>
+                            <input type="number" name="amount" id="amount" class="form-control underlined" placeholder="Enter Amount in &#8369;" required="">
                         </div>
                         <div class="form-group">
+                            <label for="type">Select Payees</label>
                             <select name="type" id="type" class="form-control underlined" required="">
                                 <option value="">Please Select One</option>
                                 <option value="1">Miscellaneous For Courses</option>

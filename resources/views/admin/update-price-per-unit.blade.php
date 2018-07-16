@@ -12,6 +12,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-6">
+            <p><a href="{{ route('admin.rate.fee.settings') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Rate and Fees</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">
@@ -20,11 +21,11 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-                    <p>Current Price per Unit: <strong>{{ $price->price }}</strong></p>
+                    <p>Current Price per Unit: <strong>&#8369; {{ $price->price }}</strong></p>
                     <form id="signup-form" action="{{ route('admin.price.per.unit.update.post') }}" method="POST" role="form" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label>Price Per Unit</label>
+                            <label>&#8369;rice Per Unit</label>
                             <input type="number" name="price" id="price" class="form-control underlined" placeholder="00.00" required="">
                         </div>
                         <div class="from-group">
