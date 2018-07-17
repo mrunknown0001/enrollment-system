@@ -420,24 +420,65 @@ class RegistrarController extends Controller
     {
         $student = User::findorfail($id);
 
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $course = Course::find($student->info->course_id);
+
         if($student->student_number != $sn) {
             return redirect()->back()->with('error', 'Error Occured! Please go to dashboard');
         }
 
         // get all grades available
         $grades = Grade::where('student_id', $student->id)
+                        ->where('academic_year_id', $ay->id)
+                        ->where('semester_id', $sem->id)
                         ->get();
 
-        $subject_ids = Grade::where('student_id', $student->id)
-                        ->get(['subject_id']);
+        $assessment = Assessment::where('student_id', $student->id)
+                            ->where('active', 1)
+                            ->first();
+        $subjects = null;
+        $subject_ids = unserialize($assessment->subject_ids);
 
-        $subjects = Subject::find($subject_ids);
+        foreach($subject_ids as $id) {
+            $subjects = Subject::find($id);
+        }
+
 
         return view('registrar.student-view-grades', [
             'student' => $student,
             'grades' => $grades,
-            'subjects' => $subjects
+            'subjects' => $subjects,
+            'course' => $course,
+            'ay' => $ay,
+            'sem' => $sem
         ]);
+    }
+
+
+    // method use to view remarks in stuent
+    public function viewStudentRemarks($id = null, $sn = null)
+    {
+        $student = User::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $program = Program::find($student->info->program_id);
+
+        if($student->student_number != $sn) {
+            return redirect()->back()->with('error', 'Error Occured! Please go to dashboard');
+        }
+
+        // get the remarks
+        $remarks = Remark::where('academic_year_id', $ay->id)
+                        ->where('student_id', $student->id)
+                        ->where('semester_id', $sem->id)
+                        ->where('program_id', $program->id)
+                        ->first();
+
+        return view('registrar.student-view-remarks', ['student' => $student, 'ay' => $ay, 'sem' => $sem, 'program' => $program, 'remarks' => $remarks]);
     }
 
 

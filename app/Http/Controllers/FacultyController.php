@@ -603,6 +603,7 @@ class FacultyController extends Controller
         // get remarks in each students
         foreach($students as $s) {
             $remarks = Remark::where('academic_year_id', $ay->id)
+                        ->where('student_id', $s->id)
                         ->where('semester_id', $sem->id)
                         ->where('program_id', $program->id)
                         ->get();
