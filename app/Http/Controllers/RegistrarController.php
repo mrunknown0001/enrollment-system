@@ -347,6 +347,61 @@ class RegistrarController extends Controller
     }
 
 
+    // method use to update student remarks
+    public function updateStudentProgramRemarksUpdate($id = null, $pid = null)
+    {
+        $student = User::findorfail($id);
+        $program = Program::findorfail($pid);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $remarks = Remark::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('program_id', $program->id)
+                    ->first();
+
+        // return to view for update
+        return view('registrar.student-program-remark-update', ['student' => $student, 'program' => $program, 'ay' => $ay, 'sem' => $sem, 'remarks' => $remarks]);
+
+    }
+
+
+    // method use to save update in program remarks
+    public function postUpdateStudentProgramRemarksUpdate(Request $request)
+    {
+        $request->validate([
+            'remark' => 'required'
+        ]);
+
+        $student_id = $request['student_id'];
+        $program_id = $request['program_id'];
+
+        $remark = $request['remark'];
+
+        $program = Program::findorfail($program_id);
+        $student = User::findorfail($student_id);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $rem = Remark::where('student_id', $student->id)
+                    ->where('academic_year_id', $ay->id)
+                    ->where('semester_id', $sem->id)
+                    ->where('program_id', $program->id)
+                    ->first();
+
+        $rem->remarks = $remark;
+        $rem->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('registrar')->user()->id, 4, 'Registrar Remarks Updated');
+
+        // return to remarks in program
+        return redirect()->route('registrar.view.program.enrolled', ['id' => $program->id])->with('success', 'Remark Updated!');
+    }
+
+
     // method use to view details of students
     public function viewStudentDetails($id = null, $sn = null)
     {

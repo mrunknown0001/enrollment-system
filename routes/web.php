@@ -198,6 +198,12 @@ Route::group(['prefix' => 'registrar'], function () {
 	// route to view remarks of students in program
 	Route::get('/student/{id}/program/{pid}/remarks', 'RegistrarController@viewStudentProgramRemarks')->name('registrar.view.student.program.remarks');
 
+	// route to update student remarks in a program
+	Route::get('/student/{id}/program/{pid}/remarks/update', 'RegistrarController@updateStudentProgramRemarksUpdate')->name('registrar.update.student.program.remarks');
+
+	// rotue to save update student remark in a program
+	Route::post('/student/program/remarks/update', 'RegistrarController@postUpdateStudentProgramRemarksUpdate')->name('registrar.update.student.program.remarks.post');
+
 	// route to view student info
 	Route::get('/student/{id}/{sn}/details', 'RegistrarController@viewStudentDetails')->name('registrar.view.student.details');
 
