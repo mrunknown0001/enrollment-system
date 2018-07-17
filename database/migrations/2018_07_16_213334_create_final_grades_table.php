@@ -19,6 +19,7 @@ class CreateFinalGradesTable extends Migration
             $table->foreign('student_id')->references('id')->on('users');
             $table->integer('academic_year_id')->unsigned();
             $table->integer('semester_id')->unsigned();
+            $table->integer('subject_id')->unsigned();
             $table->float('grade', 8,2);
             $table->string('description')->nullable();
             $table->timestamps();
