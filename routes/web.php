@@ -109,6 +109,9 @@ Route::group(['prefix' => 'student'], function () {
 	// route to view grades of subject
 	Route::get('/grades/subject/{id}/view', 'StudentController@viewSubjectGrades')->name('student.view.subject.grades');
 
+	// routeto view all grades in all subjects
+	Route::get('/students/grades/subjects', 'StudentController@viewStudentGradesSubjects')->name('student.view.student.grades.subjects');
+
 	// route to view subjects
 	Route::get('/subjects', 'StudentController@viewSubjects')->name('student.subjects');
 

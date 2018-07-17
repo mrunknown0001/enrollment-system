@@ -10,6 +10,7 @@ use App\IdReference;
 use App\User;
 use App\ActivityLog;
 use App\Assessment;
+use App\GradeEquivalent;
 
 class GeneralController extends Controller
 {
@@ -177,4 +178,68 @@ class GeneralController extends Controller
         $log->save();
     }
 
+
+    /////////////////////////
+    // find the equivalent //
+    /////////////////////////
+    public static function equivalent($ave = null)
+    {
+        $e = 5.00;
+
+        if($ave != 0) {
+
+            switch ($ave) {
+
+                case $ave >= 99.00 && $ave == 100:
+                    $e = 1.00;
+                    break;
+                
+                case $ave <= 98.99 && $ave >= 95.00:
+                    $e = 1.25;
+                    break;
+
+                case $ave <= 94.99 && $ave >= 92.00:
+                    $e = 1.50;
+                    break;
+
+                case $ave <= 91.99 && $ave >= 89.00:
+                    $e = 1.75;
+                    break;
+
+                case $ave <= 88.99 && $ave >= 86.00:
+                    $e = 2.00;
+                    break;
+
+                case $ave <= 85.99 && $ave >= 83.00:
+                    $e = 2.25;
+                    break;
+
+                case $ave <= 82.99 && $ave >= 80.00:
+                    $e = 2.50;
+                    break;
+
+                case $ave <= 79.99 && $ave >= 77.00:
+                    $e = 2.75;
+                    break;
+
+                case $ave <= 76.99 && $ave >= 75.00:
+                    $e = 3.00;
+                    break;
+
+                case $ave < 74.99:
+                    $e = 5.00;
+                    break;
+
+                default:
+                    $e = 5.00;
+                    break;
+            }
+
+        }
+
+
+        $eq = GradeEquivalent::where('equivalent', $e)->first();
+
+        return $eq;
+    }
 }

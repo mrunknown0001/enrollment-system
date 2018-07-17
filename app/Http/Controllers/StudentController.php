@@ -22,6 +22,7 @@ use App\ActiveSemester;
 use App\EnrollmentSetting;
 use App\Grade;
 use App\Remark;
+use App\GradeEquivalent;
 
 use App\Http\Controllers\GeneralController;
 
@@ -250,6 +251,84 @@ class StudentController extends Controller
                     ->get();
 
         return view('student.grades-view', ['subject' => $subject, 'ay' => $ay, 'sem' => $sem, 'grades' => $grades]);
+    }
+
+
+    // method use to view all grades
+    public function viewStudentGradesSubjects()
+    {
+        $student = User::find(Auth::user()->id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $assessment = $assessment = Assessment::where('student_id', Auth::user()->id)
+                                ->where('paid', 1)
+                                ->where('active', 1)
+                                ->first();
+
+        $subjects = null;
+        if(count($assessment) > 0) {
+            foreach(unserialize($assessment->subject_ids) as $id) {
+                $subjects = Subject::find($id);
+            }
+        }
+
+
+        $grades = null;
+
+        foreach($subjects as $sub) {
+            $grades[] = Grade::where('student_id', $student->id)
+                ->where('academic_year_id', $ay->id)
+                ->where('semester_id', $sem->id)
+                ->where('subject_id', $sub->id)
+                ->get();
+        }
+
+        // get the equivalent of the grades
+        $equiv = null;
+        $total = 0;
+
+        foreach($subjects as $sub) {
+            $total = 0;
+            foreach($grades as $gr) {
+
+                if(count($gr) > 0) {
+                    foreach($gr as $g) {
+                        if($sub->id == $g->subject_id) {
+                            $total += $g->grade;
+                        }
+                    }
+                }
+
+            }
+
+            // get the average and its equivalent
+            $average = $total/4;
+
+            // find its equivalent
+            $equivalent = GeneralController::equivalent($average);
+
+            if($equiv == null) {
+                $equiv = array([
+                    'subject_id' => $sub->id,
+                    'equivalent' => $equivalent->equivalent,
+                    'description' => $equivalent->description
+                ]);
+            }
+            else {
+                array_push($equiv, [
+                    'subject_id' => $sub->id,
+                    'equivalent' => $equivalent->equivalent,
+                    'description' => $equivalent->description
+                ]);
+            }
+        }
+
+        // return to view
+        return view('student.grades-all', ['student' => $student, 'ay' => $ay, 'sem' => $sem, 'subjects' => $subjects, 'equiv' => $equiv]);
+
+
     }
 
 

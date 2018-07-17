@@ -23,5 +23,6 @@
         </div>
         <script src="{{ asset('modular/js/vendor.js') }}"></script>
         <script src="{{ asset('modular/js/app.js') }}"></script>
+        <script src="{{ asset('js/print.min.js') }}"></script>
     </body>
 </html>
