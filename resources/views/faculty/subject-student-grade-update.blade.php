@@ -12,7 +12,7 @@
 @include('includes.all')
 <section class="section">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<p><a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a></p>
             <div class="card card-primary">
                 <div class="card-header">

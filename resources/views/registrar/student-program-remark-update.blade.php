@@ -12,7 +12,7 @@
 @include('includes.all')
 <section class="section">
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-12">
             <p><a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a></p>
             <p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
             <p>

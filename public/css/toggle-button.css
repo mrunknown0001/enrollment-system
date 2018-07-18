@@ -3,9 +3,9 @@
   display: block;
   width: 140px;
   height: 45px;
-  margin-top: 0px;
+  margin-top: 15px;
   border: 1px solid #808080;
-margin: 0px auto;
+margin: -5px auto;
 }
 .toggle-label input[type=checkbox] { 
   opacity: 0;

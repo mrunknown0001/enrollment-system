@@ -32,8 +32,8 @@
 					<!-- <label class="checkbox-inline">
 						<input type="checkbox" class="" name="enrollment_switch" id="enrollment_switch" checked data-toggle="toggle" >
 					</label> -->
-					<label class='toggle-label' onclick="">
-					 <input type='checkbox'/>
+					<label class='toggle-label'>
+					 <input type='checkbox' name="enrollment_switch" id="enrollment_switch" @if($es->status == 1) checked @endif/>
 						 <span class='back'>
 							<span class='toggle'></span>
 					 		<span class='label on'>ON</span>
@@ -41,9 +41,10 @@
 						</span>
 					</label>
 				</div>
-				<!-- <div class="form-group">
-					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Save</button>
-				</div> -->
+				&nbsp;
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-floppy-o"></i> Save</button>
+				</div>
         	</form>
         	<hr>
             <div class="card card-primary">
@@ -99,8 +100,10 @@
     </div>
 </section>
 <script>
-	$("input:checkbox[name=program]:checked").each(function(){
-	    yourArray.push($(this).val());
-	});
+$(document).ready(function(){
+    $("#enrollment_toggle").click(function(){
+        alert("The paragraph was clicked.");
+    });
+});
 </script>
 @endsection

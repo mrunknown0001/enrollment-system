@@ -12,7 +12,7 @@
 <section class="section">
     <div class="row">
         
-        <div class="col-md-8">
+        <div class="col-md-12">
             <p><a href="{{ route('faculty.view.subject.assignments') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Subjects Assigned</a></p>
         	<p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
         	<p>

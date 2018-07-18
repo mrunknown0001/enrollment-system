@@ -12,7 +12,7 @@
 <section class="section">
     <div class="row">
 
-        <div class="col-xl-6">
+        <div class="col-xl-12">
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">

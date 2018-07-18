@@ -12,7 +12,7 @@
 <section class="section">
     <div class="row">
 
-        <div class="col-md-10">
+        <div class="col-md-12">
             <p><a href="{{ route('faculty.view.program.assignments') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Programs Assigned</a></p>
         	<p><strong>{{ $sem->name }} - {{ $ay->from . '-' . $ay->to }}</strong></p>
         	<p>

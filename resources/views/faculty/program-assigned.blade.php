@@ -11,7 +11,7 @@
 @section('content')
 <section class="section">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-12">
 			@if(count($programs) > 0)
 	            <div class="card card-primary">
 	                <div class="card-header">

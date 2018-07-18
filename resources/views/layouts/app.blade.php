@@ -63,7 +63,5 @@
         </div>
         <script src="{{ asset('modular/js/vendor.js') }}"></script>
         <script src="{{ asset('modular/js/app.js') }}"></script>
-        <script src="{{ asset('js/print.min.js') }}"></script>
-        <!-- <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script> -->
     </body>
 </html>
