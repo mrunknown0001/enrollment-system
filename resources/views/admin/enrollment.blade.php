@@ -73,7 +73,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<select name="year_level" id="year_level" class="form-control underlined">
-										<option value="">Seleect Year Level</option>
+										<option value="">Select Year Level</option>
 										@foreach($yl as $y)
 										<option value="{{ $y->id }}" {{ $y->active == 1 ? 'selected' : '' }}>{{ ucwords($y->name) }}</option>
 										@endforeach

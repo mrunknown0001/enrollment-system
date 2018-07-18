@@ -29,6 +29,7 @@ use App\EnrollmentSetting;
 use App\StudentPerSubject;
 use App\SubjectStudent;
 use App\Grade;
+use App\Remark;
 
 use App\Http\Controllers\GeneralController;
 
@@ -1185,8 +1186,36 @@ class AdminController extends Controller
             $subjects = Subject::find($id);
         }
 
-        
+        return view('admin.student-view-grades', [
+            'student' => $student,
+            'grades' => $grades,
+            'subjects' => $subjects,
+            'course' => $course,
+            'ay' => $ay,
+            'sem' => $sem
+        ]);
 
+    }
+
+
+    // method use to view student remarks
+    public function viewStudentRemarks($id = null)
+    {
+        $student = User::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $program = Program::find($student->info->program_id);
+
+        // get the remarks
+        $remarks = Remark::where('academic_year_id', $ay->id)
+                        ->where('student_id', $student->id)
+                        ->where('semester_id', $sem->id)
+                        ->where('program_id', $program->id)
+                        ->first();
+
+        return view('admin.student-view-remarks', ['student' => $student, 'ay' => $ay, 'sem' => $sem, 'program' => $program, 'remarks' => $remarks]);
     }
 
 

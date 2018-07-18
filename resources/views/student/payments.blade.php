@@ -40,7 +40,7 @@
 					</tfoot>
 				</table>
 			@else
-				<p>No payment made</p>
+				<p class="text-center">No payment made</p>
 			@endif
 		</div>
 	</div>

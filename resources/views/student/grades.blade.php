@@ -22,7 +22,7 @@
 					<p><a href="{{ route('student.view.subject.grades', ['id' => $s->id]) }}">View Grades for {{ $s->code }}</a></p>
 				@endforeach
 			@else
-				<p>No subjects!</p>
+				<p class="text-center">No subjects!</p>
 			@endif
 		</div>
 	</div>

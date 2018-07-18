@@ -48,6 +48,25 @@
 				                </button>
 				            </div>
 				            <div class="modal-body">
+				            	@if(count($s->enrollment_status) > 0)
+			                         
+			                        @if($s->info->course_id != null)
+										<p><a href="{{ route('admin.view.student.grades', ['id' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Grades</a></p>
+			                        	<p>
+			                            Enrolled in {{ $s->info->course->title }} - 
+			                            @if($s->info->year_level == 1)
+			                                First Year
+			                            @else
+			                                Second Year
+			                            @endif
+				                        </p>
+			                        @else
+			                        	<p><a href="{{ route('admin.view.student.remarks', ['id' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Remark</a></p>
+			                            <p>Enrolled in {{ $s->info->program->title }}</p>
+			                        @endif
+			                     @else
+									<p>Not Enrolled</p>
+			                     @endif
 								<p>Name: <strong>{{ ucwords($s->firstname . ' ' . $s->lastname) }}</strong></p>
 								<p>Student Number: <strong>{{ $s->student_number }}</strong></p>
 								<p>Mobile Number: <strong>{{ $s->mobile_number }}</strong></p>
@@ -56,7 +75,18 @@
 								<p>Place of Birth: <strong>{{ ucwords($s->info->place_of_birth) }}</strong></p>
 								<p>Address: <strong>{{ ucwords($s->info->address) }}</strong></p>
 								<p>Nationality: <strong>{{ ucwords($s->info->nationality) }}</strong></p>
-
+								@if(count($s->info->sy_admitted) > 0)
+								<p>AY Admitted: <strong>{{ $s->info->sy_admitted->from . '-' . $s->info->sy_admitted->to }}</strong></p>
+								@endif
+			                    <p>School Last Attended: <strong>{{ ucwords($s->info->school_last_attended) }}</strong></p>
+			                    <p>Date Graduated: <strong>{{ $s->info->date_graduated }}</strong></p>
+			                    <p>Status: <strong>
+			                    	@if($s->info->graduated == 1)
+									Graduted
+			                    	@else
+									Student
+			                    	@endif
+			                    </strong></p>
 				            </div>
 				            <div class="modal-footer">
 				                <small>Student Info</small>

@@ -39,7 +39,7 @@
 					<tfoot></tfoot>
 				</table>
 			@else
-				<p>No Enrolled Subjects.</p>
+				<p class="text-center">No Enrolled Subjects.</p>
 			@endif
 		</div>
 	</div>

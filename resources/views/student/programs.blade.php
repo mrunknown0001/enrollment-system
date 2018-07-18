@@ -16,13 +16,13 @@
 			@include('includes.all')
 			
 			@if(Auth::user()->enrollment_status->where('active', 1)->first())
-				<p>Currently Enrolled to {{ $program->title }}</p>
+				<p class="text-center">Currently Enrolled to {{ $program->title }}</p>
 			@else
 				{{-- check if there is an active assessment --}}
 				@if(Auth::user()->assessment->where('active', 1)->first())
-					<p>Please pay the assessment</p>
+					<p class="text-center">Please pay the assessment</p>
 				@else
-					<p>No program enrolled</p>
+					<p class="text-center">No program enrolled</p>
 				@endif
 			@endif
 		</div>

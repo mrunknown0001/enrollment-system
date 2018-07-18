@@ -29,7 +29,7 @@
 						@endif
 					@endif
 				@else
-					<p>Assessment Paid</p>
+					<p class="text-center">Assessment Paid</p>
 					@if($assessment->course_id != null)
 						@include('student.includes.assessment-course')
 					@else

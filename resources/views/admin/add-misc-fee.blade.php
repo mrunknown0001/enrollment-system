@@ -25,7 +25,7 @@
                     <form id="signup-form" action="{{ route('admin.add.misc.fee.post') }}" method="POST" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Miscellaneous Fee Name</label>
                             <input type="text" name="name" id="name" class="form-control underlined" placeholder="Enter Name" required="">
                         </div>
                         <div class="form-group">

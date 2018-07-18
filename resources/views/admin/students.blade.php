@@ -51,7 +51,6 @@
 				                </button>
 				            </div>
 				            <div class="modal-body">
-				            	
 				            	@if(count($s->enrollment_status) > 0)
 			                         
 			                        @if($s->info->course_id != null)
@@ -65,11 +64,11 @@
 			                            @endif
 				                        </p>
 			                        @else
-			                        	<p><a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Remark</a></p>
+			                        	<p><a href="{{ route('admin.view.student.remarks', ['id' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Remark</a></p>
 			                            <p>Enrolled in {{ $s->info->program->title }}</p>
 			                        @endif
 			                     @else
-
+									<p>Not Enrolled</p>
 			                     @endif
 								<p>Name: <strong>{{ ucwords($s->firstname . ' ' . $s->lastname) }}</strong></p>
 								<p>Student Number: <strong>{{ $s->student_number }}</strong></p>

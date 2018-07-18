@@ -46,7 +46,7 @@
 					@endforeach
 				</table>
 			@else
-				<p>No Grades!</p>
+				<p class="text-center">No Grades!</p>
 			@endif
 
 		</div>

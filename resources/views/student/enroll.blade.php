@@ -20,9 +20,9 @@
 				@if(Auth::user()->info->year_level == $yl->id)
 					@if(Auth::user()->assessment->where('active', 1)->first())
 						@if(Auth::user()->assessment->where('paid', 1)->first())
-							<p>Assessment Paid</p>
+							<p class="text-center">Assessment Paid</p>
 						@else
-							<p>Please pay assessment</p>
+							<p class="text-center">Please pay assessment</p>
 						@endif
 					@else
 						@if(Auth::user()->info->course_id != null)
@@ -79,7 +79,7 @@
 						@endif
 					@endif
 				@else
-					<p>Your year level not active.</p>
+					<p class="text-center">Your year level not active.</p>
 				@endif
 				
 			@else
@@ -89,7 +89,7 @@
 				@else
 					{{-- check if there is an active assessment --}}
 					@if(Auth::user()->assessment->where('active', 1)->where('paid', 0)->first())
-						<p>Please pay the assessment</p>
+						<p class="text-center">Please pay the assessment</p>
 					@else
 					<div class="row">
 						<div class="col-md-8">

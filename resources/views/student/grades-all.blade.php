@@ -47,7 +47,7 @@
 					</tbody>
 				</table>
 			@else
-				<p>No Data Available!</p>
+				<p class="text-center">No Data Available!</p>
 			@endif
 
 		</div>
