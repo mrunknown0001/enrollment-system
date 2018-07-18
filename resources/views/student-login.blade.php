@@ -7,14 +7,8 @@
             <header class="auth-header">
                 <h1 class="auth-title">
                     <img src="{{ asset('uploads/imgs/logo.png') }}" height="40px" width="auto">
-                    <div class="logo">
-                        <!-- <span class="l l1"></span>
-                        <span class="l l2"></span>
-                        <span class="l l3"></span>
-                        <span class="l l4"></span>
-                        <span class="l l5"></span> -->
-
-                    </div> Student Login </h1>
+                    &nbsp; Student Login
+                </h1>
             </header>
             <div class="auth-content">
                 @include('includes.all')

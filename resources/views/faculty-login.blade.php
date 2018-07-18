@@ -6,13 +6,9 @@
         <div class="card">
             <header class="auth-header">
                 <h1 class="auth-title">
-                    <div class="logo">
-                        <!-- <span class="l l1"></span>
-                        <span class="l l2"></span>
-                        <span class="l l3"></span>
-                        <span class="l l4"></span>
-                        <span class="l l5"></span> -->
-                    </div> Faculty Login </h1>
+                    <img src="{{ asset('uploads/imgs/logo.png') }}" height="40px" width="auto">
+                    &nbsp; Faculty Login
+                </h1>
             </header>
             <div class="auth-content">
                 @include('includes.all')
