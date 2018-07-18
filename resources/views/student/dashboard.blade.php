@@ -24,12 +24,7 @@
 						@elseif(Auth::user()->info->enrolling_for == 1 && Auth::user()->info->year_level != null)
 							{{-- check if the student is enrolled --}}
 							@if(Auth::user()->enrollment_status->where('active', 1)->first())
-								{{-- show data of enrolled course/program --}}
-								@if(Auth::user()->info->course_id != null)
-									<p class="text-center">Enrolled to <strong>{{ Auth::user()->info->course->title }}</strong></p>
-								@else
-									<p class="text-center">Enrolled to <strong>{{ Auth::user()->info->program->title }}</strong></p>
-								@endif
+								@include('student.includes.student-dashboard-profile')
 							@else
 								{{-- check if what year level is active in enrollment --}}
 								@if(Auth::user()->info->year_level == $yl->id)
@@ -52,7 +47,7 @@
 						@elseif(Auth::user()->info->enrolling_for == 2)
 							{{-- check if the student is enrolled --}}
 							@if(Auth::user()->enrollment_status->where('active', 1)->first())
-								<p class="text-center">Currently Enrolled to {{ Auth::user()->info->program->title }}</p>
+								@include('student.includes.student-dashboard-profile')
 							@else
 								@if(Auth::user()->assessment->where('active', 1)->first())
 									<p class="text-center">Please pay the assessment</p>
