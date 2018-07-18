@@ -496,6 +496,11 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to view all students
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
 
+	// route to view student raw grades
+	Route::get('/student/{id}/grades/view', 'AdminController@viewStudentGrades')->name('admin.view.student.grades');
+
+	// route to view student remarks
+
 	// routo set max number of student per subject class
 	Route::get('/students/set/max/number', 'AdminController@setMaxStudentNumber')->name('admin.set.max.student.number');
 

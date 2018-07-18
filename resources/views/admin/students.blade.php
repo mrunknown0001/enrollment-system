@@ -55,7 +55,7 @@
 				            	@if(count($s->enrollment_status) > 0)
 			                         
 			                        @if($s->info->course_id != null)
-										<p><a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Grades</a></p>
+										<p><a href="{{ route('admin.view.student.grades', ['id' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Grades</a></p>
 			                        	<p>
 			                            Enrolled in {{ $s->info->course->title }} - 
 			                            @if($s->info->year_level == 1)

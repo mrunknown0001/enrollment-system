@@ -28,6 +28,7 @@ use App\ProgramAssignment;
 use App\EnrollmentSetting;
 use App\StudentPerSubject;
 use App\SubjectStudent;
+use App\Grade;
 
 use App\Http\Controllers\GeneralController;
 
@@ -1155,6 +1156,37 @@ class AdminController extends Controller
         $max = StudentPerSubject::find(1);
 
         return view('admin.students', ['students' => $students, 'max' => $max]);
+    }
+
+
+    // method use to view student grades
+    public function viewStudentGrades($id = null)
+    {
+        $student = User::findorfail($id);
+
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        $course = Course::find($student->info->course_id);
+
+        // get all grades available
+        $grades = Grade::where('student_id', $student->id)
+                        ->where('academic_year_id', $ay->id)
+                        ->where('semester_id', $sem->id)
+                        ->get();
+
+        $assessment = Assessment::where('student_id', $student->id)
+                            ->where('active', 1)
+                            ->first();
+        $subjects = null;
+        $subject_ids = unserialize($assessment->subject_ids);
+
+        foreach($subject_ids as $id) {
+            $subjects = Subject::find($id);
+        }
+
+        
+
     }
 
 
