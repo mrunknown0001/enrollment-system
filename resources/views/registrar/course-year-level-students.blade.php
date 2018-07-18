@@ -45,7 +45,7 @@
 							</tfoot>
 						</table>
 					@else
-						<p>No Students Enrolled</p>
+						<p class="text-center">No Students Enrolled</p>
 					@endif
                 </div>
                 <div class="card-footer"> <small>Course Year Level Enrolled Students</small> </div>

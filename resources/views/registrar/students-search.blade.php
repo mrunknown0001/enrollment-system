@@ -44,7 +44,7 @@
 				</tfoot>
 			</table>
 			@else
-				<p>No Student Matched!</p>
+				<p class="text-center">No Student Matched!</p>
 			@endif
         </div>
     </div>

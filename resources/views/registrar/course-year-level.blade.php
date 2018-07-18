@@ -26,7 +26,7 @@
 							<p><a href="{{ route('registrar.view.course.year.level.enrolled', ['course_id' => $course->id, 'yl_id' => $y->id]) }}">{{ $y->name }} - {{ $course->title }}</a></p>
 						@endforeach
 					@else
-						<p>No Year Level</p>
+						<p class="text-center">No Year Level</p>
 					@endif
                 </div>
                 <div class="card-footer"> <small>Course Year Level</small> </div>

@@ -19,7 +19,7 @@
 					<p><a href="{{ route('registrar.view.course.year.level', ['id' => $c->id]) }}">{{ $c->title }}</a></p>
 				@endforeach
 			@else
-				<p>No Available Course</p>
+				<p class="text-center">No Available Course</p>
 			@endif
         </div>
     </div>

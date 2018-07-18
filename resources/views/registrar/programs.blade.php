@@ -19,7 +19,7 @@
 					<p><a href="{{ route('registrar.view.program.enrolled', ['id' => $p->id]) }}">{{ $p->title }} - {{ $p->code }}</a></p>
 				@endforeach
 			@else
-				<p>No Available Programs</p>
+				<p class="text-center">No Available Programs</p>
 			@endif
         </div>
     </div>

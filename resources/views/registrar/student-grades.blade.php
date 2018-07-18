@@ -65,7 +65,7 @@
                         <tfoot></tfoot>
                     </table>
                     @else
-                    <p>No Grades Yet</p>
+                    <p class="text-center">No Grades Yet</p>
                     @endif
                 </div>
                 <div class="card-footer"> <small> Student Grades </small> </div>

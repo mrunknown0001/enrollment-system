@@ -53,7 +53,7 @@
 				</tbody>
 			</table>
 			@else
-			<p>No Grades Available!</p>
+			<p class="text-center">No Grades Available!</p>
 			@endif
 		</div>
 	</div>
