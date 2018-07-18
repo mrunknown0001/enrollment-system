@@ -15,7 +15,7 @@
             <article class="content">
                 <div class="error-card global">
                     <div class="error-title-block">
-                        <h1 class="error-title"> ICT </h1>
+                        <h1 class="error-title"> <img src="{{ asset('uploads/imgs/logo.png') }}" height="110px" width="auto" style="margin-top: -22px; margin-right: -20px"> ICT </h1>
                         <h2 class="error-sub-title"> Online Enrollment System </h2>
                     </div>
                     <div class="error-container">

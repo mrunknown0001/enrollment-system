@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="{{ asset('modular/css/app-blue.css') }}">
         @else
         <link rel="stylesheet" href="{{ asset('modular/css/app-green.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap-toggle.min.css') }}"> -->
+        <link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
         <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"> -->
         <style> 
             ::selection {
@@ -62,5 +64,6 @@
         <script src="{{ asset('modular/js/vendor.js') }}"></script>
         <script src="{{ asset('modular/js/app.js') }}"></script>
         <script src="{{ asset('js/print.min.js') }}"></script>
+        <!-- <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script> -->
     </body>
 </html>

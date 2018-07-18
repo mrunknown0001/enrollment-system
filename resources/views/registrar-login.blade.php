@@ -6,7 +6,7 @@
         <div class="card">
             <header class="auth-header">
                 <h1 class="auth-title">
-                    <img src="{{ asset('uploads/imgs/logo.png') }}" height="40px" width="auto">
+                    <!-- <img src="{{ asset('uploads/imgs/logo.png') }}" height="40px" width="auto"> -->
                     &nbsp; Registrar Login
                 </h1>
             </header>

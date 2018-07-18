@@ -29,14 +29,21 @@
         	<form action="{{ route('admin.enrollment.setting.post') }}" method="POST" class="form-inline">
         		{{ csrf_field() }}
 				<div class="form-group">
-					<label class="checkbox-inline">
-						<input type="checkbox" name="enrollment_switch" id="enrollment_switch" @if($es->status == 1) checked @endif> &nbsp; Enrollment Switch
+					<!-- <label class="checkbox-inline">
+						<input type="checkbox" class="" name="enrollment_switch" id="enrollment_switch" checked data-toggle="toggle" >
+					</label> -->
+					<label class='toggle-label' onclick="">
+					 <input type='checkbox'/>
+						 <span class='back'>
+							<span class='toggle'></span>
+					 		<span class='label on'>ON</span>
+							<span class='label off'>OFF</span>  
+						</span>
 					</label>
 				</div>
-				&nbsp;
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Activate Enrollment</button>
-				</div>
+				<!-- <div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Save</button>
+				</div> -->
         	</form>
         	<hr>
             <div class="card card-primary">
