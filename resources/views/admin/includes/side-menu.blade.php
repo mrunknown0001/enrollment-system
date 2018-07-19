@@ -71,6 +71,13 @@
                         <i class="fa fa-dollar"></i> Rates &amp; Fees
                     </a>
                 </li>
+                <li class="{{ route('admin.view.rooms') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.view.rooms') }}">
+                        <i class="fa fa-building"></i> Rooms</a>
+                </li>
+                <li class="{{ route('admin.view.schedules') == url()->current() ? 'active' : '' }}">
+                    <a href="{{ route('admin.view.schedules') }}"><i class="fa fa-clock-o"></i> Schedules</a>
+                </li>
                 <li class="{{ route('admin.enrollment') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.enrollment') }}">
                         <i class="fa fa-file-text-o"></i> Enrollment

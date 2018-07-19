@@ -30,6 +30,8 @@ use App\StudentPerSubject;
 use App\SubjectStudent;
 use App\Grade;
 use App\Remark;
+use App\Room;
+use App\Schedule;
 
 use App\Http\Controllers\GeneralController;
 
@@ -56,6 +58,8 @@ class AdminController extends Controller
         $courses = Course::where('active', 1)->get();
         $yl = YearLevel::where('active', 1)->first();
 
+        $es = EnrollmentSetting::find(1);
+
         // get total payment of the current enrollment
         $payments = Payment::where('status', 1)->get();
         $total_payment = null;
@@ -65,7 +69,7 @@ class AdminController extends Controller
         }
 
 
-    	return view('admin.dashboard', ['students' => $students, 'faculties' => $faculties, 'cashiers' => $cashiers, 'registrars' => $registrars, 'subjects' => $subjects, 'programs' => $programs, 'courses' => $courses, 'yl' => $yl, 'payment' => $total_payment]);
+    	return view('admin.dashboard', ['students' => $students, 'faculties' => $faculties, 'cashiers' => $cashiers, 'registrars' => $registrars, 'subjects' => $subjects, 'programs' => $programs, 'courses' => $courses, 'yl' => $yl, 'payment' => $total_payment, 'es' => $es]);
     }
 
 
@@ -1547,7 +1551,7 @@ class AdminController extends Controller
     }
 
 
-    // route to delete misc fee
+    // method to delete misc fee
     public function deleteMiscFee($id = null)
     {
         $misc = MiscFee::findorfail($id);
@@ -1556,6 +1560,103 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Deleted Miscellaneous Fee');
 
         return redirect()->route('admin.rate.fee.settings')->with('success', 'Miscellaneous Fee Deleted'); 
+    }
+
+
+    // method use to view rooms
+    public function viewRooms()
+    {
+        // get all rooms available
+        $rooms = Room::get();
+
+        return view('admin.rooms', ['rooms' => $rooms]);
+    }
+
+
+    // method use to add room
+    public function addRoom()
+    {
+        return view('admin.add-room');
+    }
+
+
+    // method use to save added room
+    public function postAddRoom(Request $request)
+    {
+        $request->validate([
+            'room_name' => 'required'
+        ]);
+
+        $name = $request['room_name'];
+        $number = $request['room_number'];
+
+        // add room here
+        $room = new Room();
+        $room->name = $name;
+        $room->room_number = $number;
+        $room->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Add Room');
+
+        // return to rooms
+        return redirect()->route('admin.view.rooms')->with('success', 'New Room Added!');
+    }
+
+
+    // method use to update room
+    public function updateRoom($id = null)
+    {
+        $room = Room::findorfail($id);
+
+        return view('admin.update-room', ['room' => $room]);
+    }
+
+
+    // method use to save update in room
+    public function postUpdateRoom(Request $request)
+    {
+        $request->validate([
+            'room_name' => 'required'
+        ]);
+
+        $name = $request['room_name'];
+        $number = $request['room_number'];
+        $room_id = $request['room_id'];
+
+        $room = Room::findorfail($room_id);
+        $room->name = $name;
+        $room->room_number = $number;
+        $room->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Updated Room');
+
+        // return to rooms
+        return redirect()->route('admin.view.rooms')->with('success', 'Room Updated!');
+    }
+
+
+    // method use to view schedules
+    public function viewSchedules()
+    {
+        // get acdtive schedules
+        $schedules = Schedule::where('active', 1)->get();
+
+        return view('admin.schedules', ['schedules' => $schedules]);
+    }
+
+
+    // method use to add schedule
+    public function addSchedule()
+    {
+        // get rooms, subjects active
+        $rooms = Room::get(['id', 'name']);
+        $subjects = Subject::where('active', 1)
+                ->orderBy('code', 'asc')
+                ->get(['id', 'code']);
+
+        return view('admin.add-schedule', ['rooms' => $rooms, 'subjects' => $subjects]);
     }
 
 

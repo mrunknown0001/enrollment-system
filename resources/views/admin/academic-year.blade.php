@@ -27,7 +27,7 @@
                     @if(count($sem) > 0)
                     <p>Semester: <strong>{{ ucwords($sem->name) }}</strong></p>
                     @if($sem->id == 2)
-                    <p><a href="{{ route('admin.set.semester', ['id' => $sem->id - 1]) }}" class="btn btn-primary">Set Previous Semester</a></p>
+                    <!-- <p><a href="{{ route('admin.set.semester', ['id' => $sem->id - 1]) }}" class="btn btn-primary">Set Previous Semester</a></p> -->
                     <button class="btn btn-danger" data-toggle="modal" data-target="#confirm">Close Academic Year</button>
 
                     @else

@@ -11,7 +11,7 @@
 
 <section class="section">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             
             <div class="card card-primary">
                 <div class="card-header">
@@ -21,30 +21,40 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-                    <form action="{{ route('admin.add.academic.year.post') }}" method="POST" role="form">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <select name="from" id="from" class="form-control underlined">
-                                        <option value="">Start Year</option>
-                                        <option value="{{ date('Y') }}">{{ date('Y') }}</option>
-                                    </select>
+    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="{{ route('admin.add.academic.year.post') }}" method="POST" role="form">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select name="from" id="from" class="form-control underlined">
+                                                <option value="">Start Year</option>
+                                                <option value="{{ date('Y') }}">{{ date('Y') }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select name="to" id="to" class="form-control underlined">
+                                                <option value="">End Year</option>
+                                                <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <select name="to" id="to" class="form-control underlined">
-                                        <option value="">End Year</option>
-                                        <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}</option>
-                                    </select>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Add Academic Year</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add Academic Year</button>
-                        </div>
-                    </form>
+                    </div>
+
+
+
+
                 </div>
             </div>
+
         </div>
     </div>
 </section>

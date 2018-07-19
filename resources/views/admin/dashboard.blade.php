@@ -15,7 +15,9 @@
 <section class="section">
     <div class="row sameheight-container">
         <div class="col-md-12">
+            <p class="text-center">Enrollment is Active</p>
             <div class="row">
+                @if($es->status == 1)
                 <div class="col-md-6">
                     @if(count($courses) > 0)
                     <strong>Courses Open for {{ $yl->name }}</strong>
@@ -36,6 +38,11 @@
                     </ul>
                     @endif
                 </div>
+                @else
+                <div class="col-md-12">
+                    <p class="text-center">Enrollment is Inactive</p>
+                </div>
+                @endif
             </div>
 
             <div class="card sameheight-item stats" data-exclude="xs">
@@ -86,7 +93,7 @@
                                 &#8369;
                             </div>
                             <div class="stat">
-                                <div class="value"> {{ $payment }} </div>
+                                <div class="value"> {{ $payment != null ? $payment : '0' }} </div>
                                 <div class="name"> Total Payment </div>
                             </div>
                             <div class="progress stat-progress">

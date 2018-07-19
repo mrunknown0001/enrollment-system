@@ -566,6 +566,27 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to add misc fee
 	Route::post('/rates-fees/add', 'AdminController@postAddMiscFee')->name('admin.add.misc.fee.post');
 
+	// route to view rooms
+	Route::get('/rooms', 'AdminController@viewRooms')->name('admin.view.rooms');
+
+	// route to add room
+	Route::get('/room/add', 'AdminController@addRoom')->name('admin.add.room');
+
+	// route to save added room
+	Route::post('/room/add', 'AdminController@postAddRoom')->name('admin.add.room.post');
+
+	// route to update room
+	Route::get('/room/{id}/update', 'AdminController@updateRoom')->name('admin.update.room');
+
+	// route to save update on room 
+	Route::post('/room/update', 'AdminController@postUpdateRoom')->name('admin.update.room.post');
+
+	// route to view add update schedules
+	Route::get('/schedules', 'AdminController@viewSchedules')->name('admin.view.schedules');
+
+	// route to add schedules
+	Route::get('/schedule/add', 'AdminController@addSchedule')->name('admin.add.schedule');
+
 	// route to veiw settings in enrollment
 	Route::get('/enrollment', 'AdminController@enrollment')->name('admin.enrollment');
 
