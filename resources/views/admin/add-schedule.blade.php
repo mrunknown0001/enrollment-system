@@ -24,7 +24,7 @@
                     @include('includes.all')
 					<div class="row">
 						<div class="col-md-6">
-							<form action="#" method="POST" autocomplete="off">
+							<form action="{{ route('admin.add.schedule.post') }}" method="POST" autocomplete="off">
 								{{ csrf_field() }}
 								<div class="form-group">
 									<label for="room">Select Room</label>

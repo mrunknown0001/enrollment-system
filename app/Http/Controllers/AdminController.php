@@ -1660,6 +1660,54 @@ class AdminController extends Controller
     }
 
 
+    // method use to save added schedule
+    public function postAddSchedule(Request $request)
+    {
+        $request->validate([
+            'room' => 'required',
+            'subject' => 'required',
+            'day' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required'
+        ]);
+
+        $room_id = $request['room'];
+        $subject_id = $request['subject'];
+        $day = $request['day'];
+        $st = $request['start_time'];
+        $et = $request['end_time'];
+
+        $subject = Subject::findorfail($subject_id);
+
+        if($st > $et) {
+            return redirect()->back()->with('error', 'Invalid End Time. End Time must later than STart Time');
+        }
+
+        //////////////////////////////////////////////////////
+        // check if there is dupplicate or confict schedule //
+        //////////////////////////////////////////////////////
+        // check for duplicate
+        $schedule = Schedule::where('active', 1)
+                        ->where('room_id', $room_id)
+                        ->where('subject_id', $subject->id)
+                        ->where('day', $day)
+                        ->where('time_start', $st)
+                        ->where('time_end', $et)
+                        ->first();
+        if(count($schedule) > 0) {
+            return redirect()->back()->with('error', 'Duplicate Schedule Found!');
+        }
+
+        // ckeck for start time conflict on the day
+        
+
+
+        // check for end time conflict on the day
+
+
+    }
+
+
     // method use to view enrollment settings
     public function enrollment()
     {

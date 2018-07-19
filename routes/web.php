@@ -587,6 +587,9 @@ Route::group(['prefix' => 'admin'], function () {
 	// route to add schedules
 	Route::get('/schedule/add', 'AdminController@addSchedule')->name('admin.add.schedule');
 
+	// rotue to save added schedule
+	Route::post('/schedule/add', 'AdminController@postAddSchedule')->name('admin.add.schedule.post');
+
 	// route to veiw settings in enrollment
 	Route::get('/enrollment', 'AdminController@enrollment')->name('admin.enrollment');
 
