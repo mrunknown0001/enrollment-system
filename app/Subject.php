@@ -19,4 +19,9 @@ class Subject extends Model
 	{
 		return $this->belongsTo('App\YearLevel', 'year_level');
 	}
+
+	public function schedules()
+	{
+		return $this->hasMany('App\Schedule', 'subject_id');
+	}
 }

@@ -242,4 +242,199 @@ class GeneralController extends Controller
 
         return $eq;
     }
+
+
+    ///////////////////////////////////////
+    // method use to get name of the day //
+    ///////////////////////////////////////
+    public static function get_day($day)
+    {
+        switch ($day) {
+            case 1:
+                $name = 'Monday';
+                break;
+            
+            case 2:
+                $name = 'Tuesday';
+                break;
+            
+            case 3:
+                $name = 'Wednesday';
+                break;
+            
+            case 4:
+                $name = 'Thursday';
+                break;
+            
+            case 5:
+                $name = 'Friday';
+                break;
+            
+            case 6:
+                $name = 'Saturday';
+                break;
+            
+            case 7:
+                $name = 'Sunday';
+                break;
+            
+            default:
+                $name = 'Not Found';
+                break;
+        }
+
+        return $name;
+    }
+
+
+    ////////////////////////////
+    // method use to get time //
+    ////////////////////////////
+    public static function get_time($time)
+    {
+        switch ($time) {
+            case 1:
+                $t = '6:00 am';
+                break;
+            
+            case 2:
+                $t = '6:30 am';
+                break;
+            
+            case 3:
+                $t = '7:00 am';
+                break;
+            
+            case 4:
+                $t = '7:30 am';
+                break;
+            
+            case 5:
+                $t = '8:00 am';
+                break;
+            
+            case 6:
+                $t = '8:30 am';
+                break;
+            
+            case 7:
+                $t = '9:00 am';
+                break;
+            
+            case 8:
+                $t = '9:30 am';
+                break;
+            
+            case 9:
+                $t = '10:00 am';
+                break;
+            
+            case 10:
+                $t = '10:30 am';
+                break;
+            
+            case 11:
+                $t = '11:00 am';
+                break;
+            
+            case 12:
+                $t = '11:30 am';
+                break;
+            
+            case 13:
+                $t = '12:00 pm';
+                break;
+            
+            case 14:
+                $t = '12:30 pm';
+                break;
+            
+            case 15:
+                $t = '1:00 pm';
+                break;
+            
+            case 16:
+                $t = '1:30 pm';
+                break;
+            
+            case 17:
+                $t = '2:00 pm';
+                break;
+            
+            case 18:
+                $t = '2:30 pm';
+                break;
+            
+            case 19:
+                $t = '3:00 pm';
+                break;
+            
+            case 20:
+                $t = '3:30 pm';
+                break;
+            
+            case 21:
+                $t = '4:00 pm';
+                break;
+            
+            case 22:
+                $t = '4:30 pm';
+                break;
+            
+            case 23:
+                $t = '5:00 pm';
+                break;
+            
+            case 24:
+                $t = '5:30 pm';
+                break;
+            
+            case 25:
+                $t = '6:00 pm';
+                break;
+            
+            case 26:
+                $t = '6:30 pm';
+                break;
+            
+            case 27:
+                $t = '7:00 pm';
+                break;
+            
+            case 28:
+                $t = '7:30 pm';
+                break;
+            
+            case 29:
+                $t = '8:00 pm';
+                break;
+            
+            case 30:
+                $t = '8:30 pm';
+                break;
+            
+            case 31:
+                $t = '9:00 pm';
+                break;
+            
+            case 32:
+                $t = '9:30 pm';
+                break;
+            
+            case 33:
+                $t = '10:00 pm';
+                break;
+            
+            case 34:
+                $t = '10:30 pm';
+                break;
+
+            default:
+                $t = 'Time Not Found!';
+                break;
+        }
+
+        return $t;
+    }
+
 }

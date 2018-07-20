@@ -32,10 +32,20 @@
 									<div class="form-group">
 										@foreach($subjects as $sub)
 											<div class="row">
-												<div class="col-md-8">
+												<div class="col-md-12">
 													<input type="checkbox" name="subjects[]" id="subject{{ $sub->id }}" value="{{ $sub->id }}">
 													<label for="subject{{ $sub->id }}"><strong>{{ $sub->code }}</strong></label>
-													<p><label for="subject{{ $sub->id }}">{{ $sub->description }}</label></p>		
+													<p><label for="subject{{ $sub->id }}">{{ $sub->description }}</label></p>
+													<p>
+														@if(count($sub->schedules) > 0)
+															@foreach($sub->schedules as $sched)
+																{{ \App\Http\Controllers\GeneralController::get_day($sched->day) }} /
+																{{ $sched->room->name }} /
+																{{ \App\Http\Controllers\GeneralController::get_time($sched->time_start) }}-{{ \App\Http\Controllers\GeneralController::get_time($sched->time_end) }}
+																@if(!$loop->last) | @endif
+															@endforeach
+														@endif
+													</p>		
 													<hr>
 												</div>	
 											</div>
@@ -51,7 +61,7 @@
 							@endif
 						@else
 							<div class="row">
-								<div class="col-md-8">
+								<div class="col-md-12">
 						            <div class="card card-primary">
 						                <div class="card-header">
 						                    <div class="header-block">

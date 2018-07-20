@@ -13,8 +13,49 @@
 <p><a href="{{ route('admin.add.schedule') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Schedule</a></p>
 @include('includes.all')
 @if(count($schedules) > 0)
-<table class="table table-bordered">
+<table class="table">
+	<tbody>
+		<tr>
+			<td>Monday</td>
+			@foreach($monday as $sch)
+				<td class="text-center">
+				{{ $sch->subject->code }}
+				<br>
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				</td>
+			@endforeach
+		</tr>
+		<tr>
+			<td>Tuesday</td>
+			@foreach($tuesday as $sch)
+				<td class="text-center">
+				{{ $sch->subject->code }}
+				<br>
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				</td>
+			@endforeach
+		</tr>
+		<tr>
+			<td>Wednesday</td>
+			@foreach($wednesday as $sch)
 
+			@endforeach
+		</tr>
+		<tr>
+			<td>Thursday</td>
+			@foreach($thursday as $sch)
+
+			@endforeach
+		</tr>
+		<tr>
+			<td>Friday</td>
+			@foreach($friday as $sch)
+
+			@endforeach
+		</tr>
+	</tbody>
 </table>
 @else
 <p class="text-center">No Schedules Available!</p>

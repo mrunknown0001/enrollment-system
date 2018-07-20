@@ -1642,8 +1642,15 @@ class AdminController extends Controller
     {
         // get acdtive schedules
         $schedules = Schedule::where('active', 1)->get();
+        $mon = Schedule::where('active', 1)->where('day', 1)->orderBy('time_start', 'asc')->get();
+        $tue = Schedule::where('active', 1)->where('day', 2)->orderBy('time_start', 'asc')->get();
+        $wed = Schedule::where('active', 1)->where('day', 3)->orderBy('time_start', 'asc')->get();
+        $thu = Schedule::where('active', 1)->where('day', 4)->orderBy('time_start', 'asc')->get();
+        $fri = Schedule::where('active', 1)->where('day', 5)->orderBy('time_start', 'asc')->get();
+        $sat = Schedule::where('active', 1)->where('day', 6)->orderBy('time_start', 'asc')->get();
+        $sun = Schedule::where('active', 1)->where('day', 7)->orderBy('time_start', 'asc')->get();
 
-        return view('admin.schedules', ['schedules' => $schedules]);
+        return view('admin.schedules', ['schedules' => $schedules, 'monday' => $mon, 'tuesday' => $tue, 'wednesday' => $wed, 'thursday' => $thu, 'friday' => $fri, 'saturday' => $sat, 'sunday' => $sun]);
     }
 
 
@@ -1678,6 +1685,7 @@ class AdminController extends Controller
         $et = $request['end_time'];
 
         $subject = Subject::findorfail($subject_id);
+        $room = Room::findorfail($room_id);
 
         if($st > $et) {
             return redirect()->back()->with('error', 'Invalid End Time. End Time must later than STart Time');
@@ -1698,12 +1706,43 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Duplicate Schedule Found!');
         }
 
+        $schedule = Schedule::where('active', 1)
+                        ->where('room_id', $room_id)
+                        ->where('day', $day)
+                        ->where('time_start', $st)
+                        ->where('time_end', $et)
+                        ->first();
+        if(count($schedule) > 0) {
+            return redirect()->back()->with('error', 'Time Slot Filled Up!');
+        }
+
         // ckeck for start time conflict on the day
-        
+        $schedules = Schedule::where('active', 1)
+                        ->where('room_id', $room_id)
+                        ->where('day', $day)
+                        ->get();
+
+        foreach($schedules as $sch) {
+            if(($sch->time_end > $st && $sch->time_end < $et) || ($sch->time_start > $st && $sch->time_start < $et) || $sch->time_start == $st || $sch->time_end == $et) {
+                return redirect()->back()->with('error', 'Time conflict on ' . GeneralController::get_day($sch->day) . ' ' . GeneralController::get_time($sch->time_start) . '-' . GeneralController::get_time($sch->time_end));
+            }
+        }
 
 
-        // check for end time conflict on the day
+        // add new sched
+        $sched = new Schedule();
+        $sched->room_id = $room->id;
+        $sched->subject_id = $subject->id;
+        $sched->day = $day;
+        $sched->time_start = $st;
+        $sched->time_end = $et;
+        $sched->save();
 
+        // add activity log
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Added Schedule');
+
+        // return to schedules
+        return redirect()->back()->with('success', 'Schedule Added!');
 
     }
 
