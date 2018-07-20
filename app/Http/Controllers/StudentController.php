@@ -23,6 +23,7 @@ use App\EnrollmentSetting;
 use App\Grade;
 use App\Remark;
 use App\GradeEquivalent;
+use App\Avatar;
 
 use App\Http\Controllers\GeneralController;
 
@@ -132,6 +133,42 @@ class StudentController extends Controller
         // return message
         return redirect()->route('student.profile')->with('success', 'Profile Updated!');
 
+    }
+
+
+    // method use to upload profile image
+    public function postUploadProfileImage(Request $request)
+    {
+        // get current time and append the upload file extension to it,
+        // then put that name to $photoName variable.
+        $photoname = time().'.'.$request->image->getClientOriginalExtension();
+
+        /*
+        talk the select file and move it public directory and make avatars
+        folder if doesn't exsit then give it that unique name.
+        */
+        $request->image->move(public_path('uploads/avatar'), $photoname);
+
+
+        $avatar = Avatar::where('student_id', Auth::user()->id)->first();
+
+        // save photoname to database
+        if(count($avatar) < 1) {
+            $avatar = new Avatar();
+            $avatar->student_id = Auth::user()->id;
+            $avatar->avatar = $photoname;
+            $avatar->save();
+        }
+        else {
+            $avatar->avatar = $photoname;
+            $avatar->save();
+        }
+
+        // add activity log
+
+
+        // return to dashboard
+        return redirect()->route('student.dashboard')->with('success', 'Profile Image Updated!');
     }
 
 

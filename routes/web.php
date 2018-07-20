@@ -91,6 +91,9 @@ Route::group(['prefix' => 'student'], function () {
 	// route to update profile
 	Route::post('/profile/update', 'StudentController@postUpdateProfile')->name('student.profile.update.post');
 
+	// route to upload profile image
+	Route::post('/profile/image', 'StudentController@postUploadProfileImage')->name('student.upload.profile.image.post');
+
 	// route to view change password form
 	Route::get('/password/change', 'StudentController@changePassword')->name('student.password.change');
 

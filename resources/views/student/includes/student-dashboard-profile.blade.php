@@ -29,12 +29,12 @@
                             <p>Year Graduated: <strong>{{ Auth::user()->info->date_graduated }}</strong></p>
                         </div>
                         <div class="col-md-4">
-                            <img src="http://dummyimage.com/200x200/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+                            <img src="@if(Auth::user()->avatar) {{ asset('uploads/avatar/'.Auth::user()->avatar->avatar) }} @else {{ asset('uploads/avatar/avatar.png') }} @endif" alt="Avatar Image" height="200px" width="auto" style="border: 1px solid grey; margin: 5px;">
                             &nbsp;
-                            <form action="{{ route('student.dashboard') }}" method="GET" enctype="multipart/form-data">
+                            <form action="{{ route('student.upload.profile.image.post') }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <input type="file" name="">
+                                    <input type="file" name="image" id="image" accept="image/x-png,image/gif,image/jpeg">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Image</button>

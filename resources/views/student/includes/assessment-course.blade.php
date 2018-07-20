@@ -6,8 +6,9 @@
 		<tr>
 			<th>Code</th>
 			<th>Description</th>
-			<th>Unit</th>
-			<th>Hours</th>
+			<!-- <th>Unit</th>
+			<th>Hours</th> -->
+			<th>Schedule</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,8 +16,18 @@
 			<tr>
 				<td>{{ $sub->code }}</td>
 				<td>{{ $sub->description }}</td>
-				<td>{{ $sub->units }}</td>
-				<td>{{ $sub->hours }}</td>
+				<!-- <td>{{ $sub->units }}</td>
+				<td>{{ $sub->hours }}</td> -->
+				<td>
+					@if(count($sub->schedules) > 0)
+						@foreach($sub->schedules as $sched)
+							{{ \App\Http\Controllers\GeneralController::get_day($sched->day) }} /
+							{{ $sched->room->name }} /
+							{{ \App\Http\Controllers\GeneralController::get_time($sched->time_start) }}-{{ \App\Http\Controllers\GeneralController::get_time($sched->time_end) }}
+							@if(!$loop->last) | @endif
+						@endforeach
+					@endif
+				</td>
 			</tr>
 		@endforeach
 	</tbody>
