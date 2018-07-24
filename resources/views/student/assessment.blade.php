@@ -15,7 +15,7 @@
 		<div class="col-md-12">
 			@if(count($assessment) > 0)
 				<button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
-				<div id="printable">
+				<div id="printableArea">
 				@if($assessment->paid == 0)
 					@if($assessment->course_id != null)
 						@include('student.includes.assessment-course')
@@ -29,7 +29,7 @@
 						@endif
 					@endif
 				@else
-					<p class="text-center">Assessment Paid</p>
+					<p class="text-center" id="hideOnPrint">Assessment Paid</p>
 					@if($assessment->course_id != null)
 						@include('student.includes.assessment-course')
 					@else

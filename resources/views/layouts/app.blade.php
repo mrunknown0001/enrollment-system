@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{  asset('modular/css/vendor.css') }}">
         @if(Auth::guard('web')->check())
         <link rel="stylesheet" href="{{ asset('modular/css/app-blue.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/print.css') }}">
         @else
         <link rel="stylesheet" href="{{ asset('modular/css/app-green.css') }}">
         <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap-toggle.min.css') }}"> -->

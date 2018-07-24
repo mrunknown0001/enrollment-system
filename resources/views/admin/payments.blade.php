@@ -41,7 +41,7 @@
 					</tfoot>
 				</table>
 			@else
-				<p>No Payments!</p>
+				<p class="text-center">No Payments!</p>
 			@endif
         </div>
     </div>

@@ -1,6 +1,12 @@
+<h3 class="text-center showOnPrint">Internation Computer Technology Colleges</h3>
+<p class="text-center showOnPrint">Your Gateway to a Global Job Opportunity</p>
+<p class="text-center showOnPrint">2<sup>nd</sup> of AA building, Barangay Sto Cristo, Tarlac City</p>
+<p class="showOnPrint"><strong>{{ ucwords(Auth::user()->firstname . ' ' . Auth::user()->lastname) }} - {{ Auth::user()->student_number }}</strong></p>
+
+<div class="courseAssessment">
+
 <p><strong>{{ Auth::user()->info->course->title }}</strong></p>
-<p><strong>{{  $assessment->semester->name }}</strong></p>
-<p><strong>{{ $assessment->academic_year->from . '-' . $assessment->academic_year->from }}</strong></p>
+<p><strong>{{  $assessment->semester->name }} | {{ $assessment->academic_year->from . '-' . $assessment->academic_year->from }}</strong></p>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -36,3 +42,5 @@
 <hr>
 <p>Total: <strong>&#8369; {{ $assessment->total }}</strong></p>
 <hr>
+
+</div>

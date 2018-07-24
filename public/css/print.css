@@ -1,3 +1,49 @@
 @media print {
-	
+  body * {
+    visibility: hidden;
+  }
+  table{
+    width:100%;
+  }
+  #printableArea, #printableArea * {
+    visibility: visible;
+  }
+  #printableArea {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    margin-top: -150px;
+  }
+  #hideOnPrint {
+    visibility: hidden;
+  }
+  .showOnPrint {
+  	visibility: visible;
+  }
+
+  .courseAssessment {
+	margin-top: 0px !important;
+  }
+
+  .gradePrint {
+	margin-top: 0px !important;
+  }
+
+  .gradeHeader{
+  	margin-top: 20px !important;
+  }
+
+}
+
+.showOnPrint {
+	visibility: hidden;
+}
+
+.courseAssessment {
+	margin-top: -150px;
+}
+
+.gradePrint {
+	margin-top: -180px;
 }
