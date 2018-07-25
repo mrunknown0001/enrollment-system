@@ -56,11 +56,20 @@
                             </select>
                         </div>  
                         <div class="form-group">
+                            <label for="year_level">Select Year Level</label>
                             <select name="year_level" id="year_level" class="form-control underlined" required="">
                                 <option value="">Select Year Level</option>
                                 @foreach($yl as $y)
                                 <option value="{{ $y->id }}" {{ $y->id == $subject->year_level ? 'selected' : '' }}>{{ ucwords($y->name) }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="semester">Subject Semester</label>
+                            <select name="semester" id="semester" class="form-control underlined" required="">
+                                <option value="">Select Semester</option>
+                                <option value="1" {{ $subject->semester == 1 ? 'selected' : '' }}>First Semester</option>
+                                <option value="2" {{ $subject->semester == 2 ? 'selected' : '' }}>Second Semester</option>
                             </select>
                         </div>
                         <div class="form-group">

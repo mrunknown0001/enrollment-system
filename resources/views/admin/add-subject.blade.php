@@ -60,6 +60,14 @@
                                 <option value="{{ $y->id }}">{{ ucwords($y->name) }}</option>
                                 @endforeach
                             </select>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="semester">Subject Semester</label>
+                            <select name="semester" id="semester" class="form-control underlined" required="">
+                                <option value="">Select Semester</option>
+                                <option value="1">First Semester</option>
+                                <option value="2">Second Semester</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Subject</button>

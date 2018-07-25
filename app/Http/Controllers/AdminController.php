@@ -997,7 +997,8 @@ class AdminController extends Controller
             'code' => 'required|unique:subjects',
             'units' => 'required',
             'hours' => 'required',
-            'year_level' => 'required'
+            'year_level' => 'required',
+            'semester' => 'required'
         ]);
 
         // assing to variables
@@ -1007,6 +1008,7 @@ class AdminController extends Controller
         $hours = $request['hours'];
         $yl = $request['id'];
         $prereq = $request['prerequisite'];
+        $sem = $request['semester'];
 
         // save
         $subject = new Subject();
@@ -1016,6 +1018,7 @@ class AdminController extends Controller
         $subject->hours = $hours;
         $subject->year_level = $yl;
         $subject->prerequisites = $prereq;
+        $subject->semester = $sem;
         $subject->save();
 
         // add activity log
@@ -1045,7 +1048,8 @@ class AdminController extends Controller
             'code' => 'required',
             'units' => 'required',
             'hours' => 'required',
-            'year_level' => 'required'
+            'year_level' => 'required',
+            'semester' => 'required'
         ]);
 
         // assing to variables
@@ -1056,6 +1060,7 @@ class AdminController extends Controller
         $hours = $request['hours'];
         $yl = $request['year_level'];
         $prereq = $request['prerequisite'];
+        $sem = $request['semester'];
 
         $subject = Subject::findorfail($id);
 
@@ -1075,6 +1080,7 @@ class AdminController extends Controller
         $subject->hours = $hours;
         $subject->year_level = $yl;
         $subject->prerequisites = $prereq;
+        $subject->semester = $sem;
         $subject->save();
 
 
