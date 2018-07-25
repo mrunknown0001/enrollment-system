@@ -11,7 +11,7 @@
 @section('content')
 <section class="section">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <p><a href="{{ route('admin.view.faculties') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Faculties</a></p>
             <div class="card card-primary">
                 <div class="card-header">
