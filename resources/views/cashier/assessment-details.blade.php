@@ -21,23 +21,29 @@
                     </div>
                 </div>
                 <div class="card-block">
-                    @include('includes.all')
-
-					@if($assessment->paid == 0)
-						<p>Unpaid</p>
-						@if($assessment->course_id != null)
-							@include('admin.includes.assessment-course')
-						@else
-							@include('admin.includes.assessment-program')
-						@endif
-					@else
-						<p>Paid</p>
-						@if($assessment->course_id != null)
-							@include('admin.includes.assessment-course')
-						@else
-							@include('admin.includes.assessment-program')
-						@endif
-					@endif
+                    <div id="printableArea">
+                        @include('includes.all')
+                        <button id="hideOnPrint" type="button" onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
+    					@if($assessment->paid == 0)
+    						<p id="hideOnPrint">Status: <strong>Unpaid</strong></p>
+                            <div class="courseAssessment2">
+        						@if($assessment->course_id != null)
+        							@include('admin.includes.assessment-course')
+        						@else
+        							@include('admin.includes.assessment-program')
+        						@endif
+                            </div>
+    					@else
+    						<p id="hideOnPrint">Status: <strong>Paid</strong></p>
+                            <div class="courseAssessment2">
+        						@if($assessment->course_id != null)
+        							@include('admin.includes.assessment-course')
+        						@else
+        							@include('admin.includes.assessment-program')
+        						@endif
+                            </div>
+    					@endif
+                    </div>
                 </div>
             </div>
             @else

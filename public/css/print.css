@@ -15,14 +15,14 @@
     width: 100%;
     margin-top: -150px;
   }
-  #hideOnPrint {
+  #hideOnPrint, #hideOnPrint * {
     visibility: hidden;
   }
   .showOnPrint {
   	visibility: visible;
   }
 
-  .courseAssessment {
+  .courseAssessment, .courseAssessment2 {
 	margin-top: 0px !important;
   }
 
@@ -42,6 +42,10 @@
 
 .courseAssessment {
 	margin-top: -150px;
+}
+
+.courseAssessment2 {
+  margin-top: -130px;
 }
 
 .gradePrint {

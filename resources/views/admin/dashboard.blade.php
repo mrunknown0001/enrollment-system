@@ -15,9 +15,11 @@
 <section class="section">
     <div class="row sameheight-container">
         <div class="col-md-12">
-            <p class="text-center">Enrollment is Active</p>
             <div class="row">
                 @if($es->status == 1)
+                <div class="col-md-12">
+                  <p class="text-center">Enrollment is Active</p>  
+                </div>
                 <div class="col-md-6">
                     @if(count($courses) > 0)
                     <strong>Courses Open for {{ $yl->name }}</strong>
