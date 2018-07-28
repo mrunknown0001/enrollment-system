@@ -1,4 +1,4 @@
-<form action="{{ route('student.pay.with.paypal.post') }}" method="POST">
+<form action="{{ route('student.pay.with.paypal.post') }}" method="POST" id="hideOnPrint">
 	{{ csrf_field() }}
 	<input type="hidden" name="amount" value="{{ $assessment->total }}">
 	<input type="hidden" name="code" value="{{ $assessment->assessment_number }}">
