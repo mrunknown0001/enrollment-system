@@ -22,7 +22,9 @@
                 <div class="card-block">
                 	@include('includes.all')
                     @if($student->info->course_id != null)
-                    <p><a href="{{ route('registrar.view.student.grades', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Grades</a></p>
+                    <p><a href="{{ route('registrar.view.student.grades', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Grades</a>
+                    <a href="{{ route('registrar.view.student.tor', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> TOR</a>
+                    </p>
                     <p>
                     @else
                     <p><a href="{{ route('registrar.view.student.remarks', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Remarks</a></p>

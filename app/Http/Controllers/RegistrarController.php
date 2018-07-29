@@ -203,6 +203,9 @@ class RegistrarController extends Controller
                             ->get();
         }
 
+
+
+
         return view('registrar.student-grades', ['course' => $course, 'student' => $student, 'ay' => $ay, 'sem' => $sem, 'grades' => $grades, 'subjects' => $subjects]);
     }
 
@@ -446,6 +449,7 @@ class RegistrarController extends Controller
         }
 
 
+
         return view('registrar.student-view-grades', [
             'student' => $student,
             'grades' => $grades,
@@ -454,6 +458,29 @@ class RegistrarController extends Controller
             'ay' => $ay,
             'sem' => $sem
         ]);
+    }
+
+
+    // method use to view student tor
+    public function viewStudentTor($id = null, $sn = null)
+    {
+        $student = User::findorfail($id);
+
+        // check if sn is correct
+        if($student->student_number != $sn) {
+            return redirect()->back()->with('error', 'Modification Detected!');
+        }
+
+        // get course
+        $course = Course::find($student->info->course_id);
+
+        // get all grades
+        
+        // find grades per subject eqivalent
+
+        // return with ay, sem, subject details and equivalent
+
+        return view('registrar.student-view-tor', ['student' => $student, 'course' => $course]);
     }
 
 
