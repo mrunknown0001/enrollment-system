@@ -475,12 +475,62 @@ class RegistrarController extends Controller
         $course = Course::find($student->info->course_id);
 
         // get all grades
+        $grades = Grade::where('student_id', $student->id)->get();
+
+        // get all subjects
+        $subjects = Subject::get();
         
         // find grades per subject eqivalent
+        $equiv = null;
+        $total = 0;
+        $yl = null;
+        $sem = null;
+        $ay = null;
+
+        foreach($subjects as $sub) {
+            $total = 0;
+            foreach($grades as $g) {
+
+                if($sub->id == $g->subject_id) {
+                    $total += $g->grade;
+                }
+                $yl = $g->year_level_id;
+                $sem = $g->semester_id;
+                $ac = $g->academic_year_id;                   
+
+            }
+
+            // get the average and its equivalent
+            $average = $total/4;
+
+            // find its equivalent
+            $equivalent = GeneralController::equivalent($average);
+
+            if($equiv == null) {
+                $equiv = array([
+                    'subject_id' => $sub->id,
+                    'equivalent' => $equivalent->equivalent,
+                    'description' => $equivalent->description,
+                    'academic_year_id' => $ay,
+                    'semester_id' => $sem,
+                    'year_level_id' => $yl
+                ]);
+            }
+            else {
+                array_push($equiv, [
+                    'subject_id' => $sub->id,
+                    'equivalent' => $equivalent->equivalent,
+                    'description' => $equivalent->description,
+                    'academic_year_id' => $ay,
+                    'semester_id' => $sem,
+                    'year_level_id' => $yl
+                ]);
+            }
+        }
+
 
         // return with ay, sem, subject details and equivalent
-
-        return view('registrar.student-view-tor', ['student' => $student, 'course' => $course]);
+        return view('registrar.student-view-tor', ['student' => $student, 'course' => $course, 'equiv' => $equiv, 'subjects' => $subjects]);
     }
 
 
