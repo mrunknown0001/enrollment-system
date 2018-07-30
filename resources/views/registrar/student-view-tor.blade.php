@@ -22,13 +22,21 @@
 					<h3 class="text-center showOnPrint">TRANSCRIPT OF RECORDS</h3>
 					
 				</div>
-				<p>Name: {{ ucwords($student->firstname . ' ' . $student->lastname) }}</p>
-				<p>Student Number: {{ $student->student_number }}</p>
-				<p>Course: {{ $course->title }}</p>
-				<p>Date of Birth: {{ date('F j, Y', strtotime($student->info->date_of_birth)) }}</p>
-				<p>Place of Birth: {{ ucwords($student->info->place_of_birth) }}</p>
-				<p>Address: {{ $student->info->address }}</p>
-				<p>Nationality: {{ $student->info->nationality }}</p>
+				<div class="row">
+					<div class="col-md-6">
+						<p>Name: {{ ucwords($student->firstname . ' ' . $student->lastname) }}</p>
+						<p>Student Number: {{ $student->student_number }}</p>
+						<p>Course: {{ $course->title }}</p>						
+					</div>
+					<div class="col-md-6">
+						<p>Date of Birth: {{ date('F j, Y', strtotime($student->info->date_of_birth)) }}</p>
+						<p>Place of Birth: {{ ucwords($student->info->place_of_birth) }}</p>
+						<p>Address: {{ $student->info->address }}</p>
+						<p>Nationality: {{ $student->info->nationality }}</p>						
+					</div>
+				</div>
+
+
 
 				<table class="table table-bordered table-hover">
 					<thead>

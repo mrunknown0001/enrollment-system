@@ -34,6 +34,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('date_graduated')->nullable();
             $table->integer('mop_id')->unsigned()->nullable();
             $table->foreign('mop_id')->references('id')->on('mode_of_payments');
+            $table->tinyInteger('enrolled')->default(1);
             $table->timestamps();
         });
     }

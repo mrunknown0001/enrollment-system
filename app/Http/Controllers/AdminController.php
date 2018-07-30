@@ -28,10 +28,12 @@ use App\ProgramAssignment;
 use App\EnrollmentSetting;
 use App\StudentPerSubject;
 use App\SubjectStudent;
+use App\ProgramStudent;
 use App\Grade;
 use App\Remark;
 use App\Room;
 use App\Schedule;
+use App\StudentInfo;
 
 use App\Http\Controllers\GeneralController;
 
@@ -1462,6 +1464,7 @@ class AdminController extends Controller
 
 
     // method to set next semester
+    // set to second semester
     public function setSemester($id = null)
     {
         $active = ActiveSemester::where('active', 1)->first();
@@ -1471,6 +1474,39 @@ class AdminController extends Controller
         $semester = ActiveSemester::findorfail($id);
         $semester->active = 1;
         $semester->save();
+
+        // turn off enrollment
+        $enrollment = EnrollmentSetting::find(1);
+        $enrollment->status = 0;
+        $enrollment->save();
+
+        // set all active subject to inactive
+        $subjects = Subject::where('active', 1)->update(['active' => 0]);
+
+        // set yl active to to disabled
+        $yl = YearLevel::where('active', 1)->update(['active' => 0]);
+
+        // set active programs and courses to to inactive
+        $programs = Program::where('active', 1)->update(['active' => 0]);
+
+        $courses = Course::where('active', 1)->update(['active' => 0]);
+
+        // set active schedules to inactive
+        $sched = Schedule::where('active', 1)->update(['active' => 0]);
+
+        // set assessment to inactive
+        $assessments = Assessment::where('active', 1)->update(['active' => 0]);
+
+        // set assigned subject and program to inactive
+        $a_subjects = SubjectAssignment::where('active', 1)->update(['active' => 0]);
+        $a_program = ProgramAssignment::where('active', 1)->update(['active' => 0]);
+
+        // set enrolled students in program and student to inactive
+        $subject_students = SubjectStudent::where('active', 1)->update(['active' => 0]);
+        $program_students = ProgramStudent::where('active', 1)->update(['active' => 0]);
+
+        // make all enrolled student not enrolled
+        $enrolled_students = StudentInfo::where('enrolled', 1)->update(['enrolled' => 0]);
 
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Set Semester');
 

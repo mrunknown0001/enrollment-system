@@ -22,12 +22,20 @@
                 <div class="card-block">
                 	@include('includes.all')
                     @if($student->info->course_id != null)
-                    <p><a href="{{ route('registrar.view.student.grades', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Grades</a>
-                    <a href="{{ route('registrar.view.student.tor', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> TOR</a>
+                    <p>
+                        @if($student->info->enrolled == 1)
+                        <a href="{{ route('registrar.view.student.grades', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Grades</a>
+                        @endif
+
+                        <a href="{{ route('registrar.view.student.tor', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> TOR</a>
                     </p>
                     <p>
                     @else
-                    <p><a href="{{ route('registrar.view.student.remarks', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Remarks</a></p>
+                    <p>
+                        @if($student->info->enrolled == 1)
+                        <a href="{{ route('registrar.view.student.remarks', ['id' => $student->id, 'sn' => $student->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Remarks</a>
+                        @endif
+                    </p>
                     @endif
                     @if(count($student->enrollment_status) > 0)
                         Enrolled in 

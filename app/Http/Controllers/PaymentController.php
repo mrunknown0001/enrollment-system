@@ -276,6 +276,8 @@ class PaymentController extends Controller
 
                 }
                 
+                Auth::user()->info->enrolled = 1;
+                Auth::user()->info->save();
             }
             else {
                 // add to student enrolled in a program
@@ -285,6 +287,9 @@ class PaymentController extends Controller
                 $new->semester = $sem->id;
                 $new->program_id = $assessment->program_id;
                 $new->save();
+
+                Auth::user()->info->enrolled = 1;
+                Auth::user()->info->save();
 
             }
 

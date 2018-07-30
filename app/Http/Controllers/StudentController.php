@@ -310,6 +310,10 @@ class StudentController extends Controller
                 $subjects = Subject::find($id);
             }
         }
+        else {
+            return redirect()->route('student.dashboard')->with('Error', 'Subject Enrolled!');
+        }
+
 
 
         $grades = null;

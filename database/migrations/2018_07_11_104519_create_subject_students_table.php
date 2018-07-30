@@ -23,6 +23,7 @@ class CreateSubjectStudentsTable extends Migration
             $table->integer('subject_id')->unsigned();
             $table->integer('group_number'); // group number depends on ay, ly, sem, subject limit
             $table->integer('number_of_students'); // incremented depends on the last number and the limit of students per subject class
+            $talbe->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }

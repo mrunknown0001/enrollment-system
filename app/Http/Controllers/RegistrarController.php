@@ -165,6 +165,7 @@ class RegistrarController extends Controller
                     ->where('student_infos.course_id', $course->id)
                     ->where('student_infos.year_level', $yl->id)
                     ->where('student_infos.graduated', 0)
+                    ->where('student_infos.enrolled', 1)
                     ->orderBy('lastname', 'asc')
                     ->get();
 
@@ -324,6 +325,7 @@ class RegistrarController extends Controller
                     ->join('student_infos', 'users.id', '=', 'student_infos.student_id')
                     ->where('student_infos.program_id', $program->id)
                     ->where('student_infos.graduated', 0)
+                    ->where('student_infos.enrolled', 1)
                     ->orderBy('lastname', 'asc')
                     ->get();
 
