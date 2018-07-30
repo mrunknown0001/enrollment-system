@@ -26,7 +26,7 @@
 					<b>{{ session('setting_success') }}</b>
 				</div>
 			@endif
-        	<form action="{{ route('admin.enrollment.setting.post') }}" method="POST" class="form-inline">
+        	{{-- <form action="{{ route('admin.enrollment.setting.post') }}" method="POST" class="form-inline">
         		{{ csrf_field() }}
 				<div class="form-group">
 					<!-- <label class="checkbox-inline">
@@ -45,7 +45,12 @@
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-floppy-o"></i> Save</button>
 				</div>
-        	</form>
+        	</form> --}}
+        	@if($es->status == 0)
+				@include('admin.includes.enrollment-activation-prompt')
+        	@else
+				@include('admin.includes.enrollment-deactivation-prompt')
+        	@endif
         	<hr>
             <div class="card card-primary">
                 <div class="card-header">
