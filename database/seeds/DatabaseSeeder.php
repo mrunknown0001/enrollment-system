@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            GradeEquivalentSeeder::class,
+            GradeEquivalentTableSeeder::class,
             SubjectTableSeeder::class,
             CourseTableSeeder::class,
             ProgramTableSeeder::class,
