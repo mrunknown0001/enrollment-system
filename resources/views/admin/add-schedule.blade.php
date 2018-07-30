@@ -112,7 +112,7 @@
 										<div class="col-md-6">
 											<label for="end_time">End Time</label>
 											<select name="end_time" id="end_time" class="form-control underlined" required="">
-												<option value="">Select Start Time</option>
+												<option value="">Select End Time</option>
 												<option value="1">6:00 am</option>
 												<option value="2">6:30 am</option>
 												<option value="3">7:00 am</option>

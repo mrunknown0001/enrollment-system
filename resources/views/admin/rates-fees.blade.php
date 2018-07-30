@@ -19,18 +19,47 @@
 		<p><a href="{{ route('admin.add.misc.fee') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Miscellaneous Fee</a></p>
 		
 		@if(count($misc) > 0)
-		@foreach($misc as $m)
-		<p><strong>{{ $m->name }} - &#8369; {{ $m->amount }}</strong>
-			@if($m->type == 1)
-			<em>for course</em>
-			@elseif($m->type == 2)
-			<em>for program</em>
-			@elseif($m->type == 3)
-			<em>for all</em>
-			@endif
-			<a href="{{ route('admin.update.misc.fee', ['id' => $m->id]) }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
-			<a href="{{ route('admin.delete.misc.fee', ['id' => $m->id]) }}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></p>
-		@endforeach
+		
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th class="text-center">Name</th>
+						<th class="text-center">Amount</th>
+						<th class="text-center">Payee</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($misc as $m)
+						<tr>
+							<td>
+								{{ $m->name }}
+							</td>
+							<td class="text-center">
+								&#8369; {{ $m->amount }}
+							</td>
+							<td class="text-center">
+								@if($m->type == 1)
+								<em>for course</em>
+								@elseif($m->type == 2)
+								<em>for program</em>
+								@elseif($m->type == 3)
+								<em>for all</em>
+								@endif
+							</td>
+							<td class="text-center">
+								<a href="{{ route('admin.update.misc.fee', ['id' => $m->id]) }}"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></button></a>
+								<a href="{{ route('admin.delete.misc.fee', ['id' => $m->id]) }}"><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></a>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+			<p>
+
+				
+		@else
+			<p class="text-center">No Miscellaneous Fee!</p>
 		@endif
 
 	</div>
