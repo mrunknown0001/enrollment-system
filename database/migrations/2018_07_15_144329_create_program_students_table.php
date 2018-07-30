@@ -22,7 +22,7 @@ class CreateProgramStudentsTable extends Migration
             $table->integer('program_id')->unsigned();
             $table->integer('group_number')->nullable(); // group number depends on ay, ly, sem, subject limit
             $table->integer('number_of_students')->nullable();
-            $talbe->tinyInteger('active')->default(1);
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }
