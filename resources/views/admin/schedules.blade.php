@@ -40,19 +40,34 @@
 		<tr>
 			<td>Wednesday</td>
 			@foreach($wednesday as $sch)
-
+				<td class="text-center">
+				{{ $sch->subject->code }}
+				<br>
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				</td>
 			@endforeach
 		</tr>
 		<tr>
 			<td>Thursday</td>
 			@foreach($thursday as $sch)
-
+				<td class="text-center">
+				{{ $sch->subject->code }}
+				<br>
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				</td>
 			@endforeach
 		</tr>
 		<tr>
 			<td>Friday</td>
 			@foreach($friday as $sch)
-
+				<td class="text-center">
+				{{ $sch->subject->code }}
+				<br>
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
+				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				</td>
 			@endforeach
 		</tr>
 	</tbody>
