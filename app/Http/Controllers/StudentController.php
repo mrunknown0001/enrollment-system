@@ -475,9 +475,13 @@ class StudentController extends Controller
             $yl = YearLevel::where('active', 1)->first();
 
             // additional condition for irregular students
+
+            // filter the subject with prerequisite that is not take
+            // or the prerequisite is failed in the final grades
             $subjects = Subject::where('active', 1)
                         ->where('year_level', $yl->id)
-                        ->get();
+                        ->get();            
+
 
         }
         else {

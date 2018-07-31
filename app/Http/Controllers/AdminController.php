@@ -34,6 +34,7 @@ use App\Remark;
 use App\Room;
 use App\Schedule;
 use App\StudentInfo;
+use App\EnrollmentStatus;
 
 use App\Http\Controllers\GeneralController;
 
@@ -1517,6 +1518,20 @@ class AdminController extends Controller
         $enrollment = EnrollmentSetting::find(1);
         $enrollment->status = 0;
         $enrollment->save();
+
+        // save final grades of students
+        $students_enrolled = EnrollmentStatus::where('course_id', '!=', null)
+                                        ->where('active', 1)
+                                        ->get();
+
+        if(count($students_enrolled) > 0) {
+            foreach($students_enrolled as $s) {
+                GeneralController::save_final_grades($s->student_id);
+            }
+        }
+
+        // enrollment status to inactive
+        $enrolled_students = EnrollmentStatus::where('active', 1)->update(['active' => 0, 'status' => 0]);
 
         // set all active subject to inactive
         $subjects = Subject::where('active', 1)->update(['active' => 0]);

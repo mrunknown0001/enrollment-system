@@ -11,6 +11,11 @@ use App\User;
 use App\ActivityLog;
 use App\Assessment;
 use App\GradeEquivalent;
+use App\ActiveSemester;
+use App\AcademicYear;
+use App\Grade;
+use App\FinalGrade;
+use App\Subject;
 
 class GeneralController extends Controller
 {
@@ -435,6 +440,112 @@ class GeneralController extends Controller
         }
 
         return $t;
+    }
+
+
+    ///////////////////////////////////////////////////////////////////
+    // method use to determine a student to move to next year level  //
+    ///////////////////////////////////////////////////////////////////
+    public static function move_next_yl($id)
+    {
+        $student = User::findorfail($id);
+
+        // check if all subject for current year level is passed in final grades
+        // to determine if the student can move to next year level
+
+        return true;
+
+    }
+
+
+    //////////////////////////////////////////
+    // method use to make student graduated //
+    //////////////////////////////////////////
+    public static function graduated($id)
+    {
+        $student = User::findorfail($id);
+
+        // check if all subjects in the curriculum has passed
+        // to be able to graduate
+
+        return true;
+    }
+
+
+    ////////////////////////////////////////////////////////
+    // method use to save all enrolled subject of student //
+    ////////////////////////////////////////////////////////
+    public static function save_final_grades($sid)
+    {
+        $student = User::find($sid);
+        $ay = AcademicYear::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
+        // get active assessment for student
+        $assessment = Assessment::where('student_id', $student->id)
+                                ->where('paid', 1)
+                                ->where('active', 1)
+                                ->first();
+
+        $subjects = null;
+        if(count($assessment) > 0) {
+            foreach(unserialize($assessment->subject_ids) as $id) {
+                $subjects = Subject::find($id);
+            }
+        }
+
+
+        $grades = null;
+
+        foreach($subjects as $sub) {
+            $grades[] = Grade::where('student_id', $student->id)
+                ->where('academic_year_id', $ay->id)
+                ->where('semester_id', $sem->id)
+                ->where('subject_id', $sub->id)
+                ->get();
+        }
+
+        // get the equivalent of the grades
+        $equiv = null;
+        $total = 0;
+
+        foreach($subjects as $sub) {
+            $total = 0;
+            foreach($grades as $gr) {
+
+                if(count($gr) > 0) {
+                    foreach($gr as $g) {
+                        if($sub->id == $g->subject_id) {
+                            $total += $g->grade;
+                        }
+                    }
+                }
+
+            }
+
+            // get the average and its equivalent
+            $average = $total/4;
+
+            // find its equivalent
+            $equivalent = GeneralController::equivalent($average);
+
+            $desc = 'Failed';
+
+            if($equivalent->equivalent <= 3) {
+                $desc = 'Passed';
+            }
+
+            // save to final grade
+            $fg = new FinalGrade();
+            $fg->student_id = $student->id;
+            $fg->academic_year_id = $ay->id;
+            $fg->semester_id = $sem->id;
+            $fg->subject_id = $sub->id;
+            $fg->grade = $equivalent->equivalent;
+            $fg->description = $desc;
+            $fg->save();
+        }
+
     }
 
 }
