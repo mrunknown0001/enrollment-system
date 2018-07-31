@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
-                    <i class="fa fa-info"></i> Enrollment De-Activation Prompt</h4>
+                    <i class="fa fa-info"></i> Enrollment Deactivation</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
                 <form class="" action="{{ route('admin.enrollment.setting.post') }}" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" name="enrollment_switch" value="off">
-                    <button type="submit" class="btn btn-danger btn-sm">De-Activate</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Deactivate Enrollment</button>
                     
                 </form>
             </div>

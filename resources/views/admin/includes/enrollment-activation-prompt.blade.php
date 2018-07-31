@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
-                    <i class="fa fa-info"></i> Enrollment Activation Prompt</h4>
+                    <i class="fa fa-info"></i> Enrollment Activation</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
                 <form class="" action="{{ route('admin.enrollment.setting.post') }}" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" name="enrollment_switch" value="on">
-                    <button type="submit" class="btn btn-primary btn-sm">Activate</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Activate Enrollment</button>
                     
                 </form>
             </div>
