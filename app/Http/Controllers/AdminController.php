@@ -1430,6 +1430,21 @@ class AdminController extends Controller
             $sem->active = 0;
             $sem->save();
 
+            // save final grades of students
+            $students_enrolled = EnrollmentStatus::where('course_id', '!=', null)
+                                            ->where('active', 1)
+                                            ->get();
+
+            if(count($students_enrolled) > 0) {
+                foreach($students_enrolled as $s) {
+                    GeneralController::save_final_grades($s->student_id);
+                }
+            }
+
+            // enrollment status to inactive
+            $enrolled_students = EnrollmentStatus::where('active', 1)->update(['active' => 0, 'status' => 0]);
+
+
             //////////////////////////////////////
             // all operations will perform here //
             //////////////////////////////////////
