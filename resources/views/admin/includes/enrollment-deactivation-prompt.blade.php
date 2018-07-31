@@ -20,7 +20,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <small>Enrollment Activation</small>
+                <small>Enrollment Deactivation</small>
             </div>
         </div>
     </div>
