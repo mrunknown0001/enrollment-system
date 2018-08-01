@@ -19,7 +19,7 @@
 				
 				@if(Auth::user()->info->year_level == $yl->id)
 					@if(Auth::user()->assessment->where('active', 1)->first())
-						@if(Auth::user()->assessment->where('paid', 1)->first())
+						@if(Auth::user()->assessment->where('paid', 1)->where('active', 1)->first())
 							<p class="text-center">Assessment Paid</p>
 						@else
 							<p class="text-center">Please pay assessment</p>
