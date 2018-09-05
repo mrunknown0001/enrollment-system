@@ -71,7 +71,7 @@ class RegistrationController extends Controller
         // send the confirmation sms with the student number to the student  //
         ///////////////////////////////////////////////////////////////////////
         $message = "ICT Online Enrollment System \r\n Your system generated Student Number: " . $student_number;
-        // SmsController::sendSms($mobile, $message);
+        SmsController::sendSms($mobile, $message);
 
 
         // add activity log here
