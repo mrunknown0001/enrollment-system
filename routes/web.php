@@ -230,6 +230,10 @@ Route::group(['prefix' => 'registrar'], function () {
 
 	// route to save add credit to student
 	Route::post('/student/credits/add', 'RegistrarController@postStudentAddCredits')->name('registrar.student.add.credits.post');
+
+	Route::get('/student/credits/add', function () {
+		return abort(404);
+	});
 });
 
 

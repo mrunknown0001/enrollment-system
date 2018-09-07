@@ -17,14 +17,14 @@ class CreateGradesTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
-            $table->integer('faculty_id')->unsigned();
+            $table->integer('faculty_id')->unsigned()->nullable();
             $table->integer('subject_id')->unsigned();
-            $table->integer('year_level_id')->unsigned();
-            $table->integer('academic_year_id')->unsigned();
-            $table->integer('semester_id')->unsigned();
-            $table->integer('term_id')->unsigned();
+            $table->integer('year_level_id')->unsigned()->nullable();
+            $table->integer('academic_year_id')->unsigned()->nullable();
+            $table->integer('semester_id')->unsigned()->nullable();
+            $table->integer('term_id')->unsigned()->nullable();
             $table->float('grade', 8,2);
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

@@ -586,7 +586,7 @@ class RegistrarController extends Controller
         // get all subjects
         // get all subjects
         // get subject without grades only
-        $subjects = null;
+        $subjects = [];
         $subjects_all = Subject::get(['id', 'code']);
 
         $subjects_grades = FinalGrade::where('student_id', $student->id)->get(['subject_id']);
@@ -594,19 +594,25 @@ class RegistrarController extends Controller
         if(count($subjects_grades) > 0) {
             foreach($subjects_all as $s_a) {
                 foreach($subjects_grades as $s_g) {
-                    if($s_a->id != $s_g->subject_id)
-                    $subjects = [
-                        'id' => $s_a->id,
-                        'code' => $s_a->code
-                    ];
-
+                    if($s_a->id != $s_g->subject_id) {
+                        array_push($subjects, [
+                            'id' => $s_a->id,
+                            'code' => $s_a->code
+                        ]);
+                    }
                 }
             }
         }
         else {
-            $subjects = $subjects_all;
+            foreach($subjects_all as $s_a) {
+                array_push($subjects, [
+                    'id' => $s_a->id,
+                    'code' => $s_a->code
+                ]);
+            }
         }
 
+        // return $subjects;
 
         return view('registrar.student-credit-add', ['student' => $student, 'subjects' => $subjects]);
     }
@@ -615,7 +621,29 @@ class RegistrarController extends Controller
     // method use to save credits to student
     public function postStudentAddCredits(Request $request)
     {
-        return $request;
+        $request->validate([
+            'subject' => 'required',
+            'grade' => 'required'
+        ]);
+
+        $subject_id = $request['subject'];
+        $grade = $request['grade'];
+        $student_id = $request['student_id'];
+
+        $student = User::findorfail($student_id);
+        $subject = Subject::findorfail($subject_id);
+
+        $g = new FinalGrade();
+        $g->student_id = $student->id;
+        $g->subject_id = $subject->id;
+        $g->grade = $grade;
+        $g->save();
+
+        // add activity log
+        GeneralController::activity_log(Auth::guard('registrar')->user()->id, 4, 'Registrar Credited Subject Units');
+
+        // add return value
+        return redirect()->back()->with('success', 'Subject Credited to The student.');
     }
 
 }
