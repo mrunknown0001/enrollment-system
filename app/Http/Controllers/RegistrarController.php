@@ -20,6 +20,7 @@ use App\ActiveSemester;
 use App\Assessment;
 use App\Subject;
 use App\Grade;
+use App\FinalGrade;
 
 class RegistrarController extends Controller
 {
@@ -569,6 +570,52 @@ class RegistrarController extends Controller
         $students = GeneralController::students_search($keyword);
 
         return view('registrar.students-search', ['students' => $students, 'keyword' => $keyword]);
+    }
+
+
+    // method use to add credit to student
+    public function studentAddCredits($id = null)
+    {
+        $student = User::findorfail($id);
+
+        if($student->info->enrolling_for != 1) {
+            return redirect()->back()->with('error', 'Student Not Enrolled in Course!');
+        }
+
+        // get subjects that has not in final grades
+        // get all subjects
+        // get all subjects
+        // get subject without grades only
+        $subjects = null;
+        $subjects_all = Subject::get(['id', 'code']);
+
+        $subjects_grades = FinalGrade::where('student_id', $student->id)->get(['subject_id']);
+
+        if(count($subjects_grades) > 0) {
+            foreach($subjects_all as $s_a) {
+                foreach($subjects_grades as $s_g) {
+                    if($s_a->id != $s_g->subject_id)
+                    $subjects = [
+                        'id' => $s_a->id,
+                        'code' => $s_a->code
+                    ];
+
+                }
+            }
+        }
+        else {
+            $subjects = $subjects_all;
+        }
+
+
+        return view('registrar.student-credit-add', ['student' => $student, 'subjects' => $subjects]);
+    }
+
+
+    // method use to save credits to student
+    public function postStudentAddCredits(Request $request)
+    {
+        return $request;
     }
 
 }

@@ -14,7 +14,7 @@
 		<div class="col-md-12" id="printableArea">
 			<button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
 			<div class="gradeHeader">
-				<h3 class="text-center showOnPrint">Internation Computer Technology Colleges</h3>
+				<h3 class="text-center showOnPrint">International Computer Technology Colleges</h3>
 				<p class="text-center showOnPrint">Your Gateway to a Global Job Opportunity</p>
 				<p class="text-center showOnPrint">2<sup>nd</sup> of AA building, Barangay Sto Cristo, Tarlac City</p>
 				<p class="showOnPrint"><strong>{{ ucwords(Auth::user()->firstname . ' ' . Auth::user()->lastname) }} - {{ Auth::user()->student_number }}</strong></p>

@@ -47,6 +47,11 @@ class RegistrationController extends Controller
         $address = $request['address'];
         $nationality = $request['nationality'];
 
+        // check if date is future
+        if(strtotime(now()) < strtotime($dob)) {
+            return redirect()->back()->with('error', 'Date of Birth is Invalid');
+        }
+
         $student_number = GeneralController::generate_student_number();
 
         // register/save the information of the student

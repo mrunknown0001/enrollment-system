@@ -26,16 +26,21 @@
 			@if(count($students) > 0)
 			<table class="table table-hover">
 				<thead>
-					<th>Name</th>
-					<th>Student Number</th>
-					<th>Action</th>
+					<th class="text-center">Name</th>
+					<th class="text-center">Student Number</th>
+					<th class="text-center">Action</th>
 				</thead>
 				<tbody>
 					@foreach($students as $s)
 						<tr>
 							<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }}</td>
-							<td>{{ $s->student_number }}</td>
-							<td><a href="{{ route('registrar.view.student.details', ['id' => $s->id, 'sn' => $s->student_number]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Info</a></td>
+							<td class="text-center">{{ $s->student_number }}</td>
+							<td class="text-center">
+								@if($s->info->enrolling_for == 1)
+								<a href="{{ route('regitrar.student.add.credits', ['id' => $s->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Credits</a>
+								@endif
+								<a href="{{ route('registrar.view.student.details', ['id' => $s->id, 'sn' => $s->student_number]) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View Info</a>
+							</td>
 						</tr>
 					@endforeach
 				</tbody>

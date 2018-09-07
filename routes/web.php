@@ -224,6 +224,12 @@ Route::group(['prefix' => 'registrar'], function () {
 
 	// route to search students
 	Route::get('/students/search', 'RegistrarController@searchStudent')->name('registrar.search.students');
+
+	// route to add credits to student
+	Route::get('/student/{id}/credits/add', 'RegistrarController@studentAddCredits')->name('regitrar.student.add.credits');
+
+	// route to save add credit to student
+	Route::post('/student/credits/add', 'RegistrarController@postStudentAddCredits')->name('registrar.student.add.credits.post');
 });
 
 
