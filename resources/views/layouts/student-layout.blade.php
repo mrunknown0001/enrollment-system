@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="{{ asset('modular/css/vendor.css') }}">
         <link rel="stylesheet" href="{{ asset('modular/css/app-blue.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/print.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/pagination.css') }}">
         <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"> -->
     </head>
     <body>

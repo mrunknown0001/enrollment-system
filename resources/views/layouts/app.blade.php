@@ -11,11 +11,13 @@
         @if(Auth::guard('web')->check())
         <link rel="stylesheet" href="{{ asset('modular/css/app-blue.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/print.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/pagination.css') }}">
         @else
         <link rel="stylesheet" type="text/css" href="{{ asset('css/print.css') }}">
         <link rel="stylesheet" href="{{ asset('modular/css/app-green.css') }}">
         <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap-toggle.min.css') }}"> -->
         <link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/pagination.css') }}">
         <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"> -->
         <style> 
             ::selection {
