@@ -60,7 +60,7 @@
                     <p>Place of Birth: <strong>{{ ucwords($student->info->place_of_birth) }}</strong></p>
                     <p>Address: <strong>{{ ucwords($student->info->address) }}</strong></p>
                     <p>Nationality: <strong>{{ ucwords($student->info->nationality) }}</strong></p>
-                    <p>SY Admitted: <strong>{{ $student->info->sy_admitted->from . '-' . $student->info->sy_admitted->to }}</strong></p>
+                    <p>SY Admitted: <strong>{{ $student->info->sy_admitted ? $student->info->sy_admitted->from . '-' . $student->info->sy_admitted->to : 'N/A' }}</strong></p>
                     <p>School Last Attended:</p>
                     <p>Date Graduated:</p>
                 </div>
