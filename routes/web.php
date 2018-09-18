@@ -69,6 +69,10 @@ Route::get('/faculty/registration', 'FacultyRegistrationController@registration'
 
 Route::post('/faculty/registration', 'FacultyRegistrationController@postRegistration')->name('faculty.registration.post');
 
+Route::get('/data-privacy-statement', function() {
+	return view('data-privacy-statement');
+})->name('data.privacy.statement');
+
 
 Route::get('/logout', 'GeneralController@logout')->name('logout');
 
