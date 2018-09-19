@@ -24,8 +24,8 @@
 					<p>{{ $program->code }} - {{ $program->description }}</p>
 					<p>{{ ucwords($student->firstname . ' ' . $student->lastname) }} - {{ $student->student_number }}</p>
 					<p>
-                        @if(count($remarks) > 0)
-                            @if($remarks->remarks == 1)
+                        @if(count($remark) > 0)
+                            @if($remark->remarks == 1)
                             <strong>Student is Competent</strong>
                             @else
                             <strong>Student is Not Yet Competent</strong>
