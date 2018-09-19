@@ -30,11 +30,12 @@
                             @else
                             <strong>Student is Not Yet Competent</strong>
                             @endif
+                            <p><a href="{{ route('registrar.update.student.program.remarks', ['id' => $student->id, 'pid' => $program->id]) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Remark</a></p>
                         @else
                         <strong>No Remarks</strong>
                         @endif
 					</p>
-                    <p><a href="{{ route('registrar.update.student.program.remarks', ['id' => $student->id, 'pid' => $program->id]) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Remark</a></p>
+                    
                 </div>
                 <div class="card-footer"> <small> Student Remark </small> </div>
             </div>
