@@ -24,11 +24,15 @@
 					<p>{{ $program->code }} - {{ $program->description }}</p>
 					<p>{{ ucwords($student->firstname . ' ' . $student->lastname) }} - {{ $student->student_number }}</p>
 					<p>
-						@if($remark->remarks == 1)
-						<strong>The Student is Competent</strong>
-						@else
-						<strong>The Student is Not Yet Competent</strong>
-						@endif
+                        @if(count($remarks) > 0)
+                            @if($remarks->remarks == 1)
+                            <strong>Student is Competent</strong>
+                            @else
+                            <strong>Student is Not Yet Competent</strong>
+                            @endif
+                        @else
+                        <strong>No Remarks</strong>
+                        @endif
 					</p>
                     <p><a href="{{ route('registrar.update.student.program.remarks', ['id' => $student->id, 'pid' => $program->id]) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Remark</a></p>
                 </div>
