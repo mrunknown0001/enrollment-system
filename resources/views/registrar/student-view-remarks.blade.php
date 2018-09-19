@@ -20,10 +20,14 @@
 			<p>Program: {{ $program->title }}</p>
 			<p>Academic Year: {{ $ay->from . '-' . $ay->to }}</p>
 			<p>
-				@if($remarks->remarks != null && $remarks->remarks == 1)
-				<strong>Student is Competent</strong>
+				@if(count($remarks) > 0)
+					@if($remarks->remarks == 1)
+					<strong>Student is Competent</strong>
+					@else
+					<strong>Student is Not Yet Competent</strong>
+					@endif
 				@else
-				<strong>Student is Not Yet Competent</strong>
+				<strong>No Remarks</strong>
 				@endif
 			</p>
 		</div>
