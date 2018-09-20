@@ -1,73 +1,77 @@
 <?php
 
-Route::get('/', 'LoginController@welcome')->name('welcome');
+Route::group(['middleware' => 'prevent-back-history'], function () {
+
+	Route::get('/', 'LoginController@welcome')->name('welcome');
 
 
-Route::get('/student/login', 'LoginController@login')->name('student.login');
+	Route::get('/student/login', 'LoginController@login')->name('student.login');
 
 
-Route::post('/student/login', 'LoginController@postLogin')->name('student.login.post');
+	Route::post('/student/login', 'LoginController@postLogin')->name('student.login.post');
 
-// redirect to student login form
-Route::get('/student', function () {
-	return redirect()->route('student.login');
+	// redirect to student login form
+	Route::get('/student', function () {
+		return redirect()->route('student.login');
+	});
+
+	Route::get('/login', function () {
+		return redirect()->route('student.login');
+	})->name('login');
+
+
+	Route::get('/faculty/login', 'FacultyLoginController@login')->name('faculty.login');
+
+	Route::post('/faculty/login', 'FacultyLoginController@postLogin')->name('faculty.login.post');
+
+	// redirect to faculty login form
+	Route::get('/faculty', function () {
+		return redirect()->route('faculty.login');
+	});
+
+
+	Route::get('/cashier/login', 'CashierLoginController@login')->name('cashier.login');
+
+	Route::post('/cashier/login', 'CashierLoginController@postLogin')->name('cashier.login.post');
+
+	// redirect to cashier login form
+	Route::get('/cashier', function () {
+		return redirect()->route('cashier.login');
+	});
+
+
+	Route::get('/registrar/login', 'RegistrarLoginController@login')->name('registrar.login');
+
+	Route::post('/registrar/login', 'RegistrarLoginController@postLogin')->name('registrar.login.post');
+
+	// redirect to registrar login form
+	Route::get('/registrar', function () {
+		return redirect()->route('registrar.login');
+	});
+
+
+	Route::get('/admin/login', 'AdminLoginController@login')->name('admin.login');
+
+	Route::post('/admin/login', 'AdminLoginController@postLogin')->name('admin.login.post');
+
+	// redirect to admin login
+	Route::get('/admin', function () {
+		return redirect()->route('admin.login');
+	});
+
+
+	Route::get('/student/registration', 'RegistrationController@registration')->name('student.registration');
+
+
+	Route::post('/student/registration', 'RegistrationController@postRegistration')->name('student.registration.post');
+
+
+	Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
+
+
+	Route::post('/faculty/registration', 'FacultyRegistrationController@postRegistration')->name('faculty.registration.post');
+
 });
-
-Route::get('/login', function () {
-	return redirect()->route('student.login');
-})->name('login');
-
-
-Route::get('/faculty/login', 'FacultyLoginController@login')->name('faculty.login');
-
-Route::post('/faculty/login', 'FacultyLoginController@postLogin')->name('faculty.login.post');
-
-// redirect to faculty login form
-Route::get('/faculty', function () {
-	return redirect()->route('faculty.login');
-});
-
-
-Route::get('/cashier/login', 'CashierLoginController@login')->name('cashier.login');
-
-Route::post('/cashier/login', 'CashierLoginController@postLogin')->name('cashier.login.post');
-
-// redirect to cashier login form
-Route::get('/cashier', function () {
-	return redirect()->route('cashier.login');
-});
-
-
-Route::get('/registrar/login', 'RegistrarLoginController@login')->name('registrar.login');
-
-Route::post('/registrar/login', 'RegistrarLoginController@postLogin')->name('registrar.login.post');
-
-// redirect to registrar login form
-Route::get('/registrar', function () {
-	return redirect()->route('registrar.login');
-});
-
-
-Route::get('/admin/login', 'AdminLoginController@login')->name('admin.login');
-
-Route::post('/admin/login', 'AdminLoginController@postLogin')->name('admin.login.post');
-
-// redirect to admin login
-Route::get('/admin', function () {
-	return redirect()->route('admin.login');
-});
-
-
-Route::get('/student/registration', 'RegistrationController@registration')->name('student.registration');
-
-
-Route::post('/student/registration', 'RegistrationController@postRegistration')->name('student.registration.post');
-
-
-Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
-
-
-Route::post('/faculty/registration', 'FacultyRegistrationController@postRegistration')->name('faculty.registration.post');
 
 Route::get('/data-privacy-statement', function() {
 	return view('data-privacy-statement');
@@ -82,7 +86,7 @@ Route::get('/logout', 'GeneralController@logout')->name('logout');
  * controller protected middleware
  * user type 5
  */
-Route::group(['prefix' => 'student'], function () {
+Route::group(['prefix' => 'student', 'middleware' => 'prevent-back-history'], function () {
 	// student dashboard
 	Route::get('/dashboard', 'StudentController@dashboard')->name('student.dashboard');
 
@@ -159,7 +163,7 @@ Route::group(['prefix' => 'student'], function () {
  * Registrar Route Group
  * user type 4
  */
-Route::group(['prefix' => 'registrar'], function () {
+Route::group(['prefix' => 'registrar', 'middleware' => 'prevent-back-history'], function () {
 	// registrar dashboard
 	Route::get('/dashboard', 'RegistrarController@dashboard')->name('registrar.dashboard');
 
@@ -246,7 +250,7 @@ Route::group(['prefix' => 'registrar'], function () {
  * Cashier Route Group
  * user type 3
  */
-Route::group(['prefix' => 'cashier'], function () {
+Route::group(['prefix' => 'cashier', 'middleware' => 'prevent-back-history'], function () {
 	// cashier dashboard
 	Route::get('/dashboard', 'CashierController@dashboard')->name('cashier.dashboard');
 
@@ -289,7 +293,7 @@ Route::group(['prefix' => 'cashier'], function () {
  * Faculty Route Group
  * user type 2
  */
-Route::group(['prefix' => 'faculty'], function () {
+Route::group(['prefix' => 'faculty', 'middleware' => 'previent-back-history'], function () {
 	// faculty dashboard
 	Route::get('/dashboard', 'FacultyController@dashboard')->name('faculty.dashboard');
 
@@ -361,7 +365,7 @@ Route::group(['prefix' => 'faculty'], function () {
  * controller protected middleware
  * user type 1
  */
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], function () {
 	// admin dashboard
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
