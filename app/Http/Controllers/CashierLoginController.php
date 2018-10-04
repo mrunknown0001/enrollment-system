@@ -13,7 +13,8 @@ class CashierLoginController extends Controller
     // method to show cashier login form 
     public function login()
     {
-    	return view('cashier-login');
+        return GeneralController::auth_check('cashier-login');
+    	// return view('cashier-login');
     }
 
 

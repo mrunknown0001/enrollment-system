@@ -14,7 +14,8 @@ class RegistrarLoginController extends Controller
     // method to view registar login form
     public function login()
     {
-    	return view('registrar-login');
+        return GeneralController::auth_check('registrar-login');
+    	// return view('registrar-login');
     }
 
 
