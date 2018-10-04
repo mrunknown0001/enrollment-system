@@ -30,6 +30,10 @@ class FacultyLoginController extends Controller
     	$id = $request['id_number'];
     	$password = $request['password'];
 
+
+        // check if there is a session 
+        GeneralController::auth_check('welcome');
+
     	// attempt to login
     	if(Auth::guard('faculty')->attempt(['id_number' => $id, 'password' => $password])) {
     		// add activity log

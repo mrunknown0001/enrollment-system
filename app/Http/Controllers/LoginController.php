@@ -42,6 +42,10 @@ class LoginController extends Controller
         $sn = $request['student_number'];
         $pass = $request['password'];
 
+
+        // check if there is a session 
+        GeneralController::auth_check('welcome');
+
         // attempt to login the user
         if(Auth::attempt(['student_number' => $sn, 'password' => $pass])) {
             // addition conditions if any

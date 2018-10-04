@@ -30,8 +30,8 @@ class CashierLoginController extends Controller
     	$username = $request['username'];
     	$password = $request['password'];
 
-
-    	//check
+        // check if there is a session 
+        GeneralController::auth_check('welcome');
 
 
     	// autheticate attempt

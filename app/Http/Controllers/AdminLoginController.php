@@ -31,6 +31,9 @@ class AdminLoginController extends Controller
     	$username = $request['username'];
     	$password = $request['password'];
 
+        // check if there is a session 
+        GeneralController::auth_check('welcome');
+
     	// attempt to login
     	// redirect to dashboard
     	if(Auth::guard('admin')->attempt(['username' => $username, 'password' => $password])) {
