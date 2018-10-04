@@ -30,8 +30,21 @@ class CashierLoginController extends Controller
     	$username = $request['username'];
     	$password = $request['password'];
 
-        // check if there is a session 
-        GeneralController::auth_check('welcome');
+        if(Auth::check()) {
+            return redirect()->route('student.dashboard');
+        }
+        elseif (Auth::guard('faculty')->check()) {
+            return redirect()->route('faculty.dashboard');
+        }
+        elseif(Auth::guard('admin')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
+        elseif(Auth::guard('cashier')->check()) {
+            return redirect()->route('cashier.dashboard');
+        }
+        elseif(Auth::guard('registrar')->check()) {
+            return redirect()->route('registrar.dashboard');
+        }
 
 
     	// autheticate attempt
