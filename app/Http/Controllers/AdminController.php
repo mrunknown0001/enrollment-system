@@ -1222,7 +1222,7 @@ class AdminController extends Controller
         $program = Program::find($student->info->program_id);
 
         // get the remarks
-        return $remarks = Remark::where('academic_year_id', $ay->id)
+        $remarks = Remark::where('academic_year_id', $ay->id)
                         ->where('student_id', $student->id)
                         ->where('semester_id', $sem->id)
                         ->where('program_id', $program->id)
