@@ -293,7 +293,7 @@ Route::group(['prefix' => 'cashier', 'middleware' => 'prevent-back-history'], fu
  * Faculty Route Group
  * user type 2
  */
-Route::group(['prefix' => 'faculty', 'middleware' => 'previent-back-history'], function () {
+Route::group(['prefix' => 'faculty', 'middleware' => 'prevent-back-history'], function () {
 	// faculty dashboard
 	Route::get('/dashboard', 'FacultyController@dashboard')->name('faculty.dashboard');
 
