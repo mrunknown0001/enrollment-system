@@ -545,7 +545,11 @@ class RegistrarController extends Controller
         $ay = AcademicYear::where('active', 1)->first();
         $sem = ActiveSemester::where('active', 1)->first();
 
-        return $program = Program::find($student->info->program_id);
+        $program = Program::find($student->info->program_id);
+
+        if(count($program) < 1) {
+            return redirect()->back()->with('error', 'Student No Yet Enrolled!');
+        }
 
         if($student->student_number != $sn) {
             return redirect()->back()->with('error', 'Error Occured! Please go to dashboard');
