@@ -1219,10 +1219,10 @@ class AdminController extends Controller
         $ay = AcademicYear::where('active', 1)->first();
         $sem = ActiveSemester::where('active', 1)->first();
 
-        return $program = Program::find($student->info->program_id);
+        $program = Program::find($student->info->program_id);
 
         // get the remarks
-        $remarks = Remark::where('academic_year_id', $ay->id)
+        return $remarks = Remark::where('academic_year_id', $ay->id)
                         ->where('student_id', $student->id)
                         ->where('semester_id', $sem->id)
                         ->where('program_id', $program->id)
