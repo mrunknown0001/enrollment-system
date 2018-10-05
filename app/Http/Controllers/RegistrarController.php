@@ -540,12 +540,12 @@ class RegistrarController extends Controller
     // method use to view remarks in stuent
     public function viewStudentRemarks($id = null, $sn = null)
     {
-        return $student = User::findorfail($id);
+        $student = User::findorfail($id);
 
         $ay = AcademicYear::where('active', 1)->first();
         $sem = ActiveSemester::where('active', 1)->first();
 
-        $program = Program::find($student->info->program_id);
+        return $program = Program::find($student->info->program_id);
 
         if($student->student_number != $sn) {
             return redirect()->back()->with('error', 'Error Occured! Please go to dashboard');
