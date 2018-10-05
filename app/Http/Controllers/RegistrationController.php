@@ -34,7 +34,8 @@ class RegistrationController extends Controller
             'date_of_birth' => 'required',
             'place_of_birth'=> 'required',
             'address' => 'required',
-            'nationality' => 'required'
+            'nationality' => 'required',
+            'agree' => 'required'
         ]);
 
         // assign data to variables

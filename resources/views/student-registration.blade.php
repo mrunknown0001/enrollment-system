@@ -53,7 +53,7 @@
 
                     <div class="form-group">
                         <label for="agree">
-                            <input class="checkbox" name="agree" id="agree" type="checkbox" checked="" required="">
+                            <input type="checkbox" class="checkbox" name="agree" id="agree" type="checkbox" checked="" required="">
                             <span>Agree the
                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#terms-and-policy-modal">Terms and Policy</a> and <a href="{{ route('data.privacy.statement') }}" target="_blank">Data Privacy Policy</a>
                             </span>

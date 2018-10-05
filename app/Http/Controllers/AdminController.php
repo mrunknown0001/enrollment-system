@@ -630,14 +630,20 @@ class AdminController extends Controller
         $desc = $request['description'];
         $fee = $request['tuition_fee'];
 
-        // other checking
+        $from = $request['from'];
+        $to = $request['to'];
+        $hours = $request['hours'];
 
+        // other checking
 
         // save new program
         $program = new Program();
         $program->title = $title;
         $program->code = $code;
         $program->description = $desc;
+        $program->from = date('Y-m-d', strtotime($from));
+        $program->to = date('Y-m-d', strtotime($to));
+        $program->hours = $hours;
         $program->tuition_fee = $fee;
         $program->save();
 
@@ -677,6 +683,10 @@ class AdminController extends Controller
         $desc = $request['description'];
         $fee = $request['tuition_fee'];
 
+        $from = $request['from'];
+        $to = $request['to'];
+        $hours = $request['hours'];
+
         $program = Program::findorfail($id);
 
         // check title, code existence
@@ -698,6 +708,9 @@ class AdminController extends Controller
         $program->title = $title;
         $program->code = $code;
         $program->description = $desc;
+        $program->from = date('Y-m-d', strtotime($from));
+        $program->to = date('Y-m-d', strtotime($to));
+        $program->hours = $hours;
         $program->tuition_fee = $fee;
         $program->save();
 

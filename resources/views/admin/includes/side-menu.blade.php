@@ -68,7 +68,7 @@
                 </li>
                 <li class="{{ route('admin.rate.fee.settings') == url()->current() ? 'active' : '' }}">
                     <a href="{{ route('admin.rate.fee.settings') }}">
-                        <i class="fa fa-dollar"></i> Rates &amp; Fees
+                        <i class="fa fa-rub"></i> Rates &amp; Fees
                     </a>
                 </li>
                 <li class="{{ route('admin.view.rooms') == url()->current() ? 'active' : '' }}">

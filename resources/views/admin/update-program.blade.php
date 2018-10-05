@@ -39,6 +39,22 @@
                             <textarea name="description" id="description" class="form-control underlined" placeholder="Program Description">{{ $program->description }}</textarea>
                         </div>
                         <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>From</label>
+                                    <input type="date" name="from" id="from" class="form-control underlined" placeholder="mm/dd/yyyy">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>To</label>
+                                    <input type="date" name="to" id="to" class="form-control underlined" placeholder="mm/dd/yyyy">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Hours</label>
+                            <input type="number" name="hours" id="hourse" class="form-control underlined" value="{{ $program->hours }}" placeholder="Number of Hours">
+                        </div>
+                        <div class="form-group">
                             <label for="tuition_fee">Tuition Fee in &#8369;</label>
                             <input type="number" name="tuition_fee" id="tuition_fee" value="{{ $program->tuition_fee }}" class="form-control underlined" placeholder="Tuition Fee in &#8369;" required="">
                         </div>

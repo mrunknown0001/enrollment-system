@@ -47,8 +47,10 @@
 							            <div class="modal-body">
 											<p>Title: <strong>{{ ucwords($p->title) }}</strong></p>
 											<p>Code: <strong>{{ strtoupper($p->code) }}</strong></p>
-											<p>DescriptioN: <strong>{{ $p->description }}</strong></p>
-											<p>Tuition Fee: <strong>&#8369; {{ $p->tuition_fee }}</strong></p>
+											<p>Description: <strong>{{ $p->description }}</strong></p>
+											<p>Effectivity: <strong>{{ $p->from && $p->to ? date('F j, Y', strtotime($p->from)) . '-' . date('F j, Y', strtotime($p->to)) : 'N/A' }}</strong></p>
+											<p>Hours: <strong>{{ $p->hours ? $p->hours : 'N/A' }}</strong></p>
+											<p>Tuition Fee: <strong>&#8369; {{ $p->tuition_fee ? $p->tuition_fee : 'N/A' }}</strong></p>
 							            </div>
 							            <div class="modal-footer">
 							                <small>Program Info</small>
