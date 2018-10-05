@@ -540,7 +540,7 @@ class RegistrarController extends Controller
     // method use to view remarks in stuent
     public function viewStudentRemarks($id = null, $sn = null)
     {
-        $student = User::findorfail($id);
+        return $student = User::findorfail($id);
 
         $ay = AcademicYear::where('active', 1)->first();
         $sem = ActiveSemester::where('active', 1)->first();
