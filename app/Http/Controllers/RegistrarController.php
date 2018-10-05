@@ -411,7 +411,7 @@ class RegistrarController extends Controller
     // method use to view details of students
     public function viewStudentDetails($id = null, $sn = null)
     {
-        return $student = User::findorfail($id);
+        $student = User::findorfail($id);
 
         if($student->student_number != $sn) {
             return abort(400);
