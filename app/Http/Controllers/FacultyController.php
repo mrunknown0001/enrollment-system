@@ -38,6 +38,7 @@ class FacultyController extends Controller
     // method use to view dashboard of faculty
     public function dashboard()
     {
+        return 'aaa';
     	return view('faculty.dashboard');
     }
 
