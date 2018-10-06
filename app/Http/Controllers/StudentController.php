@@ -448,7 +448,7 @@ class StudentController extends Controller
     public function viewEnroll()
     {
         $courses = Course::where('active', 1)->get();
-        return $programs = Program::where('active', 1)->get();
+        $programs = Program::where('active', 1)->get();
 
         if(count($courses) < 1 && count($programs) < 1) {
             return redirect()->route('student.dashboard');
