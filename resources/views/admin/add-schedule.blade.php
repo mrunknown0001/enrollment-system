@@ -45,7 +45,7 @@
 									<select name="subject" id="subject" class="form-control underlined" required="">
 										<option value="">Select Subject</option>
 										@foreach($subjects as $s)
-										<option value="{{ $s->id }}">{{ $s->code }}</option>
+										<option value="{{ $s->id }}">{{ $s->code }} - {{ $s->description }}</option>
 										@endforeach
 										@if(count($subjects) > 0)
 

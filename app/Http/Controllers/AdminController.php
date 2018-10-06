@@ -1784,7 +1784,7 @@ class AdminController extends Controller
         $rooms = Room::get(['id', 'name']);
         $subjects = Subject::where('active', 1)
                 ->orderBy('code', 'asc')
-                ->get(['id', 'code']);
+                ->get(['id', 'code', 'description']);
 
         return view('admin.add-schedule', ['rooms' => $rooms, 'subjects' => $subjects]);
     }
