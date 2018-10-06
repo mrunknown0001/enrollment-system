@@ -97,9 +97,9 @@
 				@if(Auth::user()->enrollment_status->where('active', 1)->first())
 					{{--<p class="text-center">Assessment Paid and Currently Enrolled to a program</p>--}}
 					{{-- Display the program details --}}
-					<p>Course/Qualitification: <strong></strong></p>
-					<p>Training Duration: <strong></strong></p>
-					<p>Effectivity: <strong>{{-- $p->from && $p->to ? date('F j, Y', strtotime($p->from)) . '-' . date('F j, Y', strtotime($p->to)) : 'N/A' --}}</strong></p>
+					<p>Course/Qualitification: <strong>{{ Auth::user()->info->program->title }}</strong></p>
+					<p>Training Duration: <strong>{{ Auth::user()->info->program->hours }}</strong></p>
+					<p>Effectivity: <strong>{{ Auth::user()->info->program->from && Auth::user()->info->program->to ? date('F j, Y', strtotime(Auth::user()->info->program->from)) . '-' . date('F j, Y', strtotime(Auth::user()->info->program->to)) : 'N/A' }}</strong></p>
 				@else
 					{{-- check if there is an active assessment --}}
 					@if(Auth::user()->assessment->where('active', 1)->where('paid', 0)->first())
