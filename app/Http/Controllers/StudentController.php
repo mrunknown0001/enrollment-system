@@ -447,8 +447,8 @@ class StudentController extends Controller
     // method use to view enrollment settings
     public function viewEnroll()
     {
-        return $courses = Course::where('active', 1)->get();
-        $programs = Program::where('active', 1)->get();
+        $courses = Course::where('active', 1)->get();
+        return $programs = Program::where('active', 1)->get();
 
         if(count($courses) < 1 && count($programs) < 1) {
             return redirect()->route('student.dashboard');
