@@ -268,7 +268,8 @@ class AdminController extends Controller
     // method use to view registrars
     public function viewRegistrars()
     {
-        $registrars = Registrar::orderBy('lastname', 'asc')
+        $registrars = Registrar::where('active', 1)
+                            ->orderBy('lastname', 'asc')
                             ->paginate(15);
 
         return view('admin.registrars', ['registrars' => $registrars]);
@@ -287,6 +288,22 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Reset Registrar Password: ' . $registrar->firstname . ' ' . $registrar->lastname);
 
         return redirect()->route('admin.view.registrars')->with('success', 'Reset to default password. Success!');
+
+    }
+
+
+    // method use to remove registrar
+    public function postRemoveRegistrar(Request $request)
+    {
+        $id = $request['id'];
+
+        $registrar = Registrar::findorfail($id);
+        $registrar->active = 0;
+        $registrar->save();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Removed Registrar ' . $registrar->firstname . ' ' . $registrar->lastname);
+
+        return redirect()->route('admin.view.registrars')->with('success', 'Successfully Removed Registrar!');
 
     }
 

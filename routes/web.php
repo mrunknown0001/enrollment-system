@@ -408,6 +408,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// route to reset registrar default password
 	Route::post('/users/registrar/reset/password', 'AdminController@postResetRegistrarPassword')->name('admin.reset.registrar.password.post');
 
+	// route to remove registrar 
+	Route::post('/users/registrar/remove', 'AdminController@postRemoveRegistrar')->name('admin.remove.registrar.post');
+
 	// route to view add registrar form
 	Route::get('/users/registrar/add', 'AdminController@addRegistrar')->name('admin.add.registrar');
 
