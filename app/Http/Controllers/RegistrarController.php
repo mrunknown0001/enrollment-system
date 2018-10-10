@@ -21,6 +21,7 @@ use App\Assessment;
 use App\Subject;
 use App\Grade;
 use App\FinalGrade;
+use App\ActivityLog;
 
 class RegistrarController extends Controller
 {
@@ -33,7 +34,13 @@ class RegistrarController extends Controller
     // method use to view registrar dashboard
     public function dashboard()
     {
-    	return view('registrar.dashboard');
+        // get all data needed
+        $logs = ActivityLog::where('user_type', 4)
+                        ->where('user_id', Auth::user()->id)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10);
+
+    	return view('registrar.dashboard', ['logs' => $logs]);
     }
 
 
