@@ -49,7 +49,7 @@ class AdminLoginController extends Controller
 
     	// attempt to login
     	// redirect to dashboard
-    	if(Auth::guard('admin')->attempt(['username' => $username, 'password' => $password])) {
+    	if(Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'active' => 1])) {
 
     		// add activity log
     		GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Login');

@@ -393,6 +393,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// route to reset password for cashier in default
 	Route::post('/users/cashier/reset/password', 'AdminController@postResetCashierPassword')->name('admin.reset.cashier.password.post');
 
+	// route to remove cashier
+	Route::post('/users/cashier/remove', 'AdminController@postRemoveCashier')->name('admin.remove.cashier.post');
+
 	// route to view add cashier form
 	Route::get('/users/cashier/add', 'AdminController@addCashier')->name('admin.add.cashier');
 

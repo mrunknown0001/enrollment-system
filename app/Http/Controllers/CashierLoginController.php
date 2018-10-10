@@ -51,7 +51,7 @@ class CashierLoginController extends Controller
     	// autheticate attempt
     	// add activity log
     	// return redirect to route
-    	if(Auth::guard('cashier')->attempt(['username' => $username, 'password' => $password])) {
+    	if(Auth::guard('cashier')->attempt(['username' => $username, 'password' => $password, 'active' => 1])) {
     		
     		GeneralController::activity_log(Auth::guard('cashier')->user()->id, 3, 'Cashier Login');
 

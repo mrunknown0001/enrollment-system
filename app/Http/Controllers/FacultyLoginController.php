@@ -48,7 +48,7 @@ class FacultyLoginController extends Controller
         }
 
     	// attempt to login
-    	if(Auth::guard('faculty')->attempt(['id_number' => $id, 'password' => $password])) {
+    	if(Auth::guard('faculty')->attempt(['id_number' => $id, 'password' => $password, 'active' => 1])) {
     		// add activity log
     		GeneralController::activity_log(Auth::guard('faculty')->user()->id, 3, 'Faculty Login');
 

@@ -53,7 +53,7 @@ class RegistrarLoginController extends Controller
     	// authenticate attempt
     	// activity log
     	// return with return message
-    	if(Auth::guard('registrar')->attempt(['username' => $username, 'password' => $password])) {
+    	if(Auth::guard('registrar')->attempt(['username' => $username, 'password' => $password, 'active' => 1])) {
     		// add activity log
     		GeneralController::activity_log(Auth::guard('registrar')->user()->id, 4, 'Registrar Login');
 

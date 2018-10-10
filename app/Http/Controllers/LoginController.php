@@ -60,7 +60,7 @@ class LoginController extends Controller
         }
 
         // attempt to login the user
-        if(Auth::attempt(['student_number' => $sn, 'password' => $pass])) {
+        if(Auth::attempt(['student_number' => $sn, 'password' => $pass, 'active' => 1])) {
             // addition conditions if any
 
 

@@ -18,21 +18,22 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>Name</th>
-			<th>Username</th>
-			<th>ID Number</th>
-			<th>Action</th>
+			<th class="text-center">Name</th>
+			<th class="text-center">Username</th>
+			<th class="text-center">ID Number</th>
+			<th class="text-center">Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach($cashiers as $c)
 		<tr>
-			<td>{{ ucwords($c->firstname . ' ' . $c->lastname) }}</td>
-			<td>{{ strtolower($c->username) }}</td>
-			<td>{{ strtoupper($c->id_number) }}</td>
-			<td>
+			<td class="text-center">{{ ucwords($c->firstname . ' ' . $c->lastname) }}</td>
+			<td class="text-center">{{ strtolower($c->username) }}</td>
+			<td class="text-center">{{ strtoupper($c->id_number) }}</td>
+			<td class="text-center">
 				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cashier-{{ $c->id }}"><i class="fa fa-eye"></i> View</button>
 				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#reset-{{ $c->id }}"><i class="fa fa-key"></i> Reset Password</button>
+				<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#remove-{{ $c->id }}""><i class="fa fa-trash"></i> Remove</button>
 			</td>
 			<div class="modal fade" id="cashier-{{ $c->id }}">
 			    <div class="modal-dialog" role="document">
@@ -67,7 +68,7 @@
 			                </button>
 			            </div>
 			            <div class="modal-body">
-			                <p>Are you sure you want to reset password to default?</p>
+			                <p>Are you sure you want to reset password to default for {{ ucwords($c->firstname . ' ' . $c->lastname) }}?</p>
 			                <form action="{{ route('admin.reset.cashier.password.post') }}" method="POST">
 			                	{{ csrf_field() }}
 			                	<input type="hidden" name="id" value="{{ $c->id }}">
@@ -78,6 +79,32 @@
 			            </div>
 			            <div class="modal-footer">
 			                <small>Reset Password</small>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			<div class="modal fade" id="remove-{{ $c->id }}">
+			    <div class="modal-dialog" role="document">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <h4 class="modal-title">
+			                    <i class="fa fa-info"></i> Remove Cashier</h4>
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                    <span aria-hidden="true">&times;</span>
+			                </button>
+			            </div>
+			            <div class="modal-body">
+			                <p>Are you sure you want to remove cashier {{ ucwords($c->firstname . ' ' . $c->lastname) }}?</p>
+			                <form action="{{ route('admin.remove.cashier.post') }}" method="POST">
+			                	{{ csrf_field() }}
+			                	<input type="hidden" name="id" value="{{ $c->id }}">
+								<div class="form-group">
+									<button type="submit" class="btn btn-danger">Remove Cashier</button>
+								</div>
+			                </form>
+			            </div>
+			            <div class="modal-footer">
+			                <small>Remove Cashier</small>
 			            </div>
 			        </div>
 			    </div>

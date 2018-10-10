@@ -21,6 +21,7 @@ class CreateFacultiesTable extends Migration
             $table->string('id_number')->unique();
             $table->string('mobile_number')->nullable();
             $table->string('password');
+            $table->tinyInteger('active')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

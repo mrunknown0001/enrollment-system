@@ -174,7 +174,8 @@ class AdminController extends Controller
     public function viewCashiers()
     {
         // get all cashiers
-        $cashiers = Cashier::orderBy('lastname', 'asc')
+        $cashiers = Cashier::where('active', 1)
+                        ->orderBy('lastname', 'asc')
                         ->paginate(15);
 
         return view('admin.cashiers', ['cashiers' => $cashiers]);
@@ -193,6 +194,22 @@ class AdminController extends Controller
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Reset Cashier Password: ' . $cashier->firstname . ' ' . $cashier->lastname);
 
         return redirect()->route('admin.view.cashiers')->with('success', 'Reset to default password. Success!');
+
+    }
+
+
+    // method use to remove cashier
+    public function postRemoveCashier(Request $request)
+    {
+        $id = $request['id'];
+
+        $cashier = Cashier::findorfail($id);
+        $cashier->active = 0;
+        $cashier->save(); 
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Remove Cashier ' . $cashier->firstname . ' ' . $cashier->lastname);
+
+        return redirect()->route('admin.view.cashiers')->with('success', 'Successfully Removed Cashier!');
 
     }
 
