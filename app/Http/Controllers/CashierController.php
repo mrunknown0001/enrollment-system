@@ -10,6 +10,7 @@ use App\Assessment;
 use App\Subject;
 use App\Payment;
 use App\User;
+use App\ActivityLog;
 
 use App\Http\Controllers\GeneralController;
 
@@ -25,8 +26,12 @@ class CashierController extends Controller
     public function dashboard()
     {
     	// get all data needed
+        $logs = ActivityLog::where('user_type', 3)
+                        ->where('user_id', Auth::user()->id)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10);
 
-    	return view('cashier.dashboard');
+    	return view('cashier.dashboard', ['logs' => $logs]);
     }
 
     // method use to view profile of the cashier
