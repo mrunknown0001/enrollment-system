@@ -52,9 +52,9 @@ class AdminController extends Controller
 
     	// load all need in admin dashboard
         $students = User::get(['id']);
-        $faculties = Faculty::get(['id']);
-        $cashiers = Cashier::get(['id']);
-        $registrars = Registrar::get(['id']);
+        $faculties = Faculty::where('active', 1)->get(['id']);
+        $cashiers = Cashier::where('active', 1)->get(['id']);
+        $registrars = Registrar::where('active', 1)->get(['id']);
         $subjects = Subject::get(['id']);
 
         $programs = Program::where('active', 1)->get();
