@@ -161,7 +161,8 @@ class GeneralController extends Controller
     /////////////////////////////////////////////////////////////////////
     public static function students_search($keyword = null)
     {
-        $students = User::where('firstname', "like", "%$keyword%")
+        $students = User::where('active', 1)
+                        ->where('firstname', "like", "%$keyword%")
                         ->orwhere('lastname', "like", "%$keyword%")
                         ->orwhere('student_number', "like", "%$keyword%")
                         ->orderBy('lastname', 'asc')

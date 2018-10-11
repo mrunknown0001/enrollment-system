@@ -362,7 +362,8 @@ class AdminController extends Controller
     // method use to view all faculties
     public function viewFaculties()
     {
-        $faculties = Faculty::orderBy('lastname', 'asc')
+        $faculties = Faculty::where('active', 1)
+                            ->orderBy('lastname', 'asc')
                             ->paginate(10);
 
 
