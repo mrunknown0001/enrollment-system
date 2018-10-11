@@ -105,7 +105,7 @@
 				                </form>
 				            </div>
 				            <div class="modal-footer">
-				                <small>Reset Password</small>
+				                <small>Remove Registrar</small>
 				            </div>
 				        </div>
 				    </div>

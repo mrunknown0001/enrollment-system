@@ -454,6 +454,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// route to save update program assignment
 	Route::post('/user/faculty/load/programs/update', 'AdminController@postUpdateFacultyLoadPrograms')->name('admin.update.faculty.load.programs.post');
 
+	// route to remove faculty
+	Route::post('/user/faculty/remove', 'AdminController@postRemoveFaculty')->name('admin.remove.faculty.post');
+
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
 

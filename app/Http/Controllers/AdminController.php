@@ -600,6 +600,24 @@ class AdminController extends Controller
     }
 
 
+    // method use to remove faculty
+    public function postRemoveFaculty(Request $request)
+    {
+        $id = $request['id'];
+
+        $faculty = Faculty::findorfail($id);
+
+        $faculty->active = 0;
+        $faculty->save();
+
+        GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Removed Faculty');
+
+        return redirect()->route('admin.view.faculties')->with('success', 'Successfully Removed Faculty!');
+
+
+    }
+
+
     // method use to save update on program assignent
     public function postUpdateFacultyLoadPrograms(Request $request)
     {
