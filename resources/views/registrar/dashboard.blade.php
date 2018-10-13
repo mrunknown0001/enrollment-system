@@ -11,32 +11,52 @@
 @section('content')
 <p><strong>Registrar Dashboard</strong></p>
 @include('includes.all')
-            @if(count($logs) > 0)
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th class="text-center">Action</th>
-                        <th class="text-center">Date &amp; Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($logs as $log)
-                    <tr>
-                        <td class="text-center">
-                            {{ $log->action }}
-                        </td>
-                        <td class="text-center">
-                            {{ date('l, F j, Y g:i:s a', strtotime($log->created_at)) }}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    
-                </tfoot>
-            </table>
-            <div class="text-center"> {{ $logs->links() }}</div>
-            @else
-            <p class="text-center"><em>No activity logs</em></p>
-            @endif
+
+@if($es->status == 1)
+<div class="col-md-12">
+  <p class="text-center">Enrollment is Active</p>  
+</div>
+@else
+<div class="col-md-12">
+    <p class="text-center">Enrollment is Inactive</p>
+</div>
+@endif
+
+
+            <div class="card sameheight-item stats" data-exclude="xs">
+                <div class="card-block">
+                    <div class="title-block">
+                        
+                    </div>
+                    <div class="row row-sm stats-container">
+                        <div class="col-12 col-sm-6 stat-col">
+                            <div class="stat-icon">
+                                <i class="fa fa-graduation-cap"></i>
+                            </div>
+                            <div class="stat">
+                                <div class="value"> {{ count($students) }} </div>
+                                <div class="name"> Students </div>
+                            </div>
+                            <div class="progress stat-progress">
+                                <!-- <div class="progress-bar" style="width: 75%;"></div> -->
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 stat-col">
+                            <div class="stat-icon">
+                                <!-- <i class="fa fa-dollar"></i> -->
+                                &#8369;
+                            </div>
+                            <div class="stat">
+                                <div class="value"> {{ $total_payment != null ?  $total_payment : '0' }} </div>
+                                <div class="name"> Total Payment </div>
+                            </div>
+                            <div class="progress stat-progress">
+                                <!-- <div class="progress-bar" style="width: 15%;"></div> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 @endsection

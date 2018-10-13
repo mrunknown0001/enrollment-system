@@ -22,6 +22,8 @@ use App\Subject;
 use App\Grade;
 use App\FinalGrade;
 use App\ActivityLog;
+use App\EnrollmentSetting;
+use App\Payment;
 
 class RegistrarController extends Controller
 {
@@ -34,13 +36,18 @@ class RegistrarController extends Controller
     // method use to view registrar dashboard
     public function dashboard()
     {
-        // get all data needed
-        $logs = ActivityLog::where('user_type', 4)
-                        ->where('user_id', Auth::user()->id)
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(10);
+        $students = User::get(['id']);
 
-    	return view('registrar.dashboard', ['logs' => $logs]);
+        $es = EnrollmentSetting::find(1);
+
+        // get total payment of the current enrollment
+        $payments = Payment::where('status', 1)->get();
+        $total_payment = null;
+
+        foreach($payments as $p) {
+            $total_payment += $p->amount;
+        }
+    	return view('registrar.dashboard', ['students' => $students, 'es' => $es, 'total_payment' => $total_payment]);
     }
 
 
