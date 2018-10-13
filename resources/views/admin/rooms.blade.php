@@ -27,7 +27,7 @@
 		<tbody>
 			@foreach($rooms as $r)
 			<tr>
-				<td>{{ $r->name }}</td>
+				<td>{{ ucwords($r->name) }}</td>
 				<td>{{ $r->room_number != null ? $r->room_number : 'Null' }}</td>
 				<td>
 					<a href="{{ route('admin.update.room', ['id' => $r->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Update</a>

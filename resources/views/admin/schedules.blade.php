@@ -23,6 +23,9 @@
 				<br>
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				<br>
+				<a href="#">Update</a>
+				<a href="#">Remove</a>
 				</td>
 			@endforeach
 		</tr>
