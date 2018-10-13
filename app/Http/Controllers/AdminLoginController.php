@@ -65,4 +65,12 @@ class AdminLoginController extends Controller
         return redirect()->route('admin.login')->with('error', 'Authentication Error!');
     	
     }
+
+
+    protected function hasTooManyLoginAttempts(Request $request)
+    {
+        return $this->limiter()->tooManyAttempts(
+            $this->throttleKey($request), 6, 3
+        );
+    }
 }
