@@ -24,8 +24,7 @@
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
 				<br>
-				<a href="#">Update</a>
-				<a href="#">Remove</a>
+				<a href="{{ route('admin.remove.schedule', ['id' => $sch->id]) }}">Remove</a>
 				</td>
 			@endforeach
 		</tr>

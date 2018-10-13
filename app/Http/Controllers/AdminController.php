@@ -1923,6 +1923,17 @@ class AdminController extends Controller
     }
 
 
+    // method use to remove schedule
+    public function removeSchedule($id = null)
+    {
+        $schedule = Schedule::findorfail($id);
+
+        $schedule->delete();
+
+        return redirect()->back()->with('success', 'Schedule Removed!');
+    }
+
+
     // method use to view enrollment settings
     public function enrollment()
     {

@@ -623,6 +623,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// rotue to save added schedule
 	Route::post('/schedule/add', 'AdminController@postAddSchedule')->name('admin.add.schedule.post');
 
+	// route to remove schedule
+	Route::get('/schedule/{id}/remove', 'AdminController@removeSchedule')->name('admin.remove.schedule');
+
 	// route to veiw settings in enrollment
 	Route::get('/enrollment', 'AdminController@enrollment')->name('admin.enrollment');
 

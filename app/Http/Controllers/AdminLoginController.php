@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 use App\Http\Controllers\GeneralController;
 
 class AdminLoginController extends Controller
 {
     
+    use AuthenticatesUsers;
+
     // method use to view login for admin
     public function login()
     {
@@ -58,6 +62,7 @@ class AdminLoginController extends Controller
     		return redirect()->route('admin.dashboard');
     	}
 
-    	return redirect()->route('admin.login')->with('error', 'Authentication Error!');
+        return redirect()->route('admin.login')->with('error', 'Authentication Error!');
+    	
     }
 }
