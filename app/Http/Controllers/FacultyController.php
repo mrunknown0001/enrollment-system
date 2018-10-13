@@ -22,6 +22,7 @@ use App\GradeEncodeLog;
 use App\ProgramStudent;
 use App\ProgramGradeEncode;
 use App\Remark;
+use App\EnrollmentSetting;
 
 
 use App\Http\Controllers\GeneralController;
@@ -38,7 +39,32 @@ class FacultyController extends Controller
     // method use to view dashboard of faculty
     public function dashboard()
     {
-    	return view('faculty.dashboard');
+        $faculty = Auth::guard('faculty')->user();
+        
+        $students = User::get(['id']);
+
+        $es = EnrollmentSetting::find(1);
+
+        // get assginec subjects and/or programs assigned
+        $programs_assigned = ProgramAssignment::where('faculty_id', $faculty->id)->where('active', 1)->first();
+        $subjects_assigned = SubjectAssignment::where('faculty_id', $faculty->id)->where('active', 1)->first();
+
+        $programs = null;
+        $subjects = null;
+
+        if(count($programs_assigned) > 0) {
+            foreach(unserialize($programs_assigned->program_ids) as $p) {
+                $programs = Program::find($p);
+            }
+        }
+
+        if(count($subjects_assigned) > 0) {
+            foreach(unserialize($subjects_assigned->subject_ids) as $s) {
+                $subjects = Subject::find($s);
+            }
+        }
+
+    	return view('faculty.dashboard', ['es' => $es, 'programs' => $programs, 'subjects' => $subjects, 'students' => $students]);
     }
 
 
