@@ -229,7 +229,7 @@ class AdminController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:cashiers',
             'id_number' => 'required|unique:cashiers',
             'mobile_number' => 'required|unique:cashiers'
         ]);
@@ -242,6 +242,12 @@ class AdminController extends Controller
         $id = $request['id_number'];
         $mobile = $request['mobile_number'];
 
+        // check username
+        $check_username = Cashier::where('username', $username)->first();
+
+        if(count($check_username) > 0) {
+            return redirect()->back()->with('error', 'Username has previously used by old user. Please Try Another username');
+        }
 
         // check
 
@@ -324,9 +330,10 @@ class AdminController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'username' => 'required',
-            'id_number' => 'required|unique:cashiers',
-            'mobile_number' => 'required|unique:cashiers'
+            'id_number' => 'required|unique:registrars',
+            'mobile_number' => 'required|unique:registrars'
         ]);
+
 
 
         // assign form data to variables
@@ -336,6 +343,13 @@ class AdminController extends Controller
         $id = $request['id_number'];
         $mobile = $request['mobile_number'];
 
+
+        // check username
+        $check_username = Registrar::where('username', $username)->first();
+
+        if(count($check_username) > 0) {
+            return redirect()->back()->with('error', 'Username has previously used by old user. Please Try Another username');
+        }
 
         // check
 
