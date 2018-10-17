@@ -12,6 +12,6 @@
 <p><strong>Make Payment</strong></p>
 @include('includes.all')
 
-
+<p>Student: <strong>{{ ucwords($student->firstname . ' ' . $student->lastname) . ' - ' . $student->student_number }}</strong></p>
 
 @endsection

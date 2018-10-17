@@ -212,9 +212,10 @@ class CashierController extends Controller
 
 
     // method use to make payment
-    public function makePayment()
+    public function makePayment($id = null)
     {
+        $student = User::findorfail($id);
 
-        return view('cashier.payments-make-payment');
+        return view('cashier.payments-make-payment', ['student' => $student]);
     }
 }
