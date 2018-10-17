@@ -36,6 +36,8 @@
 				<br>
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				<br>
+				<a href="{{ route('admin.remove.schedule', ['id' => $sch->id]) }}">Remove</a>
 				</td>
 			@endforeach
 		</tr>
@@ -47,6 +49,8 @@
 				<br>
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				<br>
+				<a href="{{ route('admin.remove.schedule', ['id' => $sch->id]) }}">Remove</a>
 				</td>
 			@endforeach
 		</tr>
@@ -58,6 +62,8 @@
 				<br>
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				<br>
+				<a href="{{ route('admin.remove.schedule', ['id' => $sch->id]) }}">Remove</a>
 				</td>
 			@endforeach
 		</tr>
@@ -69,6 +75,8 @@
 				<br>
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_start) }}-
 				{{ \App\Http\Controllers\GeneralController::get_time($sch->time_end) }}
+				<br>
+				<a href="{{ route('admin.remove.schedule', ['id' => $sch->id]) }}">Remove</a>
 				</td>
 			@endforeach
 		</tr>
