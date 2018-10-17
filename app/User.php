@@ -41,7 +41,7 @@ class User extends Authenticatable
 
     public function assessment()
     {
-        return $this->hasMany('App\Assessment', 'student_id');
+        return $this->hasOne('App\Assessment', 'student_id');
     }
 
     public function avatar()
@@ -49,9 +49,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Avatar', 'student_id');
     }
 
-    public function payment()
+    public function balance()
     {
-        return $this->hasOne('App\Payment', 'student_id');
+        return $this->hasOne('App\Balance', 'student_id');
     }
 
 

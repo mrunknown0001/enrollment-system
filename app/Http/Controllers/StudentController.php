@@ -24,6 +24,7 @@ use App\Grade;
 use App\Remark;
 use App\GradeEquivalent;
 use App\Avatar;
+use App\Balance;
 
 use App\Http\Controllers\GeneralController;
 
@@ -618,6 +619,13 @@ class StudentController extends Controller
         $assess->total = $total;
         $assess->year_level_id = Auth::user()->info->year_level;
         $assess->save();
+
+        $balance = new Balance();
+        $balance->student_id = Auth::user()->id;
+        $balance->balance = $total;
+        $balance->save();
+
+
 
         // add actvitiy log
         GeneralController::activity_log(Auth::user()->id, 5, 'Student Selected Subject');

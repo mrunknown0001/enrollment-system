@@ -9,7 +9,7 @@
 <p>Tuition Fee: <strong>&#8369; {{ $assessment->tuition_fee }}</strong></p>
 <p>Miscellaneous Fee: <strong>&#8369; {{ $assessment->misc_fee }}</strong></p>
 <hr>
-<p>Total: <strong>&#8369; {{ $assessment->total }}</strong></p>
+<p>Total: <strong>&#8369; {{ $assessment->student->balance->balance }}</strong></p>
 <hr>
 
 </div>

@@ -223,7 +223,32 @@ class CashierController extends Controller
     // method use to save make payment
     public function postMakePayment(Request $request)
     {
-        return $request;
+        $request->validate([
+            'amount' => 'required'
+        ]);
+
+        $id = $request['id'];
+
+        $amount = $request['amount'];
+
+        $student = User::findorfail($id);
+
+        // deduct the amount in the balance
+        $student->balance->balance -= $amount;
+        $student->balance->save();
+
+        // add to payment
+        $payment = new Payment();
+        $payment->student_id = $student->id;
+        $payment->amount = $amount;
+        $payment->payment_id = 'Over the Counter';
+        $payment->assessment_id = $student->assessment->id;
+        $payment->save();
+
+        // add to report
+
+        // return back
+        return redirect()->back()->with('success', 'Payment Successfull!');
     }
 
 }

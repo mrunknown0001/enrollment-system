@@ -40,7 +40,7 @@
 	<tfoot></tfoot>
 </table>
 <hr>
-<p>Total: <strong>&#8369; {{ $assessment->total }}</strong></p>
+<p>Total: <strong>&#8369; {{ $assessment->student->balance->balance }}</strong></p>
 <hr>
 
 </div>
