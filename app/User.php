@@ -49,5 +49,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Avatar', 'student_id');
     }
 
+    public function payment()
+    {
+        return $this->hasOne('App\Payment', 'student_id');
+    }
+
 
 }
