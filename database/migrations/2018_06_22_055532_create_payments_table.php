@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('assessment_id')->unsigned()->nullable();
             $table->string('currency')->default('PHP');
             $table->float('amount', 8, 2);
+            $table->integer('balance')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

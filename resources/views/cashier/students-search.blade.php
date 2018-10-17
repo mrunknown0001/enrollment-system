@@ -35,7 +35,9 @@
 						<tr>
 							<td>{{ ucwords($s->lastname . ', ' . $s->firstname) }}</td>
 							<td>{{ $s->student_number }}</td>
-							<td><a href="{{ route('cashier.view.student.assessment', ['id' => $s->id]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Assessment</a></td>
+							<td><a href="{{ route('cashier.view.student.assessment', ['id' => $s->id]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> View Assessment</a>
+								<a href="{{ route('cashier.make.payment', ['id' => $s->id]) }}" class="btn btn-primary"><i class="fa fa-money"></i> Make Payment</a>
+							</td>
 						</tr>
 					@endforeach
 				</tbody>

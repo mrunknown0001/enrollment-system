@@ -286,6 +286,9 @@ Route::group(['prefix' => 'cashier', 'middleware' => 'prevent-back-history'], fu
 
 	// route to view payment
 	Route::get('/payments', 'CashierController@viewPayments')->name('cashier.view.payments');
+
+	// route to make payments 
+	Route::get('/payments/student/{id}/make/payment', 'CashierController@makePayment')->name('cashier.make.payment');
 });
 
 

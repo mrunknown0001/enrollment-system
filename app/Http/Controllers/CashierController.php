@@ -209,4 +209,12 @@ class CashierController extends Controller
 
         return view('cashier.payments', ['payments' => $payments]);
     }
+
+
+    // method use to make payment
+    public function makePayment()
+    {
+
+        return view('cashier.payments-make-payment');
+    }
 }

@@ -10,6 +10,7 @@
 
 @section('content')
 <p><strong>Payments</strong></p>
+
 @include('includes.all')
 <section class="section">
     <div class="row">
