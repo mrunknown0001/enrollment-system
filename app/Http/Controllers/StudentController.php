@@ -535,6 +535,11 @@ class StudentController extends Controller
         $assess->total = $total;
         $assess->save();
 
+        $balance = new Balance();
+        $balance->student_id = Auth::user()->id;
+        $balance->balance = $total;
+        $balance->save();
+
         // add activity log
         GeneralController::activity_log(Auth::user()->id, 5, 'Student enrolled to a Program');
 

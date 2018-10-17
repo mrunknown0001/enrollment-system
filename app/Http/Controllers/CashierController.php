@@ -238,12 +238,11 @@ class CashierController extends Controller
         $student->balance->save();
 
         // add to payment
-        $payment = new Payment();
-        $payment->student_id = $student->id;
-        $payment->amount = $amount;
-        $payment->payment_id = 'Over the Counter';
-        $payment->assessment_id = $student->assessment->id;
-        $payment->save();
+        // $payment = new Payment();
+        // $payment->student_id = $student->id;
+        // $payment->amount = $amount;
+        // $payment->payment_id = 'Over the Counter';
+        // $payment->save();
 
         // add to report
 
