@@ -639,10 +639,19 @@ class StudentController extends Controller
         $assess->year_level_id = Auth::user()->info->year_level;
         $assess->save();
 
-        $balance = new Balance();
-        $balance->student_id = Auth::user()->id;
-        $balance->balance = $total;
-        $balance->save();
+        if(count(Auth::user()->balance) > 0) {
+            Auth::user()->balance->balance = $total;
+            Auth::user()->balance->save();
+        }
+        else {
+
+            $balance = new Balance();
+            $balance->student_id = Auth::user()->id;
+            $balance->balance = $total;
+            $balance->save();
+        }
+
+
 
 
 
