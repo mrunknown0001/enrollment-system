@@ -8,7 +8,6 @@
             </div>
             
             <div class="card-block">
-                @include('includes.all')
                 <form id="signup-form" action="{{ route('student.year.level.select.post') }}" method="POST" role="form" autocomplete="off">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -20,6 +19,7 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary"><i class="fa fa-floppy-o"></i> Save</button>
+                        <a href="{{ route('student.cancel.enrollment.for') }}" class="btn btn-danger">Cancel Enrollment</a>
                     </div>
                 </form>
             </div>

@@ -230,8 +230,22 @@ class StudentController extends Controller
 
         GeneralController::activity_log(Auth::user()->id, 5, 'Student going to enroll');
 
-        return redirect()->route('student.dashboard')->with('Set For Enrollment!');
+        return redirect()->route('student.dashboard')->with('success', 'Set For Enrollment!');
 
+    }
+
+
+    // method use to cancell enrollment for
+    public function cancelEnrollmentFor()
+    {
+        $user = Auth::user();
+
+        $user->info->enrolling_for = null;
+        $user->info->save();
+
+        GeneralController::activity_log(Auth::user()->id, 5, 'Student cancelled enrollment');
+
+        return redirect()->route('student.dashboard')->with('success', 'Enrollment Cancelled');
     }
 
 
@@ -312,7 +326,7 @@ class StudentController extends Controller
             }
         }
         else {
-            return redirect()->route('student.dashboard')->with('Error', 'Subject Enrolled!');
+            return redirect()->route('student.dashboard')->with('error', 'Subject Enrolled!');
         }
 
 
@@ -544,7 +558,7 @@ class StudentController extends Controller
         GeneralController::activity_log(Auth::user()->id, 5, 'Student enrolled to a Program');
 
         // return to assessment with message
-        return redirect()->route('student.assessment')->with('sucess', 'Assessment Saved for the chosen Program!');
+        return redirect()->route('student.assessment')->with('success', 'Assessment Saved for the chosen Program!');
     }
 
 

@@ -128,6 +128,7 @@
 								@endforeach
 									<div class="form-group">
 										<button type="submit" class="btn btn-primary">Enroll Selected Program</button>
+										<a href="{{ route('student.cancel.enrollment.for') }}" class="btn btn-danger">Cancel Enrollment</a>
 									</div>
 								</form>
 				                </div>

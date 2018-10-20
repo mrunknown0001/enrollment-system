@@ -111,6 +111,9 @@ Route::group(['prefix' => 'student', 'middleware' => 'prevent-back-history'], fu
 	// route to save what to enroll
 	Route::post('/enrollment/for', 'StudentController@postEnrollmentFor')->name('student.enrollment.for.post');
 
+	// route to cancel enrolling for
+	Route::get('/enrollment/cancel', 'StudentController@cancelEnrollmentFor')->name('student.cancel.enrollment.for');
+
 	// route to save year level of the student
 	Route::post('/year-level/select', 'StudentController@postYearLevel')->name('student.year.level.select.post');
 

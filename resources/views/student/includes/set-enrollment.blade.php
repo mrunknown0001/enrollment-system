@@ -8,11 +8,10 @@
             </div>
             
             <div class="card-block">
-                @include('includes.all')
                 <form id="signup-form" action="{{ route('student.enrollment.for.post') }}" method="POST" role="form" autocomplete="off">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <p><em>This Can't Be Undone. Please Choose Carefully Before Saving</em></p>
+                        <p><em>Please Choose One</em></p>
                     </div>
                     <div class="form-group">
                         <select class="form-control underlined" name="enrolling_for" id="enrolling_for" required="">
