@@ -1644,7 +1644,7 @@ class AdminController extends Controller
 
         // set assessment to inactive
         // $assessments = Assessment::where('active', 1)->update(['active' => 0]);
-        $assessments_ids = Assessment::where('active', 1)->get(['id');
+        $assessments_ids = Assessment::where('active', 1)->get('id');
         Assessment::destroy($assessments_ids);
 
         // set assigned subject and program to inactive
