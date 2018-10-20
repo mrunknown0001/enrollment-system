@@ -546,8 +546,10 @@ class RegistrarController extends Controller
         }
 
 
+        $final_grades = FinalGrade::where('student_id', $student->id)->get();
+
         // return with ay, sem, subject details and equivalent
-        return view('registrar.student-view-tor', ['student' => $student, 'course' => $course, 'equiv' => $equiv, 'subjects' => $subjects]);
+        return view('registrar.student-view-tor', ['student' => $student, 'course' => $course, 'equiv' => $equiv, 'subjects' => $subjects, 'final_grades' => $final_grades]);
     }
 
 

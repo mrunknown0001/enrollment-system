@@ -52,11 +52,13 @@
 							<tr>
 								<td class="text-center">{{ $s->code }}</td>
 								<td class="text-center">{{ $s->description }}</td>
-								@foreach($equiv as $eq)
-								 	@if($s->id == $eq['subject_id'])
-										<td class="text-center">{{ $eq['equivalent'] }}</td>
-								 	@endif
-								@endforeach
+								<td class="text-center">
+									@foreach($final_grades as $f)
+										@if($s->id == $f->subject_id)
+											{{$f->grade }}
+										@endif
+									@endforeach
+								</td>
 								<td class="text-center">{{ $s->units }}</td>
 							</tr>
 						@endforeach
