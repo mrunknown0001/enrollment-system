@@ -241,16 +241,15 @@ class CashierController extends Controller
         $assessment->total -= $amount;
         $assessment->save();
 
-        // add to payment
-        // $payment = new Payment();
-        // $payment->student_id = $student->id;
-        // $payment->amount = $amount;
-        // $payment->payment_id = 'Over the Counter';
-        // $payment->save();
+        //add to payment
+        $payment = new Payment();
+        $payment->student_id = $student->id;
+        $payment->amount = $amount;
+        $payment->payment_id = 'Over the Counter';
+        $payment->assessment_id = $assessment->id;
+        $payment->save();
 
         // add to report
-
-
 
         // return back
         return redirect()->back()->with('success', 'Payment Successfull!');

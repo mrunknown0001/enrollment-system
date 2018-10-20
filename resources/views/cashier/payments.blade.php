@@ -30,7 +30,13 @@
 						@foreach($payments as $p)
 							<tr>
 								<td>{{ $p->payment_id }}</td>
-								<td><a href="{{ route('cashier.view.assessment.details', ['id' => $p->assessment->id]) }}">{{ $p->assessment->assessment_number }}</a></td>
+								<td>
+									@if($p->assessment_id != null)
+										<a href="{{ route('cashier.view.assessment.details', ['id' => $p->assessment->id]) }}">{{ $p->assessment->assessment_number }}</a>
+									@else
+										N/A
+									@endif
+								</td>
 								<td>&#8369; {{ $p->amount }}</td>
 								<td>{{ ucwords($p->student->firstname . ' ' . $p->student->lastname) }}</td>
 								<td>{{ date('F j, Y g:i:s a', strtotime($p->created_at)) }}</td>

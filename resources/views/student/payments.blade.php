@@ -30,7 +30,13 @@
 						<tr>
 							<td>{{ $p->payment_id }}</td>
 							<td>&#8369; {{ $p->amount }}</td>
-							<td>{{ date('F j, Y g:i:s a', strtotime($p->assessment->created_at)) }}</td>
+							<td>
+								@if($p->assessment_id != null)
+									{{ date('F j, Y g:i:s a', strtotime($p->assessment->created_at)) }}
+								@else
+									N/A
+								@endif
+							</td>
 							<td>{{ date('F j, Y g:i:s a', strtotime($p->created_at)) }}</td>
 						</tr>
 						@endforeach

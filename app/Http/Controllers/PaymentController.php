@@ -302,6 +302,9 @@ class PaymentController extends Controller
             $payment->amount = $assessment->total;
             $payment->save();
 
+            Auth::user()->balance->balance -= $assessment->total;
+            Auth::user()->balance->save();
+
             // add activity log
             GeneralController::activity_log(Auth::user()->id, 5, 'Student Paid Assessment');
 
