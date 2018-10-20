@@ -237,7 +237,9 @@ class CashierController extends Controller
         $student->balance->balance -= $amount;
         $student->balance->save();
 
-        
+        $assessment = Assessment::where('student_id', $student->id)->first();
+        $assessment->total -= $amount;
+        $assessment->save();
 
         // add to payment
         // $payment = new Payment();
