@@ -10,13 +10,13 @@ class SmsController extends Controller
     // method use to send sms
     public static function sendSms($number = null, $message = null)
     {
-
+        //1f84034453772c09dec3e7d5c6597f2f
         $ch = curl_init();
         $parameters = array(
-            'apikey' => '8f934d4c8d91337dc98445e52faf85ab', //Your API KEY
+            'apikey' => '1f84034453772c09dec3e7d5c6597f2f', //Your API KEY
             'number' =>  $number,
             'message' => $message,
-            'sendername' => 'CLLRTrading' // sender name
+            'sendername' => 'Semaphore' // sender name
         );
         curl_setopt( $ch, CURLOPT_URL,'http://api.semaphore.co/api/v4/messages' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
