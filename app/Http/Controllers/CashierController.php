@@ -237,6 +237,8 @@ class CashierController extends Controller
         $student->balance->balance -= $amount;
         $student->balance->save();
 
+        
+
         // add to payment
         // $payment = new Payment();
         // $payment->student_id = $student->id;
@@ -245,6 +247,8 @@ class CashierController extends Controller
         // $payment->save();
 
         // add to report
+
+
 
         // return back
         return redirect()->back()->with('success', 'Payment Successfull!');

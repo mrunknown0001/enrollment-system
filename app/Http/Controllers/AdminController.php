@@ -1643,7 +1643,9 @@ class AdminController extends Controller
         $sched = Schedule::where('active', 1)->update(['active' => 0]);
 
         // set assessment to inactive
-        $assessments = Assessment::where('active', 1)->update(['active' => 0]);
+        // $assessments = Assessment::where('active', 1)->update(['active' => 0]);
+        $assessments_ids = Assessment::where('active', 1)->get(['id');
+        Assessment::destroy($assessments_ids);
 
         // set assigned subject and program to inactive
         $a_subjects = SubjectAssignment::where('active', 1)->update(['active' => 0]);
