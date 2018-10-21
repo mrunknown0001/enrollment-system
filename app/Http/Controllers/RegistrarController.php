@@ -631,8 +631,9 @@ class RegistrarController extends Controller
                 ]);
             }
         }
+        
+        $subjects = (array_unique($subjects, SORT_REGULAR));
 
-        // return $subjects;
 
         return view('registrar.student-credit-add', ['student' => $student, 'subjects' => $subjects]);
     }
