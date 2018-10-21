@@ -12,6 +12,11 @@ use App\Payment;
 use App\User;
 use App\ActivityLog;
 use App\EnrollmentSetting;
+use App\AcademicYear;
+use App\ActiveSemester;
+use App\YearLevel;
+use App\EnrollmentStatus;
+
 
 use App\Http\Controllers\GeneralController;
 
@@ -227,6 +232,10 @@ class CashierController extends Controller
             'amount' => 'required'
         ]);
 
+        $ay = AcademicYear::where('active', 1)->first();
+        $yl = YearLevel::where('active', 1)->first();
+        $sem = ActiveSemester::where('active', 1)->first();
+
         $id = $request['id'];
 
         $amount = $request['amount'];
@@ -253,6 +262,24 @@ class CashierController extends Controller
         $payment->payment_id = 'Over the Counter';
         $payment->assessment_id = $assessment->id;
         $payment->save();
+
+
+        // make student as enrolled --- enrollment_statuses
+        if(count($student->enrollment_status) < 1) {
+            $enroll = new EnrollmentStatus();
+            $enroll->student_id = Auth::user()->id;
+            $enroll->assessment_id = $assessment->id;
+            $enroll->academic_year_id = $ay->id;
+            $enroll->semester_id = $sem->id;
+            $enroll->year_level_id = $yl->id;
+            if($assessment->course_id != null) {
+                $enroll->course_id = $assessment->course_id;
+            }
+            else {
+                $enroll->program_id = $assessment->program_id;
+            }
+            $enroll->save();
+        }
 
         // add to report
 
