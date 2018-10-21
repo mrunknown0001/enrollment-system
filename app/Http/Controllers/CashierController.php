@@ -239,6 +239,11 @@ class CashierController extends Controller
 
         $assessment = Assessment::where('student_id', $student->id)->first();
         $assessment->total -= $amount;
+
+        if($assessment->total < 1) {
+            $assessment->paid = 1;
+        }
+
         $assessment->save();
 
         //add to payment
