@@ -30,7 +30,7 @@
 						<tr>
 							<th>Subject Code</th>
 							<th>Units</th>
-							<th>Grades</th>
+							<th>Final Grade</th>
 							<th>Remarks</th>
 						</tr>
 					</thead>
