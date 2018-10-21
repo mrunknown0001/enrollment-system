@@ -24,7 +24,19 @@
 					
 		        	@if(count($gn) > 0)
 						@foreach($gn as $g)
-							<a href="{{ route('faculty.subject.students.enrolled', ['id' => $subject->id, 'gid' => $g->group_number]) }}" class="btn btn-primary">Students Group {{ $g->group_number }}</a>
+							<a href="{{ route('faculty.subject.students.enrolled', ['id' => $subject->id, 'gid' => $g->group_number]) }}" class="btn btn-primary">Students Section 
+                            @if($g->group_number == 1)
+                            A
+                            @elseif($g->group_number == 2)
+                            B
+                            @elseif($g->group_number == 3)
+                            C
+                            @elseif($g->group_number == 4)
+                            D
+                            @else
+                            {{ $g->group_number }}
+                            @endif
+                            </a>
 						@endforeach
 		        	@endif
                 </div>
