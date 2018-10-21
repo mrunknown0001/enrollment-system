@@ -28,7 +28,7 @@
                             <form id="signup-form" action="{{ route('admin.add.year.level.post') }}" method="POST" role="form" autocomplete="off">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="name">Year Leve Name</label>
+                                    <label for="name">Year Level Name</label>
                                     <input type="text" name="name" id="name" class="form-control underlined" placeholder="Year Level Name" required="">
                                 </div>
                                 <div class="form-group">
