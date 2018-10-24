@@ -55,7 +55,7 @@
                         <label for="agree">
                             <input type="checkbox" class="checkbox" name="agree" id="agree" type="checkbox" checked="" required="">
                             <span>Agree the
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#terms-and-policy-modal">Terms and Policy</a> and <a href="{{ route('data.privacy.statement') }}" target="_blank">Data Privacy Policy</a>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#terms-and-policy-modal">Terms and Policy</a> and <a href="javascript:void(0)" data-toggle="modal" data-target="#privacyPolicy">Data Privacy Statement</a>
                             </span>
                         </label>
                     </div>
@@ -77,5 +77,5 @@
     </div>
 </div>
 @include('includes.terms-and-policy')
-
+@include('includes.privacy-policy')
 @endsection
