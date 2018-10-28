@@ -17,7 +17,7 @@ class CreateActivityLogsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->tinyInteger('user_type')->default(5); // 1 for admin, 2 for facutly, 3 for cashier, 4 for registrar, 5 for students
-            $table->string('action')->nullable();
+            $table->string('action', 200)->nullable();
             $table->timestamps();
         });
     }

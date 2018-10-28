@@ -15,7 +15,7 @@ class CreateMiscFeesTable extends Migration
     {
         Schema::create('misc_fees', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
+            $table->string('name', 20)->nullable();
             $table->float('amount', 8,2)->nullable();
             $table->tinyInteger('type')->nullable(); // 1 for course, 2 for program, 3 for all
             $table->timestamps();

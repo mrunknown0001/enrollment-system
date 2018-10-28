@@ -24,7 +24,7 @@ class CreateGradesTable extends Migration
             $table->integer('semester_id')->unsigned()->nullable();
             $table->integer('term_id')->unsigned()->nullable();
             $table->float('grade', 8,2);
-            $table->string('remarks')->nullable();
+            $table->string('remarks', 40)->nullable();
             $table->timestamps();
         });
     }

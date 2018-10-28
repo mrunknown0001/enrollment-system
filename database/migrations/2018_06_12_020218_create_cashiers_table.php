@@ -15,13 +15,13 @@ class CreateCashiersTable extends Migration
     {
         Schema::create('cashiers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('gender')->nullable();
-            $table->string('username')->unique();
-            $table->string('id_number')->unique();
-            $table->string('mobile_number')->nullable();
-            $table->string('password');
+            $table->string('firstname', 40);
+            $table->string('lastname', 40);
+            $table->string('gender', 6)->nullable();
+            $table->string('username', 32)->unique();
+            $table->string('id_number', 10)->unique();
+            $table->string('mobile_number', 11)->nullable();
+            $table->string('password', 75);
             $table->tinyInteger('active')->default(1);
             $table->rememberToken();
             $table->timestamps();

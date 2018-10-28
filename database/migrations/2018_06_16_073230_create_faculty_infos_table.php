@@ -18,9 +18,9 @@ class CreateFacultyInfosTable extends Migration
             $table->integer('faculty_id')->unsigned();
             $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->date('date_of_birth')->nullable();
-            $table->string('place_of_birth')->nullable();
-            $table->string('address')->nullable();
-            $table->string('nationality')->nullable();
+            $table->string('place_of_birth', 100)->nullable();
+            $table->string('address', 100)->nullable();
+            $table->string('nationality', 15)->nullable();
             $table->timestamps();
         });
     }

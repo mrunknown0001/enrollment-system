@@ -18,7 +18,7 @@ class CreateGradeEquivalentsTable extends Migration
             $table->float('equivalent', 8,2);
             $table->float('from', 8,2);
             $table->float('to', 8,2);
-            $table->string('description');
+            $table->string('description', 20);
             $table->timestamps();
         });
     }

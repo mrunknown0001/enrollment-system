@@ -15,7 +15,7 @@ class CreatePricePerUnitsTable extends Migration
     {
         Schema::create('price_per_units', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
+            $table->string('name', 15)->nullable();
             $table->float('price', 8, 2);
             $table->timestamps();
         });

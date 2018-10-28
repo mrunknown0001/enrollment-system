@@ -15,9 +15,9 @@ class CreateIdReferencesTable extends Migration
     {
         Schema::create('id_references', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('year')->nullable();
-            $table->string('month')->nullable();
-            $table->string('last')->nullable();
+            $table->string('year', 4)->nullable();
+            $table->string('month', 10)->nullable();
+            $table->string('last', 10)->nullable();
             $table->timestamps();
         });
     }

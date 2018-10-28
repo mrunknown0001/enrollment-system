@@ -17,7 +17,7 @@ class CreateAvatarsTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
-            $table->string('avatar')->nullable();
+            $table->string('avatar', 50)->nullable();
             $table->timestamps();
         });
     }

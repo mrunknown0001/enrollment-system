@@ -15,10 +15,10 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->nullable();
-            $table->string('code')->nullable();
-            $table->string('description')->nullable();
-            $table->string('curriculum')->nullable();
+            $table->string('title', 50)->nullable();
+            $table->string('code', 10)->nullable();
+            $table->string('description', 150)->nullable();
+            $table->string('curriculum', 4)->nullable();
             $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });

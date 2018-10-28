@@ -21,7 +21,7 @@ class CreateRemarksTable extends Migration
             $table->integer('semester_id')->unsigned();
             $table->integer('program_id')->unsigned();
             $table->float('grade', 8,2);
-            $table->string('remarks');
+            $table->string('remarks', 40);
             $table->timestamps();
         });
     }
