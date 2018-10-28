@@ -16,6 +16,7 @@ class CreateProgramAssignmentsTable extends Migration
         Schema::create('program_assignments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('faculty_id')->unsigned();
+            $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->integer('academic_year_id')->unsigned();
             $table->integer('semester_id')->unsigned();
             $table->string('program_ids', 50);

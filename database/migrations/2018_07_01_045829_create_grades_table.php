@@ -21,8 +21,11 @@ class CreateGradesTable extends Migration
             $table->integer('subject_id')->unsigned();
             $table->integer('year_level_id')->unsigned()->nullable();
             $table->integer('academic_year_id')->unsigned()->nullable();
+            $table->foreign('academic_year_id')->references('id')->on('academic_years');
             $table->integer('semester_id')->unsigned()->nullable();
+            $table->foreign('semester_id')->references('id')->on('active_semesters');
             $table->integer('term_id')->unsigned()->nullable();
+            $table->foreign('term_id')->references('id')->on('terms');
             $table->float('grade', 8,2);
             $table->string('remarks', 40)->nullable();
             $table->timestamps();
