@@ -32,7 +32,7 @@ class CreateActivityLogsTable extends Migration
             $table->foreign('registrar_id')->references('id')->on('registrars');
 
             $table->tinyInteger('user_type')->default(5); // 1 for admin, 2 for facutly, 3 for cashier, 4 for registrar, 5 for students
-            $table->string('action', 200)->nullable();
+            $table->string('action', 100)->nullable();
             $table->timestamps();
         });
     }
