@@ -21,6 +21,7 @@ class CreateSubjectStudentsTable extends Migration
             $table->integer('semester')->unsigned();
             $table->integer('year_level_id')->unsigned();
             $table->integer('subject_id')->unsigned();
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->integer('group_number'); // group number depends on ay, ly, sem, subject limit
             $table->integer('number_of_students'); // incremented depends on the last number and the limit of students per subject class
             $table->tinyInteger('active')->default(1);
