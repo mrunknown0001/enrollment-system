@@ -27,8 +27,8 @@ class CreateStudentInfosTable extends Migration
             $table->tinyInteger('graduated')->default(0);
             $table->tinyInteger('regular')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->string('place_of_birth', 100)->nullable();
-            $table->string('address', 100)->nullable();
+            $table->string('place_of_birth', 50)->nullable();
+            $table->string('address', 50)->nullable();
             $table->string('nationality', 15)->nullable();
             $table->string('academic_program', 10)->nullable();
             $table->integer('school_year_admitted')->nullable();

@@ -27,7 +27,7 @@ class CreateGradesTable extends Migration
             $table->integer('term_id')->unsigned()->nullable();
             $table->foreign('term_id')->references('id')->on('terms');
             $table->float('grade', 8,2);
-            $table->string('remarks', 40)->nullable();
+            $table->string('remarks', 10)->nullable();
             $table->timestamps();
         });
     }
