@@ -143,7 +143,7 @@ class GeneralController extends Controller
     /////////////////////////////////////////////////////////
     public static function generate_assessment_number()
     {
-        $number = 'P-' . mt_rand(000000, 999999) . uniqid(); // better than rand()
+        $number = 'P' . mt_rand(000000, 999999) . uniqid(); // better than rand()
 
         // call the same function if the barcode exists already
         if (Assessment::whereAssessmentNumber($number)->exists()) {
