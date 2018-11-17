@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+use App\User;
+use App\UserPasswordReset;
+
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\SmsController;
 
 class LoginController extends Controller
 {
@@ -78,5 +82,103 @@ class LoginController extends Controller
         // return error message
         return redirect()->route('student.login')->with('error', 'Incorrect Student Number or Password!');
 
+    }
+
+
+    // method use to access forgot passwod
+    public function forgotPassword()
+    {
+        // return view here 
+        return view('student-password-reset');
+    }
+
+
+    // method use to find student using student number
+    // and send reset code for reset password
+    public function postForgotPassword(Request $request)
+    {
+        $request->validate([
+            'student_number' => 'required'
+        ]);
+
+        $student_number = $request['student_number'];
+
+        // search student, if no result return a message
+        $student = User::where('student_number', $student_number)->first();
+
+        // if there is result send a code to the registered number
+        if(count($student) < 1) {
+            return redirect()->back()->with('error', 'No Student Found!');
+        }
+
+        // generate reset code
+        $code = GeneralController::generate_reset_code();
+        // send code
+        $message = 'Your Reset Code is ' . $code;
+
+        SmsController::sendSms($student->mobile_number, $message);
+
+        // add to user reset code
+        $reset = new UserPasswordReset();
+        $reset->student_id = $student->id;
+        $reset->code = $code;
+        $reset->save();
+
+
+        // add to activity log
+        GeneralController::activity_log($student->id, 5, 'Student Password Attempt');
+
+        // return a view for password reset
+        return view('student-password-reset-enter-code', ['student' => $student]);
+
+
+    }
+
+
+    // method use to reset password
+    public function postPasswordReset(Request $request)
+    {
+        $request->validate([
+            'reset_code' => 'required'
+        ]);
+
+        $id = $request['student_id'];
+        $code = $request['reset_code'];
+
+        $student = User::findorfail($id);
+
+        // check reset code if valid or not expired
+        $r_code = UserPasswordReset::where('student_id', $student->id)->orderBy('created_at', 'desc')->first();
+
+        if($r_code->active != 1) {
+            return redirect()->route('student.forgot.password')->with('error', 'Please Try Again');
+        }
+
+        if($code != $r_code->code) {
+            return redirect()->back()->with('error', 'Invalid Reset Code.');
+        }
+
+        return view('student-password-reset-new-pass', ['student' => $student]);
+    }
+
+
+    // method use to reset password
+    public function postPasswordNew(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $id = $request['student_id'];
+        $password = $request['password'];
+
+        $student = User::findorfail($id);
+
+        $student->password = bcrypt($password);
+        $student->save();
+
+        GeneralController::activity_log($student->id, 5, 'Student Password Reset Success');
+
+        return redirect()->route('student.login')->with('success', 'Password Reset Successful!');
     }
 }

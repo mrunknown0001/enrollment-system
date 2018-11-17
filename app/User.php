@@ -55,4 +55,10 @@ class User extends Authenticatable
     }
 
 
+    public function reset_code()
+    {
+        return $this->hasMany('App\UserResetCode', 'student_id');
+    }
+
+
 }

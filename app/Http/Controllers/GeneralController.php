@@ -16,6 +16,7 @@ use App\AcademicYear;
 use App\Grade;
 use App\FinalGrade;
 use App\Subject;
+use App\UserPasswordReset;
 
 class GeneralController extends Controller
 {
@@ -548,5 +549,18 @@ class GeneralController extends Controller
         }
 
     }
+
+    // method use to generate unique reset code
+    public static function generate_reset_code()
+    {
+        $code = mt_rand(000000, 999999);
+
+        if(UserPasswordReset::whereCode($code)->exists()) {
+            return self::generate_reset_code();
+        }
+
+        return $code;
+    }
+
 
 }
