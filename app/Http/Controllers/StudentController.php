@@ -517,6 +517,19 @@ class StudentController extends Controller
             'program' => 'required'
         ]);
 
+
+        //////////////////////////////////
+        // check if there is a balance  //
+        //////////////////////////////////
+        $student = Auth::user();
+
+        if(count($student->balance) > 0) {
+            if($student->balance->balance > 0) {
+                return redirect()->back()->with('error', 'Please Pay Balance to Enroll');
+            }
+        }
+
+
         $program_id = $request['program'];
 
         $program = Program::findorfail($program_id);
@@ -589,6 +602,18 @@ class StudentController extends Controller
         $request->validate([
             'subjects' => 'required'
         ]);
+
+        ////////////////////////////////////////////////
+        // check if there is a balance of the student //
+        ////////////////////////////////////////////////
+        $student = Auth::user();
+
+        if(count($student->balance) > 0) {
+            if($student->balance->balance > 0) {
+                return redirect()->back()->with('error', 'Please Pay Balance to Enroll');
+            }
+        }
+
 
         $subject_ids[] = $request['subjects'];
         $units = 0;
