@@ -24,9 +24,9 @@
                     @include('includes.all')
                     <button id="hideOnPrint" type="button" onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
                     <div id="printableArea">
-                        <h3 class="text-center showOnPrint">International Computer Technology Colleges</h3>
+                        {{-- <h3 class="text-center showOnPrint">International Computer Technology Colleges</h3>
                         <p class="text-center showOnPrint">Your Gateway to a Global Job Opportunity</p>
-                        <p class="text-center showOnPrint">2<sup>nd</sup> of AA building, Barangay Sto Cristo, Tarlac City</p>
+                        <p class="text-center showOnPrint">2<sup>nd</sup> of AA building, Barangay Sto Cristo, Tarlac City</p> --}}
                         
     					@if($assessment->paid == 0)
                             <p id="hideOnPrint">Status: <strong>Unpaid</strong></p>
