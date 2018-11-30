@@ -34,7 +34,7 @@
                             <form action="{{ route('student.upload.profile.image.post') }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <input type="file" name="image" id="image" accept="image/x-png,image/gif,image/jpeg">
+                                    <input type="file" name="image" id="image" accept="image/x-png,image/gif,image/jpeg" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Image</button>
