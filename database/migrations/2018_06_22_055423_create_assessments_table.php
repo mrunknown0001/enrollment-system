@@ -20,7 +20,11 @@ class CreateAssessmentsTable extends Migration
             $table->string('assessment_number', 20)->nullable();
             $table->integer('program_id')->unsigned()->nullable();
             $table->integer('course_id')->unsigned()->nullable();
+<<<<<<< HEAD
             $table->string('subject_ids', 60)->nullable();
+=======
+            $table->string('subject_ids', 70)->nullable();
+>>>>>>> 9827113e102b500327ce11649c815eb2a32a31fc
             $table->integer('semester_id')->unsigned()->nullable();
             $table->integer('year_level_id')->unsigned()->nullable();
             $table->integer('academic_year_id')->unsigned()->nullable();

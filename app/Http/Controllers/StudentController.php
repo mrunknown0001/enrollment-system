@@ -142,6 +142,10 @@ class StudentController extends Controller
     {
         // get current time and append the upload file extension to it,
         // then put that name to $photoName variable.
+        $request->validate([
+            'image' => 'required|mimes:jpg,jpeg,gif,png'
+        ]);
+
         $photoname = time().'.'.$request->image->getClientOriginalExtension();
 
         /*

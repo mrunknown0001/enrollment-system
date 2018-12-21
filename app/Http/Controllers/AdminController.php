@@ -1528,10 +1528,18 @@ class AdminController extends Controller
             //////////////////////////////////////
             // all operations will perform here //
             //////////////////////////////////////
+            // call the method use to create and save the grades to final_grades
+
 
             // check the student if it can move to next semester
+            // call the method use to determine the enrollent students can 
+            // move to next semester
+            
 
             // check the student, if able to graduate
+            // call the method use if the student is able to graduate by determining  
+            // that the subjects are all passed, checking will be based on 
+            // final grades that are passed
 
             // turn off enrollment
             $enrollment = EnrollmentSetting::find(1);
@@ -1589,6 +1597,23 @@ class AdminController extends Controller
         $semester = ActiveSemester::findorfail($sem);
         $semester->active = 1;
         $semester->save();
+
+
+        //////////////////////////////////////
+        // all operations will perform here //
+        //////////////////////////////////////
+        // call the method use to create and save the grades to final_grades
+        
+
+        // check the student if it can move to next semester
+        // call the method use to determine the enrollent students can 
+        // move to next semester
+        
+
+        // check the student, if able to graduate
+        // call the method use if the student is able to graduate by determining  
+        // that the subjects are all passed, checking will be based on 
+        // final grades that are passed
 
         // add activity log
         GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Set Semester');
