@@ -13,7 +13,7 @@
 <section class="section">
 	<div class="row">
 		<div class="col-md-12">
-			@if(count($assessment) > 0)
+			@if(!empty($assessment))
 				<button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
 				<div id="printableArea">
 				@if($assessment->paid == 0)

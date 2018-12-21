@@ -60,7 +60,7 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-                    @if(count($ay) < 1)
+                    @if(!empty($ay))
 					<div class="alert alert-warning text-center top-space">
 					<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<strong>No Active Academic Year. <a href="{{ route('admin.add.academic.year') }}">Click here to add.</a></strong>

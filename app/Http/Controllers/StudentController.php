@@ -608,7 +608,7 @@ class StudentController extends Controller
         ////////////////////////////////////////////////
         $student = Auth::user();
 
-        if(count($student->balance) > 0) {
+        if(!empty($student->balance)) {
             if($student->balance->balance > 0) {
                 return redirect()->back()->with('error', 'Please Pay Balance to Enroll');
             }
@@ -664,7 +664,7 @@ class StudentController extends Controller
         $assess->year_level_id = Auth::user()->info->year_level;
         $assess->save();
 
-        if(count(Auth::user()->balance) > 0) {
+        if(!empty(Auth::user()->balance)) {
             Auth::user()->balance->balance = $total;
             Auth::user()->balance->save();
         }
@@ -695,7 +695,7 @@ class StudentController extends Controller
 
         $subjects = null;
 
-        if(count($assessment) > 0) {
+        if(!empty($assessment)) {
             if($assessment->subject_ids != null) {
                 $subject_ids = unserialize($assessment->subject_ids);
 

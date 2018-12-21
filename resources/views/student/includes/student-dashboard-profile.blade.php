@@ -22,7 +22,7 @@
                             <p>Place of Birth: <strong>{{ ucwords(Auth::user()->info->place_of_birth) }}</strong></p>
                             <p>Address: <strong>{{ ucwords(Auth::user()->info->address) }}</strong></p>
                             <p>Nationality: <strong>{{ ucwords(Auth::user()->info->nationality) }}</strong></p>
-                            @if(count(Auth::user()->info->sy_admitted) > 0)
+                            @if(!empty(Auth::user()->info->sy_admitted))
                             <p>AY Admitted: <strong>{{ Auth::user()->info->sy_admitted->from . '-' . Auth::user()->info->sy_admitted->to }}</strong></p>
                             @endif
                             <p>School Last Attended: <strong>{{ ucwords(Auth::user()->info->school_last_attended) }}</strong></p>

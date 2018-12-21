@@ -1475,7 +1475,7 @@ class AdminController extends Controller
         // check
         $check_ay = AcademicYear::where('from', $from)->first();
 
-        if(count($check_ay) > 0) {
+        if(!empty($check_ay)) {
             return redirect()->route('admin.academic.year')->with('error', 'Academic Year Exist!');
         }
 
@@ -1982,7 +1982,7 @@ class AdminController extends Controller
         // check if there is an active academic year
         $check_ay = AcademicYear::where('active', 1)->first();
 
-        if(count($check_ay) < 1) {
+        if(!empty($check_ay)) {
             return redirect()->back();
         }
 

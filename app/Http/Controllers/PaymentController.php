@@ -226,7 +226,7 @@ class PaymentController extends Controller
 
                     // if there is no group number
                     // the system will create a new one
-                    if(count($last_student_enrolled) < 1) {
+                    if(!empty($last_student_enrolled)) {
                         $group_number = 1;
 
                         $new_student = new SubjectStudent();

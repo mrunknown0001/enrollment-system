@@ -21,10 +21,10 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-                    @if(count($ay) > 0)
+                    @if(!empty($ay))
                     <p>Academic Year: <strong>{{ $ay->from . '-' . $ay->to }}</strong></p>
 
-                    @if(count($sem) > 0)
+                    @if(!empty($sem))
                     <p>Semester: <strong>{{ ucwords($sem->name) }}</strong></p>
                     @if($sem->id == 2)
                     <!-- <p><a href="{{ route('admin.set.semester', ['id' => $sem->id - 1]) }}" class="btn btn-primary">Set Previous Semester</a></p> -->
