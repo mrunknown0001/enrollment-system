@@ -19,7 +19,7 @@ class CreateProgramAssignmentsTable extends Migration
             $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->integer('academic_year_id')->unsigned();
             $table->integer('semester_id')->unsigned();
-            $table->string('program_ids', 30);
+            $table->string('program_ids', 150);
             $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
