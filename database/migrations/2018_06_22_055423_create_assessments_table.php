@@ -17,7 +17,7 @@ class CreateAssessmentsTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
-            $table->string('assessment_number', 20)->nullable();
+            $table->string('assessment_number', 30)->nullable();
             $table->integer('program_id')->unsigned()->nullable();
             $table->integer('course_id')->unsigned()->nullable();
             $table->string('subject_ids', 150)->nullable();
