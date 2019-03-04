@@ -97,6 +97,9 @@
 				        </div>
 				    </div>
 				</div>
+
+
+				<button class="btn btn-primary btn-sm">Requirements</button>
 			</td>
 		</tr>
 		@endforeach

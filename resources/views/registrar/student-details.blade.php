@@ -12,7 +12,7 @@
 <section class="section">
     <div class="row">
         <div class="col-md-12">
-            <p><a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a></p>
+            <p><a href="{{ route('registrar.view.students') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a></p>
             <div class="card card-primary">
                 <div class="card-header">
                     <div class="header-block">

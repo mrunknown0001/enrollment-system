@@ -65,9 +65,33 @@ class StudentController extends Controller
 
         $es = $this->check_enrollment_setting();
 
+        // check requirements if ok
+        $requirements = true;
+
+        $student = Auth::user();
+
+        if($student->info->student_eroll_type == 1) {
+            if($student->info->form_138_als == 1 &&
+                $student->info->cert_good_moral_char == 1 &&
+                $student->info->birth_certificate == 1 &&
+                $student->info->pictures) {
+                return $requirements = true;
+            }
+        }
+        else {
+            if($student->info->transfer_credentials == 1 &&
+                $student->info->cert_good_moral_char == 1 &&
+                $student->info->birth_certificate == 1 &&
+                $student->info->pictures) {
+                return $requirements = true;
+            }
+        }
+
         // get all the data need to show in dashboard of student
 
-        return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl, 'es' => $es]);
+
+
+        return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl, 'es' => $es, 'requirements' => $requirements]);
     }
 
 

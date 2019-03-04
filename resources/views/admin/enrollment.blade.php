@@ -60,11 +60,11 @@
                 </div>
                 <div class="card-block">
                     @include('includes.all')
-                    @if(!empty($ay))
-					<div class="alert alert-warning text-center top-space">
-					<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>No Active Academic Year. <a href="{{ route('admin.add.academic.year') }}">Click here to add.</a></strong>
-					</div>
+                    @if(empty($ay))
+						<div class="alert alert-warning text-center top-space">
+						<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>No Active Academic Year. <a href="{{ route('admin.add.academic.year') }}">Click here to add.</a></strong>
+						</div>
                     @endif
 					<form action="{{ route('admin.save.enrollment.post') }}" method="POST" role="form">
 						{{ csrf_field() }}

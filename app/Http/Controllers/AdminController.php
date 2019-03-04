@@ -1578,7 +1578,7 @@ class AdminController extends Controller
             // add activity log
             GeneralController::activity_log(Auth::guard('admin')->user()->id, 1, 'Admin Close Academic Year: ' . $ay->from . '-' . $ay->to);
 
-            return redirect()->route('admin.academic.year')->with('success', 'Academic Year Cloase!');
+            return redirect()->route('admin.academic.year')->with('success', 'Academic Year Close!');
         }
 
         return redirect()->route('admin.academic.year')->with('error', 'Error Occured!');
@@ -1669,8 +1669,10 @@ class AdminController extends Controller
 
         // set assessment to inactive
         // $assessments = Assessment::where('active', 1)->update(['active' => 0]);
-        $assessments_ids = Assessment::where('active', 1)->get('id');
-        Assessment::destroy($assessments_ids);
+        $assessments_ids = Assessment::where('active', 1)->get(['id']);
+        if(count($assessments_ids) > 0) {
+            Assessment::destroy($assessments_ids);
+        }
 
         // set assigned subject and program to inactive
         $a_subjects = SubjectAssignment::where('active', 1)->update(['active' => 0]);

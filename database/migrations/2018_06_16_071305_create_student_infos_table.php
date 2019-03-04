@@ -38,6 +38,15 @@ class CreateStudentInfosTable extends Migration
             $table->integer('mop_id')->unsigned()->nullable();
             $table->foreign('mop_id')->references('id')->on('mode_of_payments');
             $table->tinyInteger('enrolled')->default(1);
+            // requirements part
+            $table->tinyInteger('student_eroll_type')->default(1); // 1 for new enrollee, 2 for transferee
+            $table->boolean('form_138_als')->default(0)->nullable();
+            $table->boolean('transfer_credentials')->default(0)->nullable();
+            $table->boolean('copy_of_grades')->default(0)->nullable();
+            $table->boolean('cert_good_moral_char')->default(0)->nullable();
+            $table->boolean('birth_certificate')->default(0)->nullable();
+            $table->boolean('marriage_certificate')->default(0)->nullable();
+            $table->boolean('pictures')->default(0)->nullable();
             $table->timestamps();
         });
     }
