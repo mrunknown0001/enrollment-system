@@ -556,6 +556,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// route to view all students
 	Route::get('/students', 'AdminController@viewStudents')->name('admin.students');
 
+
+	// route to set requirements
+	Route::post('/student/requirements', 'AdminController@postSaveStudentRequirements')->name('admin.student.requirements.save');
+
 	// route to view student raw grades
 	Route::get('/student/{id}/grades/view', 'AdminController@viewStudentGrades')->name('admin.view.student.grades');
 

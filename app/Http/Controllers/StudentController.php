@@ -66,7 +66,7 @@ class StudentController extends Controller
         $es = $this->check_enrollment_setting();
 
         // check requirements if ok
-        $requirements = true;
+        $requirements = false;
 
         $student = Auth::user();
 
@@ -75,15 +75,17 @@ class StudentController extends Controller
                 $student->info->cert_good_moral_char == 1 &&
                 $student->info->birth_certificate == 1 &&
                 $student->info->pictures) {
-                return $requirements = true;
+                $requirements = true;
             }
         }
         else {
             if($student->info->transfer_credentials == 1 &&
                 $student->info->cert_good_moral_char == 1 &&
                 $student->info->birth_certificate == 1 &&
+                $student->info->marriage_certificate == 1 &&
+                $student->info->copy_of_grades == 1 &&
                 $student->info->pictures) {
-                return $requirements = true;
+                $requirements = true;
             }
         }
 

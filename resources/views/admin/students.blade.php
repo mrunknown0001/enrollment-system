@@ -99,7 +99,61 @@
 				</div>
 
 
-				<button class="btn btn-primary btn-sm">Requirements</button>
+				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#req-{{ $s->student_number }}">Requirements</button>
+				<div class="modal fade" id="req-{{ $s->student_number }}">
+				    <div class="modal-dialog" role="document">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <h4 class="modal-title">
+				                    <i class="fa fa-info"></i> Student Update Requirements</h4>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                    <span aria-hidden="true">&times;</span>
+				                </button>
+				            </div>
+				            <div class="modal-body">
+
+								<form action="{{ route('admin.student.requirements.save') }}" method="POST">
+									{{ csrf_field() }}
+									<input type="hidden" name="student_id" value="{{ $s->id }}">
+									<div class="form-group">
+										<input type="checkbox" name="form_138_als" id="form_138_als" {{ $s->info->form_138_als == 1 ? 'checked' : '' }}>
+										<label for="form_138_als">Form 138/ALS</label>
+									</div>
+									<div class="form-group">
+										<input type="checkbox" name="transfer_credentials" id="transfer_credentials" {{ $s->info->transfer_credentials == 1 ? 'checked' : '' }}>
+										<label for="transfer_credentials">Transfer Credentials</label>
+									</div>
+									<div class="form-group">
+										<input type="checkbox" name="copy_of_grades" id="copy_of_grades" {{ $s->info->copy_of_grades == 1 ? 'checked' : '' }}>
+										<label for="copy_of_grades">Copy of Grades</label>
+									</div>
+									<div class="form-group">
+										<input type="checkbox" name="good_moral_char" id="good_moral_char" {{ $s->info->cert_good_moral_char == 1 ? 'checked' : '' }}>
+										<label for="good_moral_char">Good Moral Character Certificate</label>
+									</div>
+									<div class="form-group">
+										<input type="checkbox" name="birth_certificate" id="birth_certificate"  {{ $s->info->birth_certificate == 1 ? 'checked' : '' }}>
+										<label for="birth_certificate">Birth Certificate</label>
+									</div>
+									<div class="form-group">
+										<input type="checkbox" name="marriage_certificate" id="marriage_certificate"  {{ $s->info->marriage_certificate == 1 ? 'checked' : '' }}>
+										<label for="marriage_certificate">Marriage Certificate</label>
+									</div>
+									<div class="form-group">
+										<input type="checkbox" name="pictures" id="pictures"{{ $s->info->pictures == 1 ? 'checked' : '' }}>
+										<label for="pictures">2x2 Pictures</label>
+									</div>
+									<div class="form-group">
+										<button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+									</div>
+								</form>
+				            </div>
+				            <div class="modal-footer">
+				                <small>Student Update Requirements</small>
+				            </div>
+				        </div>
+				    </div>
+				</div>
 			</td>
 		</tr>
 		@endforeach

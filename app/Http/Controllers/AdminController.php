@@ -1253,6 +1253,36 @@ class AdminController extends Controller
     }
 
 
+
+    // method use to update requirements
+    public function postSaveStudentRequirements(Request $request)
+    {
+        $student_id = $request['student_id'];
+
+        $form_138_als = isset($request['form_138_als']) ? 1 : 0;
+        $transfer_credentials = isset($request['transfer_credentials']) ? 1: 0;
+        $copy_of_grades = isset($request['copy_of_grades']) ? 1 : 0;
+        $good_moral = isset($request['good_moral_char']) ? 1 : 0;
+        $birth_certificate = isset($request['birth_certificate']) ? 1 : 0;
+        $marriage_certificate = isset($request['marriage_certificate']) ? 1: 0;
+        $pictures = isset($request['pictures']) ? 1: 0;
+
+        $student = User::findorfail($student_id);
+
+        $student->info->form_138_als = $form_138_als;
+        $student->info->transfer_credentials = $transfer_credentials;
+        $student->info->copy_of_grades = $copy_of_grades;
+        $student->info->cert_good_moral_char = $good_moral;
+        $student->info->birth_certificate = $birth_certificate;
+        $student->info->marriage_certificate = $marriage_certificate;
+        $student->info->pictures = $pictures;
+
+        $student->info->save();
+
+        return redirect()->back()->with('success', 'Student Requirements Updated!');
+    }
+
+
     // method use to view student grades
     public function viewStudentGrades($id = null)
     {
