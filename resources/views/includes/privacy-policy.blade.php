@@ -71,6 +71,15 @@
 
 <p>Data Protection Officer</p>
 
+  <p>DATA PRIVACY BY DESIGN</p>
+
+  <p>“Privacy by Design” and “Privacy by Default” have been frequently-discussed topics related to data protection. The first thoughts of “Privacy by Design” were expressed in the 1970s and were incorporated in the 1990s into the RL 95/46/EC data protection directive. According to recital 46 in this Directive, technical and organisational measures (TOM) must be taken already at the time of planning a processing system to protect data safety.</p>
+
+  <p>The term “Privacy by Design” means nothing more than “data protection through technology design.” Behind this is the thought that data protection in data processing procedures is best adhered to when it is already integrated in the technology when created. Nevertheless, there is still uncertainty about what “Privacy by Design” means, and how one can implement it. This is due, on the one hand, to incomplete implementation of the Directive in some Member States and, on the other hand, that the principle “Privacy by Design” which is in the General Data Protection Regulation, that the current approach in the data protection guidelines, which requires persons responsible already to include definitions of the means for processing TOMs at the time that they are defined in order to fulfil the basics and requirements of “Privacy by Design”. Legislation leaves completely open which exact protective measures are to be taken. As an example, one only need name pseudonymisation. No more detail is given in recital 78 of the regulation. At least in other parts of the law, encryption is named, as well as anonymisation of data as possible protective measures. Furthermore, user authentication and technical implementation of the right to object must be considered.</p>
+
+  <p>In addition, when selecting precautions, one can use other standards, such as ISO standards. When selecting in individual cases, one must ensure that the state of the art as well as reasonable implementation costs are included. In addition to the named criteria, the type, scope, circumstances and purpose of the processing must be considered. This must be contrasted with the various probability of occurrence and the severity of the risks connected to the processing. The text of the law leads one to conclude that often several protective measures must be used with one another to satisfy statutory requirements. In practice, this consideration is already performed in an early development phase when setting technology decisions. Recognised certification can serve as an indicator to authorities that the persons responsible have complied with the statutory requirements of “Privacy by Design”.</p>
+
+
 <p>ICT College</p>
 
 <p>Tarlac, City</p>

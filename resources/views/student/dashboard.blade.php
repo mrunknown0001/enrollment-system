@@ -16,9 +16,9 @@
 			@include('includes.all')
 			@if($es == true)
 				@if($requirements == true)
-					@if(count($courses) == 0 && count($programs) == 0)
+					@if(Auth::user()->info->enrolling_for != null)
 
-						@if(Auth::user()->info->enrolling_for == null) 
+						@if(count($courses) == 0 && count($programs) == 0) 
 							@include('student.includes.set-enrollment')
 						@else
 							@if(Auth::user()->info->enrolling_for == 1 && Auth::user()->info->year_level == null)

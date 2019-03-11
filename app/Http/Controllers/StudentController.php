@@ -308,12 +308,14 @@ class StudentController extends Controller
                                 ->where('paid', 1)
                                 ->where('active', 1)
                                 ->first();
-        $subjects = null;
-        if(count($assessment) > 0) {
+        $subjects = [];
+        if(!empty($assessment)) {
             foreach(unserialize($assessment->subject_ids) as $id) {
                 $subjects = Subject::find($id);
             }
         }
+
+
 
         return view('student.grades', ['subjects' => $subjects]);
     }
@@ -350,13 +352,13 @@ class StudentController extends Controller
                                 ->first();
 
         $subjects = null;
-        if(count($assessment) > 0) {
+        if(!empty($assessment)) {
             foreach(unserialize($assessment->subject_ids) as $id) {
                 $subjects = Subject::find($id);
             }
         }
         else {
-            return redirect()->route('student.dashboard')->with('error', 'Subject Enrolled!');
+            return redirect()->route('student.dashboard')->with('error', 'No Subject Enrolled!');
         }
 
 
@@ -460,8 +462,8 @@ class StudentController extends Controller
                                 ->where('paid', 1)
                                 ->where('active', 1)
                                 ->first();
-        $subjects = null;
-        if(count($assessment) > 0) {
+        $subjects = [];
+        if(!empty($assessment)) {
             foreach(unserialize($assessment->subject_ids) as $id) {
                 $subjects = Subject::find($id);
             }

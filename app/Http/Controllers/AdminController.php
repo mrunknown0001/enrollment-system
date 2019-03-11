@@ -245,7 +245,7 @@ class AdminController extends Controller
         // check username
         $check_username = Cashier::where('username', $username)->first();
 
-        if(count($check_username) > 0) {
+        if(!empty($check_username)) {
             return redirect()->back()->with('error', 'Username has previously used by old user. Please Try Another username');
         }
 
@@ -2039,7 +2039,7 @@ class AdminController extends Controller
         // check if there is an active academic year
         $check_ay = AcademicYear::where('active', 1)->first();
 
-        if(!empty($check_ay)) {
+        if(empty($check_ay)) {
             return redirect()->back();
         }
 
