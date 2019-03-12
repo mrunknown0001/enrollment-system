@@ -214,67 +214,73 @@ class PaymentController extends Controller
                     $subjects = Subject::find($id);
                 }
 
-                foreach($subjects as $sub) {
+                // return $subjects;
+
+                // foreach($subjects as $sub) {
                 
-                    // find the last number of enrolled students in a subject
-                    $last_student_enrolled = SubjectStudent::where('academic_year_id', $ay->id)
-                                        ->where('semester', $sem->id)
-                                        ->where('year_level_id', $yl->id)
-                                        ->where('subject_id', $sub->id)
-                                        ->orderBy('created_at', 'desc')
-                                        ->first();
+                //     // find the last number of enrolled students in a subject
+                //     $last_student_enrolled = SubjectStudent::where('academic_year_id', $ay->id)
+                //                         ->where('semester', $sem->id)
+                //                         ->where('year_level_id', $yl->id)
+                //                         ->where('subject_id', $sub->id)
+                //                         ->orderBy('created_at', 'desc')
+                //                         ->first();
 
-                    // if there is no group number
-                    // the system will create a new one
-                    if(!empty($last_student_enrolled)) {
-                        $group_number = 1;
+                //     // return $last_student_enrolled;
 
-                        $new_student = new SubjectStudent();
-                        $new_student->student_id = Auth::user()->id;
-                        $new_student->academic_year_id = $ay->id;
-                        $new_student->semester = $sem->id;
-                        $new_student->year_level_id = $yl->id;
-                        $new_student->subject_id = $sub->id;
-                        $new_student->group_number = $group_number;
-                        $new_student->number_of_students = 1;
-                        $new_student->save();
-                    }
-                    else {
-                        // get the last number of student and compare it to the max limit of students per subject section
-                        // to decide weather it will create a new group or not
-                        if($last_student_enrolled->number_of_students >= $student_limit->limit) {
-                            // get the last group number and increment it by 1
-                            $group_number = $last_student_enrolled->group_number + 1;
+                //     // return $last_student_enrolled;
 
-                            $new_student = new SubjectStudent();
-                            $new_student->student_id = Auth::user()->id;
-                            $new_student->academic_year_id = $ay->id;
-                            $new_student->semester = $sem->id;
-                            $new_student->year_level_id = $yl->id;
-                            $new_student->subject_id = $sub->id;
-                            $new_student->group_number = $group_number;
-                            $new_student->number_of_students = 1;
-                            $new_student->save();
+                //     // if there is no group number
+                //     // the system will create a new one
+                //     if(!empty($last_student_enrolled)) {
+                //         $group_number = 1;
 
-                        }
-                        else {
-                            // get the last number of student number
-                            $last_number = $last_student_enrolled->number_of_students + 1;
-                            $group_number = $last_student_enrolled->group_number;
+                //         $new_student = new SubjectStudent();
+                //         $new_student->student_id = Auth::user()->id;
+                //         $new_student->academic_year_id = $ay->id;
+                //         $new_student->semester = $sem->id;
+                //         $new_student->year_level_id = $yl->id;
+                //         $new_student->subject_id = $sub->id;
+                //         $new_student->group_number = $group_number;
+                //         $new_student->number_of_students = 1;
+                //         $new_student->save();
+                //     }
+                //     else {
+                //         // get the last number of student and compare it to the max limit of students per subject section
+                //         // to decide weather it will create a new group or not
+                //         if($last_student_enrolled->number_of_students >= $student_limit->limit) {
+                //             // get the last group number and increment it by 1
+                //             $group_number = $last_student_enrolled->group_number + 1;
 
-                            $new_student = new SubjectStudent();
-                            $new_student->student_id = Auth::user()->id;
-                            $new_student->academic_year_id = $ay->id;
-                            $new_student->semester = $sem->id;
-                            $new_student->year_level_id = $yl->id;
-                            $new_student->subject_id = $sub->id;
-                            $new_student->group_number = $group_number;
-                            $new_student->number_of_students = $last_number;
-                            $new_student->save();
-                        }
-                    }
+                //             $new_student = new SubjectStudent();
+                //             $new_student->student_id = Auth::user()->id;
+                //             $new_student->academic_year_id = $ay->id;
+                //             $new_student->semester = $sem->id;
+                //             $new_student->year_level_id = $yl->id;
+                //             $new_student->subject_id = $sub->id;
+                //             $new_student->group_number = $group_number;
+                //             $new_student->number_of_students = 1;
+                //             $new_student->save();
 
-                }
+                //         }
+                //         else {
+                //             // get the last number of student number
+                //             $last_number = $last_student_enrolled->number_of_students + 1;
+                //             $group_number = $last_student_enrolled->group_number;
+
+                //             $new_student = new SubjectStudent();
+                //             $new_student->student_id = Auth::user()->id;
+                //             $new_student->academic_year_id = $ay->id;
+                //             $new_student->semester = $sem->id;
+                //             $new_student->year_level_id = $yl->id;
+                //             $new_student->subject_id = $sub->id;
+                //             $new_student->group_number = $group_number;
+                //             $new_student->number_of_students = $last_number;
+                //             $new_student->save();
+                //         }
+                //     }
+
+                // }
                 
                 Auth::user()->info->enrolled = 1;
                 Auth::user()->info->save();
