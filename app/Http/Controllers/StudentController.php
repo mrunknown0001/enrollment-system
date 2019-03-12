@@ -432,7 +432,7 @@ class StudentController extends Controller
                             ->where('active', 1)
                             ->first();
 
-        if(count($assessment) < 1) {
+        if(!empty($assessment)) {
             return redirect()->route('student.dashboard')->with('error', 'Not Yet Enrolled!');
         }
 
@@ -483,7 +483,7 @@ class StudentController extends Controller
 
         $program = null;
 
-        if(count($assessment) > 0) {
+        if(!empty($assessment)) {
             $program = Program::find($assessment->program_id);
         }
 
