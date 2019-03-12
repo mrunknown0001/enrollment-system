@@ -432,7 +432,7 @@ class StudentController extends Controller
                             ->where('active', 1)
                             ->first();
 
-        if(!empty($assessment)) {
+        if(empty($assessment)) {
             return redirect()->route('student.dashboard')->with('error', 'Not Yet Enrolled!');
         }
 

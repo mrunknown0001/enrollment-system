@@ -25,7 +25,7 @@
 					<p>{{ $sem->name }} | {{ $ay->from . '-' . $ay->to }}</p>
 					<p>Enrolled in {{ $program->code }} - {{ $program->description }}</p>
 					<p>Remark: <strong>
-						@if(count($remark) > 0)
+						@if(!empty($remark))
 							@if($remark->remarks == 1)
 							Competent
 							@else
