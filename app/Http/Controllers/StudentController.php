@@ -555,7 +555,7 @@ class StudentController extends Controller
         //////////////////////////////////
         $student = Auth::user();
 
-        if(count($student->balance) > 0) {
+        if(!empty($student->balance)) {
             if($student->balance->balance > 0) {
                 return redirect()->back()->with('error', 'Please Pay Balance to Enroll');
             }
