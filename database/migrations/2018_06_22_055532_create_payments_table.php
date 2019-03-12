@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
-            $table->string('payment_id', 20)->nullable();
+            $table->string('payment_id', 50)->nullable();
             $table->integer('assessment_id')->unsigned()->nullable();
             $table->string('currency', 4)->default('PHP');
             $table->float('amount', 8, 2);
