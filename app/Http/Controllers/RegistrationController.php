@@ -37,7 +37,9 @@ class RegistrationController extends Controller
             'nationality' => 'required',
             'birth_certificate' => 'required',
             'form_137' => 'required',
-            'gmc' => 'required'
+            'gmc' => 'required',
+            'parent_guardian' => 'required',
+            'religion' => 'nullable'
         ]);
 
         // assign data to variables
@@ -52,6 +54,8 @@ class RegistrationController extends Controller
         $birth_certificate = $request['birth_certificate'];
         $form_137 = $request['form_137'];
         $gmc = $request['gmc'];
+        $parent_guardian = $request['parent_guardian'];
+        $religion = $request['religion'];
 
         // check if date is future
         if(strtotime(now()) < strtotime($dob)) {
@@ -75,6 +79,8 @@ class RegistrationController extends Controller
         $info->place_of_birth = $pob;
         $info->address = $address;
         $info->nationality = $nationality;
+        $info->parent_guardian = $parent_guardian;
+        $info->religion = $religion;
         $info->save();
 
 

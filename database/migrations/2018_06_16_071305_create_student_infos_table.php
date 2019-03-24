@@ -30,6 +30,9 @@ class CreateStudentInfosTable extends Migration
             $table->string('place_of_birth', 50)->nullable();
             $table->string('address', 50)->nullable();
             $table->string('nationality', 15)->nullable();
+            $talbe->string('religion', 255)->nullable();
+            $table->string('parent_guardian', 255)->nullable();
+
             $table->string('academic_program', 10)->nullable();
             $table->integer('school_year_admitted')->nullable();
             $table->string('category', 20)->nullable();
@@ -38,6 +41,7 @@ class CreateStudentInfosTable extends Migration
             $table->integer('mop_id')->unsigned()->nullable();
             $table->foreign('mop_id')->references('id')->on('mode_of_payments');
             $table->tinyInteger('enrolled')->default(1);
+
             // requirements part
             $table->tinyInteger('student_eroll_type')->default(1); // 1 for new enrollee, 2 for transferee
             $table->boolean('form_138_als')->default(0)->nullable();

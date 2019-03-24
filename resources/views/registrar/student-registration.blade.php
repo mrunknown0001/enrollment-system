@@ -24,11 +24,21 @@
                         <div class="form-group">
                             <label for="firstname">Name</label>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" required=""> </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <input type="text" name="middlename" id="middlename" class="form-control underlined" placeholder="Enter Middlename">
+                                </div>
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname" required=""> </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Gender:</label>
+                            <input type="radio" name="gender" id="male">
+                            <label for="male">Male</label>
+                            <input type="radio" name="gender" id="female">
+                            <label for="female">Female</label>
                         </div>
                         <div class="form-group">
                             <label for="mobile_number">Mobile Number</label>
@@ -51,12 +61,22 @@
                             <input type="text" class="form-control underlined" name="place_of_birth" id="place_of_birth" placeholder="Enter place of birth" required=""> </div>
 
                         <div class="form-group">
+                            <label>Parent/Guardian</label>
+                            <input type="text" name="parent_guardian" id="parent_guardian" class="form-control underlined" placeholder="Enter Parent/Guardian" required>
+                        </div>
+
+                        <div class="form-group">
                             <label for="address">Address</label>
                             <textarea class="form-control underlined" name="address" id="address" required="" placeholder="Enter address"></textarea> </div>
 
                         <div class="form-group">
                             <label for="nationality">Nationality</label>
                             <input type="text" class="form-control underlined" name="nationality" id="nationality" placeholder="Enter nationality" required=""> </div>
+
+                        <div class="form-group">
+                            <label for="religion">Religion</label>
+                            <input type="text" name="religion" id="religion" class="form-control underlined" placeholder="Enter Religion">
+                        </div>
 
                         <div class="form-group">
                             <h3>Requirements</h3>
