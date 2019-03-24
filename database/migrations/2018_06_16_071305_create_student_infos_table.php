@@ -30,7 +30,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('place_of_birth', 50)->nullable();
             $table->string('address', 50)->nullable();
             $table->string('nationality', 15)->nullable();
-            $talbe->string('religion', 255)->nullable();
+            $table->string('religion', 255)->nullable();
             $table->string('parent_guardian', 255)->nullable();
 
             $table->string('academic_program', 10)->nullable();
