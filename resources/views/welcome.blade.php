@@ -19,10 +19,10 @@
                         <h2 class="error-sub-title"> Online Registration System </h2>
                     </div>
                     <div class="error-container">
-                        <a href="{{ route('student.registration') }}" class="btn btn-primary">
+                        {{-- <a href="{{ route('student.registration') }}" class="btn btn-primary">
                             <i class="fa fa-user-plus"></i> Signup </a>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('student.login') }}">
+ --}}                        <a class="btn btn-primary" href="{{ route('student.login') }}">
                             <i class="fa fa-user"></i> Login </a>
                     </div>
                 </div>

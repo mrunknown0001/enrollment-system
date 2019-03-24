@@ -53,7 +53,7 @@ class GeneralController extends Controller
         }
         elseif(Auth::guard('registrar')->check()) {
             // add activity log
-            GeneralController::activity_log(Auth::guard('registrar')->user()->id, 2, 'Cashier Logout');
+            GeneralController::activity_log(Auth::guard('registrar')->user()->id, 2, 'Registrar Logout');
 
             Auth::guard('registrar')->logout();
         }

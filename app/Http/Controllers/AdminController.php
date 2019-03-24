@@ -347,7 +347,7 @@ class AdminController extends Controller
         // check username
         $check_username = Registrar::where('username', $username)->first();
 
-        if(count($check_username) > 0) {
+        if(!empty($check_username)) {
             return redirect()->back()->with('error', 'Username has previously used by old user. Please Try Another username');
         }
 

@@ -13,27 +13,27 @@ class ActivityLog extends Model
 
     public function admin()
     {
-    	return $this->belongsTo('App\Admin', 'user_id');
+    	return $this->belongsTo('App\Admin', 'user_id', 'id');
     }
 
     public function registrar()
     {
-    	return $this->belongsTo('App\Registrar', 'user_id');
+    	return $this->belongsTo('App\Registrar', 'user_id', 'id');
     }
 
     public function cashier()
     {
-    	return $this->belongsTo('App\Cashier', 'user_id');
+    	return $this->belongsTo('App\Cashier', 'user_id', 'id');
     }
 
     public function faculty()
     {
-    	return $this->belongsTo('App\Faculty', 'user_id');
+    	return $this->belongsTo('App\Faculty', 'user_id', 'id');
     }
 
     public function student()
     {
-    	return $this->belongsTo('App\User', 'user_id');
+    	return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     

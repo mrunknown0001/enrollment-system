@@ -116,6 +116,10 @@
 			@else
 				<p class="text-center"><em>Enrollment Not Active </em></p>
 			@endif
+
+			<h3 class="text-center">
+				Your Outstanding Balance: PHP {{ $balance }} 
+			</h3>
 		</div>
 	</div>
 </section>

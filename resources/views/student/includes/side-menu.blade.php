@@ -37,7 +37,7 @@
                 @endif
                 <li class="{{ route('student.enroll') == url()->current() ? 'active' : ''}}">
                     <a href="{{ route('student.enroll') }}">
-                        <i class="fa fa-file-text-o"></i> Enroll
+                        <i class="fa fa-file-text-o"></i> Online Registration
                     </a>
                 </li>
                 <li class="{{ route('student.assessment') == url()->current() ? 'active' : '' }}">

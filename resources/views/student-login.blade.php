@@ -31,9 +31,9 @@
                         <button type="submit" class="btn btn-block btn-primary">Login</button>
                     </div>
                     <div class="form-group">
-                        <p class="text-muted">Register
+                        {{-- <p class="text-muted">Register
                             <a href="{{ route('student.registration') }}">here!</a>
-                        </p>
+                        </p> --}}
                         <p class="text-muted">
                             Forgot password? click <a href="{{ route('student.forgot.password') }}">here</a>
                         </p>

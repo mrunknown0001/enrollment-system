@@ -65,6 +65,13 @@ class StudentController extends Controller
 
         $es = $this->check_enrollment_setting();
 
+        // get balance of student
+        $balance = '0.00';
+
+        if(!empty(Auth::user()->balance)) {
+            $balance = Auth::user()->balance->balance;
+        }
+
         // check requirements if ok
         $requirements = false;
 
@@ -93,7 +100,7 @@ class StudentController extends Controller
 
 
 
-        return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl, 'es' => $es, 'requirements' => $requirements]);
+        return view('student.dashboard', ['courses' => $courses, 'programs' => $programs, 'yl' => $yl, 'es' => $es, 'requirements' => $requirements, 'balance' => $balance]);
     }
 
 

@@ -78,11 +78,6 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 	});
 
 
-	Route::get('/student/registration', 'RegistrationController@registration')->name('student.registration');
-
-
-	Route::post('/student/registration', 'RegistrationController@postRegistration')->name('student.registration.post');
-
 
 	Route::get('/faculty/registration', 'FacultyRegistrationController@registration')->name('faculty.registration');
 
@@ -205,6 +200,11 @@ Route::group(['prefix' => 'registrar', 'middleware' => 'prevent-back-history'], 
 
 	// route to view students
 	Route::get('/students', 'RegistrarController@viewStudents')->name('registrar.view.students');
+
+	Route::get('/student/registration', 'RegistrationController@registration')->name('registrar.student.registration');
+
+
+	Route::post('/student/registration', 'RegistrationController@postRegistration')->name('registrar.student.registration.post');
 
 	// route to view courses 
 	Route::get('/courses', 'RegistrarController@viewCourses')->name('registrar.view.courses');

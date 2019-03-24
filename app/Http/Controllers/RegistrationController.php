@@ -18,7 +18,7 @@ class RegistrationController extends Controller
     // method use to view registration form for students
     public function registration()
     {
-    	return view('student-registration');
+    	return view('registrar.student-registration');
     }
 
 
@@ -35,7 +35,9 @@ class RegistrationController extends Controller
             'place_of_birth'=> 'required',
             'address' => 'required',
             'nationality' => 'required',
-            'agree' => 'required'
+            'birth_certificate' => 'required',
+            'form_137' => 'required',
+            'gmc' => 'required'
         ]);
 
         // assign data to variables
@@ -47,6 +49,9 @@ class RegistrationController extends Controller
         $pob = $request['place_of_birth'];
         $address = $request['address'];
         $nationality = $request['nationality'];
+        $birth_certificate = $request['birth_certificate'];
+        $form_137 = $request['form_137'];
+        $gmc = $request['gmc'];
 
         // check if date is future
         if(strtotime(now()) < strtotime($dob)) {
@@ -76,15 +81,16 @@ class RegistrationController extends Controller
         ///////////////////////////////////////////////////////////////////////
         // send the confirmation sms with the student number to the student  //
         ///////////////////////////////////////////////////////////////////////
-        $message = "ICT Online Enrollment System \r\n Your system generated Student Number: " . $student_number;
+        $message = "ICT Online Registration System \r\n Your system generated Student Number: " . $student_number;
         SmsController::sendSms($mobile, $message);
 
 
         // add activity log here
-        GeneralController::activity_log($user->id, 5, 'Register Student Account');
+        // GeneralController::activity_log($user->id, 5, 'Register Student Account');
+        GeneralController::activity_log(Auth::guard('registrar')->user()->id, 2, 'Registered Student with student number of ' . $student_number);
 
         // reguturn to registration page with success message
-        return redirect()->route('student.login')->with('success', 'Account Created! Your Student Number is ' . $student_number)->with('student_number', $student_number);
+        return redirect()->route('registrar.student.registration')->with('success', 'Student Registered. Student Number is ' . $student_number)->with('student_number', $student_number);
 
 
     }
