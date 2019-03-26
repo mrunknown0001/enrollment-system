@@ -39,6 +39,7 @@ class RegistrationController extends Controller
             'form_137' => 'required',
             'gmc' => 'required',
             'parent_guardian' => 'required',
+            'parent_guardian_contact' => 'required',
             'religion' => 'nullable'
         ]);
 
@@ -55,6 +56,7 @@ class RegistrationController extends Controller
         $form_137 = $request['form_137'];
         $gmc = $request['gmc'];
         $parent_guardian = $request['parent_guardian'];
+        $parent_guardian_contact = $request['parent_guardian_contact'];
         $religion = $request['religion'];
 
         // check if date is future
@@ -80,6 +82,7 @@ class RegistrationController extends Controller
         $info->address = $address;
         $info->nationality = $nationality;
         $info->parent_guardian = $parent_guardian;
+        $info->parent_guardian_contact = $parent_guardian_contact;
         $info->religion = $religion;
         $info->save();
 
@@ -87,7 +90,7 @@ class RegistrationController extends Controller
         ///////////////////////////////////////////////////////////////////////
         // send the confirmation sms with the student number to the student  //
         ///////////////////////////////////////////////////////////////////////
-        $message = "ICT Online Registration System \r\n Your system generated Student Number: " . $student_number;
+        $message = "ICT Online Registration System \r\n Your system generated Student Number: " . $student_number . ". Your default password is: " . $password;
         SmsController::sendSms($mobile, $message);
 
 

@@ -66,6 +66,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Parent/Guardian Contact</label>
+                            <input type="text" name="parent_guardian_contact" id="parent_guardian_contact" class="form-control underlined" placeholder="Enter Parent/Guardian Contact Number" required>
+                        </div>
+
+                        <div class="form-group">
                             <label for="address">Address</label>
                             <textarea class="form-control underlined" name="address" id="address" required="" placeholder="Enter address"></textarea> </div>
 
