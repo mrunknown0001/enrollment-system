@@ -64,6 +64,8 @@
                     <p>SY Admitted: <strong>{{ $student->info->sy_admitted ? $student->info->sy_admitted->from . '-' . $student->info->sy_admitted->to : 'N/A' }}</strong></p>
                     <p>School Last Attended:</p>
                     <p>Date Graduated:</p>
+                    <p>Parent/Guardian: {{ $student->info->parent_guardian }}</p>
+                    <p>Parent/Guardian Contact Number: {{ $student->info->parent_guardian_contact }}</p>
                 </div>
                 <div class="card-footer"> <small>Student Details</small> </div>
             </div>
