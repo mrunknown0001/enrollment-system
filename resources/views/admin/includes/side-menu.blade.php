@@ -44,6 +44,9 @@
                     </a>
                     <ul class="sidebar-nav">
                         <li>
+                            <a href="{{ route('admin.view.curriculum') }}"> Curriculum</a>
+                        </li>
+                        <li>
                             <a href="{{ route('admin.courses') }}"> Courses </a>
                         </li>
                         <li>

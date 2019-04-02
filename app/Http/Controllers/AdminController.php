@@ -661,6 +661,13 @@ class AdminController extends Controller
     }
 
 
+    // method use to view curriculum
+    public function curriculum()
+    {
+        
+    }
+
+
 
     // method use to view programs available 
     public function viewPrograms()

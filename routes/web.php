@@ -484,6 +484,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// route to remove faculty
 	Route::post('/user/faculty/remove', 'AdminController@postRemoveFaculty')->name('admin.remove.faculty.post');
 
+
+
+	// route to curriculum
+	Route::get('/curriculum', 'AdminController@curriculum')->name('admin.view.curriculum');
+
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
 
