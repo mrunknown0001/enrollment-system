@@ -16,4 +16,7 @@ class EnrollmentStatus extends Model
     {
     	return $this->belongsTo('App\Program', 'program_id');
     }
+
+
+    
 }

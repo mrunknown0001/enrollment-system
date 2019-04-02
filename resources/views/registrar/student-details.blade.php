@@ -42,10 +42,11 @@
                         @if($student->info->course_id != null)
                             {{ $student->info->course->title }} - 
                             @if($student->info->year_level == 1)
-                                First Year
+                                First Year 
                             @else
                                 Second Year
                             @endif
+                            - {{ !empty($enrollment_status) ? $enrollment_status->semester_id : '' }}
                         @else
                             {{ $student->info->program->title }}
                         @endif
