@@ -427,7 +427,7 @@ class RegistrarController extends Controller
     {
         $student = User::findorfail($id);
 
-        $enrollment_status = \App\EnrollmentStatus::where('user_id', $student->student_id)->where('active', 1)->first();
+        $enrollment_status = \App\EnrollmentStatus::where('student_id', $student->id)->where('active', 1)->first();
 
         if($student->student_number != $sn) {
             return abort(400);
