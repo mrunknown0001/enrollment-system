@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curriculum extends Model
 {
-    //
+    
+
+    public function courses()
+    {
+    	return $this->hasMany('App\Course', 'curriculum_id', 'id');
+    }
 }

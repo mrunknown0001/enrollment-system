@@ -489,6 +489,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// route to curriculum
 	Route::get('/curriculum', 'AdminController@curriculum')->name('admin.view.curriculum');
 
+	// route to add curriculum
+	Route::get('/curriculum/add', 'AdminController@addCurriculum')->name('admin.add.curriculum');
+
+
+	// route to save curriculum
+	Route::post('/curriculum/add', 'AdminController@postAddCurriculum')->name('admin.add.curriculum.post');
+
+	// route to udpate curriculum
+	Route::get('/curriculum/{id}/update', 'AdminController@updateCurriculum')->name('admin.update.curriculum');
+
+	// route to save update on curriculum
+	Route::post('/curriculum/update', 'AdminController@postUpdateCurriculum')->name('admin.update.curriculum.post');
+
+	Route::get('/curriculum/update', function() {
+		return redirect()->route('admin.view.curriculum');
+	});
+
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
 

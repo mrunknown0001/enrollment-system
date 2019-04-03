@@ -667,7 +667,74 @@ class AdminController extends Controller
         $curriculum = \App\Curriculum::orderBy('name', 'asc')
                         ->paginate(5);
 
-        return view('admin.curriculum');
+        return view('admin.curriculum', ['curriculum' => $curriculum]);
+    }
+
+
+    // method use to add curriculum
+    public function addCurriculum()
+    {
+        return view('admin.add-curriculum');
+    }
+
+
+    // method use to save curriculum
+    public function postAddCurriculum(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $name = $request['name'];
+        $description = $request['description'];
+
+        $c = new \App\Curriculum();
+        $c->name = $name;
+        $c->description = $description;
+        
+        if($c->save()) {
+            return redirect()->route('admin.add.curriculum')->with('success', 'Curriculum Added!');
+        }
+
+        return redirect()->route('admin.add.curriculum')->with('error', 'Error Occured Please Try Again Later');
+
+    }
+
+
+    // method use to update curriculum
+    public function updateCurriculum($id)
+    {
+        $c = \App\Curriculum::Findorfail($id);
+
+        // return $c;
+
+        return view('admin.update-curriculum', ['curriculum' => $c]);
+    }
+
+
+    // method use to update curriculum
+    public function postUpdateCurriculum(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $id = $request['curriculum_id'];
+        $name = $request['name'];
+        $description = $request['description'];
+
+        $c = \App\Curriculum::findorfail($id);
+        $c->name = $name;
+        $c->description = $description;
+
+
+        if($c->save()) {
+            return redirect()->route('admin.add.curriculum')->with('success', 'Curriculum Updated');
+        }
+
+        return redirect()->route('admin.add.curriculum')->with('error', 'Error Occured!');
     }
 
 
