@@ -664,7 +664,10 @@ class AdminController extends Controller
     // method use to view curriculum
     public function curriculum()
     {
-        
+        $curriculum = \App\Curriculum::orderBy('name', 'asc')
+                        ->paginate(5);
+
+        return view('admin.curriculum');
     }
 
 

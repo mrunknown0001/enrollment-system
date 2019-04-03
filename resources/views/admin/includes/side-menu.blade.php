@@ -37,7 +37,7 @@
                         <i class="fa fa-graduation-cap"></i> Students
                     </a>
                 </li>
-                <li class="{{ route('admin.view.programs') == url()->current() || route('admin.add.program') == url()->current() || route('admin.courses') == url()->current() || route('admin.add.course') == url()->current() ? 'active' : '' }}">
+                <li class="{{ route('admin.view.programs') == url()->current() || route('admin.add.program') == url()->current() || route('admin.courses') == url()->current() || route('admin.add.course') == url()->current() || route('admin.view.curriculum') == url()->current() ? 'active' : '' }}">
                     <a href="">
                         <i class="fa fa-book"></i> Programs &amp; Courses
                         <i class="fa arrow"></i>
