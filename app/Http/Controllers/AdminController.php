@@ -738,6 +738,13 @@ class AdminController extends Controller
     }
 
 
+    // method use to select coure to view curriculum
+    public function curriculumCourses()
+    {
+        return view('admin.curriculum-courses');
+    }
+
+
 
     // method use to view programs available 
     public function viewPrograms()

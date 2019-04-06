@@ -506,6 +506,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 		return redirect()->route('admin.view.curriculum');
 	});
 
+	// route to view courses and curriculum uner
+	Route::get('/curriculum/courses', 'AdminController@curriculumCourses')->name('admin.curriculum.courses');
+
 	// route to view programs available
 	Route::get('/programs', 'AdminController@viewPrograms')->name('admin.view.programs');
 

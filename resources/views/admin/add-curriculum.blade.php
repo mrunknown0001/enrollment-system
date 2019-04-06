@@ -26,6 +26,11 @@
                     <form id="signup-form" action="{{ route('admin.add.curriculum.post') }}" method="POST" role="form" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
+                            <select name="course" id="course" class="form-control">
+                                <option value="">Select course</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="title">Curriculum Name</label>
                             <input type="text" name="name" id="name" class="form-control underlined" placeholder="Curriculum" required="">
                         </div>

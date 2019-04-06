@@ -15,6 +15,7 @@ class CreateCurriculaTable extends Migration
     {
         Schema::create('curricula', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('course_id')->nullable();
             $table->string('name', 255)->nullable();
             $table->string('description', 255)->nullable();
             $table->timestamps();

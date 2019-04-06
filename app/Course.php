@@ -14,4 +14,10 @@ class Course extends Model
 	{
 		return $this->hasMany('App\StudentInfo', 'course_id');
 	}
+
+
+	public function curricula()
+	{
+		return $this->hasMany('App\Curriculum', 'curriculum_id');
+	}
 }
