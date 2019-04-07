@@ -911,6 +911,7 @@ class AdminController extends Controller
         $course->title = $title;
         $course->code = $code;
         $course->description = $desc;
+        $course->active = 1;
         $course->save();
 
         // add log

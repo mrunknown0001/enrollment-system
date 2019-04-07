@@ -61,6 +61,18 @@
                             <input type="text" class="form-control underlined" name="place_of_birth" id="place_of_birth" placeholder="Enter place of birth" required=""> </div>
 
                         <div class="form-group">
+                            <label for="course">Course</label>
+                            <select name="course" id="course" class="form-control underlined">
+                                <option value="">No Course</option>
+                                @if(count($courses) > 0)
+                                    @foreach($courses as $c)
+                                        <option value="{{ $c->id }}">{{ $c->code }} - {{ $c->title }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label>Parent/Guardian</label>
                             <input type="text" name="parent_guardian" id="parent_guardian" class="form-control underlined" placeholder="Enter Parent/Guardian" required>
                         </div>

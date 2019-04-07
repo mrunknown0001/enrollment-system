@@ -18,7 +18,9 @@ class RegistrationController extends Controller
     // method use to view registration form for students
     public function registration()
     {
-    	return view('registrar.student-registration');
+        $courses = \App\Course::where('active', 1)->get();
+
+    	return view('registrar.student-registration', ['courses' => $courses]);
     }
 
 
@@ -33,6 +35,7 @@ class RegistrationController extends Controller
             'password' => 'required|min:8|confirmed',
             'date_of_birth' => 'required',
             'place_of_birth'=> 'required',
+            'course' => 'nullable',
             'address' => 'required',
             'nationality' => 'required',
             'birth_certificate' => 'required',
@@ -50,6 +53,7 @@ class RegistrationController extends Controller
         $password = $request['password'];
         $dob = $request['date_of_birth'];
         $pob = $request['place_of_birth'];
+        $course = $request['course'];
         $address = $request['address'];
         $nationality = $request['nationality'];
         $birth_certificate = $request['birth_certificate'];
@@ -77,6 +81,7 @@ class RegistrationController extends Controller
 
         $info = new StudentInfo();
         $info->student_id = $user->id;
+        $info->course_id = $course;
         $info->date_of_birth = date('Y-m-d', strtotime($dob));
         $info->place_of_birth = $pob;
         $info->address = $address;

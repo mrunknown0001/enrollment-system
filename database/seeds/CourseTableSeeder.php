@@ -15,7 +15,8 @@ class CourseTableSeeder extends Seeder
         	[
         		'title' => 'Information Technology',
         		'code' => '2YIT',
-        		'description' => '2 Years Course Information Technology'
+        		'description' => '2 Years Course Information Technology',
+                'active' => 1
         	]
         ]);
     }
