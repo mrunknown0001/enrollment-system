@@ -73,9 +73,9 @@
 								<p>Name: <strong>{{ ucwords($s->firstname . ' ' . $s->lastname) }}</strong></p>
 								<p>Student Number: <strong>{{ $s->student_number }}</strong></p>
 								<p>Mobile Number: <strong>{{ $s->mobile_number }}</strong></p>
-								<p>Date of Birth: <strong>{{ $s->info->date_of_birth != NULL ? date('F j, Y', strtotime($s->info->date_of_birth)) : ''}}</strong>
+								<p>Date of Birth: <strong>{{ $s->info->date_of_birth != NULL ? date('F j, Y', strtotime($s->info->date_of_birth)) : '' }}</strong>
 								</p>
-								<p>Place of Birth: <strong>{{ ucwords($s->info->place_of_birth) }}</strong></p>
+								<p>Place of Birth: <strong>{{ $s->info->place_of_birth != NULL ? ucwords($s->info->place_of_birth) : '' }}</strong></p>
 								<p>Address: <strong>{{ ucwords($s->info->address) }}</strong></p>
 								<p>Nationality: <strong>{{ ucwords($s->info->nationality) }}</strong></p>
 								@if(!empty($s->info->sy_admitted))
