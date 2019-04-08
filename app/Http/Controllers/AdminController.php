@@ -674,7 +674,9 @@ class AdminController extends Controller
     // method use to add curriculum
     public function addCurriculum()
     {
-        return view('admin.add-curriculum');
+        $courses = \App\Course::where('active', 1)->get();
+
+        return view('admin.add-curriculum', ['courses' => $courses]);
     }
 
 
@@ -683,15 +685,18 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'course' => 'required'
         ]);
 
         $name = $request['name'];
         $description = $request['description'];
+        $course = $request['course'];
 
         $c = new \App\Curriculum();
         $c->name = $name;
         $c->description = $description;
+        $c->course_id = $course;
         
         if($c->save()) {
             return redirect()->route('admin.add.curriculum')->with('success', 'Curriculum Added!');

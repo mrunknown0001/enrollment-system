@@ -28,6 +28,11 @@
                         <div class="form-group">
                             <select name="course" id="course" class="form-control">
                                 <option value="">Select course</option>
+                                @if(count($courses) > 0)
+                                    @foreach($courses as $c)
+                                        <option value="{{ $c->id }}">{{ $c->code . ' - ' . $c->title }}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         <div class="form-group">

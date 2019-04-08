@@ -20,6 +20,7 @@
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 						<th>Curriculum</th>
+						<th>Course</th>
 						<th>Description</th>
 						<th>Action</th>
 					</thead>
@@ -27,6 +28,7 @@
 						@foreach($curriculum as $c)
 							<tr>
 								<td>{{ $c->name }}</td>
+								<td>{{ $c->course->code }}</td>
 								<td>{{ $c->description }}</td>
 								<td>
 									<a href="{{ route('admin.update.curriculum', ['id' => $c->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Update</a> <a href="{{ route('admin.curriculum.courses') }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View</a>

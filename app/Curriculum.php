@@ -8,8 +8,8 @@ class Curriculum extends Model
 {
     
 
-    // public function courses()
-    // {
-    // 	return $this->hasMany('App\Course', 'curriculum_id', 'id');
-    // }
+    public function course()
+    {
+    	return $this->belongsTo('App\Course', 'course_id');
+    }
 }
