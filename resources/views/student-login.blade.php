@@ -28,6 +28,12 @@
                         <!-- <a href="reset.html" class="forgot-btn pull-right">Forgot password?</a> -->
                     </div>
                     <div class="form-group">
+                        <label for="terms_and_condition">
+                            <input class="checkbox" id="terms_and_condition" name="terms_and_condition" type="checkbox" required>
+                            <span>I Agree to the <a data-toggle="modal" data-target="#terms-and-policy-modal" class="btn btn-link">Terms and Condition</a></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-block btn-primary">Login</button>
                     </div>
                     <div class="form-group">
@@ -41,6 +47,7 @@
                 </form>
             </div>
         </div>
+        
         <div class="text-center">
             <a href="{{ route('welcome') }}" class="btn btn-secondary btn-sm">
                 <i class="fa fa-arrow-left"></i> Back to Welcome Page </a>
@@ -48,3 +55,4 @@
     </div>
 </div>
 @endsection
+@include('includes.terms-and-policy')

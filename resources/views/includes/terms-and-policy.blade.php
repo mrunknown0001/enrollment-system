@@ -3,13 +3,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
-                    <i class="fa fa-info"></i> Terms and Policy</h4>
+                    <i class="fa fa-info"></i> Terms and Conditions</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Terms and Policy Content</p>
+                <p>Terms and Conditions Content</p>
 
                 <p>TERMS AND CONDITIONS for all students
 We undertake to offer the courses and services described within.</p>
@@ -24,9 +24,6 @@ We undertake to offer the courses and services described within.</p>
 <p>6.  We guarantee a place on a course or program at ICT College only after we have received your full payment.</p>
 <p>7.  Online payments may not be made in instalments. If you want to pay partial, print your assessment form and show it to the cashier.</p>
 <p>8.  Any change which results in additional charges must be paid for before the change is implemented.</p>
-
-
-
 
 
 

@@ -39,7 +39,8 @@ class LoginController extends Controller
         // validate request data
         $request->validate([
             'student_number' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'terms' => 'required'
         ]);
 
         // assign request data to variable
