@@ -44,6 +44,17 @@
                             <textarea name="description" id="description" class="form-control underlined" placeholder="Curiculum Description"></textarea>
                         </div>
                         <div class="form-group">
+                            <label>Add Subjects</label>
+                            <p>
+                            <button type="button" class="btn btn-primary">First Year First Semester</button>
+                            <button type="button" class="btn btn-primary">First Year Second Semester</button>
+                            </p>
+                            <p>
+                            <button type="button" class="btn btn-primary">Second Year First Semester</button>
+                            <button type="button" class="btn btn-primary">Second Year Second Semester</button>
+                            </p>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Curiculum</button>
                         </div>
                     </form>

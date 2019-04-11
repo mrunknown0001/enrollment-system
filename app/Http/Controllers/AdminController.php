@@ -712,9 +712,9 @@ class AdminController extends Controller
     {
         $c = \App\Curriculum::Findorfail($id);
 
-        // return $c;
+        $courses = \App\Course::where('active', 1)->get();
 
-        return view('admin.update-curriculum', ['curriculum' => $c]);
+        return view('admin.update-curriculum', ['curriculum' => $c, 'courses' => $courses]);
     }
 
 
@@ -723,15 +723,18 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'course' => 'required'
         ]);
 
         $id = $request['curriculum_id'];
         $name = $request['name'];
         $description = $request['description'];
+        $course = $request['course'];
 
         $c = \App\Curriculum::findorfail($id);
         $c->name = $name;
+        $c->course_id = $course;
         $c->description = $description;
 
 

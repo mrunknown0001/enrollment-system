@@ -27,6 +27,16 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="curriculum_id" value="{{ $curriculum->id }}">
                         <div class="form-group">
+                            <select name="course" id="course" class="form-control">
+                                <option value="">Select course</option>
+                                @if(count($courses) > 0)
+                                    @foreach($courses as $c)
+                                        <option value="{{ $c->id }}">{{ $c->code . ' - ' . $c->title }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="title">Curriculum Name</label>
                             <input type="text" name="name" id="name" class="form-control underlined" value="{{ $curriculum->name }}" placeholder="Curriculum" required="">
                         </div>
@@ -35,7 +45,7 @@
                             <textarea name="description" id="description" class="form-control underlined" placeholder="Curiculum Description">{{ $curriculum->description }}</textarea>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Update Curiculum</button>
+                            <button class="btn btn-primary"><i class="fa fa-save"></i> Update Curiculum</button>
                         </div>
                     </form>
                 </div>
