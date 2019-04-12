@@ -46,13 +46,102 @@
                         <div class="form-group">
                             <label>Add Subjects</label>
                             <p>
-                            <button type="button" class="btn btn-primary">First Year First Semester</button>
-                            <button type="button" class="btn btn-primary">First Year Second Semester</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">First Year First Semester</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal2">First Year Second Semester</button>
                             </p>
                             <p>
-                            <button type="button" class="btn btn-primary">Second Year First Semester</button>
-                            <button type="button" class="btn btn-primary">Second Year Second Semester</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal3">Second Year First Semester</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal4">Second Year Second Semester</button>
                             </p>
+
+
+
+                            {{-- modal for fisrt year first sem --}}
+                              <!-- Modal -->
+                              <div class="modal fade" id="modal1" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+
+
+                              <!-- Modal -->
+                              <div class="modal fade" id="modal2" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+
+
+                              <!-- Modal -->
+                              <div class="modal fade" id="modal3" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+
+
+                              <!-- Modal -->
+                              <div class="modal fade" id="modal4" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+
+
+
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Curiculum</button>
