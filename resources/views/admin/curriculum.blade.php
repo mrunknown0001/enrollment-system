@@ -31,7 +31,7 @@
 								<td>{{ $c->course->code }}</td>
 								<td>{{ $c->description }}</td>
 								<td>
-									<a href="{{ route('admin.update.curriculum', ['id' => $c->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Update</a> <a href="{{ route('admin.curriculum.courses') }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View</a>
+									<a href="{{ route('admin.update.curriculum', ['id' => $c->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Update</a> <a href="" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View</a>
 								</td>
 							</tr>
 						@endforeach

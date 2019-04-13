@@ -676,13 +676,21 @@ class AdminController extends Controller
     {
         $courses = \App\Course::where('active', 1)->get();
 
-        return view('admin.add-curriculum', ['courses' => $courses]);
+        $f_first_sem = \App\Subject::where('year_level', 1)->where('semester', 1)->get();
+        $f_second_sem = \App\Subject::where('year_level', 1)->where('semester', 2)->get();
+
+        $s_first_sem = \App\Subject::where('year_level', 2)->where('semester', 1)->get();
+        $s_second_sem = \App\Subject::where('year_level', 2)->where('semester', 2)->get();
+
+
+        return view('admin.add-curriculum', ['courses' => $courses, 'f_first_sem' => $f_first_sem, 'f_second_sem' => $f_second_sem, 's_first_sem' => $s_first_sem, 's_second_sem' => $s_second_sem]);
     }
 
 
     // method use to save curriculum
     public function postAddCurriculum(Request $request)
     {
+        return $request;
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',

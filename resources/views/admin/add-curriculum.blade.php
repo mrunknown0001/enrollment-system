@@ -64,10 +64,19 @@
                                   <!-- Modal content-->
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                      <h4 class="modal-title">First Year First Semester Subjects</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <p>Some text in the modal.</p>
+                                      @if(count($f_first_sem) > 0)
+                                        @foreach($f_first_sem as $f)
+                                            <p>
+                                            <input type="checkbox" name="f_first_sem[]" id="f_first_sem_{{ $f->id }}" value="{{ $f->id }}">
+                                            <label for="f_first_sem_{{ $f->id }}">{{ $f->code }} - {{ $f->description }}</label>
+                                            </p>
+                                        @endforeach
+                                      @else
+                                        <p>No Subjects For First Year First Semester</p>
+                                      @endif
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -85,10 +94,19 @@
                                   <!-- Modal content-->
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                      <h4 class="modal-title">First Year Second Semester Subjects</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <p>Some text in the modal.</p>
+                                      @if(count($f_second_sem) > 0)
+                                        @foreach($f_second_sem as $f)
+                                            <p>
+                                            <input type="checkbox" name="f_second_sem[]" id="f_second_sem_{{ $f->id }}" value="{{ $f->id }}">
+                                            <label for="f_second_sem_{{ $f->id }}">{{ $f->code }} - {{ $f->description }}</label>
+                                            </p>
+                                        @endforeach
+                                      @else
+                                        <p>No Subjects For First Year Second Semester</p>
+                                      @endif
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -106,10 +124,19 @@
                                   <!-- Modal content-->
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                      <h4 class="modal-title">Second Year First Semester Subjects</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <p>Some text in the modal.</p>
+                                      @if(count($s_first_sem) > 0)
+                                        @foreach($s_first_sem as $f)
+                                            <p>
+                                            <input type="checkbox" name="s_first_sem[]" id="s_first_sem_{{ $f->id }}">
+                                            <label for="s_first_sem_{{ $f->id }}">{{ $f->code }} - {{ $f->description }}</label>
+                                            </p>
+                                        @endforeach
+                                      @else
+                                        <p>No Subjects For Second Year First Semester</p>
+                                      @endif
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -127,10 +154,19 @@
                                   <!-- Modal content-->
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h4 class="modal-title">Modal Header <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                      <h4 class="modal-title">Second Year Second Semester Subjects</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <p>Some text in the modal.</p>
+                                      @if(count($s_second_sem) > 0)
+                                        @foreach($s_second_sem as $f)
+                                            <p>
+                                            <input type="checkbox" name="s_second_sem[]" id="s_second_sem_{{ $f->id }}" value="{{ $f->id }}">
+                                            <label for="s_second_sem_{{ $f->id }}">{{ $f->code }} - {{ $f->description }}</label>
+                                            </p>
+                                        @endforeach
+                                      @else
+                                        <p>No Subjects For Second Year Second Semester</p>
+                                      @endif
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
