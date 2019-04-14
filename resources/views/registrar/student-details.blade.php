@@ -46,7 +46,7 @@
                             @else
                                 Second Year
                             @endif
-                            - {{ !empty($enrollment_status) ? $enrollment_status->semester_id : '' }}
+                            - {{ !empty($enrollment_status) ? $enrollment_status->semester_id == 1 ? '1st Semester' : '2nd Semester' : '' }}
                         @else
                             {{ $student->info->program->title }}
                         @endif
