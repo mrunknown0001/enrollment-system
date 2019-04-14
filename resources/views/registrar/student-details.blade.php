@@ -51,7 +51,7 @@
                             {{ $student->info->program->title }}
                         @endif
                     @else
-                        Not yet enrolled
+                        Student Not yet enrolled
                     @endif
                     </p>
 					<p>Name: <strong>{{ ucwords($student->firstname . ' ' . $student->lastname) }}</strong></p>
