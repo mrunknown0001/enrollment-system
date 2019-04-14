@@ -671,6 +671,71 @@ class AdminController extends Controller
     }
 
 
+    // method use to view specific curriculum
+    public function viewCurriculum($id)
+    {
+        $curriculum = \App\Curriculum::findorfail($id);
+        // return $curriculum;
+        $subs_1 = $curriculum->subjects->f_first_sem;
+        $subs_2 = $curriculum->subjects->f_second_sem;
+        $subs_3 = $curriculum->subjects->s_first_sem;
+        $subs_4 = $curriculum->subjects->s_second_sem;
+
+
+        $f_first_sem = NULL;
+        $f_second_sem = NULL;
+        $s_first_sem = NULL;
+        $s_second_sem = NULL;
+
+        if(unserialize($subs_2) != NULL) {
+            foreach(unserialize($subs_2) as $s) {
+                $f_second_sem[] = [
+                    'code' => GeneralController::getSubjectCode($s),
+                    'description' => GeneralController::getSubjectDesc($s),
+                    'unit' => GeneralController::getSubjectUnit($s)
+                ];
+            }
+        }
+
+
+        if(unserialize($subs_1) != NULL) {
+            foreach(unserialize($subs_1) as $s) {
+                $f_first_sem[] = [
+                    'code' => GeneralController::getSubjectCode($s),
+                    'description' => GeneralController::getSubjectDesc($s),
+                    'unit' => GeneralController::getSubjectUnit($s)
+                ];
+            }
+        }
+
+
+        if(unserialize($subs_3) != NULL) {
+            foreach(unserialize($subs_3) as $s) {
+                $s_first_sem[] = [
+                    'code' => GeneralController::getSubjectCode($s),
+                    'description' => GeneralController::getSubjectDesc($s),
+                    'unit' => GeneralController::getSubjectUnit($s)
+                ];
+            }
+        }
+
+
+        if(unserialize($subs_4) != NULL) {
+            foreach(unserialize($subs_4) as $s) {
+                $s_second_sem[] = [
+                    'code' => GeneralController::getSubjectCode($s),
+                    'description' => GeneralController::getSubjectDesc($s),
+                    'unit' => GeneralController::getSubjectUnit($s)
+                ];
+            }
+        }
+
+
+
+        return view('admin.curriculum-view', ['curriculum' => $curriculum, 'f_first_sem' => $f_first_sem, 'f_second_sem' => $f_second_sem, 's_first_sem' => $s_first_sem, 's_second_sem' => $s_second_sem]);
+    }
+
+
     // method use to add curriculum
     public function addCurriculum()
     {
@@ -690,7 +755,7 @@ class AdminController extends Controller
     // method use to save curriculum
     public function postAddCurriculum(Request $request)
     {
-        return $request;
+        // return $request;
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
@@ -701,12 +766,26 @@ class AdminController extends Controller
         $description = $request['description'];
         $course = $request['course'];
 
+        $f_first_sem = $request['f_first_sem'];
+        $f_second_sem = $request['f_second_sem'];
+        $s_first_sem = $request['s_first_sem'];
+        $s_second_sem = $request['s_second_sem'];
+
         $c = new \App\Curriculum();
         $c->name = $name;
         $c->description = $description;
         $c->course_id = $course;
         
         if($c->save()) {
+
+            $cs = new \App\CurriculumSubject();
+            $cs->curriculum_id = $c->id;
+            $cs->f_first_sem = serialize($f_first_sem);
+            $cs->f_second_sem = serialize($f_second_sem);
+            $cs->s_first_sem = serialize($s_first_sem);
+            $cs->s_second_sem = serialize($s_second_sem);
+            $cs->save();
+
             return redirect()->route('admin.add.curriculum')->with('success', 'Curriculum Added!');
         }
 

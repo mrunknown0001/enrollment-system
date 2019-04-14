@@ -5,10 +5,11 @@
     <div class="auth-container">
         <div class="card">
             <header class="auth-header">
-                <h1 class="auth-title">
-                    <!-- <img src="{{ asset('uploads/imgs/logo.png') }}" height="40px" width="auto"> -->
+                <h2 class="auth-title">
+                    <img src="{{ asset('uploads/imgs/logo.png') }}" height="40px" width="auto">
                     &nbsp; Student Login
-                </h1>
+                </h2>
+                {{-- <h3>Student Login</h3> --}}
             </header>
             <div class="auth-content">
                 @include('includes.all')
@@ -30,7 +31,7 @@
                     <div class="form-group">
                         <label for="terms_and_condition">
                             <input class="checkbox" id="terms_and_condition" name="terms_and_condition" type="checkbox" required>
-                            <span>I Agree to the <a data-toggle="modal" data-target="#terms-and-policy-modal" class="btn btn-link">Terms and Condition</a></span>
+                            <span>I Agree to the <a data-toggle="modal" data-target="#terms-and-policy-modal" class="btn btn-link">Terms and Condition</a> &amp; <a class="btn btn-link" data-toggle="modal" data-target="#privacyPolicy">Data Privacy Policy</a></span>
                         </label>
                     </div>
                     <div class="form-group">
@@ -56,3 +57,4 @@
 </div>
 @endsection
 @include('includes.terms-and-policy')
+@include('includes.privacy-policy')

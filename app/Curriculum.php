@@ -12,4 +12,10 @@ class Curriculum extends Model
     {
     	return $this->belongsTo('App\Course', 'course_id');
     }
+
+
+    public function subjects()
+    {
+    	return $this->hasOne('App\CurriculumSubject', 'curriculum_id');
+    }
 }

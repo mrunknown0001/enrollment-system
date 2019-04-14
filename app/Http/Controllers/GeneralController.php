@@ -139,6 +139,35 @@ class GeneralController extends Controller
 
 
 
+
+
+    public static function getSubjectCode($id)
+    {
+        $sub = Subject::find($id);
+
+
+        return $sub['code'];
+    }    
+
+    public static function getSubjectDesc($id)
+    {
+        $sub = Subject::find($id);
+
+
+        return $sub['description'];
+    }
+
+    public static function getSubjectUnit($id)
+    {
+        $sub = Subject::find($id);
+
+
+        return $sub['units'];
+    }    
+
+
+
+
     /////////////////////////////////////////////////////////
     // method to create unique assessment reference number //
     /////////////////////////////////////////////////////////

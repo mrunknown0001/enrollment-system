@@ -489,6 +489,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 	// route to curriculum
 	Route::get('/curriculum', 'AdminController@curriculum')->name('admin.view.curriculum');
 
+	// Route to view specific curriculum
+	Route::get('/curriculum/{id}/view', 'AdminController@viewCurriculum')->name('admin.curriculum.view');
+
 	// route to add curriculum
 	Route::get('/curriculum/add', 'AdminController@addCurriculum')->name('admin.add.curriculum');
 
