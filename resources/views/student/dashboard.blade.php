@@ -32,7 +32,7 @@
 									@if(Auth::user()->info->year_level == $yl->id)
 										{{-- check if enrolled for course applicable for second year --}}
 										@if(Auth::user()->info->course_id == null)
-											@if(Auth::user()->assessment->where('active', 1)->first())
+											@if(Auth::user()->assessment->where('active', 1)->where('paid', 0)->first())
 												<p class="text-center">Please pay the assessment</p>
 											@else
 												<p class="text-center"><em>Not enrolled in any course</em></p>
