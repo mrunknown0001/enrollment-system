@@ -51,7 +51,7 @@
 								@if(Auth::user()->enrollment_status->where('active', 1)->first())
 									@include('student.includes.student-dashboard-profile')
 								@else
-									@if(Auth::user()->assessment->where('active', 1)->first())
+									@if(Auth::user()->assessment->where('active', 1)->where('paid', 0)->first())
 										<p class="text-center">Please pay the assessment</p>
 									@else
 										<p class="text-center"><em>Not Enrolled in any Program</em></p>
@@ -97,7 +97,7 @@
 										@include('student.includes.student-dashboard-profile')
 									@else
 										@if(Auth::user()->assessment->where('active', 1)->first())
-											<p class="text-center">Please pay the assessment</p>
+											<p class="text-center">Please pay the active assessment</p>
 										@else
 											<p class="text-center"><em>Not Enrolled in any Program</em></p>
 											<a href="{{ route('student.enroll') }}">Click here to enroll</a>
