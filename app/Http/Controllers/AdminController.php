@@ -801,7 +801,13 @@ class AdminController extends Controller
 
         $courses = \App\Course::where('active', 1)->get();
 
-        return view('admin.update-curriculum', ['curriculum' => $c, 'courses' => $courses]);
+        $f_first_sem = \App\Subject::where('year_level', 1)->where('semester', 1)->get();
+        $f_second_sem = \App\Subject::where('year_level', 1)->where('semester', 2)->get();
+
+        $s_first_sem = \App\Subject::where('year_level', 2)->where('semester', 1)->get();
+        $s_second_sem = \App\Subject::where('year_level', 2)->where('semester', 2)->get();
+
+        return view('admin.update-curriculum', ['curriculum' => $c, 'courses' => $courses,  'f_first_sem' => $f_first_sem, 'f_second_sem' => $f_second_sem, 's_first_sem' => $s_first_sem, 's_second_sem' => $s_second_sem]);
     }
 
 
@@ -819,6 +825,11 @@ class AdminController extends Controller
         $description = $request['description'];
         $course = $request['course'];
 
+        $f_first_sem = $request['f_first_sem'];
+        $f_second_sem = $request['f_second_sem'];
+        $s_first_sem = $request['s_first_sem'];
+        $s_second_sem = $request['s_second_sem'];
+
         $c = \App\Curriculum::findorfail($id);
         $c->name = $name;
         $c->course_id = $course;
@@ -826,6 +837,12 @@ class AdminController extends Controller
 
 
         if($c->save()) {
+            $c->subjects->f_first_sem = serialize($f_first_sem);
+            $c->subjects->f_second_sem = serialize($f_second_sem);
+            $c->subjects->s_first_sem = serialize($s_first_sem);
+            $c->subjects->s_second_sem = serialize($s_second_sem);
+            $c->subjects->save();
+
             return redirect()->route('admin.add.curriculum')->with('success', 'Curriculum Updated');
         }
 

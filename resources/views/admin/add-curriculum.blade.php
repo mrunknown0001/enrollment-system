@@ -130,7 +130,7 @@
                                       @if(count($s_first_sem) > 0)
                                         @foreach($s_first_sem as $f)
                                             <p>
-                                            <input type="checkbox" name="s_first_sem[]" id="s_first_sem_{{ $f->id }}">
+                                            <input type="checkbox" name="s_first_sem[]" id="s_first_sem_{{ $f->id }}" value="{{ $f->id }}">
                                             <label for="s_first_sem_{{ $f->id }}">{{ $f->code }} - {{ $f->description }}</label>
                                             </p>
                                         @endforeach

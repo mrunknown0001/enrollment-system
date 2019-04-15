@@ -65,7 +65,7 @@
 					@if($s_first_sem != NULL)
 						@foreach($s_first_sem as $f)
 							<tr>
-								<td>Second Year - Second Semester</td>
+								<td>Second Year - First Semester</td>
 								<td>{{ $f['code'] }}</td>
 								<td>{{ $f['description'] }}</td>
 								<td>{{ $f['unit'] }}</td>
@@ -73,7 +73,7 @@
 						@endforeach
 					@else
 						<tr>
-							<td>First Year Second Semester</td>
+							<td>Second Year First Semester</td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -91,7 +91,7 @@
 						@endforeach
 					@else
 						<tr>
-							<td>First Year Second Semester</td>
+							<td>Second Year Second Semester</td>
 							<td></td>
 							<td></td>
 						</tr>
