@@ -157,7 +157,7 @@ class CashierController extends Controller
 
         $subjects = null;
 
-        if(count($assessment) > 0) {
+        if(!empty($assessment)) {
             if($assessment->subject_ids != null) {
                 $subject_ids = unserialize($assessment->subject_ids);
 
@@ -190,7 +190,7 @@ class CashierController extends Controller
 
         $subjects = null;
 
-        if(count($assessment) > 0) {
+        if(!empty($assessment)) {
             if($assessment->subject_ids != null) {
                 $subject_ids = unserialize($assessment->subject_ids);
 

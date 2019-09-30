@@ -397,13 +397,13 @@ class AdminController extends Controller
         $programs = null;
         $subjects = null;
 
-        if(count($programs_assigned) > 0) {
+        if(!empty($programs_assigned)) {
             foreach(unserialize($programs_assigned->program_ids) as $p) {
                 $programs = Program::find($p);
             }
         }
 
-        if(count($subjects_assigned) > 0) {
+        if(!empty($subjects_assigned)) {
             foreach(unserialize($subjects_assigned->subject_ids) as $s) {
                 $subjects = Subject::find($s);
             }
@@ -457,7 +457,7 @@ class AdminController extends Controller
         $ay = AcademicYear::where('active', 1)->first();
 
         // check if there is active sem and ay
-        if(count($sem) < 1 || count($ay) < 1) {
+        if(empty($sem) || empty($ay)) {
             return redirect()->back()->with('error', 'No Active Semester or Academic Year!');
         }
 
@@ -509,7 +509,7 @@ class AdminController extends Controller
         $ay = AcademicYear::where('active', 1)->first();
 
         // check if there is active sem and ay
-        if(count($sem) < 1 || count($ay) < 1) {
+        if(empty($sem) || empty($ay)) {
             return redirect()->back()->with('error', 'No Active Semester or Academic Year!');
         }
 
@@ -560,7 +560,7 @@ class AdminController extends Controller
                                                 ->where('active', 1)
                                                 ->first();
 
-        if(count($subjects_assignment) < 1) {
+        if(empty($subjects_assignment)) {
             return redirect()->back()->with('error', 'No Assigned Subject!');
         }
 
@@ -1117,11 +1117,11 @@ class AdminController extends Controller
         $ay = AcademicYear::where('active', 1)->first();
         $sem = ActiveSemester::where('active', 1)->first();
 
-        if(count($ay) < 1) {
+        if(empty($ay)) {
             return redirect()->back()->with('error', 'No Active Academic Year!');
         }
 
-         if(count($sem) < 1) {
+         if(empty($sem)) {
             return redirect()->back()->with('error', 'No Active Semester!');
         }
 
@@ -2148,7 +2148,7 @@ class AdminController extends Controller
                         ->where('time_start', $st)
                         ->where('time_end', $et)
                         ->first();
-        if(count($schedule) > 0) {
+        if(!empty($schedule)) {
             return redirect()->back()->with('error', 'Duplicate Schedule Found!');
         }
 
@@ -2158,7 +2158,7 @@ class AdminController extends Controller
                         ->where('time_start', $st)
                         ->where('time_end', $et)
                         ->first();
-        if(count($schedule) > 0) {
+        if(!empty($schedule)) {
             return redirect()->back()->with('error', 'Time Slot Filled Up!');
         }
 
@@ -2335,7 +2335,7 @@ class AdminController extends Controller
 
         $subjects = null;
 
-        if(count($assessment) > 0) {
+        if(!empty($assessment)) {
             if($assessment->subject_ids != null) {
                 $subject_ids = unserialize($assessment->subject_ids);
 

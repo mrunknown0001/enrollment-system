@@ -108,7 +108,7 @@ class LoginController extends Controller
         $student = User::where('student_number', $student_number)->first();
 
         // if there is result send a code to the registered number
-        if(count($student) < 1) {
+        if(empty($student)) {
             return redirect()->back()->with('error', 'No Student Found!');
         }
 

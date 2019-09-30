@@ -191,7 +191,7 @@ class StudentController extends Controller
         $avatar = Avatar::where('student_id', Auth::user()->id)->first();
 
         // save photoname to database
-        if(count($avatar) < 1) {
+        if(!empty($avatar)) {
             $avatar = new Avatar();
             $avatar->student_id = Auth::user()->id;
             $avatar->avatar = $photoname;
